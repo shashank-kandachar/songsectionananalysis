@@ -436,9 +436,12 @@ async function exchangeCode(code) {
     localStorage.setItem('spotify_token', data.access_token);
     localStorage.setItem('spotify_refresh', data.refresh_token || '');
     localStorage.setItem('spotify_token_expiry', Date.now() + (data.expires_in * 1000));
-    window.history.replaceState({}, '', REDIRECT_URI);
+    window.history.replaceState({}, document.title, window.location.pathname);
     return true;
   }
+  console.error('Token exchange failed:', JSON.stringify(data));
+  const errEl = document.getElementById('status-text');
+  if (errEl) errEl.textContent = 'Auth error: ' + (data.error_description || data.error || 'unknown — check browser console');
   return false;
 }
 
@@ -479,14 +482,35 @@ function logout() {
 async function init() {
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
+  const error = params.get('error');
 
-  if (code) {
-    showStatus('loading', 'Authenticating with Spotify…');
-    const ok = await exchangeCode(code);
-    if (!ok) { showStatus('error', 'Auth failed. Try logging in again.'); return; }
-    hideStatus();
+  // Spotify returned an error (e.g. user denied)
+  if (error) {
+    showAuthScreen();
+    showStatus('error', 'Spotify login was cancelled or denied.');
+    return;
   }
 
+  // We have an auth code — exchange it
+  if (code) {
+    // Show a minimal loading UI immediately (auth screen hidden, status visible)
+    document.getElementById('auth-screen').style.display = 'none';
+    document.getElementById('main-app').style.display = '';
+    showStatus('loading', 'Authenticating with Spotify…');
+
+    const ok = await exchangeCode(code);
+    if (!ok) {
+      showStatus('error', 'Auth failed — please try logging in again.');
+      setTimeout(() => { showAuthScreen(); hideStatus(); }, 3000);
+      return;
+    }
+    hideStatus();
+    initPlayer();
+    loadUserProfile();
+    return;
+  }
+
+  // Normal load — check stored token
   const stored = localStorage.getItem('spotify_token');
   if (stored) {
     if (isTokenValid()) {
