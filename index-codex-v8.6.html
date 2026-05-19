@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Section Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{--bg:#080808;--s1:#101010;--s2:#181818;--s3:#222;--border:#2a2a2a;--border2:#383838;--green:#1db954;--green2:#1ed760;--orange:#ff6b35;--text:#efefef;--muted:#777;--dim:#444}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;min-height:100vh}
+.app{max-width:1180px;margin:0 auto;padding:32px 20px 80px}
+header{margin-bottom:32px}
+.logo{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;letter-spacing:-1px}
+.logo em{color:var(--green);font-style:normal}
+.tagline{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.btn{background:var(--green);color:#000;border:none;border-radius:6px;padding:10px 18px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn:hover{background:var(--green2)}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-sm{background:var(--s3);color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:5px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn-sm:hover{color:var(--text);border-color:var(--border2)}
+.btn-sm.active{background:var(--green);color:#000;border-color:var(--green)}
+.btn-icon{background:transparent;color:var(--muted);border:none;cursor:pointer;padding:3px 5px;border-radius:3px;font-size:12px;transition:all .15s;line-height:1}
+.btn-icon:hover{color:var(--text);background:var(--s3)}
+.input-card{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:16px}
+.input-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.input-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.input-head .input-label{margin-bottom:0}
+.input-card.url-collapsed .input-row,.input-card.url-collapsed .sdk-bar{display:none}
+.input-card.url-collapsed{padding:10px 12px}
+.input-row{display:flex;gap:10px}
+.url-input{flex:1;background:var(--s2);border:1px solid var(--border);border-radius:6px;padding:10px 14px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:12px;outline:none;transition:border-color .2s;min-width:0}
+.url-input::placeholder{color:var(--dim)}
+.url-input:focus{border-color:var(--green)}
+.sdk-bar{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:10px;color:var(--muted)}
+.sdk-dot{width:7px;height:7px;border-radius:50%;background:var(--dim);flex-shrink:0;transition:background .3s}
+.sdk-dot.ready{background:var(--green)}
+.sdk-dot.loading{background:var(--orange);animation:pulse 1s ease infinite alternate}
+.status{display:none;align-items:center;gap:10px;padding:10px 14px;border-radius:6px;font-size:11px;margin-bottom:14px}
+.status.show{display:flex}
+.status.loading{background:rgba(29,185,84,.08);border:1px solid rgba(29,185,84,.2);color:var(--green)}
+.status.error{background:rgba(255,60,60,.08);border:1px solid rgba(255,60,60,.2);color:#ff5555}
+.status-message{flex:1;min-width:0}
+.status-close{margin-left:auto;background:transparent;border:none;color:inherit;opacity:.7;cursor:pointer;font-size:14px;line-height:1;padding:0 2px}
+.status-close:hover{opacity:1}
+.spinner{width:13px;height:13px;border:2px solid rgba(29,185,84,.25);border-top-color:var(--green);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{from{opacity:.4}to{opacity:1}}
+#auth-screen{text-align:center;padding:60px 20px}
+#auth-screen h2{font-family:'Syne',sans-serif;font-size:24px;font-weight:700;margin-bottom:10px}
+#auth-screen p{font-size:13px;color:var(--muted);margin-bottom:28px;line-height:1.7}
+.login-btn{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#000;border:none;border-radius:50px;padding:14px 32px;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s}
+.login-btn:hover{background:var(--green2);transform:translateY(-1px)}
+.user-row{display:flex;align-items:center;gap:10px;margin-bottom:18px;justify-content:flex-end}
+.user-name{font-size:11px;color:var(--muted)}
+.logout-btn{font-size:10px;color:var(--dim);background:none;border:none;cursor:pointer;letter-spacing:1px;text-transform:uppercase}
+.logout-btn:hover{color:var(--muted)}
+.panel{background:var(--s1);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px}
+.panel-head{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.panel-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.panel-body{padding:16px}
+.panel.collapsed .panel-body{display:none}
+.panel.collapsed .panel-head{border-bottom:none}
+.analysis-layout{display:grid;gap:16px}
+.lower-grid{display:grid;grid-template-columns:minmax(280px,.85fr) minmax(360px,1.15fr);gap:16px;align-items:start}
+.track-hero{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+.track-art{width:88px;height:88px;border-radius:7px;object-fit:cover;flex-shrink:0}
+.track-art-ph{width:88px;height:88px;border-radius:7px;background:var(--s3);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:28px}
+.track-name{font-family:'Syne',sans-serif;font-size:26px;font-weight:700;margin-bottom:5px;line-height:1.18;letter-spacing:0}
+.track-artist{font-size:13px;color:var(--muted);margin-bottom:3px}
+.track-album{font-size:12px;color:var(--dim)}
+.track-control-stack{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.track-play-row{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:1px}
+.play-btn{width:46px;height:46px;border-radius:50%;background:var(--green);color:#000;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;flex-shrink:0}
+.play-btn:hover{background:var(--green2);transform:scale(1.05)}
+.progress-wrap{width:100%;min-width:0}
+.prog-bg{height:18px;background:var(--s3);border:1px solid var(--border2);border-radius:999px;cursor:pointer;position:relative;overflow:visible}
+.prog-fill{height:100%;background:var(--green);border-radius:2px;pointer-events:none}
+.prog-thumb{width:4px;height:28px;background:#fff;border-radius:2px;position:absolute;top:-6px;transform:translateX(-50%);pointer-events:none;opacity:.95;box-shadow:0 0 12px rgba(255,255,255,.35)}
+.section-seek-btn{position:absolute;top:50%;width:18px;height:18px;border-radius:50%;border:1px solid rgba(0,0,0,.55);background:var(--orange);color:#000;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);cursor:pointer;z-index:6;padding:0}
+.section-seek-btn svg{width:8px;height:8px;pointer-events:none}
+.section-seek-btn:hover,.section-seek-btn.active{filter:brightness(1.18);box-shadow:0 0 0 3px rgba(255,255,255,.10)}
+.time-row{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-top:4px}
+.vol-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+input[type=range]{flex:1;height:3px;accent-color:var(--green);cursor:pointer}
+.waveform-wrap{position:relative;height:150px;margin:8px 0 10px;user-select:none;background:var(--s2);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:default}
+#waveform-canvas{width:100%;height:150px;display:block}
+.waveform-cursor{position:absolute;top:0;width:16px;height:100%;background:transparent;opacity:1;pointer-events:none;z-index:9;transform:translateX(-50%);transition:left .5s linear}
+.waveform-cursor::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--green);box-shadow:0 0 10px rgba(29,185,84,.55);transform:translateX(-50%)}
+.waveform-cursor::after{content:"";position:absolute;top:0;left:50%;width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(29,185,84,.45);transform:translate(-50%,4px)}
+.waveform-cursor.dragging{transition:none}
+.waveform-marker{position:absolute;top:0;width:4px;height:100%;background:var(--orange);cursor:ew-resize;z-index:10;transform:translateX(-2px)}
+.waveform-marker:hover{background:#ffaa77}
+.waveform-marker.dragging{background:#ffcc00}
+.marker-label{position:absolute;top:6px;left:7px;font-size:9px;color:var(--orange);white-space:nowrap;pointer-events:none;text-shadow:0 0 4px #000;font-family:'JetBrains Mono',monospace}
+.loop-card{background:var(--s2);border:1px solid var(--border);border-radius:6px;padding:12px;margin-top:12px}
+.loop-title{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.loop-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.loop-time-input{width:66px;background:var(--s3);border:1px solid var(--border);border-radius:4px;padding:6px 8px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:11px;outline:none;text-align:center}
+.loop-time-input:focus{border-color:var(--green)}
+.loop-sep{color:var(--muted);font-size:11px}
+.loop-status{font-size:10px;color:var(--orange);margin-top:7px;min-height:14px}
+.sections-list{display:flex;flex-direction:column;gap:3px;max-height:520px;overflow-y:auto;padding-right:2px}
+.sections-list::-webkit-scrollbar{width:3px}
+.sections-list::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+.sec-item{border-radius:6px;border:1px solid transparent;overflow:hidden;transition:border-color .15s}
+.sec-item.active{border-color:var(--orange)}
+.sec-item.playing{border-color:var(--green)}
+.sec-header{display:flex;align-items:center;gap:7px;padding:8px 10px;cursor:pointer;background:var(--s2);transition:background .15s}
+.sec-header:hover{background:var(--s3)}
+.sec-num{font-size:9px;color:var(--dim);width:16px;flex-shrink:0}
+.sec-ts{font-size:11px;color:var(--green);width:38px;flex-shrink:0;font-weight:500}
+.sec-name-wrap{flex:1;min-width:0}
+.sec-name{font-size:12px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sec-name-input{background:var(--s1);border:1px solid var(--green);border-radius:3px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:12px;padding:2px 6px;outline:none;width:100%}
+.sec-dur{font-size:10px;color:var(--muted);flex-shrink:0}
+.sec-actions{display:flex;gap:1px;flex-shrink:0}
+.sec-bars{display:flex;gap:2px;align-items:flex-end;height:14px;flex-shrink:0}
+.sec-bar{width:3px;background:var(--dim);border-radius:1px}
+.sec-item.playing .sec-bar{background:var(--green);animation:barBounce .6s ease infinite alternate}
+.sec-item.playing .sec-bar:nth-child(2){animation-delay:.1s}
+.sec-item.playing .sec-bar:nth-child(3){animation-delay:.2s}
+@keyframes barBounce{from{transform:scaleY(.4)}to{transform:scaleY(1)}}
+.notes-grid{display:grid;gap:12px}
+.notes-field label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px}
+.notes-field input,.notes-field textarea,.metadata-textarea{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:5px;padding:9px 10px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:11px;outline:none;line-height:1.5;transition:border-color .2s}
+.notes-field input{height:34px}
+.notes-field textarea{min-height:140px;resize:vertical}
+.notes-field input:focus,.notes-field textarea:focus{border-color:var(--green)}
+.metadata-textarea{min-height:98px;resize:none;color:#d8d8d8}
+.metadata-textarea[readonly]{cursor:default}
+.global-fields-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.global-field textarea{min-height:92px;resize:vertical}
+.api-key-input{font-family:'JetBrains Mono',monospace}
+.model-select{background:var(--s2);border:1px solid var(--border);border-radius:5px;padding:9px 10px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:11px;outline:none}
+.personal-context{min-height:118px;resize:vertical}
+.dashboard-output{min-height:280px;resize:vertical;white-space:pre-wrap}
+.listening-notes{min-height:160px;resize:vertical}
+.dictation-status{font-size:10px;color:var(--muted);min-height:14px;margin-top:8px}
+.dictation-status.active{color:var(--orange)}
+.panel-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.history-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;margin-top:10px}
+.history-preview{min-height:110px;resize:vertical;margin-top:8px;color:#d8d8d8}
+.history-select{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:5px;padding:7px 9px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:11px;outline:none}
+.refine-row{display:flex;justify-content:flex-end;margin-top:6px}
+.detail-empty{color:var(--dim);font-size:12px;line-height:1.7}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border)}
+.info-row:last-child{border-bottom:none}
+.info-k{font-size:11px;color:var(--muted)}
+.info-v{font-size:11px;font-weight:500;text-align:right}
+.open-spotify{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#000;border-radius:50px;padding:6px 14px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;text-decoration:none}
+.open-spotify:hover{background:var(--green2)}
+.export-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;background:var(--s1);border:1px solid var(--border);border-radius:10px}
+.export-desc{font-size:11px;color:var(--muted);line-height:1.5}
+@media(max-width:800px){
+  .app{padding:24px 14px 64px}
+  .input-row,.export-bar{align-items:stretch;flex-direction:column}
+  .lower-grid,.global-fields-grid{grid-template-columns:1fr}
+  .track-name{font-size:18px}
+  .waveform-wrap,#waveform-canvas{height:104px}
+}
+
+html,body{height:100%;overflow:hidden}
+body{min-height:100%;display:block}
+.app{height:100vh;max-width:none;padding:14px;display:flex;flex-direction:column;gap:10px}
+header{display:flex;align-items:end;justify-content:space-between;margin-bottom:0;gap:14px;flex-shrink:0}
+.logo{font-size:24px}
+#main-app{min-height:0;flex:1;display:flex;flex-direction:column}
+#main-app.global-view-active .input-card,#main-app.global-view-active>.status{display:none!important}
+.user-row{margin-bottom:8px;flex-shrink:0}
+.input-card{padding:12px;margin-bottom:8px;flex-shrink:0}
+.input-label{margin-bottom:7px}
+.sdk-bar{margin-top:7px}
+.status{margin-bottom:8px;flex-shrink:0}
+#player-section{min-height:0;flex:1}
+.flow-layout{height:100%;min-height:0;display:flex;flex-direction:column;gap:10px}
+.playback-panel{flex-shrink:0;margin-bottom:0}
+.playback-panel .panel-body{padding:12px}
+.playback-grid{display:grid;grid-template-columns:minmax(270px,360px) minmax(0,1fr);gap:16px;align-items:start}
+.track-hero{margin-bottom:0}
+.track-art,.track-art-ph{width:58px;height:58px}
+.track-name{font-size:18px}
+.waveform-wrap,#waveform-canvas{height:150px}
+.loop-card{margin-top:8px;padding:10px}
+.persistent-notes{flex-shrink:0;margin-bottom:0}
+.persistent-notes .panel-body{padding:10px 12px}
+.notes-flow{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,320px);gap:10px;align-items:start}
+.listening-notes{min-height:74px;max-height:96px;resize:vertical}
+.tab-shell{flex:1;min-height:0;display:flex;flex-direction:column;border:1px solid var(--border);border-radius:10px;background:var(--s1);overflow:hidden}
+.tab-bar{display:flex;gap:4px;align-items:center;overflow-x:auto;padding:8px;border-bottom:1px solid var(--border);background:#0d0d0d;flex-shrink:0}
+.tab-btn{background:transparent;color:var(--muted);border:1px solid transparent;border-radius:5px;padding:8px 11px;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;cursor:pointer;white-space:nowrap}
+.tab-btn:hover{color:var(--text);background:var(--s2)}
+.tab-btn.active{color:#000;background:var(--green);border-color:var(--green)}
+.tab-spacer{flex:1;min-width:12px}
+.tab-expand-controls{display:flex;gap:4px;align-items:center;flex-shrink:0}
+.view-mode-btn.active{color:#000;background:var(--orange);border-color:var(--orange)}
+.tab-expanded-notes .persistent-notes{display:none}
+.tab-expanded-full .persistent-notes,.tab-expanded-full .playback-panel{display:none}
+.tab-expanded-notes .sections-list,.tab-expanded-full .sections-list{max-height:calc(100vh - 190px)}
+.tab-expanded-notes .dashboard-output,.tab-expanded-full .dashboard-output{min-height:calc(100vh - 230px)}
+.tab-expanded-notes .global-field textarea{min-height:126px}
+.tab-expanded-full .global-field textarea{min-height:156px}
+.field-actions{display:flex;justify-content:flex-end;gap:6px;margin-top:6px;flex-wrap:wrap}
+.tab-content{flex:1;min-height:0;overflow:hidden}
+.tab-panel{display:none;height:100%;min-height:0;overflow:auto;padding:12px}
+.tab-panel.active{display:block}
+.tab-grid{display:grid;grid-template-columns:minmax(260px,.9fr) minmax(320px,1.1fr);gap:12px;align-items:start}
+.sections-workspace{display:grid;grid-template-columns:minmax(260px,.75fr) minmax(360px,1.25fr);gap:12px;align-items:start}
+.recording-dot{display:none;width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(255,107,53,.12)}
+.recording-dot.active{display:inline-block;animation:pulse 1s ease infinite alternate}
+.tab-panel .panel{margin-bottom:12px}
+.sections-list{max-height:calc(100vh - 430px)}
+.global-fields-grid{grid-template-columns:repeat(2,minmax(280px,1fr))}
+.dashboard-output{min-height:calc(100vh - 430px)}
+.export-bar{margin:0;flex-shrink:0;border-radius:0;border-left:none;border-right:none;border-bottom:none}
+#openai-settings-panel{display:none!important}
+@media(max-width:900px){
+  body{overflow:auto}
+  .app{height:auto;min-height:100vh;padding:10px}
+  #main-app,#player-section,.flow-layout{height:auto}
+  .playback-grid,.notes-flow,.tab-grid,.sections-workspace,.global-fields-grid{grid-template-columns:1fr}
+  .tab-shell{min-height:520px}
+  .sections-list,.dashboard-output{max-height:none;min-height:260px}
+  .input-row,.export-bar{align-items:stretch;flex-direction:column}
+  .waveform-wrap,#waveform-canvas{height:130px}
+}
+
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="logo">Section <em>Analyst</em></div>
+  <div class="tagline">Spotify track structure explorer</div>
+</header>
+
+<div id="auth-screen">
+  <div style="font-size:48px;margin-bottom:20px">&#127928;</div>
+  <h2>Connect your Spotify</h2>
+  <p>Sign in with Spotify Premium to analyse track structure,<br>jump between sections, and loop any part of a song.</p>
+  <button class="login-btn" onclick="startLogin()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+    Login with Spotify
+  </button>
+</div>
+
+<div id="main-app" style="display:none">
+  <div class="user-row">
+    <span class="user-name" id="user-name-display"></span>
+    <button class="logout-btn" onclick="logout()">logout</button>
+  </div>
+  <div class="input-card" id="track-url-card">
+    <div class="input-head">
+      <div class="input-label">Paste Spotify track link</div>
+      <button class="btn-sm" id="url-collapse-btn" onclick="toggleUrlCard()">Collapse</button>
+    </div>
+    <div class="input-row">
+      <input class="url-input" id="url-input" type="text" placeholder="https://open.spotify.com/track/..."/>
+      <button class="btn" id="analyze-btn" onclick="analyzeTrack()">Analyse</button>
+    </div>
+    <div class="sdk-bar">
+      <div class="sdk-dot loading" id="sdk-dot"></div>
+      <span id="sdk-status-text">Connecting player...</span>
+    </div>
+  </div>
+  <div class="status" id="status-bar"></div>
+  <div id="player-section" style="display:none">
+    <div class="flow-layout">
+      <div class="panel playback-panel">
+        <div class="panel-head">
+          <span class="panel-title">Now Playing</span>
+          <div class="panel-actions">
+            <button class="btn-sm" id="now-playing-collapse-btn" onclick="togglePanelCollapse('playback-panel','now-playing-collapse-btn')">Collapse</button>
+            <a class="open-spotify" id="open-spotify-link" href="#" target="_blank" rel="noopener">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+              Open
+            </a>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="playback-grid">
+            <div class="track-control-stack">
+              <div class="track-hero">
+                <img class="track-art" id="track-art" src="" alt="" style="display:none"/>
+                <div class="track-art-ph" id="track-art-ph">&#9835;</div>
+                <div>
+                  <div class="track-name" id="track-name">-</div>
+                  <div class="track-artist" id="track-artist">-</div>
+                  <div class="track-album" id="track-album">-</div>
+                </div>
+              </div>
+              <div class="track-play-row">
+                <button class="play-btn" onclick="togglePlay()">
+                  <svg id="play-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+                <span>Play / Pause</span>
+              </div>
+            </div>
+            <div>
+              <div class="waveform-wrap" id="waveform-wrap">
+                <canvas id="waveform-canvas"></canvas>
+                <div class="waveform-cursor" id="waveform-cursor" style="left:0%"></div>
+              </div>
+              <div class="progress-wrap">
+                <div class="prog-bg" id="prog-bg">
+                  <div class="prog-fill" id="prog-fill" style="width:0%"></div>
+                  <div class="prog-thumb" id="prog-thumb" style="left:0%"></div>
+                </div>
+                <div class="time-row"><span id="time-current">0:00</span><span id="time-total">0:00</span></div>
+              </div>
+              <div class="loop-card">
+                <div class="loop-row">
+                  <span style="font-size:10px;color:var(--muted)">Loop</span>
+                  <input class="loop-time-input" id="loop-start-input" placeholder="0:00"/>
+                  <span class="loop-sep">to</span>
+                  <input class="loop-time-input" id="loop-end-input" placeholder="0:00"/>
+                  <button class="btn-sm" id="loop-set-btn" onclick="applyCustomLoop()">Set</button>
+                  <button class="btn-sm" id="loop-toggle-btn" onclick="toggleLoop()">Off</button>
+                  <button class="btn-sm" onclick="clearLoop()">Clear</button>
+                  <span class="loop-status" id="loop-status"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel persistent-notes">
+        <div class="panel-head">
+          <span class="panel-title">Narration Bar</span>
+          <div class="panel-actions">
+            <button class="btn-sm" id="narration-collapse-btn" onclick="togglePanelCollapse('persistent-notes','narration-collapse-btn')">Collapse</button>
+            <button class="btn-sm" id="record-btn" onclick="toggleOpenAIRecording()">Record Pass</button>
+            <span class="recording-dot" id="recording-dot"></span>
+            <button class="btn-sm" onclick="insertTimestampedNote()">+ Time</button>
+            <button class="btn-sm" id="format-notes-btn" onclick="formatListeningNotes()">Format Notes</button>
+            <button class="btn-sm" onclick="generateSectionDetail(selectedSection)">Generate Section</button>
+            <button class="btn-sm" onclick="generateGlobalAnalysis()">Generate Global</button>
+            <button class="btn-sm" onclick="clearListeningNotes()">Clear</button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="notes-flow">
+            <div class="notes-field">
+              <label for="listening-notes">Dictate or type while listening</label>
+              <textarea class="listening-notes" id="listening-notes" placeholder="Speak or type timestamped observations. These notes can refine any tab's generated content." oninput="renderWaveform()"></textarea>
+              <div class="dictation-status" id="dictation-status">Record a narration pass, then transcribe it with OpenAI. Headphones are recommended to reduce music bleed.</div>
+            </div>
+            <div class="notes-field">
+              <label for="track-meta-text">Track Metadata</label>
+              <textarea class="metadata-textarea" id="track-meta-text" readonly placeholder="Artist, album, and release info will appear here after loading a track."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-shell">
+        <div class="tab-bar" role="tablist">
+          <button class="tab-btn active" data-tab="sections-tab" onclick="switchTab('sections-tab',this)">Sections</button>
+          <button class="tab-btn" data-tab="global-tab" onclick="switchTab('global-tab',this)">Global Fields</button>
+          <button class="tab-btn" data-tab="history-tab" onclick="switchTab('history-tab',this)">Pass History</button>
+          <button class="tab-btn" data-tab="settings-tab" onclick="switchTab('settings-tab',this)">Settings</button>
+          <div class="tab-spacer"></div>
+          <div class="tab-expand-controls">
+            <button class="btn-sm view-mode-btn" id="section-view-btn" onclick="setTabExpansion(1)">Section View</button>
+            <button class="btn-sm view-mode-btn" id="global-view-btn" onclick="setTabExpansion(2)">Global View</button>
+          </div>
+        </div>
+        <div class="tab-content">
+          <section class="tab-panel active" id="sections-tab">
+            <div class="sections-workspace">
+              <div class="panel">
+                <div class="panel-head">
+                  <span class="panel-title">Sections</span>
+                  <div class="panel-actions">
+                    <span id="section-count" style="font-size:10px;color:var(--muted)"></span>
+                    <button class="btn-sm" onclick="addSection()">+ Add Section</button>
+                  </div>
+                </div>
+                <div class="panel-body" style="padding:8px">
+                  <div class="sections-list" id="sections-list">
+                    <div style="color:var(--dim);font-size:12px;padding:6px">Load a track to see sections</div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel" id="section-detail-panel">
+                <div class="panel-head">
+                  <span class="panel-title">Section Detail</span>
+                  <span id="section-detail-label" style="font-size:10px;color:var(--green)">- select a section</span>
+                </div>
+                <div class="panel-body" id="section-detail-body">
+                  <div class="detail-empty">Click any section to view and edit its generated details here.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="tab-panel" id="global-tab">
+            <div class="panel">
+              <div class="panel-head">
+                <span class="panel-title">Global Analysis Fields</span>
+                <div class="panel-actions">
+                  <button class="btn-sm" id="global-gen-btn" onclick="generateGlobalAnalysis()">&#10022; Generate / Refine</button>
+                </div>
+              </div>
+              <div class="panel-body">
+                <div class="global-fields-grid" id="global-fields-grid"></div>
+              </div>
+            </div>
+          </section>
+          <section class="tab-panel" id="history-tab">
+            <div class="tab-grid">
+              <div class="panel">
+                <div class="panel-head"><span class="panel-title">Global Pass History</span></div>
+                <div class="panel-body">
+                  <div class="history-row">
+                    <select class="history-select" id="global-history-select" onchange="previewGlobalPass(this.value)">
+                      <option value="">No global passes yet</option>
+                    </select>
+                    <button class="btn-sm" onclick="restoreGlobalPass()">Restore</button>
+                  </div>
+                  <textarea class="metadata-textarea history-preview" id="global-history-preview" readonly placeholder="Select an earlier global pass to compare it here."></textarea>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-head"><span class="panel-title">Section Pass History</span></div>
+                <div class="panel-body">
+                  <div class="detail-empty">Section pass history appears inside the Section Detail tab for the selected section.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="tab-panel" id="settings-tab">
+            <div class="tab-grid">
+              <div class="panel">
+                <div class="panel-head">
+                  <span class="panel-title">OpenAI Generation Settings</span>
+                  <div class="panel-actions">
+                    <button class="btn-sm" onclick="saveOpenAISettings()">Save</button>
+                    <button class="btn-sm" onclick="clearOpenAIKey()">Clear Key</button>
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="notes-grid">
+                    <div class="notes-field">
+                      <label for="openai-api-key">OpenAI API Key</label>
+                      <input class="api-key-input" id="openai-api-key" type="password" placeholder="sk-... stored only in this browser"/>
+                    </div>
+                    <div class="notes-field">
+                      <label for="openai-model">Model</label>
+                      <select class="model-select" id="openai-model">
+                        <option value="gpt-5-mini">gpt-5-mini</option>
+                        <option value="gpt-5.2">gpt-5.2</option>
+                        <option value="gpt-5.1">gpt-5.1</option>
+                        <option value="gpt-4.1">gpt-4.1</option>
+                        <option value="gpt-4.1-mini">gpt-4.1-mini</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="dictation-status" id="openai-status">ChatGPT Plus cannot be used directly here; generation uses an OpenAI API key.</div>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-head">
+                  <span class="panel-title">Personal Annotation Context</span>
+                  <div class="panel-actions">
+                    <button class="btn-sm" onclick="savePersonalContext()">Save</button>
+                    <button class="btn-sm" onclick="clearPersonalContext()">Clear</button>
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="notes-field">
+                    <label for="personal-context">Your dashboard memory / style guidance</label>
+                    <textarea class="personal-context" id="personal-context" placeholder="Paste your annotation style, dashboard relevance rules, preferred wording, and examples."></textarea>
+                  </div>
+                  <div class="dictation-status" id="context-status">Saved context is used for section notes, note formatting, refinements, and global analysis.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
+<script>
+var CLIENT_ID='c933b8b2f7b84a5a9b53a0de51b84f6e';
+var REDIRECT_URI='https://shashank-kandachar.github.io/songsectionananalysis';
+var SCOPES='streaming user-read-email user-read-private user-modify-playback-state user-read-playback-state';
+var KEY_NAMES=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+var accessToken=null,player=null,deviceId=null,sdkReady=false;
+var currentTrack=null,audioFeatures=null,sections=[],waveformData=[];
+var isPlaying=false,duration=0,positionMs=0;
+var loopEnabled=false,loopStart=null,loopEnd=null,activeSection=-1,selectedSection=-1,totalDurSecs=0;
+var dragging=null,resizeTimer=null,seekScrubbing=false,seekScrubMs=0;
+var GLOBAL_FIELDS=['Setting / Occasion / Listening Context','Harmony','Rhythm & Groove','Playing Style','Wow Factor','Emotion & Vibe','Mix & Production','Sonic Fidelity','Genre / Era / Scene','Instrumentation','Vocal Expression','Lyrical Meaning / Evocation'];
+var globalAnalysis={};
+var sectionPassHistory={},globalPassHistory=[],selectedGlobalPass=-1;
+var speechRecognition=null,isDictating=false,tabExpansionMode=0;
+var mediaRecorder=null,recordedChunks=[],isRecording=false;
+var PERSONAL_CONTEXT_KEY='sectionAnalystPersonalContext';
+var OPENAI_KEY_STORAGE='sectionAnalystOpenAIKey';
+var OPENAI_MODEL_STORAGE='sectionAnalystOpenAIModel';
+
+function genV(){var c='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';var a=new Uint8Array(128);crypto.getRandomValues(a);return Array.from(a,function(b){return c[b%c.length]}).join('')}
+async function genC(v){var d=new TextEncoder().encode(v);var h=await crypto.subtle.digest('SHA-256',d);return btoa(String.fromCharCode.apply(null,new Uint8Array(h))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'')}
+async function startLogin(){var v=genV();var ch=await genC(v);sessionStorage.setItem('pkce_v',v);var u=new URL('https://accounts.spotify.com/authorize');u.searchParams.set('client_id',CLIENT_ID);u.searchParams.set('response_type','code');u.searchParams.set('redirect_uri',REDIRECT_URI);u.searchParams.set('scope',SCOPES);u.searchParams.set('code_challenge_method','S256');u.searchParams.set('code_challenge',ch);window.location.href=u.toString()}
+async function exchangeCode(code){var v=sessionStorage.getItem('pkce_v');var r=await fetch('https://accounts.spotify.com/api/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({client_id:CLIENT_ID,grant_type:'authorization_code',code:code,redirect_uri:REDIRECT_URI,code_verifier:v})});var d=await r.json();if(d.access_token){accessToken=d.access_token;localStorage.setItem('sp_tok',d.access_token);localStorage.setItem('sp_ref',d.refresh_token||'');localStorage.setItem('sp_exp',String(Date.now()+(d.expires_in*1000)));window.history.replaceState({},document.title,window.location.pathname);return true}console.error('Exchange failed:',d);return false}
+async function doRefresh(){var ref=localStorage.getItem('sp_ref');if(!ref)return false;var r=await fetch('https://accounts.spotify.com/api/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({client_id:CLIENT_ID,grant_type:'refresh_token',refresh_token:ref})});var d=await r.json();if(d.access_token){accessToken=d.access_token;localStorage.setItem('sp_tok',d.access_token);localStorage.setItem('sp_exp',String(Date.now()+(d.expires_in*1000)));return true}return false}
+function tokValid(){var e=localStorage.getItem('sp_exp');return !!(e&&Date.now()<parseInt(e)-60000)}
+function logout(){localStorage.removeItem('sp_tok');localStorage.removeItem('sp_ref');localStorage.removeItem('sp_exp');if(player)player.disconnect();window.location.reload()}
+function loadPersonalContext(){var el=document.getElementById('personal-context');if(el)el.value=localStorage.getItem(PERSONAL_CONTEXT_KEY)||''}
+function getPersonalContext(){var el=document.getElementById('personal-context');return el?el.value.trim():''}
+function personalContextPrompt(){var ctx=getPersonalContext();return ctx?'\n\nPersonal annotation context from the user:\n'+ctx+'\nUse this as style and relevance guidance, but do not invent inaudible details.':''}
+function savePersonalContext(){localStorage.setItem(PERSONAL_CONTEXT_KEY,getPersonalContext());setContextStatus('Personal annotation context saved.')}
+function clearPersonalContext(){var el=document.getElementById('personal-context');if(el)el.value='';localStorage.removeItem(PERSONAL_CONTEXT_KEY);setContextStatus('Personal annotation context cleared.')}
+function setContextStatus(text){var el=document.getElementById('context-status');if(el)el.textContent=text}
+function loadOpenAISettings(){
+  var keyEl=document.getElementById('openai-api-key');if(keyEl)keyEl.value=localStorage.getItem(OPENAI_KEY_STORAGE)||'';
+  var modelEl=document.getElementById('openai-model');if(modelEl)modelEl.value=localStorage.getItem(OPENAI_MODEL_STORAGE)||'gpt-5-mini';
+  setOpenAIStatus(localStorage.getItem(OPENAI_KEY_STORAGE)?'OpenAI API key loaded from this browser.':'Add an OpenAI API key to enable generation.');
+}
+function getOpenAIKey(){var el=document.getElementById('openai-api-key');return el?el.value.trim():''}
+function getOpenAIModel(){var el=document.getElementById('openai-model');return el?el.value:'gpt-5-mini'}
+function saveOpenAISettings(){
+  var key=getOpenAIKey();
+  if(key)localStorage.setItem(OPENAI_KEY_STORAGE,key);else localStorage.removeItem(OPENAI_KEY_STORAGE);
+  localStorage.setItem(OPENAI_MODEL_STORAGE,getOpenAIModel());
+  setOpenAIStatus(key?'OpenAI settings saved.':'Model saved. Add an API key to generate.');
+}
+function clearOpenAIKey(){var el=document.getElementById('openai-api-key');if(el)el.value='';localStorage.removeItem(OPENAI_KEY_STORAGE);setOpenAIStatus('OpenAI API key cleared.')}
+function setOpenAIStatus(text){var el=document.getElementById('openai-status');if(el)el.textContent=text}
+async function openAITranscribe(blob){
+  var key=getOpenAIKey();
+  if(!key){showSt('error','Add and save an OpenAI API key before transcribing.');throw new Error('Missing OpenAI API key')}
+  var fd=new FormData();
+  fd.append('model','gpt-4o-mini-transcribe');
+  fd.append('file',blob,'narration.webm');
+  fd.append('response_format','json');
+  var r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':'Bearer '+key},body:fd});
+  var d=await r.json();
+  if(!r.ok)throw new Error(d.error&&d.error.message?d.error.message:'OpenAI transcription failed');
+  return d.text||'';
+}
+async function openAIText(prompt,maxTokens){
+  var key=getOpenAIKey();
+  if(!key){showSt('error','Add and save an OpenAI API key before generating.');throw new Error('Missing OpenAI API key')}
+  var r=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({model:getOpenAIModel(),input:prompt,max_output_tokens:maxTokens||1200})});
+  var d=await r.json();
+  if(!r.ok)throw new Error(d.error&&d.error.message?d.error.message:'OpenAI request failed');
+  if(d.output_text)return d.output_text;
+  var text='';
+  (d.output||[]).forEach(function(item){(item.content||[]).forEach(function(c){if(c.text)text+=c.text;if(c.type==='output_text'&&c.text)text+=c.text})});
+  return text;
+}
+function initGlobalFields(){GLOBAL_FIELDS.forEach(function(name){if(typeof globalAnalysis[name]!=='string')globalAnalysis[name]=''});renderGlobalFields();renderGlobalHistory()}
+function switchTab(tabId,btn){
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.toggle('active',p.id===tabId)});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.toggle('active',b===btn||b.dataset.tab===tabId)});
+  setTimeout(renderWaveform,40);
+}
+function setTabExpansion(mode){
+  tabExpansionMode=tabExpansionMode===mode?0:mode;
+  if(mode===1)switchTab('sections-tab');
+  if(mode===2)switchTab('global-tab');
+  applyTabExpansion();
+}
+function applyTabExpansion(){
+  var root=document.getElementById('player-section');if(!root)return;
+  var app=document.getElementById('main-app');
+  root.classList.toggle('tab-expanded-notes',tabExpansionMode===1);
+  root.classList.toggle('tab-expanded-full',tabExpansionMode===2);
+  if(app)app.classList.toggle('global-view-active',tabExpansionMode===2);
+  var sectionBtn=document.getElementById('section-view-btn');
+  var globalBtn=document.getElementById('global-view-btn');
+  if(sectionBtn)sectionBtn.classList.toggle('active',tabExpansionMode===1);
+  if(globalBtn)globalBtn.classList.toggle('active',tabExpansionMode===2);
+  setTimeout(renderWaveform,60);
+}
+function toggleUrlCard(){
+  var card=document.getElementById('track-url-card');
+  var btn=document.getElementById('url-collapse-btn');
+  if(!card)return;
+  var collapsed=!card.classList.contains('url-collapsed');
+  card.classList.toggle('url-collapsed',collapsed);
+  if(btn)btn.textContent=collapsed?'Expand':'Collapse';
+}
+function togglePanelCollapse(panelClass,btnId){
+  var panel=document.querySelector('.'+panelClass);
+  var btn=document.getElementById(btnId);
+  if(!panel)return;
+  var collapsed=!panel.classList.contains('collapsed');
+  panel.classList.toggle('collapsed',collapsed);
+  if(btn)btn.textContent=collapsed?'Expand':'Collapse';
+  setTimeout(renderWaveform,60);
+}
+async function init(){
+  initSeekInteractions();
+  var p=new URLSearchParams(window.location.search);
+  var code=p.get('code');
+  if(p.get('error')){showAuth();return}
+  if(code){
+    showMain();showSt('loading','Authenticating...');
+    var ok=await exchangeCode(code);
+    if(!ok){showSt('error','Auth failed - please try again.');setTimeout(function(){showAuth();hideSt()},3000);return}
+    hideSt();initPlayer();loadProfile();return
+  }
+  var tok=localStorage.getItem('sp_tok');
+  if(tok){
+    if(tokValid())accessToken=tok;
+    else{var ok2=await doRefresh();if(!ok2){showAuth();return}}
+    showMain();initPlayer();loadProfile()
+  }else showAuth()
+}
+function showAuth(){document.getElementById('auth-screen').style.display='';document.getElementById('main-app').style.display='none'}
+function showMain(){document.getElementById('auth-screen').style.display='none';document.getElementById('main-app').style.display=''}
+async function loadProfile(){var d=await spF('https://api.spotify.com/v1/me');if(d&&d.display_name)document.getElementById('user-name-display').textContent=d.display_name}
+
+window.onSpotifyWebPlaybackSDKReady=function(){sdkReady=true;initPlayer()};
+function initPlayer(){
+  if(!accessToken||!sdkReady)return;
+  setSdk('loading','Initialising player...');
+  player=new Spotify.Player({name:'Section Analyst',getOAuthToken:async function(cb){if(!tokValid())await doRefresh();cb(accessToken)},volume:0.8});
+  player.addListener('ready',function(o){deviceId=o.device_id;setSdk('ready','Player ready')});
+  player.addListener('not_ready',function(){setSdk('loading','Player disconnected')});
+  player.addListener('player_state_changed',function(state){
+    if(!state)return;
+    isPlaying=!state.paused;positionMs=state.position;duration=state.duration;
+    updatePlayBtn();updateProgress();updateActiveSec();
+  });
+  player.addListener('account_error',function(){setSdk('loading','Premium required')});
+  player.connect();
+  setInterval(function(){if(isPlaying){positionMs+=500;updateProgress();updateActiveSec();checkLoop()}},500);
+}
+function setSdk(s,t){var d=document.getElementById('sdk-dot');if(d)d.className='sdk-dot '+s;var e=document.getElementById('sdk-status-text');if(e)e.textContent=t}
+
+async function spF(url,opts){
+  opts=opts||{};
+  if(!tokValid())await doRefresh();
+  var r=await fetch(url,Object.assign({},opts,{headers:Object.assign({'Authorization':'Bearer '+accessToken},opts.headers||{})}));
+  if(r.status===204)return null;
+  if(!r.ok){var b=await r.text();throw new Error('Spotify '+r.status+': '+b.slice(0,80))}
+  return r.json()
+}
+function extractId(u){var m=u.match(/track\/([A-Za-z0-9]+)/);return m?m[1]:null}
+
+async function analyzeTrack(){
+  var url=document.getElementById('url-input').value.trim();
+  var trackId=extractId(url);
+  if(!trackId){showSt('error','Invalid Spotify URL');return}
+  document.getElementById('analyze-btn').disabled=true;
+  try{
+    showSt('loading','Fetching track metadata...');
+    var track=await spF('https://api.spotify.com/v1/tracks/'+trackId);
+    if(!track)throw new Error('Track not found');
+    currentTrack=track;totalDurSecs=track.duration_ms/1000;selectedSection=-1;activeSection=-1;globalAnalysis={};sectionPassHistory={};globalPassHistory=[];selectedGlobalPass=-1;initGlobalFields();clearLoop(false);
+
+    showSt('loading','Fetching audio features...');
+    var features=null;
+    try{
+      var r=await fetch('https://api.reccobeats.com/v1/audio-features?ids='+trackId);
+      if(r.ok){var dd=await r.json();features=dd.content?dd.content[0]:dd}
+    }catch(e){console.warn('ReccoBeats unavailable',e)}
+    audioFeatures=features;
+    sections=estimateSections(totalDurSecs,features);
+    waveformData=buildTrackWaveform(track,features,totalDurSecs);
+
+    document.getElementById('player-section').style.display='block';
+    document.getElementById('open-spotify-link').href=track.external_urls.spotify;
+    renderTrackInfo(track);
+    renderSections();
+    renderWaveform();
+    if(sections.length)selectSection(0,false);
+    hideSt();
+
+    if(deviceId){
+      showSt('loading','Starting playback...');
+      await playTrack(track.uri);hideSt();
+    }else{
+      var n=0;
+      var w=setInterval(async function(){
+        n++;if(deviceId){clearInterval(w);await playTrack(currentTrack.uri);hideSt()}
+        else if(n>10){clearInterval(w);hideSt()}
+      },1000);
+    }
+  }catch(e){showSt('error',e.message);console.error(e)}
+  document.getElementById('analyze-btn').disabled=false;
+}
+
+async function playTrack(uri){
+  if(!deviceId)return;
+  await spF('https://api.spotify.com/v1/me/player/play?device_id='+deviceId,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({uris:[uri],position_ms:0})})
+}
+
+function estimateSections(t,f){
+  var tmpl=t<150?[
+    {l:'Intro',p:0.10},{l:'Verse',p:0.25},{l:'Chorus',p:0.25},
+    {l:'Verse',p:0.20},{l:'Chorus',p:0.15},{l:'Outro',p:0.05}
+  ]:t>300?[
+    {l:'Intro',p:0.07},{l:'Verse',p:0.12},{l:'Pre-Chorus',p:0.05},
+    {l:'Chorus',p:0.11},{l:'Verse',p:0.10},{l:'Pre-Chorus',p:0.05},
+    {l:'Chorus',p:0.10},{l:'Bridge',p:0.09},{l:'Solo',p:0.08},
+    {l:'Chorus',p:0.11},{l:'Outro',p:0.07}
+  ]:[
+    {l:'Intro',p:0.08},{l:'Verse',p:0.15},{l:'Pre-Chorus',p:0.07},
+    {l:'Chorus',p:0.13},{l:'Verse',p:0.12},{l:'Pre-Chorus',p:0.06},
+    {l:'Chorus',p:0.12},{l:'Bridge',p:0.10},{l:'Chorus',p:0.10},{l:'Outro',p:0.07}
+  ];
+  var c=0;
+  return tmpl.map(function(s){var dur=s.p*t;var sec={start:c,duration:dur,label:s.l,instruments:'',vibeTags:'',description:'',estimated:true,notesRequested:false};c+=dur;return sec});
+}
+
+function renderTrackInfo(track){
+  var art=track.album.images[0];
+  if(art){document.getElementById('track-art').src=art.url;document.getElementById('track-art').style.display='';document.getElementById('track-art-ph').style.display='none'}
+  else{document.getElementById('track-art').style.display='none';document.getElementById('track-art-ph').style.display='flex'}
+  var artist=track.artists.map(function(a){return a.name}).join(', ');
+  var release=track.album.release_date||'--';
+  document.getElementById('track-name').textContent=track.name;
+  document.getElementById('track-artist').textContent=artist;
+  document.getElementById('track-album').textContent=track.album.name+' - '+release.slice(0,4);
+  document.getElementById('track-meta-text').value='Artist: '+artist+'\nAlbum: '+track.album.name+'\nRelease info: '+release;
+}
+
+function renderWaveform(){
+  var wrap=document.getElementById('waveform-wrap');
+  var canvas=document.getElementById('waveform-canvas');
+  if(!wrap||!canvas)return;
+  var ctx=canvas.getContext('2d');
+  var W=wrap.clientWidth||400,H=wrap.clientHeight||124;
+  var total=totalDurSecs||duration/1000||sections.reduce(function(a,s){return a+s.duration},0);
+  canvas.width=W;canvas.height=H;ctx.clearRect(0,0,W,H);
+  wrap.querySelectorAll('.waveform-marker').forEach(function(m){m.remove()});
+  if(!total)return;
+  renderStructureMap(ctx,W,H,total);
+  renderWaveformMarkers(wrap,total);
+  renderSectionSeekButtons(total);
+}
+
+function renderStructureMap(ctx,W,H,total){
+  ctx.fillStyle='#0f0f0f';
+  ctx.fillRect(0,0,W,H);
+  var rulerY=15;
+  var energyTop=28,energyH=Math.max(34,Math.min(48,H*.32));
+  var sectionY=energyTop+energyH+10;
+  var sectionH=Math.max(28,Math.min(36,H*.24));
+  var pinY=Math.min(H-13,sectionY+sectionH+23);
+  drawTimelineRuler(ctx,W,total,rulerY);
+  drawEnergyCurve(ctx,W,energyTop,energyH,total);
+  sections.forEach(function(sec,i){
+    var x=(sec.start/total)*W;
+    var w=Math.max(1,(sec.duration/total)*W);
+    ctx.fillStyle=sectionColor(i,.34);
+    ctx.fillRect(x,sectionY,w,sectionH);
+    ctx.strokeStyle=sectionColor(i,.78);
+    ctx.strokeRect(x+.5,sectionY+.5,Math.max(0,w-1),sectionH-1);
+    ctx.fillStyle='rgba(255,255,255,.92)';
+    ctx.font='10px JetBrains Mono, monospace';
+    if(w>54)ctx.fillText(trimText(sec.label||('Section '+(i+1)),Math.floor(w/6)),x+6,sectionY+13);
+    ctx.fillStyle='rgba(255,255,255,.52)';
+    ctx.font='9px JetBrains Mono, monospace';
+    if(w>72)ctx.fillText(formatTime(sec.start)+' / '+Math.round(sec.duration)+'s',x+6,sectionY+25);
+    if(w>96)drawCoverageDots(ctx,sec,x+w-47,sectionY+8);
+    if(i>0){
+      ctx.strokeStyle=sectionColor(i,.9);
+      ctx.beginPath();ctx.moveTo(x,energyTop-3);ctx.lineTo(x,pinY+4);ctx.stroke();
+    }
+  });
+  drawNarrationPins(ctx,W,total,pinY);
+}
+
+function drawTimelineRuler(ctx,W,total,y){
+  ctx.strokeStyle='rgba(255,255,255,.12)';
+  ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();
+  var step=niceTimeStep(total,W);
+  ctx.font='9px JetBrains Mono, monospace';
+  ctx.fillStyle='rgba(255,255,255,.52)';
+  ctx.strokeStyle='rgba(255,255,255,.10)';
+  for(var t=0;t<=total+.1;t+=step){
+    var x=(t/total)*W;
+    ctx.beginPath();ctx.moveTo(x,y-5);ctx.lineTo(x,y+5);ctx.stroke();
+    if(x<W-24)ctx.fillText(formatTime(t),x+3,y-7);
+  }
+}
+
+function drawEnergyCurve(ctx,W,top,h,total){
+  if(!waveformData.length)waveformData=buildTrackWaveform(currentTrack,audioFeatures,total);
+  ctx.strokeStyle='rgba(29,185,84,.82)';
+  ctx.fillStyle='rgba(29,185,84,.14)';
+  ctx.lineWidth=2;
+  ctx.beginPath();
+  for(var i=0;i<=120;i++){
+    var p=i/120;
+    var x=p*W;
+    var y=top+h-(waveformSample(p)*h);
+    if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+  }
+  ctx.lineTo(W,top+h);ctx.lineTo(0,top+h);ctx.closePath();ctx.fill();
+  ctx.beginPath();
+  for(var j=0;j<=120;j++){
+    var p2=j/120;
+    var x2=p2*W;
+    var y2=top+h-(waveformSample(p2)*h);
+    if(j===0)ctx.moveTo(x2,y2);else ctx.lineTo(x2,y2);
+  }
+  ctx.stroke();
+  ctx.fillStyle='rgba(255,255,255,.45)';
+  ctx.font='9px JetBrains Mono, monospace';
+  ctx.fillText('ENERGY / DENSITY',6,top+9);
+}
+
+function drawCoverageDots(ctx,sec,x,y){
+  var fields=[['I',sec.instruments],['V',sec.vibeTags],['D',sec.description]];
+  fields.forEach(function(f,idx){
+    ctx.beginPath();
+    ctx.fillStyle=f[1]?'rgba(29,185,84,.88)':'rgba(255,255,255,.16)';
+    ctx.arc(x+idx*14,y,4,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=f[1]?'#061108':'rgba(255,255,255,.58)';
+    ctx.font='7px JetBrains Mono, monospace';
+    ctx.fillText(f[0],x+idx*14-2.5,y+2.5);
+  });
+}
+
+function drawNarrationPins(ctx,W,total,y){
+  var pins=getNarrationPins(total).slice(0,8);
+  ctx.strokeStyle='rgba(255,255,255,.10)';
+  ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();
+  ctx.fillStyle='rgba(255,255,255,.42)';
+  ctx.font='9px JetBrains Mono, monospace';
+  ctx.fillText('NARRATION PINS',6,y-5);
+  pins.forEach(function(pin,idx){
+    var x=(pin.time/total)*W;
+    ctx.strokeStyle='rgba(255,107,53,.58)';
+    ctx.beginPath();ctx.moveTo(x,y-18);ctx.lineTo(x,y+7);ctx.stroke();
+    ctx.beginPath();ctx.fillStyle='rgba(255,107,53,.92)';ctx.arc(x,y,4,0,Math.PI*2);ctx.fill();
+    if(idx<5&&x<W-56){
+      ctx.fillStyle='rgba(255,255,255,.62)';
+      ctx.font='8px JetBrains Mono, monospace';
+      ctx.fillText(trimText(pin.text||formatTime(pin.time),16),x+6,y+3);
+    }
+  });
+}
+
+function renderWaveformMarkers(wrap,total){
+  sections.forEach(function(sec,i){
+    if(i===0)return;
+    var pct=(sec.start/total)*100;
+    var m=document.createElement('div');
+    m.className='waveform-marker';m.style.left=pct+'%';m.dataset.idx=String(i);
+    m.style.background=sectionColor(i,.95);
+    var lbl=document.createElement('div');lbl.className='marker-label';lbl.textContent=sec.label;
+    lbl.style.color=sectionColor(i,1);
+    m.appendChild(lbl);
+    m.addEventListener('mousedown',startDrag);
+    m.addEventListener('touchstart',startDrag,{passive:false});
+    wrap.appendChild(m);
+  });
+}
+
+function renderSectionSeekButtons(total){
+  var rail=document.getElementById('prog-bg');
+  if(!rail||!total)return;
+  rail.querySelectorAll('.section-seek-btn').forEach(function(btn){btn.remove()});
+  sections.forEach(function(sec,i){
+    var btn=document.createElement('button');
+    btn.className='section-seek-btn'+(i===activeSection?' active':'');
+    btn.style.left=Math.max(0,Math.min(100,(sec.start/total)*100))+'%';
+    btn.style.background=sectionColor(i,.95);
+    btn.title='Play '+sec.label+' from '+formatTime(sec.start);
+    btn.innerHTML='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+    btn.addEventListener('mousedown',function(e){e.stopPropagation()});
+    btn.addEventListener('touchstart',function(e){e.stopPropagation()},{passive:true});
+    btn.addEventListener('click',function(e){e.stopPropagation();playSectionFromSeek(i)});
+    rail.appendChild(btn);
+  });
+}
+
+function playSectionFromSeek(i){
+  selectSection(i,true);
+}
+
+function niceTimeStep(total,W){
+  var target=Math.max(20,total/(W<700?5:8));
+  var steps=[10,15,20,30,45,60,90,120];
+  for(var i=0;i<steps.length;i++){if(steps[i]>=target)return steps[i]}
+  return 180;
+}
+
+function getNarrationPins(total){
+  var notes=getListeningNotes();
+  var pins=[],seen={};
+  var lines=notes.split(/\n+/);
+  lines.forEach(function(line){
+    var re=/(\d{1,2}):(\d{2})(?::(\d{2}))?/g,m;
+    while((m=re.exec(line))){
+      var time=m[3]?((parseInt(m[1],10)*3600)+(parseInt(m[2],10)*60)+parseInt(m[3],10)):((parseInt(m[1],10)*60)+parseInt(m[2],10));
+      if(time>=0&&time<=total&&!seen[time]){
+        var text=line.slice(m.index+m[0].length).replace(/^[-\s:]+/,'').trim();
+        pins.push({time:time,text:text});
+        seen[time]=1;
+      }
+    }
+  });
+  return pins.sort(function(a,b){return a.time-b.time});
+}
+
+function trimText(text,max){
+  text=String(text||'').trim();
+  if(text.length<=max)return text;
+  return text.slice(0,Math.max(1,max-3))+'...';
+}
+
+function buildTrackWaveform(track,features,total){
+  total=total||180;
+  var len=1800;
+  var key=(track&&track.id?track.id:(track&&track.name?track.name:'section-analyst'))+'|'+Math.round(total);
+  var seed=hashString(key);
+  var energy=clamp01(features&&features.energy!=null?features.energy:.62);
+  var dance=clamp01(features&&features.danceability!=null?features.danceability:.5);
+  var acoustic=clamp01(features&&features.acousticness!=null?features.acousticness:.22);
+  var valence=clamp01(features&&features.valence!=null?features.valence:.5);
+  var data=[];
+  for(var i=0;i<len;i++){
+    var p=i/(len-1);
+    var macro=.42+.30*Math.sin((p*2.5+rand(seed,1))*Math.PI)+.16*Math.sin((p*7.5+rand(seed,2))*Math.PI*2);
+    var phrase=.60+.36*Math.pow(Math.sin((p*total/8+rand(seed,3))*Math.PI),2);
+    var beat=.08*dance*Math.pow(Math.sin((p*total*(1.5+dance*1.4)+rand(seed,4))*Math.PI),8);
+    var grit=.12*rand(seed+i*17,5)+.07*Math.sin(i*.71+rand(seed,6)*8);
+    var lift=.82+.22*Math.sin((p+valence*.15)*Math.PI);
+    var quiet=(p<.025||p>.985)?.55:1;
+    var amp=(.16+energy*.38+macro*.24+phrase*.18+beat+grit-acoustic*.08)*lift*quiet;
+    data.push(Math.max(.08,Math.min(.98,amp)));
+  }
+  for(var pass=0;pass<2;pass++){
+    data=data.map(function(v,i,arr){return (v+(arr[i-1]||v)*.55+(arr[i+1]||v)*.55)/2.1});
+  }
+  return data;
+}
+
+function waveformSample(p){
+  if(!waveformData.length)return .45;
+  var idx=p*(waveformData.length-1);
+  var lo=Math.floor(idx),hi=Math.min(waveformData.length-1,lo+1);
+  var frac=idx-lo;
+  return waveformData[lo]*(1-frac)+waveformData[hi]*frac;
+}
+
+function hashString(str){
+  var h=2166136261;
+  for(var i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}
+  return h>>>0;
+}
+function rand(seed,salt){
+  var x=(seed+Math.imul(salt||1,374761393))>>>0;
+  x^=x<<13;x^=x>>>17;x^=x<<5;
+  return ((x>>>0)%100000)/100000;
+}
+function clamp01(v){return Math.max(0,Math.min(1,Number(v)||0))}
+
+function sectionColor(i,alpha){
+  var colors=[
+    [29,185,84],[255,107,53],[75,156,255],[244,196,48],[180,122,255],[39,211,190],
+    [255,91,146],[143,214,75],[255,146,61],[105,220,255],[234,96,96],[190,220,90]
+  ];
+  var c=colors[Math.abs(i)%colors.length];
+  return 'rgba('+c[0]+','+c[1]+','+c[2]+','+(alpha==null?1:alpha)+')';
+}
+
+function initSeekInteractions(){
+  var rail=document.getElementById('prog-bg');
+  if(!rail||rail.dataset.seekReady)return;
+  rail.dataset.seekReady='1';
+  rail.addEventListener('mousedown',startSeekScrub);
+  rail.addEventListener('touchstart',startSeekScrub,{passive:false});
+}
+
+function startSeekScrub(e){
+  if(seekScrubbing)return;
+  if(e.target.closest&&e.target.closest('.section-seek-btn'))return;
+  if(!duration)return;
+  e.preventDefault();
+  seekScrubbing=true;
+  updateSeekScrub(e);
+  document.addEventListener('mousemove',updateSeekScrub);
+  document.addEventListener('mouseup',finishSeekScrub);
+  document.addEventListener('touchmove',updateSeekScrub,{passive:false});
+  document.addEventListener('touchend',finishSeekScrub);
+}
+
+function updateSeekScrub(e){
+  if(!seekScrubbing||!duration)return;
+  if(e.cancelable)e.preventDefault();
+  var cx=e.touches?e.touches[0].clientX:e.clientX;
+  var rail=document.getElementById('prog-bg');
+  var rect=rail.getBoundingClientRect();
+  var pct=Math.max(0,Math.min(1,(cx-rect.left)/rect.width));
+  seekScrubMs=Math.floor(pct*duration);
+  positionMs=seekScrubMs;
+  updateProgress();
+}
+
+async function finishSeekScrub(){
+  if(!seekScrubbing)return;
+  seekScrubbing=false;
+  document.removeEventListener('mousemove',updateSeekScrub);
+  document.removeEventListener('mouseup',finishSeekScrub);
+  document.removeEventListener('touchmove',updateSeekScrub);
+  document.removeEventListener('touchend',finishSeekScrub);
+  if(!deviceId||!duration)return;
+  if(!isPlaying&&currentTrack){await playTrack(currentTrack.uri);await new Promise(function(r){setTimeout(r,350)})}
+  await seekTo(seekScrubMs);
+}
+
+function startDrag(e){
+  e.preventDefault();dragging=e.currentTarget;dragging.classList.add('dragging');
+  document.addEventListener('mousemove',onDrag);document.addEventListener('mouseup',stopDrag);
+  document.addEventListener('touchmove',onDrag,{passive:false});document.addEventListener('touchend',stopDrag);
+}
+function onDrag(e){
+  if(!dragging)return;e.preventDefault();
+  var cx=e.touches?e.touches[0].clientX:e.clientX;
+  var wrap=document.getElementById('waveform-wrap');
+  var rect=wrap.getBoundingClientRect();
+  var idx=parseInt(dragging.dataset.idx,10);
+  var total=totalDurSecs||duration/1000||sections.reduce(function(a,s){return a+s.duration},0);
+  var pct=Math.max(0,Math.min(1,(cx-rect.left)/rect.width));
+  var minP=sections[idx-1]?(sections[idx-1].start/total)+0.005:0.005;
+  var maxP=sections[idx+1]?(sections[idx+1].start/total)-0.005:0.995;
+  pct=Math.max(minP,Math.min(maxP,pct));
+  var ns=pct*total;
+  sections[idx-1].duration=ns-sections[idx-1].start;
+  sections[idx].duration=(sections[idx+1]?sections[idx+1].start:total)-ns;
+  sections[idx].start=ns;
+  dragging.style.left=(pct*100)+'%';
+  var tsEl=document.getElementById('sec-ts-'+idx);if(tsEl)tsEl.textContent=formatTime(ns);
+  var durEl=document.getElementById('sec-dur-'+idx);if(durEl)durEl.textContent=sections[idx].duration.toFixed(1)+'s';
+  var durPrev=document.getElementById('sec-dur-'+(idx-1));if(durPrev)durPrev.textContent=sections[idx-1].duration.toFixed(1)+'s';
+  if(selectedSection===idx||selectedSection===idx-1)prefillLoopInputs(selectedSection);
+}
+function stopDrag(){
+  if(dragging){dragging.classList.remove('dragging');dragging=null}
+  document.removeEventListener('mousemove',onDrag);document.removeEventListener('mouseup',stopDrag);
+  document.removeEventListener('touchmove',onDrag);document.removeEventListener('touchend',stopDrag);
+  renderSections();renderWaveform();renderSectionDetail(selectedSection);
+}
+
+function renderSections(){
+  var list=document.getElementById('sections-list');
+  document.getElementById('section-count').textContent=sections.length+' sections';
+  var html='';
+  sections.forEach(function(sec,i){
+    var cls='sec-item'+(i===selectedSection?' active':'')+(i===activeSection?' playing':'');
+    html+='<div class="'+cls+'" id="sec-item-'+i+'">'
+      +'<div class="sec-header" onclick="handleSecClick(event,'+i+')">'
+      +'<span class="sec-num">'+(i+1)+'</span>'
+      +'<span class="sec-ts" id="sec-ts-'+i+'">'+formatTime(sec.start)+'</span>'
+      +'<div class="sec-name-wrap"><span class="sec-name" id="sec-name-'+i+'">'+esc(sec.label)+'</span></div>'
+      +'<span class="sec-dur" id="sec-dur-'+i+'">'+sec.duration.toFixed(1)+'s</span>'
+      +'<div class="sec-actions" onclick="event.stopPropagation()">'
+      +'<button class="btn-icon" title="Rename" onclick="renameSection('+i+')">&#9998;</button>'
+      +'<button class="btn-icon" style="color:#ff5555" title="Delete" onclick="deleteSection('+i+')">&#10005;</button>'
+      +'</div>'
+      +'<div class="sec-bars">'
+      +'<div class="sec-bar" style="height:5px"></div>'
+      +'<div class="sec-bar" style="height:9px"></div>'
+      +'<div class="sec-bar" style="height:6px"></div>'
+      +'</div></div></div>'
+  });
+  list.innerHTML=html;
+  renderSectionSeekButtons(totalDurSecs||duration/1000);
+}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function handleSecClick(e,i){if(e.target.closest('.sec-actions'))return;selectSection(i,true)}
+
+function renameSection(i){
+  var nameEl=document.getElementById('sec-name-'+i);if(!nameEl)return;
+  var cur=sections[i].label;
+  var inp=document.createElement('input');inp.className='sec-name-input';inp.value=cur;
+  nameEl.replaceWith(inp);inp.focus();inp.select();
+  function commit(){
+    var v=inp.value.trim()||cur;sections[i].label=v;
+    renderSections();renderWaveform();renderSectionDetail(selectedSection);
+  }
+  inp.addEventListener('blur',commit,{once:true});
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')inp.blur();if(e.key==='Escape'){inp.value=cur;inp.blur()}});
+}
+
+function deleteSection(i){
+  if(sections.length<=1)return;
+  if(i>0)sections[i-1].duration+=sections[i].duration;
+  else if(sections[i+1]){sections[i+1].start=0;sections[i+1].duration+=sections[i].duration}
+  sections.splice(i,1);
+  if(selectedSection===i)selectedSection=Math.min(i,sections.length-1);
+  else if(selectedSection>i)selectedSection--;
+  if(activeSection===i)activeSection=-1;
+  else if(activeSection>i)activeSection--;
+  renderSections();renderWaveform();renderSectionDetail(selectedSection);prefillLoopInputs(selectedSection);
+}
+
+function addSection(){
+  var total=totalDurSecs||duration/1000||120;
+  var lastEnd=sections.length?sections[sections.length-1].start+sections[sections.length-1].duration:0;
+  var rem=total-lastEnd;
+  if(rem<1)return;
+  sections.push({start:lastEnd,duration:Math.min(rem,15),label:'New Section',instruments:'',vibeTags:'',description:'',estimated:false,notesRequested:false});
+  selectedSection=sections.length-1;
+  renderSections();renderWaveform();renderSectionDetail(selectedSection);prefillLoopInputs(selectedSection);
+}
+
+async function selectSection(i,shouldSeek){
+  if(!sections[i])return;
+  selectedSection=i;
+  prefillLoopInputs(i);
+  renderSections();
+  renderSectionDetail(i);
+  if(shouldSeek){
+    var sec=sections[i];
+    if(!isPlaying&&currentTrack){await playTrack(currentTrack.uri);await new Promise(function(r){setTimeout(r,400)})}
+    await seekTo(Math.floor(sec.start*1000));
+  }
+}
+
+function prefillLoopInputs(i){
+  if(!sections[i])return;
+  var sec=sections[i];
+  document.getElementById('loop-start-input').value=formatTime(sec.start);
+  document.getElementById('loop-end-input').value=formatTime(sec.start+sec.duration);
+  if(!loopEnabled)document.getElementById('loop-status').textContent='Ready: '+sec.label+' ('+formatTime(sec.start)+' to '+formatTime(sec.start+sec.duration)+')';
+}
+
+function renderSectionDetail(i){
+  var body=document.getElementById('section-detail-body');
+  var label=document.getElementById('section-detail-label');
+  if(!body||!label)return;
+  if(i<0||!sections[i]){
+    label.textContent='- select a section';
+    body.innerHTML='<div class="detail-empty">Click any section on the left to view and edit its details here.</div>';
+    return;
+  }
+  var sec=sections[i];
+  label.textContent=(i+1)+'. '+sec.label+' - '+formatTime(sec.start);
+  body.innerHTML='<div class="notes-grid">'
+    +'<div class="panel-actions"><button class="btn-sm" id="section-gen-btn" onclick="generateSectionDetail(selectedSection)">&#10022; Generate / Refine</button><button class="btn-sm" onclick="saveSectionPass(selectedSection,\'Manual snapshot\')">Save Pass</button></div>'
+    +'<div class="notes-field"><label for="detail-instruments">Instruments</label>'
+    +'<input id="detail-instruments" type="text" value="'+esc(sec.instruments||'')+'" placeholder="e.g. Electric guitar, drums, bass" oninput="updateSelectedField(\'instruments\',this.value)"/></div>'
+    +'<div class="notes-field"><label for="detail-vibes">Vibe Tags</label>'
+    +'<input id="detail-vibes" type="text" value="'+esc(sec.vibeTags||'')+'" placeholder="e.g. Driving, tense, melodic" oninput="updateSelectedField(\'vibeTags\',this.value)"/></div>'
+    +'<div class="notes-field"><label for="detail-desc">Description</label>'
+    +'<textarea id="detail-desc" placeholder="Describe this section..." oninput="updateSelectedField(\'description\',this.value)">'+esc(sec.description||'')+'</textarea>'
+    +'<div class="refine-row"><button class="btn-sm" id="refine-btn" onclick="refineDesc(selectedSection)">&#10022; Refine Description</button></div></div>'
+    +'<div class="history-row"><select class="history-select" id="section-history-select" onchange="previewSectionPass(selectedSection,this.value)">'+sectionHistoryOptions(i)+'</select><button class="btn-sm" onclick="restoreSectionPass(selectedSection)">Restore</button></div>'
+    +'<textarea class="metadata-textarea history-preview" id="section-history-preview" readonly placeholder="Select an earlier section pass to compare it here."></textarea>'
+    +'</div>';
+  if(currentTrack&&!sec.notesRequested&&!sec.instruments&&!sec.vibeTags&&!sec.description)autoFillSectionNotes(i);
+}
+
+function updateSelectedField(field,value){
+  if(selectedSection<0||!sections[selectedSection])return;
+  sections[selectedSection][field]=value;
+}
+function passStamp(){return new Date().toLocaleString()}
+function sectionSnapshot(i){var s=sections[i]||{};return {label:s.label||'',start:s.start||0,duration:s.duration||0,instruments:s.instruments||'',vibeTags:s.vibeTags||'',description:s.description||'',notes:getListeningNotes()}}
+function sectionPassLabel(pass,idx){return (idx+1)+'. '+pass.title+' - '+pass.createdAt}
+function sectionHistoryOptions(i){
+  var arr=sectionPassHistory[i]||[];
+  if(!arr.length)return '<option value="">No section passes yet</option>';
+  return '<option value="">Select earlier pass</option>'+arr.map(function(pass,idx){return '<option value="'+idx+'">'+esc(sectionPassLabel(pass,idx))+'</option>'}).join('');
+}
+function saveSectionPass(i,title){
+  if(!sections[i])return;
+  if(!sectionPassHistory[i])sectionPassHistory[i]=[];
+  sectionPassHistory[i].push({title:title||'Section pass',createdAt:passStamp(),snapshot:sectionSnapshot(i)});
+  if(i===selectedSection)renderSectionDetail(i);
+}
+function previewSectionPass(i,value){
+  var out=document.getElementById('section-history-preview');if(!out)return;
+  var idx=parseInt(value,10);var pass=(sectionPassHistory[i]||[])[idx];
+  out.value=pass?formatSectionPass(pass.snapshot):'';
+}
+function formatSectionPass(s){
+  return 'Section type: '+(s.label||'')+'\nTimestamp: '+formatTime(s.start||0)+' - '+formatTime((s.start||0)+(s.duration||0))+'\nInstruments / sounds: '+(s.instruments||'')+'\nVibe tags: '+(s.vibeTags||'')+'\nNarration: '+(s.description||'')+'\n\nNotes used:\n'+(s.notes||'');
+}
+function restoreSectionPass(i){
+  var sel=document.getElementById('section-history-select');if(!sel||sel.value==='')return;
+  var pass=(sectionPassHistory[i]||[])[parseInt(sel.value,10)];if(!pass||!sections[i])return;
+  sections[i].label=pass.snapshot.label||sections[i].label;
+  sections[i].instruments=pass.snapshot.instruments||'';
+  sections[i].vibeTags=pass.snapshot.vibeTags||'';
+  sections[i].description=pass.snapshot.description||'';
+  renderSections();renderWaveform();renderSectionDetail(i);refreshDashboardOutput();
+}
+async function generateSectionDetail(i){
+  if(!currentTrack||!sections[i]){showSt('error','Load a track and select a section first.');return}
+  var btn=document.getElementById('section-gen-btn');if(btn){btn.disabled=true;btn.textContent='Generating...'}
+  var sec=sections[i],track=currentTrack;
+  if(sec.instruments||sec.vibeTags||sec.description)saveSectionPass(i,'Before section refinement');
+  var prompt='Generate or refine this selected section for a music annotation dashboard using the latest listener narration. Fill all section detail fields: instruments, vibeTags, and description. Preserve useful existing content, but update it if new narrated information is more specific. Use concise, objective, musician-friendly language. Return ONLY valid JSON with keys "instruments", "vibeTags", and "description".'
+    +'\n\nTrack: '+track.name+' by '+track.artists.map(function(a){return a.name}).join(', ')
+    +'\nSelected section: '+sec.label+' ('+formatTime(sec.start)+'-'+formatTime(sec.start+sec.duration)+')'
+    +'\nExisting instruments: '+(sec.instruments||'')
+    +'\nExisting vibe tags: '+(sec.vibeTags||'')
+    +'\nExisting narration: '+(sec.description||'')
+    +'\n\nAll listener narration / notes:\n'+(getListeningNotes()||'No listener notes provided.')
+    +'\n\nFull section map for context:\n'+sectionSummaryForPrompt()
+    +personalContextPrompt();
+  try{
+    var raw=await openAIText(prompt,1000);
+    var parsed=JSON.parse(raw.replace(/\`\`\`json|\`\`\`/g,'').trim());
+    if(parsed.instruments)sec.instruments=parsed.instruments;
+    if(parsed.vibeTags)sec.vibeTags=parsed.vibeTags;
+    if(parsed.description)sec.description=parsed.description;
+    saveSectionPass(i,'Generated section pass');
+    renderSections();renderWaveform();renderSectionDetail(i);refreshDashboardOutput();hideSt();
+  }catch(e){showSt('error','Section generation failed. Existing content was kept.');console.error(e)}
+  if(btn){btn.disabled=false;btn.textContent='\u2726 Generate / Refine'}
+}
+
+function renderGlobalFields(){
+  var grid=document.getElementById('global-fields-grid');
+  if(!grid)return;
+  grid.innerHTML=GLOBAL_FIELDS.map(function(name,idx){
+    return '<div class="notes-field global-field"><label for="global-field-'+idx+'">'+(idx+1)+'. '+esc(name)+'</label>'
+      +'<textarea id="global-field-'+idx+'" placeholder="Generate or write this field..." oninput="updateGlobalField(\''+esc(name)+'\',this.value)">'+esc(globalAnalysis[name]||'')+'</textarea>'
+      +'<div class="field-actions"><button class="btn-sm" id="global-refine-'+idx+'" onclick="refineGlobalField('+idx+',\'refine\')">&#10022; Refine</button><button class="btn-sm" id="global-concise-'+idx+'" onclick="refineGlobalField('+idx+',\'concise\')">Concise</button></div></div>';
+  }).join('');
+}
+function updateGlobalField(name,value){globalAnalysis[name]=value}
+function globalSnapshot(){var snap={fields:{},notes:getListeningNotes()};GLOBAL_FIELDS.forEach(function(name){snap.fields[name]=globalAnalysis[name]||''});return snap}
+function hasGlobalContent(){return GLOBAL_FIELDS.some(function(name){return (globalAnalysis[name]||'').trim()})}
+function saveGlobalPass(title){
+  globalPassHistory.push({title:title||'Global pass',createdAt:passStamp(),snapshot:globalSnapshot()});
+  selectedGlobalPass=globalPassHistory.length-1;
+  renderGlobalHistory();
+}
+function globalPassLabel(pass,idx){return (idx+1)+'. '+pass.title+' - '+pass.createdAt}
+function renderGlobalHistory(){
+  var sel=document.getElementById('global-history-select');if(!sel)return;
+  if(!globalPassHistory.length){sel.innerHTML='<option value="">No global passes yet</option>';var p=document.getElementById('global-history-preview');if(p)p.value='';return}
+  sel.innerHTML='<option value="">Select earlier pass</option>'+globalPassHistory.map(function(pass,idx){return '<option value="'+idx+'">'+esc(globalPassLabel(pass,idx))+'</option>'}).join('');
+  if(selectedGlobalPass>=0){sel.value=String(selectedGlobalPass);previewGlobalPass(sel.value)}
+}
+function previewGlobalPass(value){
+  var out=document.getElementById('global-history-preview');if(!out)return;
+  var idx=parseInt(value,10);selectedGlobalPass=isNaN(idx)?-1:idx;
+  var pass=globalPassHistory[selectedGlobalPass];
+  out.value=pass?formatGlobalPass(pass.snapshot):'';
+}
+function formatGlobalPass(snap){
+  return GLOBAL_FIELDS.map(function(name,idx){return (idx+1)+'. '+name+'\n'+(snap.fields[name]||'')}).join('\n\n')+'\n\nNotes used:\n'+(snap.notes||'');
+}
+function restoreGlobalPass(){
+  if(selectedGlobalPass<0||!globalPassHistory[selectedGlobalPass])return;
+  var fields=globalPassHistory[selectedGlobalPass].snapshot.fields||{};
+  GLOBAL_FIELDS.forEach(function(name){globalAnalysis[name]=fields[name]||''});
+  renderGlobalFields();refreshDashboardOutput();
+}
+async function refineGlobalField(idx,mode){
+  var name=GLOBAL_FIELDS[idx];if(!name)return;
+  var current=globalAnalysis[name]||'';
+  var btn=document.getElementById(mode==='concise'?'global-concise-'+idx:'global-refine-'+idx);
+  if(btn){btn.disabled=true;btn.textContent=mode==='concise'?'Tightening...':'Refining...'}
+  if(hasGlobalContent())saveGlobalPass(mode==='concise'?'Before concise field edit':'Before field refinement');
+  var instruction=mode==='concise'
+    ?'Make this single global analysis field more concise. Remove unnecessary fluff, repeated ideas, and vague wording. Preserve useful musical detail and keep it dashboard-ready. Return only the revised field text.'
+    :'Refine this single global analysis field using the edited text, latest narration, section map, and personal context. Improve clarity, specificity, and dashboard usefulness without inventing inaudible details. Return only the revised field text.';
+  var prompt=instruction+'\n\nField name: '+name+'\nCurrent edited/generated text:\n'+(current||'')+'\n\nLatest listener narration:\n'+(getListeningNotes()||'No listener notes provided.')+'\n\nSection map/context:\n'+sectionSummaryForPrompt()+personalContextPrompt();
+  try{
+    var text=await openAIText(prompt,700);
+    if(text){globalAnalysis[name]=text.trim();renderGlobalFields();saveGlobalPass(mode==='concise'?'Concise field pass':'Refined field pass');refreshDashboardOutput();hideSt()}
+  }catch(e){showSt('error','Could not refine this global field.');console.error(e)}
+  if(btn){btn.disabled=false;btn.textContent=mode==='concise'?'Concise':'\u2726 Refine'}
+}
+function getListeningNotes(){var el=document.getElementById('listening-notes');return el?el.value.trim():''}
+function currentTimeLabel(){return duration?msToTime(positionMs):'0:00'}
+function insertTimestampedNote(text){
+  var el=document.getElementById('listening-notes');if(!el)return;
+  var note=(typeof text==='string'&&text.trim())?text.trim():'';
+  var line=currentTimeLabel()+(note?' '+note:' ');
+  el.value+=(el.value&&el.value.slice(-1)!=='\n'?'\n':'')+line;
+  el.focus();el.selectionStart=el.selectionEnd=el.value.length;
+  renderWaveform();
+}
+function clearListeningNotes(){var el=document.getElementById('listening-notes');if(el)el.value='';renderWaveform()}
+async function formatListeningNotes(){
+  var el=document.getElementById('listening-notes');if(!el)return;
+  var raw=el.value.trim();if(!raw){showSt('error','Add listening notes before formatting.');return}
+  var btn=document.getElementById('format-notes-btn');if(btn){btn.disabled=true;btn.textContent='Formatting...'}
+  var t=currentTrack;
+  var prompt='Clean up these rough listening notes for a music annotation dashboard. Preserve timestamps, preserve the user\'s judgement, do not invent details, and organise the notes into concise dashboard-relevant observations. Use short lines. Mention section names when obvious.\n'
+    +(t?'\nTrack: '+t.name+' by '+t.artists.map(function(a){return a.name}).join(', ')+'\n':'')
+    +'\nCurrent section map:\n'+sectionSummaryForPrompt()+'\n'
+    +personalContextPrompt()
+    +'\n\nRough notes:\n'+raw;
+  try{
+    var text=await openAIText(prompt,1400);
+    if(text)el.value=text.trim();
+    renderWaveform();
+    hideSt();
+  }catch(e){showSt('error','Could not format notes. Your raw notes are unchanged.');console.error(e)}
+  if(btn){btn.disabled=false;btn.textContent='Format Notes'}
+}
+function setDictationStatus(text,active){var el=document.getElementById('dictation-status');if(el){el.textContent=text;el.classList.toggle('active',!!active)}}
+function setRecordingUi(active,text){
+  var btn=document.getElementById('record-btn');if(btn){btn.textContent=active?'Stop & Transcribe':'Record Pass';btn.classList.toggle('active',active)}
+  var dot=document.getElementById('recording-dot');if(dot)dot.classList.toggle('active',active);
+  setDictationStatus(text||'',active);
+}
+async function toggleOpenAIRecording(){
+  if(isRecording){stopOpenAIRecording();return}
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){setDictationStatus('Recording is not supported in this browser.',false);return}
+  try{
+    recordedChunks=[];
+    var stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});
+    mediaRecorder=new MediaRecorder(stream);
+    mediaRecorder.ondataavailable=function(e){if(e.data&&e.data.size)recordedChunks.push(e.data)};
+    mediaRecorder.onstop=async function(){
+      stream.getTracks().forEach(function(t){t.stop()});
+      isRecording=false;setRecordingUi(false,'Transcribing narration pass...');
+      try{
+        var blob=new Blob(recordedChunks,{type:mediaRecorder.mimeType||'audio/webm'});
+        var text=await openAITranscribe(blob);
+        if(text.trim())insertTimestampedNote(text.trim());
+        setDictationStatus('Narration pass transcribed and added with the current timestamp.',false);
+      }catch(e){setDictationStatus('Transcription failed: '+e.message,false);console.error(e)}
+    };
+    mediaRecorder.start();
+    isRecording=true;setRecordingUi(true,'Recording narration pass. Use headphones for best results.');
+  }catch(e){setDictationStatus('Could not start recording. Check microphone permission.',false);console.error(e)}
+}
+function stopOpenAIRecording(){if(mediaRecorder&&isRecording)mediaRecorder.stop()}
+function toggleDictation(){toggleOpenAIRecording()}
+function sectionSummaryForPrompt(){
+  return sections.map(function(sec,i){
+    return (i+1)+'. '+sec.label+' ('+formatTime(sec.start)+'-'+formatTime(sec.start+sec.duration)+')\n'
+      +'Instruments / sounds: '+(sec.instruments||'')+'\n'
+      +'Vibe tags: '+(sec.vibeTags||'')+'\n'
+      +'Narration: '+(sec.description||'');
+  }).join('\n\n');
+}
+function audioFeatureSummary(){
+  var f=audioFeatures;if(!f)return 'No audio feature data available.';
+  var key=(f.key>=0?KEY_NAMES[f.key]:'unknown')+' '+(f.mode===1?'major':'minor');
+  return 'Key: '+key+', tempo: '+Math.round(f.tempo||0)+' BPM, energy: '+Math.round((f.energy||0)*100)+'%, valence: '+Math.round((f.valence||0)*100)+'%, danceability: '+Math.round((f.danceability||0)*100)+'%.';
+}
+async function generateGlobalAnalysis(){
+  if(!currentTrack){showSt('error','Load a track before generating global analysis.');return}
+  var btn=document.getElementById('global-gen-btn');if(btn){btn.disabled=true;btn.textContent='Generating...'}
+  var t=currentTrack;
+  if(hasGlobalContent())saveGlobalPass('Before global refinement');
+  var prompt='Generate or refine Global Analysis Fields for a music annotation dashboard using the latest listener narration. Use clear, concise, objective, dashboard-ready language. Use the listener rough notes as human judgement, but clean up wording and combine it with musical expertise. Preserve useful existing field content, but update it when new narration adds better evidence. Avoid vague praise, avoid over-writing, and avoid repeating the same adjectives across fields. Usually 1-3 sentences per field.\n\nExisting global fields:\n'+formatGlobalPass(globalSnapshot())+'\n\n'
+    +'Track metadata:\nSong title: '+t.name+'\nArtist: '+t.artists.map(function(a){return a.name}).join(', ')+'\nAlbum / release: '+t.album.name+' ('+(t.album.release_date||'--')+')\nDuration: '+msToTime(t.duration_ms)+'\nSpotify link: '+(t.external_urls?t.external_urls.spotify:'')+'\nAudio features: '+audioFeatureSummary()+'\n\n'
+    +'Timeline sections:\n'+sectionSummaryForPrompt()+'\n\n'
+    +'Listener rough narration / judgement:\n'+(getListeningNotes()||'No listener notes provided.')+'\n'
+    +personalContextPrompt()+'\n\n'
+    +'Return ONLY valid JSON with these exact keys: '+JSON.stringify(GLOBAL_FIELDS)+'. Each value should be a finished field answer.';
+  try{
+    var raw=await openAIText(prompt,2200);
+    var parsed=JSON.parse(raw.replace(/\`\`\`json|\`\`\`/g,'').trim());
+    GLOBAL_FIELDS.forEach(function(name){if(parsed[name])globalAnalysis[name]=parsed[name]});
+    saveGlobalPass('Generated global pass');
+    renderGlobalFields();refreshDashboardOutput();hideSt();
+  }catch(e){showSt('error','Global analysis generation failed. You can still edit the fields manually.');console.error(e)}
+  if(btn){btn.disabled=false;btn.textContent='\u2726 Generate / Refine'}
+}
+
+function parseT(str){str=(str||'').trim();var m=str.match(/^(\d+):(\d{1,2})$/);if(m)return parseInt(m[1],10)*60+parseInt(m[2],10);var n=parseFloat(str);return isNaN(n)?null:n}
+function applyCustomLoop(){
+  var s=parseT(document.getElementById('loop-start-input').value);
+  var e=parseT(document.getElementById('loop-end-input').value);
+  if(s===null||e===null||e<=s){showSt('error','Invalid loop times');return}
+  loopStart=s*1000;loopEnd=e*1000;loopEnabled=true;
+  updateLoopButton();
+  document.getElementById('loop-status').textContent='Looping: '+formatTime(s)+' to '+formatTime(e);
+  seekTo(loopStart);
+}
+function toggleLoop(){
+  if(!loopEnabled&&(loopStart===null||loopEnd===null)){applyCustomLoop();return}
+  loopEnabled=!loopEnabled;updateLoopButton();
+  document.getElementById('loop-status').textContent=loopEnabled?'Looping enabled':'Loop off';
+}
+function updateLoopButton(){var b=document.getElementById('loop-toggle-btn');b.textContent=loopEnabled?'On':'Off';b.classList.toggle('active',loopEnabled)}
+function clearLoop(clearInputs){
+  if(clearInputs!==false){document.getElementById('loop-start-input').value='';document.getElementById('loop-end-input').value=''}
+  loopEnabled=false;loopStart=null;loopEnd=null;updateLoopButton();
+  var st=document.getElementById('loop-status');if(st)st.textContent='';
+}
+function checkLoop(){if(!loopEnabled||loopStart===null||loopEnd===null)return;if(positionMs>=loopEnd)seekTo(loopStart)}
+
+async function togglePlay(){if(player)await player.togglePlay()}
+function updatePlayBtn(){document.getElementById('play-icon').innerHTML=isPlaying?'<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>':'<path d="M8 5v14l11-7z"/>'}
+function updateProgress(){if(!duration)return;var pct=Math.min(100,(positionMs/duration)*100);document.getElementById('prog-fill').style.width=pct+'%';document.getElementById('prog-thumb').style.left=pct+'%';document.getElementById('time-current').textContent=msToTime(positionMs);document.getElementById('time-total').textContent=msToTime(duration);document.getElementById('waveform-cursor').style.left=pct+'%'}
+async function seekTo(ms){positionMs=ms;updateProgress();await spF('https://api.spotify.com/v1/me/player/seek?position_ms='+ms+'&device_id='+deviceId,{method:'PUT'})}
+async function setVolume(v){if(player)await player.setVolume(v/100)}
+function updateActiveSec(){
+  if(!sections.length||!duration)return;
+  var pos=positionMs/1000;var cur=-1;
+  for(var i=0;i<sections.length;i++){if(pos>=sections[i].start)cur=i;else break}
+  if(cur!==activeSection){
+    activeSection=cur;
+    renderSections();
+    renderSectionSeekButtons(totalDurSecs||duration/1000);
+  }
+}
+
+async function autoFillSectionNotes(i){
+  if(!currentTrack||!sections[i])return;
+  var sec=sections[i];
+  if(sec.notesRequested||sec.instruments||sec.vibeTags||sec.description)return;
+  sec.notesRequested=true;
+  var track=currentTrack;
+  var prompt='For the song "'+track.name+'" by '+track.artists.map(function(a){return a.name}).join(', ')+', give me a JSON object for the "'+sec.label+'" section with: "instruments" (short comma-separated list), "vibeTags" (3-5 comma-separated mood or arrangement tags), and "description" (2-3 musician-focused sentences). Return ONLY valid JSON no markdown. Example: {"instruments":"...","vibeTags":"...","description":"..."}'+personalContextPrompt();
+  try{
+    var raw=await openAIText(prompt,1000);
+    var item=JSON.parse(raw.replace(/\`\`\`json|\`\`\`/g,'').trim());
+    if(item.instruments&&!sec.instruments)sec.instruments=item.instruments;
+    if(item.vibeTags&&!sec.vibeTags)sec.vibeTags=item.vibeTags;
+    if(item.description&&!sec.description)sec.description=item.description;
+    if(selectedSection===i)renderSectionDetail(i);
+  }catch(e){console.warn('Section detail autofill failed:',e)}
+}
+
+async function refineDesc(i){
+  if(!sections[i])return;
+  var ta=document.getElementById('detail-desc');
+  var btn=document.getElementById('refine-btn');
+  var cur=(ta?ta.value:sections[i].description||'').trim();if(!cur)return;
+  var orig=cur;if(ta)ta.disabled=true;if(btn){btn.disabled=true;btn.textContent='Refining...'}
+  var t=currentTrack;
+  var prompt='Refine this description of the "'+sections[i].label+'" section of "'+(t?t.name:'this song')+'". Make it more precise and evocative for a musician\'s reference. 2-3 sentences. Return only the improved text.'+personalContextPrompt()+'\n\nCurrent: '+cur;
+  try{
+    var text=await openAIText(prompt,400);
+    sections[i].description=text||orig;if(ta)ta.value=sections[i].description;saveSectionPass(i,'Refined description pass');refreshDashboardOutput();
+  }catch(e){console.error(e)}
+  if(ta)ta.disabled=false;if(btn){btn.disabled=false;btn.textContent='\u2726 Refine'}
+}
+
+function mdEscape(s){return String(s||'').replace(/\r/g,'').trim()}
+function sectionDashboardText(sec,i){
+  return '### Section '+(i+1)+'\n'
+    +'Timestamp: '+formatTime(sec.start)+' - '+formatTime(sec.start+sec.duration)+'\n'
+    +'Section type: '+mdEscape(sec.label)+'\n'
+    +'Instruments / sounds: '+mdEscape(sec.instruments)+'\n'
+    +'Vibe tags: '+mdEscape(sec.vibeTags)+'\n'
+    +'Narration: '+mdEscape(sec.description);
+}
+function buildDashboardMarkdown(){
+  var t=currentTrack;
+  var artist=t?t.artists.map(function(a){return a.name}).join(', '):'';
+  var genre=globalAnalysis['Genre / Era / Scene']||'';
+  var setting=globalAnalysis['Setting / Occasion / Listening Context']||'';
+  var out='## Track Info\n\n'
+    +'Song title: '+(t?t.name:'')+'\n'
+    +'Artist: '+artist+'\n'
+    +'Album / release, if known: '+(t?t.album.name+' / '+(t.album.release_date||''):'')+'\n'
+    +'Track link: '+(t&&t.external_urls?t.external_urls.spotify:'')+'\n'
+    +'Duration: '+(t?msToTime(t.duration_ms):'')+'\n'
+    +'Language: unclear / edit manually\n'
+    +'Broad genre: '+mdEscape(genre)+'\n'
+    +'Listening context / setting: '+mdEscape(setting)+'\n\n---\n\n'
+    +'## Timeline Sections\n\n'
+    +sections.map(sectionDashboardText).join('\n\n')+'\n\n---\n\n'
+    +'## Global Analysis Fields\n\n'
+    +GLOBAL_FIELDS.map(function(name,idx){return '### '+(idx+1)+'. '+name+'\n'+mdEscape(globalAnalysis[name])}).join('\n\n')
+    +'\n\n---\n\n## Uncertainties / Human Judgement Needed\n\n'
+    +(getListeningNotes()?mdEscape(getListeningNotes()):'');
+  return out;
+}
+function refreshDashboardOutput(){} 
+async function copyDashboardOutput(){}
+function setDashboardCopyStatus(text){} 
+
+async function exportPDF(){
+  var jsPDF=window.jspdf.jsPDF;
+  var doc=new jsPDF({unit:'mm',format:'a4'});
+  var W=210,M=18,CW=W-M*2;var y=M;
+  function chk(n){if(y+(n||10)>285){doc.addPage();y=M}}
+  doc.setFillColor(20,20,20);doc.rect(0,0,W,38,'F');
+  doc.setTextColor(29,185,84);doc.setFont('helvetica','bold');doc.setFontSize(20);doc.text('Section Analyst',M,14);
+  doc.setTextColor(255,255,255);doc.setFont('helvetica','normal');doc.setFontSize(8);doc.text('Track Analysis Export',M,21);
+  if(currentTrack){doc.setFontSize(11);doc.setFont('helvetica','bold');doc.text(currentTrack.name.slice(0,60),M,30);doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(160,160,160);doc.text(currentTrack.artists.map(function(a){return a.name}).join(', ')+' - '+currentTrack.album.name.slice(0,40),M,36)}
+  y=46;
+  function secHead(label){chk(12);doc.setFillColor(230,230,230);doc.roundedRect(M,y,CW,7,1,1,'F');doc.setTextColor(20,20,20);doc.setFont('helvetica','bold');doc.setFontSize(8);doc.text(label,M+4,y+5);y+=11}
+  function row(k,v){chk(7);doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(120,120,120);doc.text(k+':',M+2,y);doc.setFont('helvetica','normal');doc.setTextColor(20,20,20);var lines=doc.splitTextToSize(String(v),CW-32);doc.text(lines,M+30,y);y+=lines.length*4.5+2}
+  secHead('TRACK METADATA');
+  if(currentTrack){var t=currentTrack;row('Artist',t.artists.map(function(a){return a.name}).join(', '));row('Album',t.album.name);row('Released',t.album.release_date||'--')}
+  var listenerNotes=getListeningNotes();
+  if(listenerNotes){y+=4;secHead('LISTENING NOTES');row('Notes',listenerNotes)}
+  y+=4;secHead('SECTIONS');
+  sections.forEach(function(sec,i){
+    chk(14);
+    doc.setFillColor(20,20,20);doc.roundedRect(M,y,CW,6,1,1,'F');
+    doc.setTextColor(29,185,84);doc.setFont('helvetica','bold');doc.setFontSize(9);doc.text((i+1)+'. '+sec.label,M+3,y+4.3);
+    doc.setTextColor(120,120,120);doc.setFont('helvetica','normal');doc.setFontSize(8);doc.text(formatTime(sec.start)+' - '+sec.duration.toFixed(1)+'s',W-M-42,y+4.3);
+    y+=9;
+    if(sec.instruments)row('Instruments',sec.instruments);
+    if(sec.vibeTags)row('Vibe Tags',sec.vibeTags);
+    if(sec.description)row('Narration',sec.description);
+    y+=3;
+  });
+  y+=2;secHead('GLOBAL ANALYSIS FIELDS');
+  GLOBAL_FIELDS.forEach(function(name,idx){if(globalAnalysis[name])row((idx+1)+'. '+name,globalAnalysis[name])});
+  var pages=doc.internal.getNumberOfPages();
+  for(var i=1;i<=pages;i++){doc.setPage(i);doc.setFont('helvetica','normal');doc.setFontSize(7);doc.setTextColor(120,120,120);doc.text('Section Analyst - '+(currentTrack?currentTrack.name:'')+' - Page '+i+' of '+pages,M,292)}
+  refreshDashboardOutput();
+  var fn=(currentTrack?currentTrack.name.replace(/[^a-z0-9]/gi,'_'):'analysis')+'_sections.pdf';
+  doc.save(fn);
+}
+
+function formatTime(s){var m=Math.floor(s/60);return m+':'+(Math.floor(s%60)+'').padStart(2,'0')}
+function msToTime(ms){return formatTime(ms/1000)}
+function escapeHtml(value){return String(value).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]})}
+function showSt(type,text){
+  var b=document.getElementById('status-bar');if(!b)return;
+  var prefix=type==='error'?'! ':'';
+  b.className='status show '+type;
+  b.innerHTML=(type==='loading'?'<div class="spinner"></div>':'')+'<span class="status-message">'+prefix+escapeHtml(text)+'</span><button class="status-close" onclick="hideSt()" aria-label="Close status">&times;</button>';
+}
+function hideSt(){var b=document.getElementById('status-bar');if(b){b.className='status';b.innerHTML=''}}
+
+window.addEventListener('resize',function(){clearTimeout(resizeTimer);resizeTimer=setTimeout(renderWaveform,120)});
+initGlobalFields();
+loadPersonalContext();
+loadOpenAISettings();
+init();
+</script>
+</body>
+</html>
