@@ -2839,7 +2839,7 @@ header .shortcut-help{
       <div class="shortcut-help-title">Keyboard Shortcuts</div>
       <div class="shortcut-grid">
         <span>A</span><p>Add section at playhead</p>
-        <span>D</span><p>Copy starter JSON</p>
+        <span>S</span><p>Copy starter JSON</p>
         <span>I</span><p>Import and process pass</p>
         <span>R</span><p>Download refinement</p>
         <span>C</span><p>Label selected section as Chorus</p>
@@ -3356,7 +3356,7 @@ function handleAppShortcut(e){
   if(key==='p'){e.preventDefault();previewCurrentBoundary();return}
   if(key==='a'){e.preventDefault();addSection();return}
   if(applySectionLabelHotkey(key)){e.preventDefault();return}
-  if(key==='d'){e.preventDefault();copyStarterSet();return}
+  if(key==='s'){e.preventDefault();copyStarterSet();return}
   if(key==='i'){e.preventDefault();openPassImport();return}
   if(key==='r'){e.preventDefault();downloadRefinementFile();return}
   if(e.code==='Space'){e.preventDefault();togglePlay();return}
@@ -4820,7 +4820,7 @@ async function autoCopyStarterSet(trackId){
     await navigator.clipboard.writeText(compactJson(starter));
     setProcessStatus('Starter copied. Paste it into ChatGPT, then start listening and marking sections.','ok');
   }catch(e){
-    setProcessStatus('Starter ready. Safari blocked auto-copy; click Copy Starter or press D.','warn');
+    setProcessStatus('Starter ready. Safari blocked auto-copy; click Copy Starter or press S.','warn');
   }
 }
 
