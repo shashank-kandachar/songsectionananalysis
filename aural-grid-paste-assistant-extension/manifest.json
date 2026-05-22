@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "Aural Grid Paste Assistant",
+  "version": "0.2.0",
+  "description": "Guided, review-first paste queue for moving Aural Grid bridge data into Beatpulse.",
+  "permissions": [
+    "activeTab",
+    "clipboardRead",
+    "clipboardWrite",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://app.beatpulse.com/*"
+  ],
+  "action": {
+    "default_title": "Aural Grid Paste Assistant",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://app.beatpulse.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "copy-current": {
+      "suggested_key": {
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Copy current queue value"
+    },
+    "next-item": {
+      "suggested_key": {
+        "mac": "Command+Shift+U"
+      },
+      "description": "Move to next queue value"
+    },
+    "prev-item": {
+      "suggested_key": {
+        "mac": "Command+Shift+J"
+      },
+      "description": "Move to previous queue value"
+    },
+    "toggle-panel": {
+      "suggested_key": {
+        "mac": "Command+Shift+L"
+      },
+      "description": "Show or hide the paste assistant"
+    }
+  }
+}

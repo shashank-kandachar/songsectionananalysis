@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aural Grid Paste Assistant</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="popup">
+    <header class="top">
+      <div class="mark">AG</div>
+      <div>
+        <h1>Aural Grid</h1>
+        <p>Guided Beatpulse paste queue</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <label class="file-label" for="bridge-file">Import Bridge JSON</label>
+      <input id="bridge-file" type="file" accept=".json,application/json">
+      <button id="import-clipboard" class="secondary-wide" type="button">Import From Clipboard</button>
+      <div id="payload-status" class="status">No bridge loaded yet.</div>
+    </section>
+
+    <section class="actions">
+      <button id="open-assistant" class="primary">Open Assistant</button>
+      <button id="fill-all" class="primary danger-safe">Fill All Visible Fields</button>
+      <button id="verify-transfer">Verify Transfer</button>
+      <button id="add-rows">Add Missing Rows</button>
+      <button id="copy-current">Copy Current</button>
+      <button id="next-item">Next</button>
+      <button id="prev-item">Previous</button>
+      <button id="clear-data" class="ghost">Clear Data</button>
+    </section>
+
+    <section class="settings">
+      <label>
+        <input id="auto-advance" type="checkbox" checked>
+        Auto-advance after paste
+      </label>
+      <label>
+        <input id="auto-copy" type="checkbox" checked>
+        Auto-copy next value after paste
+      </label>
+      <label>
+        <input id="auto-rows" type="checkbox" checked>
+        Auto-add missing rows
+      </label>
+    </section>
+
+    <section class="shortcuts">
+      <div><kbd>⌘⇧Y</kbd><span>Copy current</span></div>
+      <div><kbd>⌘⇧U</kbd><span>Next</span></div>
+      <div><kbd>⌘⇧J</kbd><span>Previous</span></div>
+      <div><kbd>⌘⇧L</kbd><span>Show / hide panel</span></div>
+    </section>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
