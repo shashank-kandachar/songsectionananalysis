@@ -5148,8 +5148,8 @@ function updateActiveSec(){
 
 function renderReadyOutput(){}
 async function copyText(text){
-  try{await navigator.clipboard.writeText(String(text||''));setProcessStatus('Copied to clipboard.','ok');return true}
-  catch(e){setProcessStatus('Clipboard copy failed. Try the button again or use the file export.','warn');console.error(e);return false}
+  try{await navigator.clipboard.writeText(String(text||''));showSt('loading','Copied to clipboard.');setTimeout(hideSt,900);return true}
+  catch(e){showSt('error','Clipboard copy failed. Try the button again or use the file export.');console.error(e);return false}
 }
 
 function formatTime(s){var m=Math.floor(s/60);return m+':'+(Math.floor(s%60)+'').padStart(2,'0')}
