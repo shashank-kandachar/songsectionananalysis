@@ -2671,25 +2671,16 @@ header .shortcut-help{
 .tab-shell{flex:1 1 auto!important;min-height:0!important}
 .tab-bar{
   display:grid!important;
-  grid-template-columns:auto minmax(260px,1fr) auto!important;
-  gap:12px!important;
+  grid-template-columns:auto minmax(0,1fr)!important;
+  gap:10px!important;
   align-items:center!important;
-  padding:8px 10px!important;
+  padding:8px!important;
 }
-.tab-nav,.tab-transfer-actions,.tab-status-well{
+.tab-nav,.tab-transfer-actions{
   display:flex;
   align-items:center;
   gap:6px;
   min-width:0;
-}
-.tab-status-well{
-  justify-content:center;
-  align-self:stretch;
-  padding:5px 12px;
-  border:1px solid rgba(194,180,255,.18);
-  border-radius:999px;
-  background:linear-gradient(135deg,rgba(18,13,27,.86),rgba(10,16,20,.74));
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.025);
 }
 .tab-transfer-actions{
   justify-content:flex-end;
@@ -2703,27 +2694,11 @@ header .shortcut-help{
   padding:5px 9px!important;
   font-size:9px!important;
 }
-.tab-status-well .process-status{
-  width:100%;
+.tab-transfer-actions .process-status{
+  max-width:260px;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
-  text-align:center;
-  margin:0;
-  font-family:'Manrope','Inter',system-ui,sans-serif;
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:.01em;
-  color:var(--ag-soft);
-}
-.tab-status-well .process-status.ok{color:#d9f8ff}
-.tab-status-well .process-status.warn{color:#ffe0b8}
-.final-json-btn{
-  min-height:34px!important;
-  padding:7px 15px!important;
-  font-size:10px!important;
-  font-weight:950!important;
-  box-shadow:0 10px 28px rgba(242,179,109,.16);
 }
 .section-workspace-toolbar{
   display:grid!important;
@@ -2810,7 +2785,6 @@ header .shortcut-help{
 @media(max-width:1200px){
   .playback-grid{grid-template-columns:1fr!important}
   .tab-bar{grid-template-columns:1fr!important}
-  .tab-status-well{order:3}
   .tab-transfer-actions{justify-content:flex-start}
   .sections-workspace{grid-template-columns:1fr!important}
 }
@@ -2842,7 +2816,7 @@ header .shortcut-help{
         <span>D</span><p>Copy starter JSON</p>
         <span>I</span><p>Import and process pass</p>
         <span>R</span><p>Download refinement</p>
-        <span>C</span><p>Label selected section as Chorus</p>
+        <span>C</span><p>Download bridge from Ready tab</p>
         <span>1-9 / 0</span><p>Play section 1-10</p>
         <span>= / -</span><p>Play next / previous section</p>
         <span>V C H B I O P</span><p>Label selected section</p>
@@ -2854,7 +2828,7 @@ header .shortcut-help{
         <span>Space</span><p>Play / pause</p>
         <span>&larr; / &rarr;</span><p>Seek 5s backward / forward</p>
         <span>Shift &larr; / &rarr;</span><p>Seek 1s precisely</p>
-        <span>Shift 1/2</span><p>Sections / Global</p>
+        <span>Shift 1/2/3</span><p>Sections / Global / Ready</p>
         <span>?</span><p>Show / hide help</p>
       </div>
     </div>
@@ -2885,8 +2859,8 @@ header .shortcut-help{
       </div>
     </div>
     <div class="input-row">
-      <input class="url-input" id="url-input" type="text" placeholder="https://open.spotify.com/track/..." onpaste="activatePlaybackElement()" oninput="scheduleUrlAutoAnalyze()" onkeydown="if(event.key==='Enter'){activatePlaybackElement();analyzeTrack()}"/>
-      <button class="btn" id="analyze-btn" onclick="activatePlaybackElement();analyzeTrack()">Analyse</button>
+      <input class="url-input" id="url-input" type="text" placeholder="https://open.spotify.com/track/..." oninput="scheduleUrlAutoAnalyze()" onkeydown="if(event.key==='Enter')analyzeTrack()"/>
+      <button class="btn" id="analyze-btn" onclick="analyzeTrack()">Analyse</button>
     </div>
     <div class="sdk-bar">
       <div class="sdk-dot loading" id="sdk-dot"></div>
@@ -2953,17 +2927,15 @@ header .shortcut-help{
           <div class="tab-nav">
             <button class="tab-btn active" data-tab="sections-tab" onclick="switchTab('sections-tab',this)">Sections</button>
             <button class="tab-btn" data-tab="global-tab" onclick="switchTab('global-tab',this)">Global Fields</button>
-          </div>
-          <div class="tab-status-well" aria-live="polite">
-            <span class="process-status" id="process-status">Ready.</span>
+            <button class="tab-btn ready-btn" data-tab="ready-tab" onclick="showReadyToGo()">Ready to Go</button>
           </div>
           <div class="tab-transfer-actions">
             <button class="btn-sm" onclick="copyStarterSet()">Copy Starter</button>
-            <button class="btn-sm" onclick="copySectionInfo()">Copy Section Info</button>
+            <button class="btn-sm" onclick="downloadSectionInfo()">Section Info</button>
             <label class="btn-sm file-btn" for="pass-file-input">Import Pass</label>
             <input id="pass-file-input" type="file" accept=".json,application/json,text/plain" onchange="importPassFile(event)" hidden>
-            <button class="btn-sm" id="download-refinement-btn" onclick="downloadRefinementFile()">Export Refinement</button>
-            <button class="btn-sm ready-btn final-json-btn" onclick="downloadBeatpulseBridgeJson()">Ready to Go</button>
+            <button class="btn-sm" id="download-refinement-btn" onclick="downloadRefinementFile()">Download Refinement</button>
+            <span class="process-status" id="process-status">Ready.</span>
           </div>
         </div>
         <textarea class="exchange-textarea" id="input-chunk" hidden></textarea>
@@ -3017,6 +2989,22 @@ header .shortcut-help{
               </div>
             </div>
           </section>
+          <section class="tab-panel" id="ready-tab">
+            <div class="panel">
+              <div class="panel-head">
+                <span class="panel-title">Ready to Go</span>
+                <div class="panel-actions">
+                  <button class="btn-sm primary-process" onclick="downloadBeatpulseBridge()">Download Bridge</button>
+                  <button class="btn-sm" onclick="downloadBeatpulseBridgeJson()">Bridge JSON</button>
+                </div>
+              </div>
+              <div class="panel-body">
+                <div class="ready-grid" id="ready-output">
+                  <div class="detail-empty">Click Ready to Go after your final pass to export the Beatpulse bridge.</div>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>
@@ -3047,7 +3035,6 @@ var currentTrack=null,audioFeatures=null,sections=[],waveformData=[];
 var isPlaying=false,duration=0,positionMs=0;
 var activeSection=-1,selectedSection=-1,totalDurSecs=0,sectionPlaybackIndex=-1;
 var dragging=null,resizeTimer=null,seekScrubbing=false,seekScrubMs=0,localSeekLockUntil=0,urlAnalyzeTimer=null,lastAnalyzedUrl='',lastAutoStarterTrackId='',sectionNudgeTimer=null,sectionInfoNudgeReady=false,dragDepth=0;
-var playbackElementActivated=false;
 var annotationTimerStartedAt=null,annotationTimerHandle=null,annotationTimerDurationMs=20*60*1000;
 var SECTION_TYPE_OPTIONS=['Intro','Verse','Pre-Chorus','Chorus','Hook','Post-Chorus','Refrain','Bridge','Instrumental','Solo','Breakdown','Build','Drop','Interlude','Middle 8','Outro','Coda'];
 var SECTION_HOTKEY_LABELS={v:'Verse',c:'Chorus',h:'Hook',b:'Bridge',i:'Instrumental',o:'Outro',p:'Pre-Chorus'};
@@ -3226,7 +3213,7 @@ function playAdjacentSection(delta){
 }
 
 function applySectionLabelHotkey(key){
-  if(!currentTrack||selectedSection<0)return false;
+  if(!currentTrack||selectedSection<0||activeTabId()==='ready-tab')return false;
   if(key==='i'&&isImportExpected())return false;
   var label=SECTION_HOTKEY_LABELS[key];
   if(!label||!sections[selectedSection])return false;
@@ -3329,10 +3316,11 @@ function handleAppShortcut(e){
     return
   }
   if(isTypingTarget(e.target))return;
-  if(e.shiftKey&&(e.code==='Digit1'||e.code==='Digit2')){
+  if(e.shiftKey&&(e.code==='Digit1'||e.code==='Digit2'||e.code==='Digit3')){
     e.preventDefault();
     if(e.code==='Digit1')switchTab('sections-tab');
     if(e.code==='Digit2')switchTab('global-tab');
+    if(e.code==='Digit3')showReadyToGo();
     return;
   }
   var sectionIdx=sectionIndexFromNumberKey(e);
@@ -3359,6 +3347,7 @@ function handleAppShortcut(e){
   if(key==='d'){e.preventDefault();copyStarterSet();return}
   if(key==='i'){e.preventDefault();openPassImport();return}
   if(key==='r'){e.preventDefault();downloadRefinementFile();return}
+  if(key==='c'&&activeTabId()==='ready-tab'){e.preventDefault();downloadBeatpulseBridge();return}
   if(e.code==='Space'){e.preventDefault();togglePlay();return}
 }
 async function init(){
@@ -3413,17 +3402,6 @@ function initPlayer(){
 }
 function setSdk(s,t){var d=document.getElementById('sdk-dot');if(d)d.className='sdk-dot '+s;var e=document.getElementById('sdk-status-text');if(e)e.textContent=t}
 
-function activatePlaybackElement(){
-  if(playbackElementActivated||!player||!player.activateElement)return;
-  try{
-    var result=player.activateElement();
-    playbackElementActivated=true;
-    if(result&&result.catch)result.catch(function(){playbackElementActivated=false});
-  }catch(e){
-    playbackElementActivated=false;
-  }
-}
-
 async function spF(url,opts){
   opts=opts||{};
   if(!tokValid())await doRefresh();
@@ -3467,7 +3445,6 @@ async function runPlayerCommand(action,fn){
 function extractId(u){var m=u.match(/track\/([A-Za-z0-9]+)/);return m?m[1]:null}
 
 function scheduleUrlAutoAnalyze(){
-  activatePlaybackElement();
   clearTimeout(urlAnalyzeTimer);
   var el=document.getElementById('url-input');
   var url=el?el.value.trim():'';
@@ -3514,7 +3491,17 @@ async function analyzeTrack(){
     }
     await autoCopyStarterSet(track.id);
     hideSt();
-    startAutoPlayback(track.uri);
+
+    if(deviceId){
+      showSt('loading','Starting playback...');
+      await playTrack(track.uri);hideSt();
+    }else{
+      var n=0;
+      var w=setInterval(async function(){
+        n++;if(deviceId){clearInterval(w);await playTrack(currentTrack.uri);hideSt()}
+        else if(n>10){clearInterval(w);hideSt()}
+      },1000);
+    }
   }catch(e){
     listenForHidden=false;
     localStorage.setItem('aural_grid_hide_listen_for','0');
@@ -3531,42 +3518,6 @@ async function playTrack(uri,startMs){
   return runPlayerCommand('Play track',function(){
     return spF('https://api.spotify.com/v1/me/player/play?device_id='+deviceId,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
   })
-}
-
-function waitForDevice(timeoutMs){
-  if(deviceId)return Promise.resolve(deviceId);
-  return new Promise(function(resolve){
-    var started=Date.now();
-    var timer=setInterval(function(){
-      if(deviceId){clearInterval(timer);resolve(deviceId)}
-      else if(Date.now()-started>timeoutMs){clearInterval(timer);resolve(null)}
-    },250);
-  });
-}
-
-async function transferPlaybackToDevice(){
-  if(!deviceId)return false;
-  try{
-    await spF('https://api.spotify.com/v1/me/player',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({device_ids:[deviceId],play:false})});
-    return true;
-  }catch(e){
-    console.warn('[Aural Grid] Device transfer failed before autoplay:',e);
-    return false;
-  }
-}
-
-async function startAutoPlayback(uri){
-  if(!uri)return false;
-  var ready=await waitForDevice(8000);
-  if(!currentTrack||currentTrack.uri!==uri)return false;
-  if(!ready){
-    setProcessStatus('Track loaded. Spotify player is still waking up; press Play if it does not start.','warn');
-    return false;
-  }
-  await transferPlaybackToDevice();
-  var ok=await playTrack(uri,0);
-  if(!ok)return false;
-  return true;
 }
 
 function initialSections(t){
@@ -4302,7 +4253,7 @@ function renderRequestStatus(){
   var btn=document.getElementById('download-refinement-btn');
   var clear=document.getElementById('clear-requests-btn');
   var status=document.getElementById('request-status');
-  if(btn)btn.textContent=count?'Export '+count+' Requests':'Export Refinement';
+  if(btn)btn.textContent=count?'Download '+count+' Requests':'Download Refinement';
   if(clear)clear.style.display=count?'':'none';
   if(status){
     status.textContent=count?('Queued: '+requestSummary()):'No active requests';
@@ -4623,6 +4574,279 @@ function beatpulseTransferQueue(payload){
   return items;
 }
 
+function safeJsJson(obj){
+  return JSON.stringify(obj).replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
+}
+
+function beatpulseConsoleBridgeSource(payload){
+  var payloadJson=safeJsJson(payload);
+  return String.raw`(function(){
+  var payload=${payloadJson};
+  var state={dryRun:false,log:[]};
+
+  function clean(value){return String(value||'').replace(/\s+/g,' ').trim()}
+  function splitTags(value){
+    if(Array.isArray(value))return value.map(clean).filter(Boolean);
+    return String(value||'').split(/[,;|]/).map(clean).filter(Boolean);
+  }
+  function log(message){
+    state.log.push({time:new Date().toISOString(),message:message});
+    var el=document.querySelector('#ag-console-bridge-status');
+    if(el)el.textContent=message;
+    console.log('[Aural Grid Console Bridge]',message);
+  }
+  function escHtml(value){
+    return String(value||'').replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]});
+  }
+  function describeField(el){
+    if(!el)return 'missing field';
+    return (el.id?'#'+el.id:el.tagName.toLowerCase()+'['+(el.placeholder||el.name||'field')+']');
+  }
+  function setNativeValue(el,value){
+    if(!el){return false}
+    if(state.dryRun){log('Dry run: would fill '+describeField(el)+' = '+String(value).slice(0,80));return true}
+    el.focus();
+    var proto=el.tagName==='TEXTAREA'?HTMLTextAreaElement.prototype:HTMLInputElement.prototype;
+    var setter=Object.getOwnPropertyDescriptor(proto,'value');
+    if(setter&&setter.set)setter.set.call(el,String(value||''));
+    else el.value=String(value||'');
+    el.dispatchEvent(new Event('input',{bubbles:true}));
+    el.dispatchEvent(new Event('change',{bubbles:true}));
+    el.dispatchEvent(new Event('blur',{bubbles:true}));
+    return true;
+  }
+  function key(el,keyName){
+    if(!el||state.dryRun)return;
+    ['keydown','keypress','keyup'].forEach(function(type){
+      el.dispatchEvent(new KeyboardEvent(type,{key:keyName,code:keyName==='Enter'?'Enter':keyName,bubbles:true,cancelable:true}));
+    });
+  }
+  function sectionCount(){
+    return document.querySelectorAll('input[id$="_start_time"]').length;
+  }
+  function addSectionButton(){
+    return Array.from(document.querySelectorAll('button,[role="button"]')).find(function(btn){
+      return /add\s+section/i.test(clean(btn.textContent||btn.getAttribute('aria-label')||''));
+    });
+  }
+  function waitFrame(){
+    return new Promise(function(resolve){requestAnimationFrame(function(){setTimeout(resolve,45)})});
+  }
+  async function ensureSectionRows(count){
+    var btn=addSectionButton();
+    if(!btn){log('Could not find Add section button.');return false}
+    var guard=0;
+    while(sectionCount()<count&&guard<50){
+      guard++;
+      btn.click();
+      await waitFrame();
+    }
+    if(sectionCount()<count){
+      log('Only found '+sectionCount()+' section rows; expected '+count+'.');
+      return false;
+    }
+    return true;
+  }
+  function byIdSuffix(index,suffix){
+    return document.querySelector('[id$="_'+index+'_'+suffix+'"]');
+  }
+  function sectionRow(index){
+    var start=byIdSuffix(index,'start_time');
+    if(!start)return null;
+    var row=start.closest('.flex.gap-3.items-center')||start.closest('[class*="items-center"]')||start.parentElement;
+    var parent=row;
+    while(parent&&parent!==document.body){
+      if(parent.querySelector('[id$="_'+index+'_section_type"]')&&parent.querySelector('[id$="_'+index+'_narrative_description"]'))return parent;
+      parent=parent.parentElement;
+    }
+    return row;
+  }
+  function tagInputsForRow(index){
+    var row=sectionRow(index);
+    if(!row)return [];
+    return Array.from(row.querySelectorAll('input[placeholder="Add..."]'));
+  }
+  function isInsideSectionRow(el){
+    var node=el;
+    for(var i=0;i<7&&node&&node!==document.body;i++,node=node.parentElement){
+      if(node.querySelector&&node.querySelector('input[id$="_start_time"]')&&node.querySelector('textarea[id$="_narrative_description"]')){
+        var r=node.getBoundingClientRect();
+        if(r.height<180)return true;
+      }
+    }
+    return false;
+  }
+  function globalTagInputs(){
+    return Array.from(document.querySelectorAll('input[placeholder="Add..."]')).filter(function(input){
+      return !isInsideSectionRow(input);
+    });
+  }
+  function commitTag(input,tag){
+    if(!input||!tag)return;
+    setNativeValue(input,tag);
+    key(input,'Enter');
+  }
+  function fillTags(input,tags,label){
+    tags=splitTags(tags);
+    if(!tags.length)return;
+    if(!input){log('Missing tag input for '+label);return}
+    tags.forEach(function(tag){commitTag(input,tag)});
+  }
+  function sectionTypeValue(label){
+    var v=clean(label).toLowerCase().replace(/[()[\]{}]/g,' ').replace(/\s+/g,' ').replace(/\s+(no\.?|#)?\d+$/,'').trim();
+    var map={
+      'pre-chorus':'pre-chorus','pre chorus':'pre-chorus','post-chorus':'post-chorus','post chorus':'post-chorus',
+      'middle 8':'bridge','instrumental':'instrumental','solo':'solo','refrain':'refrain','hook':'hook','chorus':'chorus',
+      'verse':'verse','bridge':'bridge','intro':'intro','outro':'outro','coda':'outro','breakdown':'breakdown',
+      'build':'build','drop':'drop','interlude':'interlude'
+    };
+    if(v.indexOf('solo')>=0)return 'solo';
+    if(v.indexOf('verse')>=0)return 'verse';
+    if(v.indexOf('pre chorus')>=0)return 'pre-chorus';
+    if(v.indexOf('post chorus')>=0)return 'post-chorus';
+    if(v.indexOf('chorus')>=0)return 'chorus';
+    if(v.indexOf('hook')>=0)return 'hook';
+    if(v.indexOf('refrain')>=0)return 'refrain';
+    if(v.indexOf('bridge')>=0||v.indexOf('middle 8')>=0)return 'bridge';
+    if(v.indexOf('intro')>=0)return 'intro';
+    if(v.indexOf('outro')>=0||v.indexOf('coda')>=0)return 'outro';
+    return map[v]||v||'section';
+  }
+  function fillSection(index,section){
+    var row=sectionRow(index);
+    if(!row){log('Missing section row '+(index+1));return}
+    setNativeValue(byIdSuffix(index,'start_time'),section.start||section.start_time||'');
+    var type=byIdSuffix(index,'section_type');
+    setNativeValue(type,section.section_type||sectionTypeValue(section.label||section.section_type||''));
+    key(type,'Enter');
+    setNativeValue(byIdSuffix(index,'narrative_description'),section.narrative_description||section.description||'');
+    var tagInputs=tagInputsForRow(index);
+    fillTags(tagInputs[0],section.instruments||section.instrumentation||'', 'section '+(index+1)+' instruments');
+    fillTags(tagInputs[1],section.vibe_tags||section.vibeTags||'', 'section '+(index+1)+' vibe tags');
+    if(section.melody)setNativeValue(byIdSuffix(index,'melody'),section.melody);
+  }
+  function norm(value){
+    return clean(value).toLowerCase().replace(/[*:]/g,'').replace(/&/g,'and');
+  }
+  function labelText(el){
+    return norm(el.textContent||el.getAttribute('aria-label')||'');
+  }
+  function fieldContainerByLabel(label){
+    var target=norm(label);
+    var candidates=Array.from(document.querySelectorAll('label,h1,h2,h3,h4,h5,h6,legend,span,div')).filter(function(el){
+      var txt=labelText(el);
+      return txt&&txt.length<140;
+    }).sort(function(a,b){
+      return labelText(a).length-labelText(b).length;
+    });
+    var hit=candidates.find(function(el){
+      var txt=labelText(el);
+      return txt===target||txt.indexOf(target)>=0;
+    });
+    if(!hit)return null;
+    var node=hit;
+    for(var i=0;i<6&&node;i++,node=node.parentElement){
+      if(node.querySelector&&node.querySelector('input,textarea,select,[contenteditable="true"]'))return node;
+    }
+    return hit.parentElement;
+  }
+  function fieldByLabel(label,kind){
+    var container=fieldContainerByLabel(label);
+    if(!container)return null;
+    if(kind==='tag')return container.querySelector('input[placeholder="Add..."]');
+    return container.querySelector('textarea,input:not([type="hidden"])');
+  }
+  function fillTextLabel(label,value){
+    if(value==null||value==='')return;
+    var field=fieldByLabel(label,'text');
+    if(!field){log('Missing global field: '+label);return}
+    setNativeValue(field,value);
+  }
+  function fillTagLabel(label,value,fallbackIndex){
+    var tags=splitTags(value);
+    if(!tags.length)return;
+    var field=fieldByLabel(label,'tag');
+    if(!field&&fallbackIndex!=null)field=globalTagInputs()[fallbackIndex]||null;
+    if(!field){log('Missing tag global field: '+label);return}
+    fillTags(field,tags,label);
+  }
+  function fillGlobals(payload){
+    var g=payload.beatpulse_global_fields||{};
+    fillTextLabel('Tempo',g.tempo);
+    fillTextLabel('Key',g.key);
+    fillTextLabel('Setting',g.setting);
+    fillTextLabel('Harmony',g.harmony);
+    fillTextLabel('Chords',g.chords);
+    fillTextLabel('Rhythm & Groove',g.rhythm_groove);
+    fillTagLabel('Genre',g.genre_era_scene,0);
+    fillTagLabel('Dominant Instruments',g.dominant_instruments,1);
+    fillTextLabel('Playing Style',g.playing_style);
+    fillTextLabel('Wow Factor',g.wow_factor);
+    fillTextLabel('Emotion & Vibe',g.emotion_vibe);
+    fillTextLabel('Mix & Production',g.mix_production);
+    fillTextLabel('Sonic Fidelity',g.sonic_fidelity);
+    fillTextLabel('Vocal Expression',g.vocal_expression);
+    fillTextLabel('Lyrical Evocation',g.lyrical_evocation);
+  }
+  async function fillDashboard(){
+    try{
+      if(!payload||!Array.isArray(payload.sections)){log('No embedded Aural Grid payload found.');return}
+      log('Preparing '+payload.sections.length+' Beatpulse section row(s).');
+      await ensureSectionRows(payload.sections.length);
+      payload.sections.forEach(function(section,index){fillSection(index,section)});
+      fillGlobals(payload);
+      log('Auto-fill complete. Review fields before submitting.');
+    }catch(err){
+      console.error(err);
+      log('Auto-fill stopped: '+(err&&err.message?err.message:err));
+    }
+  }
+  function openPanel(){
+    var existing=document.querySelector('#ag-console-bridge-panel');
+    if(existing){existing.hidden=false;return}
+    var panel=document.createElement('div');
+    panel.id='ag-console-bridge-panel';
+    panel.innerHTML=[
+      '<div class="agcb-title">Aural Grid Console Bridge</div>',
+      '<div class="agcb-copy">Embedded track: '+escHtml(clean((payload.track&&payload.track.title)||'Untitled'))+'. This fills visible Beatpulse fields only and never submits.</div>',
+      '<div class="agcb-buttons"><button id="agcb-refill">Fill Again</button><button id="agcb-close">Close</button></div>',
+      '<div id="ag-console-bridge-status" class="agcb-status">Ready.</div>'
+    ].join('');
+    var style=document.createElement('style');
+    style.textContent=[
+      '#ag-console-bridge-panel{position:fixed;right:18px;bottom:18px;z-index:2147483647;width:min(430px,calc(100vw - 32px));padding:14px;border:1px solid rgba(166,236,255,.55);border-radius:14px;background:#11131d;color:#fff;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;box-shadow:0 22px 70px rgba(0,0,0,.48)}',
+      '#ag-console-bridge-panel .agcb-title{font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}',
+      '#ag-console-bridge-panel .agcb-copy{font-size:12px;color:#d8d7e5;line-height:1.35;margin-bottom:10px}',
+      '#ag-console-bridge-panel .agcb-buttons{display:flex;flex-wrap:wrap;gap:6px}',
+      '#ag-console-bridge-panel button{border:1px solid rgba(218,205,255,.25);border-radius:999px;background:#202438;color:#fff;padding:7px 10px;font-size:11px;font-weight:850;cursor:pointer}',
+      '#ag-console-bridge-panel button:hover{background:#a6ecff;color:#10131b}',
+      '#ag-console-bridge-panel .agcb-status{margin-top:10px;font-size:11px;color:#b8f7d4;line-height:1.35}'
+    ].join('');
+    document.documentElement.appendChild(style);
+    document.body.appendChild(panel);
+    panel.querySelector('#agcb-refill').onclick=fillDashboard;
+    panel.querySelector('#agcb-close').onclick=function(){panel.hidden=true};
+  }
+  openPanel();
+  fillDashboard();
+})();`;
+}
+
+async function downloadBeatpulseBridge(){
+  if(!currentTrack){showSt('error','Load a track before downloading the Beatpulse bridge file.');return}
+  var script=beatpulseConsoleBridgeSource(beatpulseBridgePayload());
+  downloadTextFile(fileBaseName('beatpulse-console-bridge')+'.js',script,'text/javascript');
+  exportStatus.console=true;
+  renderReadyOutput();
+  scheduleAutosave();
+  try{
+    await navigator.clipboard.writeText(script);
+    setProcessStatus('Console bridge script downloaded and copied. Paste it into the Beatpulse console to auto-fill.','ok');
+  }catch(e){
+    setProcessStatus('Console bridge script downloaded. Open the .js file, copy it, and paste it into the Beatpulse console.','ok');
+  }
+}
+
 async function downloadBeatpulseBridgeJson(){
   if(!currentTrack){showSt('error','Load a track before downloading the Beatpulse bridge JSON.');return}
   var json=prettyJson(beatpulseBridgePayload());
@@ -4632,9 +4856,9 @@ async function downloadBeatpulseBridgeJson(){
   scheduleAutosave();
   try{
     await navigator.clipboard.writeText(json);
-    setProcessStatus('Final dashboard JSON downloaded and copied. Open Beatpulse, then import from clipboard in the extension.','ok');
+    setProcessStatus('Beatpulse bridge JSON downloaded and copied. Open Beatpulse, then use Import From Clipboard in the Safari extension.','ok');
   }catch(e){
-    setProcessStatus('Final dashboard JSON downloaded. If clipboard copy was blocked, import the file in the extension.','ok');
+    setProcessStatus('Beatpulse bridge JSON downloaded. If clipboard copy was blocked, import the file in the Safari extension.','ok');
   }
 }
 
@@ -4658,26 +4882,6 @@ function sectionInfoSet(){
     }),
     instructions:'Use this section map as the fixed app timeline. Keep marker times unchanged. Align my narration to these section ids and labels. Return the normal section-analyst-pass-v1 JSON for import. Include a compact top-level listen_for cue that tells me what to focus on while annotating this track. Include 3-4 researched genre tags as comma-delimited global_fields["Genre / Era / Scene"] or as a top-level genres array.'
   };
-}
-
-function sectionInfoText(info){
-  if(!info)return '';
-  var t=info.track||{};
-  var lines=[
-    'AURAL GRID SECTION INFO',
-    'Track: '+(t.title||'')+' - '+(t.artist||''),
-    'Album: '+(t.album||''),
-    'Release: '+(t.release||''),
-    'Duration: '+(t.duration||''),
-    '',
-    'Section map - keep marker times unchanged:',
-  ];
-  (info.sections||[]).forEach(function(sec){
-    lines.push(sec.id+' | '+sec.start+'-'+sec.end+' | '+(sec.label||'Section')+' | '+sec.duration_seconds+'s');
-  });
-  lines.push('');
-  lines.push('Instructions: '+info.instructions);
-  return lines.join('\n');
 }
 
 function snapshotState(){
@@ -4808,7 +5012,8 @@ function updateModeControls(){
 async function copyStarterSet(){
   var starter=trackStarterSet();
   if(!starter){showSt('error','Load a track before copying the starter set.');return}
-  if(await copyText(compactJson(starter)))setProcessStatus('Compact starter copied. Paste it into ChatGPT before your narration.','ok');
+  await copyText(compactJson(starter));
+  setProcessStatus('Compact starter copied. Paste it into ChatGPT before your narration.','ok');
 }
 
 async function autoCopyStarterSet(trackId){
@@ -4818,9 +5023,9 @@ async function autoCopyStarterSet(trackId){
   if(!starter)return;
   try{
     await navigator.clipboard.writeText(compactJson(starter));
-    setProcessStatus('Starter copied. Paste it into ChatGPT, then start listening and marking sections.','ok');
+    setProcessStatus('Starter JSON copied automatically. Paste it into ChatGPT, then start listening and marking sections.','ok');
   }catch(e){
-    setProcessStatus('Starter ready. Safari blocked auto-copy; click Copy Starter or press D.','warn');
+    setProcessStatus('Starter is ready, but clipboard auto-copy was blocked. Click Copy Starter or press D.','warn');
   }
 }
 
@@ -4833,23 +5038,22 @@ function markSectionMapChanged(){
     if(!currentTrack||sectionsHaveGeneratedDetails()||sectionInfoExported)return;
     sectionInfoNudgeReady=true;
     renderCockpitStatus();
-    setProcessStatus('Sections look stable. Copy Section Info when your map is ready.','ok');
+    setProcessStatus('Sections look stable. Use Section Info when your map is ready.','ok');
   },30000);
   renderCockpitStatus();
   scheduleAutosave();
 }
 
-async function copySectionInfo(){
+function downloadSectionInfo(){
   var info=sectionInfoSet();
-  if(!info){showSt('error','Load a track and mark sections before copying section info.');return}
-  var copied=await copyText(sectionInfoText(info));
-  if(!copied){setProcessStatus('Section info is ready, but clipboard access was blocked. Try Copy Section Info again.','warn');return}
+  if(!info){showSt('error','Load a track and mark sections before downloading section info.');return}
+  downloadJsonFile(fileBaseName('section-info')+'.json',compactJson(info));
   sectionInfoExported=true;
   sectionInfoNudgeReady=false;
   clearTimeout(sectionNudgeTimer);
   renderCockpitStatus();
   scheduleAutosave();
-  setProcessStatus('Section info copied. Paste it into ChatGPT, then narrate the pass.','ok');
+  setProcessStatus('Section info downloaded. Send this to ChatGPT with your narration for the full pass.','ok');
 }
 
 function compactJson(obj){return JSON.stringify(obj)}
@@ -4961,10 +5165,10 @@ function hasSectionCountMismatch(chunk){
 }
 
 function importStatusMessage(kind,note,chunk,resolvedCount){
-  if(kind==='pre')return 'Pre-listening pass applied. Listen For and genre are ready; mark sections, then copy Section Info.';
+  if(kind==='pre')return 'Pre-listening pass applied. Listen For and genre are ready; mark sections, then download Section Info.';
   var resolved=resolvedCount?' '+resolvedCount+' refinement requests resolved.':'';
   if(hasSectionCountMismatch(chunk))return processSectionCountNote(chunk)+resolved+' Review sections before exporting.';
-  return 'Full pass applied.'+resolved+' Continue reviewing, then click Ready to Go when you are finished.';
+  return 'Full pass applied.'+resolved+' Continue reviewing, or open Ready to Go when you are finished.';
 }
 
 function applyPassChunk(chunk){
@@ -5146,10 +5350,29 @@ function updateActiveSec(){
   }
 }
 
-function renderReadyOutput(){}
+function renderReadyOutput(){
+  var out=document.getElementById('ready-output');if(!out)return;
+  var sectionFilled=sections.filter(function(sec){return (sec.description||sec.vibeTags||sec.instruments||'').trim()}).length;
+  var globalFilled=GLOBAL_FIELDS.filter(function(name){return (globalAnalysis[name]||'').trim()}).length;
+  var bridgeReady=!!(currentTrack&&sections.length&&sectionFilled&&globalFilled);
+  out.innerHTML='<div class="ready-compact-layout">'
+    +'<div class="ready-compact-card"><div class="ready-compact-title"><span>Console Bridge</span><span>'+(exportStatus.console?'Downloaded':'Fastest')+'</span></div>'
+    +'<div class="ready-copy-list"><div class="compact-copy-row"><div class="compact-copy-label">Best for</div><div class="compact-copy-value">Paste one generated script into the Beatpulse console. It fills visible fields and never submits.</div></div>'
+    +'<div class="compact-copy-row"><div class="compact-copy-label">Shortcut</div><div class="compact-copy-value">Open Ready to Go, then press C or click Download Bridge.</div></div></div></div>'
+    +'<div class="ready-compact-card"><div class="ready-compact-title"><span>Bridge JSON</span><span>'+(exportStatus.json?'Downloaded':'Assistant')+'</span></div>'
+    +'<div class="ready-copy-list"><div class="compact-copy-row"><div class="compact-copy-label">Best for</div><div class="compact-copy-value">Import into the Safari paste assistant or verifier. Use this for a guided field-by-field pass.</div></div>'
+    +'<div class="compact-copy-row"><div class="compact-copy-label">Current data</div><div class="compact-copy-value">'+sections.length+' sections · '+sectionFilled+' with details · '+globalFilled+' / '+GLOBAL_FIELDS.length+' global fields</div></div></div></div>'
+    +'<div class="ready-compact-card sections-ready"><div class="ready-compact-title"><span>Export Checklist</span><span>'+(bridgeReady?'Ready':'Review')+'</span></div>'
+    +'<div class="ready-copy-list"><div class="compact-copy-row"><div class="compact-copy-label">Sections</div><div class="compact-copy-value">'+sections.length+' mapped, '+sectionFilled+' carrying generated detail.</div></div>'
+    +'<div class="compact-copy-row"><div class="compact-copy-label">Globals</div><div class="compact-copy-value">'+globalFilled+' / '+GLOBAL_FIELDS.length+' filled.</div></div>'
+    +'<div class="compact-copy-row"><div class="compact-copy-label">Manual review</div><div class="compact-copy-value">Beatpulse submission stays manual after transfer.</div></div></div></div>'
+    +'</div>';
+  renderCockpitStatus();
+}
+function showReadyToGo(){switchTab('ready-tab');renderReadyOutput()}
 async function copyText(text){
-  try{await navigator.clipboard.writeText(String(text||''));showSt('loading','Copied to clipboard.');setTimeout(hideSt,900);return true}
-  catch(e){showSt('error','Clipboard copy failed. Try the button again or use the file export.');console.error(e);return false}
+  try{await navigator.clipboard.writeText(String(text||''));showSt('loading','Copied to clipboard.');setTimeout(hideSt,900)}
+  catch(e){showSt('error','Clipboard copy failed. Select and copy manually.');console.error(e)}
 }
 
 function formatTime(s){var m=Math.floor(s/60);return m+':'+(Math.floor(s%60)+'').padStart(2,'0')}
@@ -5165,8 +5388,6 @@ function hideSt(){var b=document.getElementById('status-bar');if(b){b.className=
 
 window.addEventListener('resize',function(){clearTimeout(resizeTimer);resizeTimer=setTimeout(renderWaveform,120)});
 window.addEventListener('keydown',handleAppShortcut);
-document.addEventListener('pointerdown',activatePlaybackElement,{capture:true});
-document.addEventListener('keydown',activatePlaybackElement,{capture:true});
 document.addEventListener('click',function(e){
   var panel=document.getElementById('shortcut-help');
   if(panel&&!panel.hidden&&!e.target.closest('.user-block'))panel.hidden=true;
