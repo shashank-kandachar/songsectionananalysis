@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CueLab | Music Annotation Workspace</title>
+<title>Aural Grid</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0811'/%3E%3Cpath d='M16 40V24l16-8 16 8v16l-16 8-16-8Z' fill='none' stroke='%23c2b4ff' stroke-width='5'/%3E%3Cpath d='M22 36h20M22 28h20' stroke='%2380dfff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -35,70 +35,6 @@
   --ok: #8be7ca;
   --danger: #ff8f97;
   --radius: 14px;
-  --panel-bg: rgba(18,18,28,.96);
-  --card-bg: #0e0e17;
-  --input-bg: #0d0d16;
-  --popup-bg: #151320;
-  --map-bg: #0b0811;
-  --app-background: linear-gradient(180deg, #0d0d16 0%, #090911 58%, #07070d 100%);
-  --header-background: linear-gradient(115deg, rgba(25,22,38,.96), rgba(12,12,21,.98));
-  --line-rgb: 194,180,255;
-  --accent-rgb: 166,236,255;
-  --wave-rgb: 128,223,255;
-  --marker-rgb: 242,179,109;
-  --section-colors: 194,180,255|128,223,255|242,179,109|239,159,214|247,211,122|167,236,255|216,208,255|255,190,142|174,151,232|141,219,235|229,175,245|255,221,171;
-}
-
-:root[data-theme="ink-coral"] {
-  --bg: #0e1015; --s1: #151921; --s2: #1c222a; --s3: #252d37;
-  --border: rgba(121,214,200,.18); --border2: rgba(255,151,126,.34);
-  --text: #f5f5ee; --muted: #a8afb5; --dim: #727b84;
-  --green: #7bd8ca; --green2: #b7eee5; --orange: #ff967e; --blue: #8ba9f3; --pink: #e49aa6; --amber: #f0c56e;
-  --ag-soft: #d8e2e3; --ok: #7bd8ca; --danger: #ff8f91;
-  --panel-bg: rgba(21,25,33,.97); --card-bg: #11161d; --input-bg: #10141b; --popup-bg: #19212a; --map-bg: #0e1319;
-  --app-background: linear-gradient(180deg, #10151c 0%, #0e1015 60%, #0b0d12 100%);
-  --header-background: linear-gradient(110deg, rgba(23,33,40,.98), rgba(15,18,25,.99));
-  --line-rgb: 123,216,202; --accent-rgb: 255,150,126; --wave-rgb: 103,191,199; --marker-rgb: 255,150,126;
-  --section-colors: 123,216,202|255,150,126|139,169,243|240,197,110|228,154,166|92,192,191|255,186,132|153,196,233|214,133,149|115,222,190|246,175,109|165,177,248;
-}
-
-:root[data-theme="studio-atlas"] {
-  --bg: #101217; --s1: #171a20; --s2: #20242b; --s3: #293039;
-  --border: rgba(106,195,189,.19); --border2: rgba(231,182,105,.36);
-  --text: #f5f2eb; --muted: #aba79e; --dim: #79766d;
-  --green: #64c6bc; --green2: #a8e8df; --orange: #e7b669; --blue: #7aa6d5; --pink: #d47e89; --amber: #efd682;
-  --ag-soft: #dfddd5; --ok: #88d9bc; --danger: #ec8187;
-  --panel-bg: rgba(23,26,32,.98); --card-bg: #13171c; --input-bg: #11151b; --popup-bg: #1d2229; --map-bg: #101419;
-  --app-background: linear-gradient(180deg, #151920 0%, #101217 63%, #0d1014 100%);
-  --header-background: linear-gradient(118deg, rgba(26,31,37,.98), rgba(15,18,23,.99));
-  --line-rgb: 100,198,188; --accent-rgb: 231,182,105; --wave-rgb: 122,166,213; --marker-rgb: 231,182,105;
-  --section-colors: 100,198,188|231,182,105|122,166,213|212,126,137|239,214,130|101,179,167|238,156,101|119,194,212|177,149,220|229,191,118|87,156,174|219,118,128;
-}
-
-:root[data-theme="modernist-tape"] {
-  --bg: #121317; --s1: #191b20; --s2: #23262b; --s3: #2d3138;
-  --border: rgba(243,210,132,.18); --border2: rgba(103,191,188,.34);
-  --text: #f7f4ec; --muted: #aea99f; --dim: #79746b;
-  --green: #67bfbc; --green2: #b3e7e1; --orange: #e98769; --blue: #85a1c2; --pink: #cc7f75; --amber: #f3d284;
-  --ag-soft: #e0dbd0; --ok: #82d3b4; --danger: #ee8377;
-  --panel-bg: rgba(25,27,32,.98); --card-bg: #15171c; --input-bg: #13161a; --popup-bg: #202328; --map-bg: #12151a;
-  --app-background: linear-gradient(180deg, #181a1f 0%, #121317 64%, #101115 100%);
-  --header-background: linear-gradient(115deg, rgba(32,32,33,.98), rgba(18,20,24,.99));
-  --line-rgb: 243,210,132; --accent-rgb: 103,191,188; --wave-rgb: 117,155,190; --marker-rgb: 233,135,105;
-  --section-colors: 243,210,132|103,191,188|233,135,105|133,161,194|204,127,117|106,173,145|244,190,117|103,164,173|226,150,118|156,181,206|229,200,131|88,178,173;
-}
-
-:root[data-theme="harbor-glass"] {
-  --bg: #081317; --s1: #0f1d22; --s2: #16272d; --s3: #203139;
-  --border: rgba(92,202,210,.19); --border2: rgba(239,176,106,.34);
-  --text: #f1f6f4; --muted: #9eafb0; --dim: #657a7d;
-  --green: #5ccad2; --green2: #aaeef0; --orange: #efb06a; --blue: #72a4d9; --pink: #d8839e; --amber: #ead379;
-  --ag-soft: #d6e5e5; --ok: #7dd9bc; --danger: #f18791;
-  --panel-bg: rgba(15,29,34,.98); --card-bg: #0b181c; --input-bg: #0a161b; --popup-bg: #12252c; --map-bg: #091418;
-  --app-background: linear-gradient(180deg, #0c1b21 0%, #081317 63%, #061013 100%);
-  --header-background: linear-gradient(115deg, rgba(18,39,45,.98), rgba(8,18,22,.99));
-  --line-rgb: 92,202,210; --accent-rgb: 239,176,106; --wave-rgb: 114,164,217; --marker-rgb: 239,176,106;
-  --section-colors: 92,202,210|239,176,106|114,164,217|216,131,158|234,211,121|82,177,185|244,151,108|110,203,192|166,154,222|235,195,111|90,154,186|223,119,140;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -118,7 +54,9 @@ button { color: inherit; }
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background: var(--app-background);
+  background:
+    radial-gradient(ellipse at 50% -18%, rgba(194,180,255,.11), transparent 45%),
+    linear-gradient(180deg, #0d0d16 0%, #090911 58%, #07070d 100%);
 }
 
 /* Header */
@@ -131,21 +69,12 @@ header {
   gap: 12px;
   padding: 0 16px;
   flex: 0 0 auto;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(194,180,255,.17);
   border-radius: 16px;
-  background: var(--header-background);
+  background: linear-gradient(115deg, rgba(25,22,38,.96), rgba(12,12,21,.98));
   box-shadow: 0 14px 38px rgba(0,0,0,.3);
 }
 .brand-lockup { display: flex; align-items: center; gap: 12px; min-width: 0; }
-.brand-home {
-  justify-self: start;
-  width: max-content;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
-}
-.brand-home:hover .logo em { color: var(--green2); }
 .brand-icon {
   position: relative;
   width: 37px;
@@ -227,9 +156,9 @@ header {
   right: 0;
   width: 302px;
   padding: 13px;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(166,236,255,.24);
   border-radius: 13px;
-  background: var(--popup-bg);
+  background: #151320;
   box-shadow: 0 24px 64px rgba(0,0,0,.5);
 }
 .shortcut-help[hidden] { display: none; }
@@ -249,56 +178,12 @@ header {
 .shortcut-grid span {
   padding: 4px 6px;
   border-radius: 6px;
-  background: rgba(var(--line-rgb),.9);
+  background: rgba(194,180,255,.9);
   color: #100c18;
   font: 800 10px 'JetBrains Mono', monospace;
   text-align: center;
 }
 .shortcut-grid p { color: #d9d1df; font-size: 11px; line-height: 1.2; }
-.theme-menu {
-  position: absolute;
-  z-index: 80;
-  top: 39px;
-  right: 0;
-  width: 206px;
-  display: grid;
-  gap: 4px;
-  padding: 9px;
-  border: 1px solid var(--border2);
-  border-radius: 13px;
-  background: var(--popup-bg);
-  box-shadow: 0 24px 64px rgba(0,0,0,.5);
-}
-.theme-menu[hidden] { display: none; }
-.theme-menu-head { display: flex; justify-content: space-between; align-items: baseline; margin: 2px 3px 6px; }
-.theme-menu-head strong { color: #fff; font-size: 10px; font-weight: 900; text-transform: uppercase; }
-.theme-menu-head small { color: var(--muted); font-size: 9px; }
-.theme-option {
-  display: grid;
-  grid-template-columns: 43px minmax(0,1fr);
-  align-items: center;
-  gap: 8px;
-  min-height: 33px;
-  padding: 5px 6px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  background: transparent;
-  color: var(--ag-soft);
-  text-align: left;
-  font-size: 10px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.theme-option:hover, .theme-option.active { border-color: var(--border2); background: rgba(var(--accent-rgb),.09); color: #fff; }
-.theme-option.active::after { content: "Selected"; justify-self: end; color: var(--green); font-size: 7px; font-weight: 900; text-transform: uppercase; }
-.theme-option.active { grid-template-columns: 43px minmax(0,1fr) auto; }
-.theme-swatches { display: flex; gap: 3px; }
-.theme-swatches i { display: block; width: 11px; height: 18px; border-radius: 999px; }
-.polar i:nth-child(1) { background: #a6ecff; } .polar i:nth-child(2) { background: #c2b4ff; } .polar i:nth-child(3) { background: #f2b36d; }
-.coral i:nth-child(1) { background: #7bd8ca; } .coral i:nth-child(2) { background: #ff967e; } .coral i:nth-child(3) { background: #8ba9f3; }
-.atlas i:nth-child(1) { background: #64c6bc; } .atlas i:nth-child(2) { background: #e7b669; } .atlas i:nth-child(3) { background: #7aa6d5; }
-.tape i:nth-child(1) { background: #f3d284; } .tape i:nth-child(2) { background: #67bfbc; } .tape i:nth-child(3) { background: #e98769; }
-.harbor i:nth-child(1) { background: #5ccad2; } .harbor i:nth-child(2) { background: #efb06a; } .harbor i:nth-child(3) { background: #d8839e; }
 
 /* Buttons and forms */
 .btn, .btn-sm, .file-btn, .tab-btn, .detail-mode-btn {
@@ -312,7 +197,7 @@ header {
   min-height: 42px;
   padding: 9px 17px;
   border: 1px solid transparent;
-  background: linear-gradient(135deg, var(--green), var(--blue));
+  background: linear-gradient(135deg, var(--green), #84cfff);
   color: #0d0a14;
   font-size: 11px;
   text-transform: uppercase;
@@ -325,18 +210,18 @@ header {
   justify-content: center;
   min-height: 28px;
   padding: 5px 9px;
-  border: 1px solid var(--border);
-  background: var(--card-bg);
+  border: 1px solid rgba(194,180,255,.17);
+  background: rgba(30,28,44,.72);
   color: #dad4e0;
   font-size: 9.5px;
   text-transform: uppercase;
 }
 .btn-sm:hover, .file-btn:hover {
-  border-color: var(--border2);
-  background: var(--s3);
+  border-color: rgba(166,236,255,.35);
+  background: rgba(47,43,66,.84);
   color: #fff;
 }
-.btn-sm.active { border-color: rgba(var(--accent-rgb),.36); background: rgba(var(--accent-rgb),.14); color: var(--green); }
+.btn-sm.active { border-color: rgba(166,236,255,.36); background: rgba(166,236,255,.14); color: var(--green); }
 .ready-btn {
   border-color: rgba(242,179,109,.55);
   background: linear-gradient(135deg, #f2b36d, #ffd090);
@@ -356,21 +241,21 @@ header {
 .btn-icon:hover { border-color: var(--border); background: rgba(255,255,255,.05); color: #fff; }
 input, textarea, select {
   outline: none;
-  border: 1px solid var(--border);
-  background: var(--input-bg);
+  border: 1px solid rgba(194,180,255,.17);
+  background: #0d0d16;
   color: var(--text);
 }
 input:focus, textarea:focus, select:focus {
-  border-color: rgba(var(--accent-rgb),.46);
-  box-shadow: 0 0 0 2px rgba(var(--accent-rgb),.09);
+  border-color: rgba(166,236,255,.46);
+  box-shadow: 0 0 0 2px rgba(166,236,255,.09);
 }
 
 /* Entry and shared panels */
 #main-app { min-height: 0; flex: 1; display: flex; flex-direction: column; }
 .input-card, .panel, .tab-shell {
-  border: 1px solid var(--border);
+  border: 1px solid rgba(194,180,255,.16);
   border-radius: var(--radius);
-  background: var(--panel-bg);
+  background: rgba(18,18,28,.95);
   box-shadow: 0 15px 44px rgba(0,0,0,.26);
 }
 .input-card {
@@ -402,6 +287,15 @@ input:focus, textarea:focus, select:focus {
 .sdk-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dim); }
 .sdk-dot.ready { background: var(--ok); }
 .sdk-dot.loading { background: var(--orange); animation: pulse 1s ease-in-out infinite alternate; }
+.track-url-summary { display: none; }
+.listen-for-textbox {
+  width: 100%;
+  min-height: 58px;
+  margin-top: 5px;
+  padding: 8px 10px;
+  border-radius: 9px;
+  resize: none;
+}
 .status {
   display: none;
   flex: 0 0 auto;
@@ -413,14 +307,14 @@ input:focus, textarea:focus, select:focus {
   font-size: 11px;
 }
 .status.show { display: flex; }
-.status.loading { border: 1px solid rgba(var(--accent-rgb),.22); background: rgba(var(--accent-rgb),.07); color: var(--green); }
+.status.loading { border: 1px solid rgba(166,236,255,.22); background: rgba(166,236,255,.07); color: var(--green); }
 .status.error { border: 1px solid rgba(255,143,151,.25); background: rgba(255,143,151,.07); color: #ffafb2; }
 .status-message { flex: 1; }
 .status-close {
   border: 0; background: transparent; color: inherit; font-size: 16px; cursor: pointer;
 }
 .spinner {
-  width: 13px; height: 13px; border: 2px solid rgba(var(--accent-rgb),.24);
+  width: 13px; height: 13px; border: 2px solid rgba(166,236,255,.24);
   border-top-color: var(--green); border-radius: 50%; animation: spin .7s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -453,15 +347,15 @@ input:focus, textarea:focus, select:focus {
   min-height: 37px;
   padding: 7px 11px;
   display: flex; align-items: center; justify-content: space-between; gap: 9px;
-  border-bottom: 1px solid rgba(var(--line-rgb),.12);
+  border-bottom: 1px solid rgba(194,180,255,.12);
   background: rgba(255,255,255,.018);
 }
 .panel-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 .panel-body { padding: 10px; }
 .open-spotify {
   display: inline-flex; align-items: center; gap: 5px;
-  min-height: 28px; padding: 5px 9px; border: 1px solid rgba(var(--accent-rgb),.20);
-  border-radius: 8px; background: rgba(var(--accent-rgb),.07); color: var(--green);
+  min-height: 28px; padding: 5px 9px; border: 1px solid rgba(166,236,255,.20);
+  border-radius: 8px; background: rgba(166,236,255,.07); color: var(--green);
   text-decoration: none; font-size: 9px; font-weight: 900; text-transform: uppercase;
 }
 .playback-grid {
@@ -477,9 +371,9 @@ input:focus, textarea:focus, select:focus {
 }
 .track-hero, .track-play-row {
   min-height: 150px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(194,180,255,.12);
   border-radius: 12px;
-  background: var(--card-bg);
+  background: #0e0e17;
 }
 .track-hero {
   display: flex; align-items: center; gap: 12px; min-width: 0; padding: 10px;
@@ -491,7 +385,7 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 10px 28px rgba(0,0,0,.3);
 }
 .track-art { cursor: zoom-in; }
-.track-art-ph { display: grid; place-items: center; background: var(--s3); color: var(--muted); font-size: 31px; }
+.track-art-ph { display: grid; place-items: center; background: #252337; color: #aca3bd; font-size: 31px; }
 .track-name {
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
   overflow: hidden; color: #fff; font-size: 24px; line-height: 1.06; font-weight: 800;
@@ -505,7 +399,7 @@ input:focus, textarea:focus, select:focus {
 .play-btn {
   display: grid; place-items: center; width: 48px; height: 48px;
   border: 0; border-radius: 50%; background: linear-gradient(135deg, var(--green), var(--blue));
-  color: #100c18; cursor: pointer; box-shadow: 0 0 0 5px rgba(var(--accent-rgb),.08);
+  color: #100c18; cursor: pointer; box-shadow: 0 0 0 5px rgba(166,236,255,.08);
 }
 .play-btn:hover { transform: scale(1.035); }
 .playhead-readout { text-align: center; line-height: 1; }
@@ -516,11 +410,17 @@ input:focus, textarea:focus, select:focus {
   position: relative;
   height: 150px;
   overflow: hidden;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(166,236,255,.17);
   border-radius: 12px;
-  background: var(--map-bg);
+  background: #0c0c14;
   cursor: pointer;
   user-select: none;
+}
+.waveform-wrap::after {
+  content: "Click to seek  |  Double click to add section";
+  position: absolute; right: 9px; top: 7px;
+  color: rgba(227,221,235,.48); font-size: 8px; font-weight: 800; text-transform: uppercase;
+  pointer-events: none;
 }
 #waveform-canvas { display: block; width: 100%; height: 150px; }
 .waveform-marker {
@@ -542,17 +442,17 @@ input:focus, textarea:focus, select:focus {
 }
 .waveform-cursor::before {
   content: ""; position: absolute; inset: 0 auto 0 50%; width: 3px;
-  transform: translateX(-50%); background: #fff; box-shadow: 0 0 13px rgba(var(--line-rgb),.7);
+  transform: translateX(-50%); background: #fff; box-shadow: 0 0 13px rgba(194,180,255,.7);
 }
 .progress-wrap { margin-top: 8px; }
 .prog-bg {
   position: relative; height: 34px; overflow: visible;
-  border: 1px solid var(--border); border-radius: 11px; background: var(--map-bg);
+  border: 1px solid rgba(194,180,255,.19); border-radius: 11px; background: #0c0c14;
   cursor: pointer;
 }
 .prog-fill {
   height: 100%; border-radius: 10px;
-  background: linear-gradient(90deg, rgba(var(--line-rgb),.93), rgba(var(--wave-rgb),.78));
+  background: linear-gradient(90deg, rgba(194,180,255,.93), rgba(128,223,255,.78));
 }
 .prog-thumb {
   position: absolute; top: -5px; width: 5px; height: 44px;
@@ -584,25 +484,25 @@ input:focus, textarea:focus, select:focus {
   align-items: center;
   gap: 10px;
   padding: 7px 9px;
-  border-bottom: 1px solid rgba(var(--line-rgb),.12);
+  border-bottom: 1px solid rgba(194,180,255,.12);
 }
 .tab-nav { display: flex; align-items: center; gap: 5px; }
 .tab-btn {
   min-width: 116px; min-height: 30px; padding: 6px 11px;
-  border: 1px solid rgba(var(--line-rgb),.14);
+  border: 1px solid rgba(194,180,255,.14);
   background: transparent; color: var(--muted);
   font-size: 10px; text-transform: uppercase;
 }
 .tab-btn:hover { color: #fff; background: rgba(255,255,255,.045); }
 .tab-btn.active {
-  border-color: rgba(var(--line-rgb),.54);
-  background: linear-gradient(135deg, rgba(var(--line-rgb),.94), rgba(var(--accent-rgb),.92));
+  border-color: rgba(194,180,255,.54);
+  background: linear-gradient(135deg, rgba(194,180,255,.94), rgba(166,236,255,.92));
   color: #120d18;
 }
 .tab-status-well {
   min-width: 0; min-height: 32px; display: flex; align-items: center; justify-content: center;
-  padding: 6px 12px; border: 1px solid rgba(var(--line-rgb),.15); border-radius: 999px;
-  background: var(--card-bg);
+  padding: 6px 12px; border: 1px solid rgba(194,180,255,.15); border-radius: 999px;
+  background: rgba(11,10,18,.62);
 }
 .process-status {
   max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
@@ -628,32 +528,17 @@ input:focus, textarea:focus, select:focus {
   display: flex; align-items: center; justify-content: space-between; gap: 8px;
 }
 .section-mode-toggles, .section-toolbar-secondary { display: flex; align-items: center; gap: 6px; }
-.listen-for-trigger { color: var(--green); }
-.listen-for-panel {
-  flex: 0 0 auto;
-  display: grid; grid-template-columns: auto minmax(0,1fr) auto;
-  align-items: center; gap: 10px; min-height: 35px;
-  margin-bottom: 1px; padding: 6px 8px 6px 10px;
-  border: 1px solid rgba(var(--accent-rgb),.2); border-radius: 9px;
-  background: rgba(var(--accent-rgb),.055);
-}
-.listen-for-panel[hidden] { display: none; }
-.listen-for-panel p {
-  min-width: 0; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  color: var(--ag-soft); font-size: 10px; line-height: 1.35;
-}
-.listen-for-panel .btn-icon { width: 22px; height: 22px; }
 .section-toggle, .global-quality-toggle {
   display: inline-flex; align-items: center; gap: 6px;
   min-height: 29px; padding: 5px 9px;
-  border: 1px solid var(--border); border-radius: 999px;
-  background: var(--card-bg); color: var(--ag-soft);
+  border: 1px solid rgba(194,180,255,.15); border-radius: 999px;
+  background: rgba(11,10,18,.55); color: var(--ag-soft);
   font-size: 10px; font-weight: 750; white-space: nowrap;
 }
 .section-toggle input, .global-quality-toggle input, .confidence-check input { accent-color: var(--green); }
 .sections-workspace {
   flex: 1; min-height: 0;
-  display: grid; grid-template-columns: minmax(270px,.54fr) minmax(560px,1.46fr);
+  display: grid; grid-template-columns: minmax(284px,.62fr) minmax(530px,1.38fr);
   gap: 8px; align-items: stretch;
 }
 .sections-workspace > .panel {
@@ -670,12 +555,12 @@ input:focus, textarea:focus, select:focus {
 .sections-list::-webkit-scrollbar-thumb, #section-detail-body::-webkit-scrollbar-thumb, .golden-issues::-webkit-scrollbar-thumb { background: #3c3850; border-radius: 999px; }
 .sec-item {
   position: relative; flex: 0 0 auto; overflow: hidden;
-  border: 1px solid var(--border); border-radius: 9px; background: var(--input-bg);
+  border: 1px solid rgba(194,180,255,.09); border-radius: 9px; background: #0d0d16;
 }
 .sec-item::before {
   content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--sec-color);
 }
-.sec-item.active { border-color: var(--sec-color); background: var(--s2); }
+.sec-item.active { border-color: var(--sec-color); background: #151423; }
 .sec-header {
   min-height: 36px;
   display: grid; grid-template-columns: 29px 46px minmax(0,1fr) 46px 53px;
@@ -696,7 +581,8 @@ input:focus, textarea:focus, select:focus {
   color: #fff; font-size: 11px; font-weight: 800; cursor: pointer;
 }
 .sec-type-select:hover, .sec-type-select:focus { border-color: var(--border); background: rgba(255,255,255,.04); }
-.sec-type-select option { background: var(--s2); }
+.sec-type-select option { background: #171522; }
+.sec-name-input { width: 100%; min-height: 27px; padding: 4px 7px; border-radius: 6px; }
 .sec-dur { justify-self: end; color: var(--muted); font: 9.5px 'JetBrains Mono', monospace; }
 .sec-actions { display: flex; justify-content: flex-end; gap: 2px; }
 #section-detail-panel .panel-head { flex: 0 0 auto; }
@@ -709,14 +595,14 @@ input:focus, textarea:focus, select:focus {
 }
 .detail-mode-nav {
   display: flex; gap: 3px; padding: 3px;
-  border: 1px solid var(--border); border-radius: 9px; background: var(--card-bg);
+  border: 1px solid rgba(194,180,255,.13); border-radius: 9px; background: #0d0c15;
 }
 .detail-mode-btn {
   min-height: 26px; padding: 4px 9px; border: 0;
   background: transparent; color: var(--muted); font-size: 9.5px;
 }
-.detail-mode-btn.active { background: rgba(var(--accent-rgb),.12); color: var(--green); }
-#section-detail-body { position: relative; flex: 1; min-height: 0; padding: 8px; overflow: auto; }
+.detail-mode-btn.active { background: rgba(166,236,255,.12); color: var(--green); }
+#section-detail-body { flex: 1; min-height: 0; padding: 8px; overflow: auto; }
 .detail-empty { color: var(--dim); font-size: 12px; line-height: 1.55; }
 .section-detail-compact { display: grid; gap: 7px; }
 .section-detail-top {
@@ -724,8 +610,8 @@ input:focus, textarea:focus, select:focus {
 }
 .section-start-chip, .detail-draft-badge {
   display: inline-flex; align-items: center; gap: 5px;
-  min-height: 27px; padding: 4px 8px; border: 1px solid rgba(var(--accent-rgb),.17);
-  border-radius: 999px; background: rgba(var(--accent-rgb),.06);
+  min-height: 27px; padding: 4px 8px; border: 1px solid rgba(166,236,255,.17);
+  border-radius: 999px; background: rgba(166,236,255,.06);
   color: var(--green); font-size: 10px; font-weight: 800;
 }
 .detail-draft-badge { border-color: rgba(242,179,109,.28); color: #ffd495; }
@@ -737,14 +623,14 @@ input:focus, textarea:focus, select:focus {
   display: flex; align-items: center; justify-content: space-between; gap: 6px;
   margin-bottom: 4px;
 }
-.notes-field input, .notes-field textarea {
+.notes-field input, .notes-field textarea, .metadata-textarea {
   width: 100%; padding: 7px 9px; border-radius: 8px;
   color: var(--text); font-size: 11px; line-height: 1.42;
 }
 .notes-field input { height: 33px; }
 .notes-field textarea { min-height: 80px; resize: none; }
 .desc-field { grid-column: 1 / -1; }
-.desc-field textarea { height: 88px; min-height: 88px; }
+.desc-field textarea { height: 78px; min-height: 78px; }
 .optional-field label span::after {
   content: " optional"; margin-left: 4px; color: var(--muted); font-size: 9px;
 }
@@ -752,7 +638,7 @@ input:focus, textarea:focus, select:focus {
 .field-actions, .field-nav { display: flex; align-items: center; gap: 3px; }
 .field-actions .btn-sm, .field-nav .btn-sm, .field-tool-cluster > .btn-sm { min-height: 23px; padding: 3px 6px; font-size: 8px; }
 .field-nav {
-  padding: 2px 3px; border: 1px solid rgba(var(--line-rgb),.10);
+  padding: 2px 3px; border: 1px solid rgba(194,180,255,.10);
   border-radius: 7px; background: rgba(9,9,17,.55);
 }
 .field-nav-label { min-width: 42px; color: var(--muted); font: 8px 'JetBrains Mono', monospace; text-align: center; }
@@ -766,7 +652,7 @@ input:focus, textarea:focus, select:focus {
 }
 .section-palette {
   grid-column: 1 / -1; padding: 8px;
-  border: 1px solid var(--border2); border-radius: 10px; background: var(--card-bg);
+  border: 1px solid rgba(166,236,255,.15); border-radius: 10px; background: #0d0c15;
 }
 .palette-head, .vocab-panel-head {
   display: flex; justify-content: space-between; align-items: center; gap: 7px;
@@ -775,27 +661,27 @@ input:focus, textarea:focus, select:focus {
 .chip-wrap { display: flex; flex-wrap: wrap; gap: 4px; }
 .vocab-chip {
   min-height: 22px; padding: 3px 7px;
-  border: 1px solid rgba(var(--accent-rgb),.15); border-radius: 999px;
-  background: rgba(var(--accent-rgb),.055); color: #dce5ed; font-size: 9px; font-weight: 700;
+  border: 1px solid rgba(166,236,255,.15); border-radius: 999px;
+  background: rgba(166,236,255,.055); color: #dce5ed; font-size: 9px; font-weight: 700;
   cursor: pointer;
 }
-.vocab-chip:hover { border-color: rgba(var(--accent-rgb),.4); background: rgba(var(--accent-rgb),.12); color: #fff; }
+.vocab-chip:hover { border-color: rgba(166,236,255,.4); background: rgba(166,236,255,.12); color: #fff; }
 .more-chip {
   border-color: rgba(242,179,109,.27);
   background: rgba(242,179,109,.08);
   color: #ffd495;
 }
 .boundary-review-card {
-  flex: 0 0 auto; padding: 7px !important; border-top: 1px solid rgba(var(--line-rgb),.10);
+  flex: 0 0 auto; padding: 7px !important; border-top: 1px solid rgba(194,180,255,.10);
 }
 .boundary-card-inner {
   display: grid; grid-template-columns: minmax(145px,.64fr) minmax(0,1.36fr);
   align-items: center; gap: 7px; padding: 6px 8px;
-  border: 1px solid var(--border); border-radius: 9px; background: var(--card-bg);
+  border: 1px solid rgba(194,180,255,.12); border-radius: 9px; background: #0d0c15;
 }
 .review-kicker {
   display: inline-block; margin-right: 6px; padding: 2px 5px;
-  border-radius: 999px; background: rgba(var(--accent-rgb),.12); color: var(--green);
+  border-radius: 999px; background: rgba(166,236,255,.12); color: var(--green);
   font-size: 8px; font-weight: 900; text-transform: uppercase;
 }
 .boundary-card-inner strong { color: #fff; font-size: 11px; }
@@ -803,22 +689,10 @@ input:focus, textarea:focus, select:focus {
 .boundary-card-actions { display: flex; justify-content: flex-end; align-items: center; flex-wrap: wrap; gap: 3px; }
 .boundary-card-actions .btn-sm { min-height: 24px; padding: 3px 6px; font-size: 8px; }
 
-/* Listening evidence */
-.guide-shell { position: relative; display: grid; gap: 7px; min-height: 100%; }
-.evidence-formula {
-  min-height: 25px; padding: 5px 8px;
-  border: 1px solid rgba(var(--accent-rgb),.14); border-radius: 8px;
-  background: rgba(var(--accent-rgb),.05); color: var(--ag-soft); font-size: 9.5px;
-}
-.evidence-formula b { color: var(--green); }
-.guide-head { display: grid; grid-template-columns: minmax(0,1fr) 272px; gap: 7px; align-items: end; }
-.guide-notes textarea { height: 55px; min-height: 55px; }
-.evidence-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; align-items: end; }
-.review-later-toggle {
-  grid-column: 1 / -1; display: flex; align-items: center; gap: 5px; min-height: 21px;
-  color: var(--muted); font-size: 9px; font-weight: 800;
-}
-.review-later-toggle input { accent-color: var(--ag-warm); }
+/* Listening guide */
+.guide-shell { display: grid; gap: 7px; }
+.guide-head { display: grid; grid-template-columns: minmax(0,1fr) 106px; gap: 7px; align-items: end; }
+.guide-notes textarea { height: 58px; min-height: 58px; }
 .confidence-box label {
   display: block; margin-bottom: 4px; color: var(--muted);
   font-size: 9px; font-weight: 850; text-transform: uppercase;
@@ -826,185 +700,14 @@ input:focus, textarea:focus, select:focus {
 .confidence-select, .tempo-select {
   width: 100%; min-height: 33px; padding: 5px 8px; border-radius: 8px; font-size: 11px;
 }
-.evidence-fast { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 5px; }
-.evidence-card {
+.guide-steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 5px; }
+.guide-stage {
   min-width: 0; padding: 6px;
-  border: 1px solid var(--border); border-radius: 9px; background: var(--card-bg);
+  border: 1px solid rgba(194,180,255,.10); border-radius: 9px; background: #0d0c15;
 }
-.evidence-card-head { display: flex; align-items: start; justify-content: space-between; gap: 5px; margin-bottom: 5px; }
-.evidence-card-head strong { display: block; color: #eee8f5; font-size: 9.5px; font-weight: 900; }
-.evidence-card-head small {
-  display: block; margin-top: 2px; color: var(--muted); font-size: 8px; line-height: 1.25;
-}
-.evidence-card-head .btn-sm { min-height: 21px; padding: 2px 5px; font-size: 8px; }
-.selected-evidence { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 5px; }
-.selected-chip {
-  min-height: 20px; padding: 2px 6px;
-  border: 1px solid rgba(var(--accent-rgb),.31); border-radius: 999px;
-  background: rgba(var(--accent-rgb),.12); color: #eefaff; font-size: 8.5px; font-weight: 700;
-}
-.selected-chip span { color: var(--muted); padding-left: 3px; }
-.vocab-chip.active {
-  border-color: rgba(var(--accent-rgb),.43); background: rgba(var(--accent-rgb),.15);
-  color: var(--green);
-}
-.evidence-deeper {
-  display: flex; flex-wrap: wrap; gap: 5px; padding: 5px 7px;
-  border: 1px solid rgba(var(--line-rgb),.10); border-radius: 8px; background: var(--input-bg);
-}
-.evidence-summary-group {
-  color: var(--ag-soft); font-size: 9px; padding-right: 8px;
-  border-right: 1px solid rgba(var(--line-rgb),.13);
-}
-.evidence-summary-group:last-child { border-right: 0; }
-.evidence-summary-group b { color: var(--green); }
+.guide-stage h4 { margin-bottom: 4px; color: #eee8f5; font-size: 9.5px; font-weight: 900; }
 .guide-actions { display: flex; align-items: center; justify-content: flex-end; gap: 5px; }
 .guide-caption { flex: 1; color: var(--muted); font-size: 9px; line-height: 1.25; }
-.evidence-overlay {
-  position: absolute; inset: 0; z-index: 7; display: flex; flex-direction: column; gap: 7px;
-  padding: 9px; border: 1px solid rgba(var(--accent-rgb),.22); border-radius: 10px;
-  background: var(--popup-bg); box-shadow: 0 15px 32px rgba(0,0,0,.5);
-}
-.evidence-overlay-head { display: flex; justify-content: space-between; gap: 10px; align-items: start; }
-.evidence-overlay-head strong { display: block; color: #fff; font-size: 12px; }
-.evidence-overlay-head small { display: block; margin-top: 3px; color: var(--muted); font-size: 9px; }
-.evidence-search-row { display: grid; grid-template-columns: minmax(170px,.72fr) minmax(240px,1fr); gap: 7px; }
-.evidence-search-row input {
-  width: 100%; height: 31px; padding: 6px 9px; border-radius: 8px;
-  font-size: 10px; color: var(--text);
-}
-.evidence-custom { display: grid; grid-template-columns: 1fr auto; gap: 5px; }
-.evidence-tabs { display: flex; flex-wrap: wrap; gap: 4px; }
-.evidence-tab {
-  min-height: 24px; padding: 3px 8px; border: 1px solid rgba(var(--line-rgb),.15);
-  border-radius: 999px; background: transparent; color: var(--muted); font-size: 9px; font-weight: 700;
-}
-.evidence-tab.active { border-color: rgba(var(--accent-rgb),.38); background: rgba(var(--accent-rgb),.11); color: var(--green); }
-.evidence-term-results {
-  flex: 1; align-content: start; display: flex; flex-wrap: wrap; gap: 5px;
-  min-height: 0; overflow: auto;
-}
-.evidence-term-results .vocab-chip { display: inline-flex; align-items: center; gap: 6px; }
-.evidence-term-results .vocab-chip small { color: var(--muted); font-size: 8px; }
-.evidence-empty { color: var(--muted); font-size: 10px; }
-.review-items { display: grid; gap: 6px; min-height: 0; overflow: auto; }
-.review-item, .review-clear {
-  display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 5px 10px;
-  padding: 8px; border: 1px solid var(--border); border-radius: 9px; background: var(--card-bg);
-}
-.review-item strong, .review-clear strong { color: #fff; font-size: 10px; }
-.review-item p, .review-clear p { grid-column: 1; color: var(--muted); font-size: 9px; }
-.review-item .btn-sm { grid-row: 1 / span 2; grid-column: 2; }
-.review-item.warn { border-color: rgba(242,179,109,.24); }
-.review-item.error { border-color: rgba(248,119,137,.25); }
-.review-clear { grid-template-columns: 1fr; }
-
-/* Optional prompt-led capture. This writes to the same evidence as the rapid view. */
-.guided-shell {
-  position: relative;
-  height: 100%;
-  min-height: 0;
-  display: grid;
-  grid-template-rows: auto auto minmax(0,1fr) auto;
-  gap: 7px;
-}
-.guided-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 9px;
-  padding: 7px 9px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  background: var(--card-bg);
-}
-.guided-kicker {
-  display: block;
-  margin-bottom: 2px;
-  color: var(--green);
-  font-size: 8px;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-.guided-top strong { display: block; color: #fff; font-size: 12px; line-height: 1.2; }
-.guided-top small { display: block; margin-top: 2px; color: var(--muted); font-size: 9px; }
-.guided-top-actions { display: flex; gap: 5px; flex: 0 0 auto; }
-.guided-progress { display: grid; grid-template-columns: repeat(9,minmax(0,1fr)); gap: 4px; }
-.guided-step {
-  min-width: 0;
-  min-height: 27px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 3px 5px;
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  background: transparent;
-  color: var(--muted);
-  overflow: hidden;
-  font-size: 8px;
-  font-weight: 800;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.guided-step span {
-  flex: 0 0 auto;
-  display: grid;
-  place-items: center;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: var(--s3);
-  font: 800 8px 'JetBrains Mono', monospace;
-}
-.guided-step.filled { color: var(--ag-soft); border-color: rgba(var(--accent-rgb),.25); }
-.guided-step.filled span { background: rgba(var(--accent-rgb),.17); color: var(--green); }
-.guided-step.active {
-  border-color: var(--border2);
-  background: rgba(var(--accent-rgb),.10);
-  color: #fff;
-}
-.guided-card {
-  min-height: 0;
-  display: grid;
-  grid-template-columns: minmax(150px,180px) minmax(0,1fr);
-  gap: 8px;
-  padding: 8px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  background: var(--card-bg);
-}
-.guided-question span { color: var(--green); font-size: 8px; font-weight: 900; text-transform: uppercase; }
-.guided-question strong { display: block; margin-top: 7px; color: #fff; font-size: 13px; line-height: 1.24; }
-.guided-question p { margin-top: 7px; color: var(--muted); font-size: 9.5px; line-height: 1.38; }
-.guided-answer { min-height: 0; overflow: auto; padding-right: 2px; }
-.guided-term-grid { display: flex; flex-wrap: wrap; gap: 5px; align-content: start; margin-top: 5px; }
-.guided-more { margin-top: 7px; }
-.guided-safeguard {
-  margin-bottom: 6px;
-  padding: 5px 7px;
-  border: 1px solid rgba(var(--marker-rgb),.27);
-  border-radius: 7px;
-  background: rgba(var(--marker-rgb),.08);
-  color: var(--amber);
-  font-size: 9px;
-  font-weight: 700;
-}
-.guided-notes-grid { display: grid; grid-template-columns: minmax(0,1fr) 218px; gap: 7px; }
-.guided-notes-grid textarea { width: 100%; height: 94px; min-height: 94px; padding: 7px; border-radius: 8px; resize: none; }
-.guided-controls { align-content: start; }
-.guided-footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 5px;
-}
-.guided-footer > span {
-  margin-right: auto;
-  color: var(--muted);
-  font-size: 9px;
-  font-weight: 700;
-}
 
 /* Global fields */
 #global-tab > .panel {
@@ -1021,14 +724,14 @@ input:focus, textarea:focus, select:focus {
 }
 .global-field {
   position: relative; min-height: 0; padding: 7px;
-  border: 1px solid var(--border); border-radius: 9px; background: var(--card-bg);
+  border: 1px solid rgba(194,180,255,.11); border-radius: 9px; background: #0d0c15;
 }
-.global-field.complete { border-color: rgba(var(--accent-rgb),.22); box-shadow: inset 2px 0 0 rgba(var(--accent-rgb),.55); }
+.global-field.complete { border-color: rgba(166,236,255,.22); box-shadow: inset 2px 0 0 rgba(166,236,255,.55); }
 .global-title-row { min-height: 16px; margin-bottom: 4px; }
 .global-title-row label { display: block; padding-right: 0; font-size: 9px; line-height: 1.2; }
 .global-title-actions {
   display: none; position: absolute; right: 5px; top: 5px; z-index: 3;
-  gap: 3px; padding: 3px; border: 1px solid rgba(var(--line-rgb),.18);
+  gap: 3px; padding: 3px; border: 1px solid rgba(194,180,255,.18);
   border-radius: 8px; background: #191725; box-shadow: 0 8px 20px rgba(0,0,0,.32);
 }
 .global-field:hover .global-title-actions, .global-field:focus-within .global-title-actions { display: flex; }
@@ -1043,7 +746,7 @@ input:focus, textarea:focus, select:focus {
 }
 .global-vocab-panel {
   margin-bottom: 7px; padding: 7px 9px;
-  border: 1px solid var(--border2); border-radius: 9px; background: var(--card-bg);
+  border: 1px solid rgba(166,236,255,.17); border-radius: 9px; background: #0d0c15;
 }
 .global-vocab-panel[hidden] { display: none; }
 
@@ -1055,19 +758,19 @@ input:focus, textarea:focus, select:focus {
 }
 .drop-overlay[hidden], .album-modal[hidden], .golden-modal[hidden] { display: none; }
 .drop-card {
-  padding: 34px 42px; border: 1px dashed rgba(var(--accent-rgb),.42);
-  border-radius: 18px; background: var(--popup-bg); text-align: center;
+  padding: 34px 42px; border: 1px dashed rgba(166,236,255,.42);
+  border-radius: 18px; background: #151320; text-align: center;
 }
 .drop-title { color: #fff; font-size: 18px; font-weight: 800; }
 .drop-copy { margin-top: 7px; color: var(--muted); }
 .album-modal-card {
   position: relative; width: min(580px,92vw); padding: 14px;
-  border: 1px solid var(--border); border-radius: 18px; background: var(--popup-bg);
+  border: 1px solid rgba(194,180,255,.20); border-radius: 18px; background: #151320;
 }
 .album-modal-card img { display: block; width: 100%; max-height: min(70vh,540px); object-fit: contain; border-radius: 12px; }
 .album-modal-close, .golden-close {
   display: grid; place-items: center; width: 32px; height: 32px;
-  border: 1px solid rgba(var(--line-rgb),.18); border-radius: 9px;
+  border: 1px solid rgba(194,180,255,.18); border-radius: 9px;
   background: transparent; color: var(--ag-soft); font-size: 19px; cursor: pointer;
 }
 .album-modal-close { position: absolute; right: 22px; top: 22px; background: rgba(12,11,19,.62); }
@@ -1075,24 +778,24 @@ input:focus, textarea:focus, select:focus {
 .golden-card {
   width: min(680px,96vw); max-height: min(760px,90vh);
   display: flex; flex-direction: column;
-  border: 1px solid rgba(var(--accent-rgb),.24); border-radius: 18px;
-  background: var(--popup-bg); box-shadow: 0 28px 70px rgba(0,0,0,.48);
+  border: 1px solid rgba(166,236,255,.24); border-radius: 18px;
+  background: #151320; box-shadow: 0 28px 70px rgba(0,0,0,.48);
 }
 .golden-head {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
-  padding: 16px 18px 12px; border-bottom: 1px solid rgba(var(--line-rgb),.10);
+  padding: 16px 18px 12px; border-bottom: 1px solid rgba(194,180,255,.10);
 }
 .golden-kicker { color: var(--green); font-size: 9px; font-weight: 900; text-transform: uppercase; }
 .golden-head h2 { margin-top: 3px; color: #fff; font-size: 20px; }
 .golden-summary {
   margin: 12px 18px 7px; padding: 10px 12px;
-  border: 1px solid rgba(var(--accent-rgb),.16); border-radius: 10px;
+  border: 1px solid rgba(166,236,255,.16); border-radius: 10px;
   color: var(--ag-soft); font-size: 12px;
 }
 .golden-issues { display: grid; gap: 7px; padding: 7px 18px 13px; overflow: auto; }
 .qa-item {
   display: grid; grid-template-columns: 54px minmax(0,1fr); gap: 9px; padding: 9px 10px;
-  border: 1px solid var(--border); border-radius: 10px; background: var(--card-bg);
+  border: 1px solid rgba(194,180,255,.12); border-radius: 10px; background: #0d0c15;
 }
 .qa-level { color: var(--orange); font-size: 9px; font-weight: 900; text-transform: uppercase; }
 .qa-item.error .qa-level { color: var(--danger); }
@@ -1104,7 +807,7 @@ input:focus, textarea:focus, select:focus {
 }
 .golden-actions {
   display: flex; justify-content: flex-end; gap: 7px; padding: 11px 18px 16px;
-  border-top: 1px solid rgba(var(--line-rgb),.10);
+  border-top: 1px solid rgba(194,180,255,.10);
 }
 
 /* Full-screen compacting keeps working controls above the fold. */
@@ -1135,21 +838,11 @@ input:focus, textarea:focus, select:focus {
   .section-detail-compact { gap: 5px; }
   .notes-grid { gap: 5px; }
   .desc-field textarea { height: 45px; min-height: 45px; }
-  .guide-shell { gap: 5px; }
-  .evidence-formula { min-height: 22px; padding: 4px 7px; }
-  .guide-head { grid-template-columns: minmax(0,1fr) 258px; gap: 5px; }
-  .guide-notes textarea { height: 42px; min-height: 42px; }
-  .confidence-select { min-height: 29px; height: 29px; }
-  .evidence-card { padding: 5px; }
-  .guided-shell { gap: 5px; }
-  .guided-top { padding: 5px 7px; }
-  .guided-card { padding: 6px; }
-  .guided-notes-grid textarea { height: 72px; min-height: 72px; }
   .boundary-review-card { padding: 5px !important; }
   .boundary-card-inner { padding: 4px 6px; }
 }
 
-/* Global and Listening Evidence modes deliberately make playback compact. */
+/* Global and Listening Guide modes deliberately make playback compact. */
 .global-fields-expanded .playback-panel .panel-body,
 #main-app.listening-guide-open .playback-panel .panel-body { padding: 7px 9px; }
 .global-fields-expanded .playback-grid,
@@ -1158,16 +851,17 @@ input:focus, textarea:focus, select:focus {
 }
 .global-fields-expanded .track-control-stack,
 #main-app.listening-guide-open .track-control-stack { grid-template-columns: minmax(0,1fr) 78px; gap: 7px; }
-.global-fields-expanded .track-hero, .global-fields-expanded .track-play-row { min-height: 100px; }
-.global-fields-expanded .track-art, .global-fields-expanded .track-art-ph { width: 84px; height: 84px; }
+.global-fields-expanded .track-hero, .global-fields-expanded .track-play-row,
+#main-app.listening-guide-open .track-hero, #main-app.listening-guide-open .track-play-row { min-height: 100px; }
+.global-fields-expanded .track-art, .global-fields-expanded .track-art-ph,
+#main-app.listening-guide-open .track-art, #main-app.listening-guide-open .track-art-ph { width: 84px; height: 84px; }
 .global-fields-expanded .track-name, #main-app.listening-guide-open .track-name { font-size: 18px; }
 .global-fields-expanded .playhead-readout strong, #main-app.listening-guide-open .playhead-readout strong { font-size: 17px; }
-.global-fields-expanded .waveform-wrap, .global-fields-expanded #waveform-canvas { height: 100px; }
+.global-fields-expanded .waveform-wrap, .global-fields-expanded #waveform-canvas,
+#main-app.listening-guide-open .waveform-wrap, #main-app.listening-guide-open #waveform-canvas { height: 100px; }
 .global-fields-expanded .prog-bg, #main-app.listening-guide-open .prog-bg { height: 27px; }
 .global-fields-expanded .prog-thumb, #main-app.listening-guide-open .prog-thumb { height: 37px; }
 #main-app.listening-guide-open #boundary-review-card { display: none; }
-#main-app.listening-guide-open .section-workspace-toolbar { display: none; }
-#main-app.listening-guide-open .listen-for-panel { display: none; }
 #main-app.listening-guide-open .waveform-wrap,
 #main-app.listening-guide-open #waveform-canvas { height: 72px; }
 #main-app.listening-guide-open .track-hero,
@@ -1199,11 +893,7 @@ input:focus, textarea:focus, select:focus {
   .tab-panel { overflow: visible; }
   .sections-list, #section-detail-body { max-height: none; overflow: visible; }
   .sections-workspace > .panel { min-height: auto; }
-  .evidence-fast { grid-template-columns: 1fr; }
-  .evidence-search-row { grid-template-columns: 1fr; }
-  .guided-card, .guided-notes-grid { grid-template-columns: 1fr; }
-  .guided-progress { grid-template-columns: repeat(4,minmax(0,1fr)); }
-  .guided-top { align-items: start; flex-direction: column; }
+  .guide-steps { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .global-fields-grid { height: auto; grid-template-columns: 1fr; grid-template-rows: none; }
   .global-field textarea { min-height: 72px; }
   .section-detail-compact .field-nav { display: flex; }
@@ -1214,7 +904,7 @@ input:focus, textarea:focus, select:focus {
   .user-name { display: none; }
   .input-row, .section-workspace-toolbar, .global-quality-tools { flex-direction: column; align-items: stretch; }
   .track-control-stack { grid-template-columns: 1fr; }
-  .notes-grid, .evidence-fast { grid-template-columns: 1fr; }
+  .notes-grid, .guide-steps { grid-template-columns: 1fr; }
   .boundary-card-inner { grid-template-columns: 1fr; }
   .boundary-card-actions { justify-content: flex-start; }
 }
@@ -1223,10 +913,10 @@ input:focus, textarea:focus, select:focus {
 <body>
 <div class="app">
 <header>
-  <button class="brand-lockup brand-home" type="button" onclick="returnToCueLabHome()" aria-label="Return to CueLab home" title="Return to start">
+  <div class="brand-lockup">
     <div class="brand-icon" aria-hidden="true"></div>
-    <div class="logo">Cue<em>Lab</em></div>
-  </button>
+    <div class="logo">Aural <em>Grid</em></div>
+  </div>
   <div class="header-center-spacer" aria-hidden="true"></div>
   <span class="annotation-timer header-timer-right positive" id="annotation-timer" hidden>00:20:00</span>
   <div class="user-block" id="header-controls" hidden>
@@ -1234,9 +924,6 @@ input:focus, textarea:focus, select:focus {
       <span class="user-name" id="user-name-display"></span>
       <button class="logout-btn header-link-btn" onclick="openUrlEntry()" title="Paste another Spotify link" aria-label="Paste another Spotify link">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 7H7a5 5 0 0 0 0 10h3M14 7h3a5 5 0 0 1 0 10h-3M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <button class="logout-btn header-link-btn theme-cta" onclick="toggleThemeMenu(event)" title="Appearance themes" aria-label="Appearance themes">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18h1.2a2.3 2.3 0 0 0 0-4.6h-.9a1.9 1.9 0 0 1 0-3.8H16A5 5 0 0 0 16 3h-4Z" stroke="currentColor" stroke-width="1.8"/><path d="M7.5 10h.01M9 6.8h.01M13.2 6.1h.01" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
       </button>
       <button class="logout-btn" onclick="logout()">logout</button>
       <button class="logout-btn help-cta" onclick="toggleShortcutHelp(event)">help</button>
@@ -1246,7 +933,6 @@ input:focus, textarea:focus, select:focus {
       <div class="shortcut-grid">
         <span>A</span><p>Add section at playhead</p>
         <span>S</span><p>Copy starter JSON</p>
-        <span>D</span><p>Copy marked section info</p>
         <span>I</span><p>Import and process pass</p>
         <span>R</span><p>Download refinement</p>
         <span>C</span><p>Label selected section as Chorus</p>
@@ -1265,20 +951,12 @@ input:focus, textarea:focus, select:focus {
         <span>?</span><p>Show / hide help</p>
       </div>
     </div>
-    <div class="theme-menu" id="theme-menu" hidden>
-      <div class="theme-menu-head"><strong>Appearance</strong><small>Display only</small></div>
-      <button class="theme-option" data-theme-option="polar-signal" onclick="applyAppearanceTheme('polar-signal')"><span class="theme-swatches polar"><i></i><i></i><i></i></span><span>Polar Signal</span></button>
-      <button class="theme-option" data-theme-option="ink-coral" onclick="applyAppearanceTheme('ink-coral')"><span class="theme-swatches coral"><i></i><i></i><i></i></span><span>Ink &amp; Coral</span></button>
-      <button class="theme-option" data-theme-option="studio-atlas" onclick="applyAppearanceTheme('studio-atlas')"><span class="theme-swatches atlas"><i></i><i></i><i></i></span><span>Studio Atlas</span></button>
-      <button class="theme-option" data-theme-option="modernist-tape" onclick="applyAppearanceTheme('modernist-tape')"><span class="theme-swatches tape"><i></i><i></i><i></i></span><span>Modernist Tape</span></button>
-      <button class="theme-option" data-theme-option="harbor-glass" onclick="applyAppearanceTheme('harbor-glass')"><span class="theme-swatches harbor"><i></i><i></i><i></i></span><span>Harbor Glass</span></button>
-    </div>
   </div>
 </header>
 
 <div id="auth-screen">
   <div style="font-size:48px;margin-bottom:20px">&#127928;</div>
-  <h2>Connect CueLab to Spotify</h2>
+  <h2>Connect your Spotify</h2>
   <p>Sign in with Spotify Premium to map sections,<br>mark boundaries, and prep dashboard-ready annotations.</p>
   <button class="login-btn" onclick="startLogin()">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
@@ -1291,6 +969,12 @@ input:focus, textarea:focus, select:focus {
     <div class="input-head">
       <div>
         <div class="input-label" id="url-card-label">Paste Spotify track link</div>
+        <div class="track-url-summary" id="track-url-summary" style="display:none">
+          <div class="listen-for-field" id="url-summary-track">
+            <label for="url-summary-listen">Listen For</label>
+            <textarea class="listen-for-textbox" id="url-summary-listen" rows="3" readonly tabindex="-1">Load a track to begin.</textarea>
+          </div>
+        </div>
       </div>
     </div>
     <div class="input-row">
@@ -1309,7 +993,6 @@ input:focus, textarea:focus, select:focus {
         <div class="panel-head">
           <span class="panel-title">Now Playing</span>
           <div class="panel-actions">
-            <button class="btn-sm" onclick="addSection()" title="Add a section boundary at the current playhead (A)">+ Section</button>
             <button class="btn-sm" id="undo-btn" onclick="undoLastChange()" disabled>Undo</button>
             <button class="btn-sm" id="redo-btn" onclick="redoLastChange()" disabled>Redo</button>
             <a class="open-spotify" id="open-spotify-link" href="#" target="_blank" rel="noopener">
@@ -1342,7 +1025,7 @@ input:focus, textarea:focus, select:focus {
               </div>
             </div>
             <div>
-              <div class="waveform-wrap" id="waveform-wrap" title="Click to seek; double-click to mark a meaningful section change">
+              <div class="waveform-wrap" id="waveform-wrap" title="Click anywhere on the structure map to seek">
                 <canvas id="waveform-canvas"></canvas>
                 <div class="waveform-cursor" id="waveform-cursor" style="left:0%"></div>
               </div>
@@ -1384,17 +1067,11 @@ input:focus, textarea:focus, select:focus {
               <div class="section-mode-toggles">
                 <label class="section-toggle"><input id="section-runthrough-toggle" type="checkbox" onchange="setSectionRunthrough(this.checked)"> <span>Section Runthrough</span></label>
                 <label class="section-toggle"><input id="loop-sections-toggle" type="checkbox" onchange="setLoopSections(this.checked)"> <span>Loop Sections</span></label>
-                <button class="btn-sm listen-for-trigger" id="listen-for-toggle" onclick="toggleListenForPanel()" hidden>Listen For</button>
               </div>
               <div class="section-toolbar-secondary">
                 <button class="btn-sm" onclick="addSectionBulkRequest('refine')">Refine All</button>
                 <button class="btn-sm" onclick="addSectionBulkRequest('concise')">Concise All</button>
               </div>
-            </div>
-            <div class="listen-for-panel" id="listen-for-panel" hidden>
-              <span class="review-kicker">Listen For</span>
-              <p id="listen-for-active-text"></p>
-              <button class="btn-icon" onclick="toggleListenForPanel(false)" title="Dismiss listening cue" aria-label="Dismiss listening cue">&times;</button>
             </div>
             <div class="sections-workspace">
               <div class="panel">
@@ -1414,13 +1091,12 @@ input:focus, textarea:focus, select:focus {
                     <span id="section-detail-label" style="font-size:10px;color:var(--ag-cyan)">- select a section</span>
                   </div>
                   <div class="detail-mode-nav" aria-label="Section detail mode">
-                    <button class="detail-mode-btn active" id="detail-final-btn" onclick="switchSectionDetailMode('final')">Annotation</button>
-                    <button class="detail-mode-btn" id="detail-guide-btn" onclick="switchSectionDetailMode('evidence')">Evidence</button>
-                    <button class="detail-mode-btn" id="detail-wizard-btn" onclick="switchSectionDetailMode('wizard')">Guided Listen</button>
+                    <button class="detail-mode-btn active" id="detail-final-btn" onclick="switchSectionDetailMode('final')">Final Annotation</button>
+                    <button class="detail-mode-btn" id="detail-guide-btn" onclick="switchSectionDetailMode('guide')">Listening Guide</button>
                   </div>
                 </div>
                 <div class="panel-body" id="section-detail-body">
-                  <div class="detail-empty">Click any section to view and edit its annotation details here.</div>
+                  <div class="detail-empty">Click any section to view and edit its generated details here.</div>
                 </div>
                 <div class="panel-body boundary-review-card" id="boundary-review-card"></div>
               </div>
@@ -1482,86 +1158,49 @@ var CLIENT_ID='c933b8b2f7b84a5a9b53a0de51b84f6e';
 var REDIRECT_URI='https://shashank-kandachar.github.io/songsectionananalysis';
 var SCOPES='streaming user-read-email user-read-private user-modify-playback-state user-read-playback-state';
 var accessToken=null,player=null,deviceId=null,sdkReady=false;
-var currentTrack=null,sections=[],waveformData=[];
+var currentTrack=null,audioFeatures=null,sections=[],waveformData=[];
 var isPlaying=false,duration=0,positionMs=0;
 var activeSection=-1,selectedSection=-1,totalDurSecs=0,sectionPlaybackIndex=-1;
 var dragging=null,resizeTimer=null,seekScrubbing=false,seekScrubMs=0,localSeekLockUntil=0,urlAnalyzeTimer=null,lastAnalyzedUrl='',lastAutoStarterTrackId='',dragDepth=0;
 var playbackElementActivated=false;
 var annotationTimerStartedAt=null,annotationTimerHandle=null,annotationTimerDurationMs=20*60*1000;
-var SECTION_TYPE_OPTIONS=['Intro','Verse','Pre-Verse','Pre-Chorus','Chorus','Post-Chorus','Refrain','Post-Refrain','Pre-Hook','Hook','Post-Hook','Bridge','Instrumental','Solo','Break','Drum Break','Breakdown','Build-Up','Drop','Interlude','Transition','Turnaround','Vamp','Tag','Theme','Main Theme','Secondary Theme','Statement','A Section','B Section','B Statement','First Statement','Second Statement','Final Statement','Final Hook','Idea','Development','Recapitulation','Pause','Outro','Coda','Section'];
+var SECTION_TYPE_OPTIONS=['Intro','Verse','Pre-Verse','Pre-Chorus','Chorus','Hook','Post-Chorus','Refrain','Pre-Hook','Post-Hook','Bridge','Instrumental','Solo','Break','Drum Break','Breakdown','Build-Up','Drop','Interlude','Transition','Turnaround','Vamp','Tag','Main Theme','Secondary Theme','Statement','First Statement','Second Statement','Final Statement','Final Hook','Development','Recapitulation','Pause','Outro','Coda','Section'];
 var SECTION_HOTKEY_LABELS={v:'Verse',c:'Chorus',h:'Hook',b:'Bridge',n:'Instrumental',o:'Outro',p:'Pre-Chorus'};
 var GLOBAL_FIELDS=['Tempo','Key','Chords','Setting / Occasion / Listening Context','Harmony','Rhythm & Groove','Genre / Era / Scene','Dominant Instruments','Playing Style','Wow Factor','Emotion & Vibe','Mix & Production','Sonic Fidelity','Vocal Expression','Lyrical Meaning / Evocation'];
-var REQUIRED_GLOBAL_FIELDS=['Setting / Occasion / Listening Context','Harmony','Rhythm & Groove','Playing Style','Emotion & Vibe','Mix & Production','Sonic Fidelity','Vocal Expression','Lyrical Meaning / Evocation'];
 var TEMPO_OPTIONS=['','Very Slow','Slow','Mid-tempo','Upbeat','Fast','Very Fast'];
-var EVIDENCE_CATEGORIES=[
-  {key:'foreground',title:'Standout / Foreground',question:'What catches attention first?',quick:true,terms:['lead vocal enters','rap vocal takes focus','guitar riff takes focus','synth lead carries the hook','piano strips it down','bass becomes prominent','beat drops in','strings swell forward','instrumental hook']},
-  {key:'sources',title:'Audible Sources',question:'Which sounds are clearly present?',quick:true,terms:['lead vocal','backing vocals','piano','electric guitar','bass guitar','synth pad','drum kit','kick and snare','hi-hats','clap','click percussion','tom fill','crash accent','ride pattern','strings']},
-  {key:'change',title:'Notable Change',question:'What changed or breaks expectation?',quick:true,terms:['density increases','arrangement thins out','beat drops out','bass enters','register rises','backing vocals widen','harmony brightens','harmony darkens','texture replaces full band']},
-  {key:'role',title:'Role / Effect',question:'What does that achieve?',quick:true,terms:['opens space','raises energy','adds tension','releases tension','anchors the groove','gives forward motion','makes the hook memorable','creates contrast','turns inward','signals transition']},
-  {key:'groove',title:'Groove / Motion',question:'What keeps time or changes the rhythmic motion?',terms:['steady straight backbeat','laid-back pocket','locked-in groove','swung feel','half-time feel (same tempo)','double-time push (same tempo)','syncopated kick','sixteenth-note hats add urgency','four-on-the-floor kick','programmed groove','live-feeling groove','drums drop out','brief ghost bar','fill signals transition','muted guitar keeps pulse','piano arpeggio keeps pulse','bass pulse keeps time','synth arpeggio keeps pulse','string ostinato keeps time','vocal rhythm carries motion','dense breakbeat movement','stop-start accents','unusual metre - verify']},
-  {key:'texture',title:'Texture / Density',question:'How does the arrangement feel?',terms:['sparse','stripped-back','open','intimate','exposed','restrained','fuller','thicker','wider','heavier','slowly building','dissolves into reverb']},
-  {key:'motif',title:'Melody / Motif',question:'Only when a memorable pitch-based idea stands out.',terms:['vocal hook rises into chorus','bass carries main riff','synth lead motif','piano phrase-ending motif','guitar descending answer','flute answers vocal','repeated melodic figure','stepwise rising line','descending phrase ending','held note resolves','short ornamental run','call-and-response figure','motif returns with variation']},
-  {key:'harmony',title:'Harmony / Tonal Feel',question:'Keep exact key or chords unconfirmed unless verified.',terms:['static vamp','minor-leaning colour','brighter lift','darker shift','tension builds','resolves','open-ended harmony','implied by bass','implied by synth riff','simple repeated loop','chords move quickly','complex / interwoven','uncertain']},
-  {key:'transition',title:'Transition / Ending',question:'How does it cue the next part or finish?',terms:['tom fill cues next section','reverse effect pulls forward','riser builds into next section','chime signals transition','brief dropout before next section','drops into next section','hard cut','fades out','lands on final hit','sustained ending','reverb tail lingers','ends unresolved']}
+var GUIDE_STAGES=[
+  {title:'1. Identify Lead',terms:['lead vocal','rap vocal','piano motif','guitar riff','synth lead','bass figure','drum groove','strings','flute line']},
+  {title:'2. How It Is Played',terms:['sustained','repeated','strummed','fingerpicked','staccato','legato','layered','swelling','sliding']},
+  {title:'3. Groove',terms:['no clear beat','steady backbeat','half-time groove','syncopated pulse','straight feel','swung feel','laid-back pocket','driving beat']},
+  {title:'4. Support',terms:['warm bass','live drums','programmed drums','synth pad','backing vocals','percussion','rhythm guitar','keys','sound effects']},
+  {title:'5. Texture / Energy',terms:['sparse texture','layered texture','full arrangement','airy','warm','dark','gritty','energy rises','pulls back','peaks']},
+  {title:'6. Transition / Ending',terms:['drum fill into next section','builds into next section','drops into next section','hard cut','fades out','final hit','sustained ending','reverb tail lingers']}
 ];
-var GUIDED_LISTEN_STEPS=[
-  {key:'foreground',title:'Identity',prompt:'What draws your attention first?',hint:'Capture the defining foreground element, not a full inventory.'},
-  {key:'sources',title:'Sources',prompt:'What is clearly audible in this section?',hint:'Specific is useful when clear; broad tags are fine for dense arrangements.'},
-  {key:'change',title:'Change',prompt:'What enters, leaves or shifts here?',hint:'Notice only changes that help explain this section.'},
-  {key:'role',title:'Purpose',prompt:'What does that change achieve?',hint:'Connect the observation to energy, contrast or structure.'},
-  {key:'groove',title:'Motion',prompt:'What keeps time, or how does the groove move?',hint:'Half-time and double-time are feel changes unless a real tempo change is verified.'},
-  {key:'harmony',title:'Tone',prompt:'Is a broad tonal quality useful here?',hint:'Keep key and exact chords separate unless verified.'},
-  {key:'motif',title:'Melody?',prompt:'Does a memorable pitch-based idea identify this section?',hint:'Optional. Capture source plus movement or function; otherwise skip.'},
-  {key:'transition',title:'Transition',prompt:'How does this section lead on or end?',hint:'For the final section, explicitly capture the ending.'},
-  {key:'notes',title:'Notes',prompt:'Anything to verify or strengthen later?',hint:'Fast shorthand is enough. Uncertainty is useful evidence.'}
-];
-var ENERGY_MOVEMENT_OPTIONS=['','Pulls Back','Steady','Lifts','Peak','Releases'];
 var FIELD_VOCAB={
   'Tempo':['Very Slow','Slow','Mid-tempo','Upbeat','Fast','Very Fast'],
   'Setting / Occasion / Listening Context':['late-night listening','dancefloor','road trip','focused listening','cinematic scene','intimate setting'],
-  'Harmony':['static vamp','simple repeated loop','minor-leaning colour','brighter chorus lift','darker shift','slow harmonic movement','arpeggiation suggests harmony','harmony implied by bass','open-ended harmony','tension and release','resolved harmony'],
-  'Rhythm & Groove':['steady straight backbeat','laid-back pocket','half-time feel (same tempo)','double-time push (same tempo)','swung feel','programmed groove','piano arpeggio keeps pulse','bass pattern carries pulse','no strong groove; sparse pulse','drums drop out briefly','dense breakbeat movement','stop-start accents'],
+  'Harmony':['minor-leaning','major-leaning','suspended','modal feel','slow harmonic movement','tension and release','drone-based'],
+  'Rhythm & Groove':['steady backbeat','half-time','syncopated','straight feel','swung','laid-back pocket','driving','beatless pulse'],
   'Genre / Era / Scene':['alternative R&B','indie pop','electronic','hip-hop','neo-soul','ambient','rock','Indian fusion'],
-  'Dominant Instruments':['Piano','Synth pad','Synth bass','Bass guitar','Electric guitar','Drum kit','Programmed drum kit','Strings','Saxophone','Percussion'],
-  'Playing Style':['steady','rhythmically free','staccato','legato','fingerpicked','strummed','palm-muted','sustained','restrained','expressive','decorative runs'],
-  'Wow Factor':['striking hook','dynamic build','distinctive timbre','unexpected drop','instrumental interlude','no distinct standout moment'],
+  'Dominant Instruments':['Piano','Synth pad','Synth bass','Bass guitar','Electric guitar','Drum kit','Programmed drum kit','Strings','Lead vocals'],
+  'Playing Style':['staccato','legato','fingerpicked','strummed','palm-muted','sustained','syncopated','restrained','aggressive'],
+  'Wow Factor':['striking hook','dynamic build','distinctive timbre','unexpected drop','vocal lift','instrumental interlude'],
   'Emotion & Vibe':['intimate','reflective','uplifting','melancholic','tense','dreamy','hypnotic','cinematic'],
   'Mix & Production':['wide reverb','dry vocal','stereo width','delay tail','distorted texture','clean balance','compressed punch'],
   'Sonic Fidelity':['polished','clean balance','controlled low end','intentional lo-fi texture','rough demo-like balance'],
   'Vocal Expression':['breathy','raspy','belted','falsetto','conversational','layered','melismatic','restrained'],
   'Lyrical Meaning / Evocation':['romantic longing','reflection and regret','celebration','emotional vulnerability','distance and memory']
 };
-var GLOBAL_PROMPTS={
-  'Harmony':'Broad harmonic feel or motion only; avoid unverified progressions.',
-  'Rhythm & Groove':'Name the timekeeper and feel; a sparse or absent groove is valid when checked.',
-  'Genre / Era / Scene':'Three or four practical comma-delimited descriptors.',
-  'Dominant Instruments':'Instrumental sources that dominate the track; vocals belong in Vocal Expression.',
-  'Playing Style':'How the performance is delivered, rather than what instruments are present.',
-  'Wow Factor':'A naturally noticeable standout, or a careful statement that none dominates.',
-  'Emotion & Vibe':'Broad emotional impression, grounded in the listening experience.',
-  'Mix & Production':'Audible balance, space, tone shaping or effects.',
-  'Sonic Fidelity':'Brief quality judgement with an audible reason.',
-  'Vocal Expression':'Delivery, texture and phrasing; use N/A for instrumental tracks.',
-  'Lyrical Meaning / Evocation':'Lyrical impression only; use N/A for instrumental tracks.'
-};
 var GENRE_VIBE_TERMS=['rock','pop','hip-hop','hip hop','trap','r&b','rnb','soul','neo-soul','electronic','edm','house','techno','indie','ambient','drill','afrobeat','afrobeats','reggae','jazz','classical','fusion'];
 var APPROVED_INSTRUMENT_TAGS=['Piano','Synth pad','Synth bass','Drone','Ambient texture','Sound effects','Synth FX','Atmosphere','Bass','Electric bass','Bass guitar','Sub bass','Acoustic guitar','Electric guitar','Clean electric guitar','Distorted electric guitar','Rhythm guitar','Lead guitar','Drum kit','Live drums','Programmed drum kit','Drum machine','Kick drum','Snare','Hi-hats','Cymbal','Toms','Claps','Shaker','Percussion','Light percussion','Heavy percussion','Strings','String section','Orchestral strings','Violin','Viola','Cello','Brass section','Trumpet','Trombone','French horn','Flute','Clarinet','Saxophone','Woodwinds','Rhodes','Electric piano','Organ','Hammond organ','Keyboard','Synthesizer','Synth lead','Arp synth','Pluck synth','Warm pad','Lead vocals','Male lead vocals','Female lead vocals','Backing vocals','Vocal harmony','Vocal FX','Vocal chops','Rap vocals','Spoken word'];
 var INSTRUMENT_NORMALISATIONS={'ambient synth texture':'Ambient texture','synth pad':'Synth pad','low drone':'Drone','delayed percussive effects':'Sound effects','siren-like synth':'Synth FX','sub layer':'Sub bass','drums':'Drum kit','vocals':'Lead vocals'};
 var GOLDEN_RULES=[
   'Treat section IDs and marker times as fixed unless I explicitly ask to alter them.',
-  'Map only meaningful functional changes; a minor new layer does not by itself create a new section, and a boundary is better slightly early than late.',
-  'Use my category-linked listening evidence and preliminary notes as primary evidence and do not guess instruments, techniques, key or chords.',
-  'Missing listening categories mean not captured yet, not that the musical element is absent.',
-  'Incorporate relevant selected evidence naturally in section descriptions; do not paste tags into awkward lists or force irrelevant cues.',
+  'Use my listening evidence as primary evidence and do not guess instruments, techniques, key or chords.',
   'Write foreground-first, natural, standalone section descriptions with useful density.',
   'Restate returning sections independently; never write same as previous, repeats or as before.',
-  'Use only dashboard-approved Section Type and audible section-specific Instrument tags; copied tags must be adapted and checked section by section.',
-  'Vibe tags describe perceived mood, not an assumption based solely on instrumentation; do not use genre names as section vibe tags.',
-  'Melody is optional: write it only for a standout hook, riff or motif, naming its source and movement or function without duplicating narration.',
-  'Keep global fields concise and prompt-specific; describe broad Harmony when useful and leave exact Key or Chords blank unless verified.',
-  'Dominant Instruments should focus on instrumental sources because voices have their own global field.',
-  'When rhythm matters, describe the timekeeper, feel and musical effect; never turn half-time or double-time feel into an unverified tempo change.',
-  'Use rhythm detail selectively: timbre-only drum changes belong in approved tags unless they alter section identity or energy.',
+  'Use only audible section-specific instrument tags and do not use genre names as section vibe tags.',
+  'Keep global fields concise and prompt-specific; leave uncertain Key or Chords blank.',
   'Describe how the final section ends explicitly; use N/A for vocal and lyrical fields on instrumental tracks.'
 ];
 var globalAnalysis={};
@@ -1573,9 +1212,7 @@ var sectionRunthrough=localStorage.getItem('aural_grid_section_runthrough')==='1
 var loopSections=localStorage.getItem('aural_grid_loop_sections')!=='0';
 var undoStack=[],redoStack=[],isRestoringHistory=false,autosaveTimer=null;
 var boundaryReviewIndex=1,boundaryPreviewEndMs=null,boundaryPreviewPausing=false;
-var sectionDetailMode='final',guidedListenStep=0,activeSectionPalette='',activeGlobalVocab='',evidenceOverlay='',activeEvidenceCategory='foreground',evidenceSearch='',instrumentalTrack=false,keyConfirmed=false,chordsConfirmed=false,listenForPanelOpen=false;
-var APPEARANCE_THEMES={'polar-signal':'Polar Signal','ink-coral':'Ink & Coral','studio-atlas':'Studio Atlas','modernist-tape':'Modernist Tape','harbor-glass':'Harbor Glass'};
-var activeAppearanceTheme=localStorage.getItem('aural_grid_appearance_theme')||'polar-signal';
+var sectionDetailMode='final',activeSectionPalette='',activeGlobalVocab='',expandedGuideStage=-1,instrumentalTrack=false,keyConfirmed=false,chordsConfirmed=false;
 
 function genV(){var c='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';var a=new Uint8Array(128);crypto.getRandomValues(a);return Array.from(a,function(b){return c[b%c.length]}).join('')}
 async function genC(v){var d=new TextEncoder().encode(v);var h=await crypto.subtle.digest('SHA-256',d);return btoa(String.fromCharCode.apply(null,new Uint8Array(h))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'')}
@@ -1584,13 +1221,6 @@ async function exchangeCode(code){var v=sessionStorage.getItem('pkce_v');var r=a
 async function doRefresh(){var ref=localStorage.getItem('sp_ref');if(!ref)return false;var r=await fetch('https://accounts.spotify.com/api/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({client_id:CLIENT_ID,grant_type:'refresh_token',refresh_token:ref})});var d=await r.json();if(d.access_token){accessToken=d.access_token;localStorage.setItem('sp_tok',d.access_token);localStorage.setItem('sp_exp',String(Date.now()+(d.expires_in*1000)));return true}return false}
 function tokValid(){var e=localStorage.getItem('sp_exp');return !!(e&&Date.now()<parseInt(e)-60000)}
 function logout(){localStorage.removeItem('sp_tok');localStorage.removeItem('sp_ref');localStorage.removeItem('sp_exp');if(player)player.disconnect();window.location.reload()}
-function returnToCueLabHome(){
-  if(currentTrack){
-    saveAutosave();
-    if(!window.confirm('Return to the CueLab start screen? Your current track session is saved locally and can be restored when you load this track again.'))return;
-  }
-  window.location.reload();
-}
 function initGlobalFields(){GLOBAL_FIELDS.forEach(function(name){if(typeof globalAnalysis[name]!=='string')globalAnalysis[name]=''});renderGlobalFields();updateRefinementChunk();renderCockpitStatus()}
 function switchTab(tabId,btn){
   document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.toggle('active',p.id===tabId)});
@@ -1598,7 +1228,7 @@ function switchTab(tabId,btn){
   var app=document.getElementById('main-app');
   if(app){
     app.classList.toggle('global-fields-expanded',tabId==='global-tab');
-    app.classList.toggle('listening-guide-open',tabId==='sections-tab'&&(sectionDetailMode==='evidence'||sectionDetailMode==='wizard'));
+    app.classList.toggle('listening-guide-open',tabId==='sections-tab'&&sectionDetailMode==='guide');
   }
   renderCockpitStatus();
   setTimeout(renderWaveform,40);
@@ -1645,56 +1275,20 @@ function formatCountdown(ms){
 }
 
 function updateUrlSummary(){
-  renderListenForPanel();
-  renderAnnotationTimer();
-}
-function toggleListenForPanel(force){
-  listenForPanelOpen=force==null?!listenForPanelOpen:!!force;
-  renderListenForPanel();
-}
-function renderListenForPanel(){
-  var available=!!String(listenFor||'').trim();
-  var toggle=document.getElementById('listen-for-toggle');
-  var panel=document.getElementById('listen-for-panel');
-  var text=document.getElementById('listen-for-active-text');
-  if(toggle){
-    toggle.hidden=!available;
-    toggle.classList.toggle('active',available&&listenForPanelOpen);
+  var pill=document.getElementById('url-summary-track');
+  var valueEl=document.getElementById('url-summary-listen');
+  var text=currentTrack?(listenFor||'Import first pass to fill the listening cue.'):'Load a track to begin.';
+  if(valueEl)valueEl.value=text;
+  if(pill){
+    pill.title='Listen For: '+text;
   }
-  if(text)text.textContent=listenFor||'';
-  if(panel)panel.hidden=!available||!listenForPanelOpen;
+  renderAnnotationTimer();
 }
 function toggleShortcutHelp(event,force){
   if(event&&event.stopPropagation)event.stopPropagation();
   var panel=document.getElementById('shortcut-help');if(!panel)return;
   var show=force==null?panel.hidden:!!force;
   panel.hidden=!show;
-  var themes=document.getElementById('theme-menu');if(themes&&!themes.hidden&&show)themes.hidden=true;
-}
-
-function applyAppearanceTheme(theme,silent){
-  if(!Object.prototype.hasOwnProperty.call(APPEARANCE_THEMES,theme))theme='polar-signal';
-  activeAppearanceTheme=theme;
-  document.documentElement.setAttribute('data-theme',theme);
-  localStorage.setItem('aural_grid_appearance_theme',theme);
-  document.querySelectorAll('[data-theme-option]').forEach(function(option){
-    option.classList.toggle('active',option.dataset.themeOption===theme);
-  });
-  var menu=document.getElementById('theme-menu');
-  if(menu&&!silent)menu.hidden=true;
-  if(!silent){
-    renderWaveform();
-    renderSections();
-    setProcessStatus('Appearance: '+APPEARANCE_THEMES[theme]+'. Annotation data unchanged.','ok');
-  }
-}
-
-function toggleThemeMenu(event,force){
-  if(event&&event.stopPropagation)event.stopPropagation();
-  var menu=document.getElementById('theme-menu');if(!menu)return;
-  var show=force==null?menu.hidden:!!force;
-  menu.hidden=!show;
-  var shortcuts=document.getElementById('shortcut-help');if(shortcuts&&!shortcuts.hidden&&show)shortcuts.hidden=true;
 }
 
 function openPassImport(){
@@ -1820,7 +1414,7 @@ function renderBoundaryReview(){
   boundaryReviewIndex=Math.max(1,Math.min(boundaryReviewIndex,sections.length-1));
   var prev=sections[boundaryReviewIndex-1],next=sections[boundaryReviewIndex];
   card.innerHTML='<div class="boundary-card-inner">'
-    +'<div><span class="review-kicker">Boundary</span><strong>'+(boundaryReviewIndex)+' / '+(sections.length-1)+'</strong><p>'+esc(prev.label||'Section')+' to '+esc(next.label||'Section')+' at '+formatTime(next.start)+'; favour the cue or upbeat over a late entry.</p></div>'
+    +'<div><span class="review-kicker">Boundary</span><strong>'+(boundaryReviewIndex)+' / '+(sections.length-1)+'</strong><p>'+esc(prev.label||'Section')+' to '+esc(next.label||'Section')+' at '+formatTime(next.start)+'</p></div>'
     +'<div class="boundary-card-actions">'
     +'<button class="btn-sm" onclick="selectBoundaryStep(-1)">Previous</button>'
     +'<button class="btn-sm" onclick="previewCurrentBoundary()">Preview</button>'
@@ -1903,7 +1497,6 @@ function handleAppShortcut(e){
   if(key==='a'){e.preventDefault();addSection();return}
   if(applySectionLabelHotkey(key)){e.preventDefault();return}
   if(key==='s'){e.preventDefault();copyStarterSet();return}
-  if(key==='d'){e.preventDefault();copySectionInfo();return}
   if(key==='i'){e.preventDefault();openPassImport();return}
   if(key==='r'){e.preventDefault();downloadRefinementFile();return}
   if(e.code==='Space'){e.preventDefault();togglePlay();return}
@@ -1935,7 +1528,7 @@ function initTrainingPreview(){
   currentTrack={
     id:'aural-grid-training-preview',
     name:'Golden Annotation Session',
-    artists:[{name:'CueLab'}],
+    artists:[{name:'Aural Grid'}],
     album:{name:'Listening Workshop',release_date:'2026',images:[]},
     duration_ms:218000,
     external_urls:{spotify:'#'},
@@ -1943,8 +1536,7 @@ function initTrainingPreview(){
   };
   totalDurSecs=218;duration=218000;positionMs=67000;selectedSection=1;activeSection=1;sectionPlaybackIndex=-1;
   listenFor='Listen for the foreground lead, groove changes, entries and dropouts, and the exact shape of the final ending.';
-  listenForPanelOpen=false;
-  instrumentalTrack=false;keyConfirmed=false;chordsConfirmed=false;sectionDetailMode='final';guidedListenStep=0;activeGlobalVocab='';
+  instrumentalTrack=false;keyConfirmed=false;chordsConfirmed=false;sectionDetailMode='final';activeGlobalVocab='';
   globalAnalysis={
     'Tempo':'Mid-tempo',
     'Key':'',
@@ -1953,7 +1545,7 @@ function initTrainingPreview(){
     'Harmony':'Minor-leaning harmony holds a suspended feel before opening at the hook.',
     'Rhythm & Groove':'Steady backbeat with a laid-back pocket; percussion density lifts in the chorus.',
     'Genre / Era / Scene':'Alternative R&B, indie pop, electronic',
-    'Dominant Instruments':'Synth pad, Bass guitar, Programmed drum kit',
+    'Dominant Instruments':'Lead vocals, Synth pad, Bass guitar, Programmed drum kit',
     'Playing Style':'Restrained vocal phrasing over sustained pads and controlled rhythmic accents.',
     'Wow Factor':'The chorus widens suddenly through layered vocals and a brighter rhythmic lift.',
     'Emotion & Vibe':'Intimate and reflective at first, then quietly uplifting as the hook opens.',
@@ -1964,19 +1556,19 @@ function initTrainingPreview(){
   };
   sections=[
     normalizeSection({start:0,duration:32,label:'Intro',instruments:'Synth pad, Ambient texture',vibeTags:'dreamy, suspended',description:'Soft synth pad and distant ambient texture establish a spacious opening, holding the energy low before the vocal entry.'}),
-    normalizeSection({start:32,duration:46,label:'Verse',instruments:'Lead vocals, Synth pad, Bass guitar, Programmed drum kit',vibeTags:'intimate, reflective',description:'Breathy lead vocal moves over warm bass and a restrained programmed groove, keeping the verse close and reflective.',listeningNotes:'Possible muted guitar at the phrase ending; verify on the narration pass.',listeningConfidence:'certain',listeningEvidence:{foreground:['lead vocal enters'],sources:['lead vocal','synth pad','bass guitar'],change:['density increases'],role:['opens space'],groove:['steady backbeat'],texture:['sparse'],harmony:['minor-leaning colour'],energy:'Lifts'}}),
+    normalizeSection({start:32,duration:46,label:'Verse',instruments:'Lead vocals, Synth pad, Bass guitar, Programmed drum kit',vibeTags:'intimate, reflective',description:'Breathy lead vocal moves over warm bass and a restrained programmed groove, keeping the verse close and reflective.',listeningNotes:'breathy lead vocal; steady backbeat; warm bass; sparse texture',listeningConfidence:'certain'}),
     normalizeSection({start:78,duration:42,label:'Chorus',instruments:'Lead vocals, Backing vocals, Synth pad, Bass guitar, Programmed drum kit',vibeTags:'uplifting, expansive',description:'Lead vocals carry the hook over fuller drums and bright backing vocals, widening the section as the energy peaks.',melody:'Lead vocal rises into the hook and resolves on a held phrase.'}),
     normalizeSection({start:120,duration:48,label:'Bridge',instruments:'Lead vocals, Piano, Synth pad',vibeTags:'suspended, intimate',description:'Piano chords and softened pads leave space beneath an exposed vocal line, pulling the energy back before the return.'}),
     normalizeSection({start:168,duration:50,label:'Outro',instruments:'Lead vocals, Backing vocals, Synth pad, Programmed drum kit',vibeTags:'reflective, resolved',description:'The final vocal refrain settles over thinning drums and sustained pads, then fades into a lingering reverb tail.'})
   ];
-  waveformData=buildTrackWaveform(currentTrack,totalDurSecs);
+  waveformData=buildTrackWaveform(currentTrack,null,totalDurSecs);
   fieldRequests=[];passHistory=[];selectedPassIndex=-1;lastSectionCountNote='';undoStack=[];redoStack=[];
   document.getElementById('player-section').style.display='block';
   document.getElementById('open-spotify-link').style.display='none';
   showLoadedCommand(true);
   initGlobalFields();
-  renderTrackInfo(currentTrack);renderSections();renderWaveform();renderSectionDetail(selectedSection);updateModeControls();renderListenForPanel();
-  setProcessStatus('Training preview: explore Evidence, Guided Listen, Global Fields and Golden Check.','ok');
+  renderTrackInfo(currentTrack);renderSections();renderWaveform();renderSectionDetail(selectedSection);updateModeControls();
+  setProcessStatus('Training preview: explore Final Annotation, Listening Guide, Global Fields and Golden Check.','ok');
 }
 function showAuth(){
   document.getElementById('auth-screen').style.display='';
@@ -1994,7 +1586,7 @@ window.onSpotifyWebPlaybackSDKReady=function(){sdkReady=true;initPlayer()};
 function initPlayer(){
   if(!accessToken||!sdkReady)return;
   setSdk('loading','Initialising player...');
-  player=new Spotify.Player({name:'CueLab',getOAuthToken:async function(cb){if(!tokValid())await doRefresh();cb(accessToken)},volume:0.8});
+  player=new Spotify.Player({name:'Aural Grid',getOAuthToken:async function(cb){if(!tokValid())await doRefresh();cb(accessToken)},volume:0.8});
   player.addListener('ready',function(o){deviceId=o.device_id;setSdk('ready','Player ready')});
   player.addListener('not_ready',function(){setSdk('loading','Player disconnected')});
   player.addListener('player_state_changed',function(state){
@@ -2053,7 +1645,7 @@ function handlePlayerCommandError(error,action){
   if(status)msg+=' ('+status+')';
   if(summary)msg+=': '+summary;
   msg+='. The track is loaded; choose this browser as the active Spotify device, open the track in Spotify, or keep annotating without playback control.';
-  console.warn('[CueLab] '+(action||'Player command')+' failed:',error);
+  console.warn('[Aural Grid] '+(action||'Player command')+' failed:',error);
   setSdk('loading','Playback command blocked');
   setProcessStatus(msg,'warn');
   return false;
@@ -2092,10 +1684,11 @@ async function analyzeTrack(){
     showSt('loading','Fetching track metadata...');
     var track=await spF('https://api.spotify.com/v1/tracks/'+trackId);
     if(!track)throw new Error('Track not found');
-    currentTrack=track;totalDurSecs=track.duration_ms/1000;duration=track.duration_ms;positionMs=0;selectedSection=-1;activeSection=-1;sectionPlaybackIndex=-1;globalAnalysis={};passHistory=[];selectedPassIndex=-1;fieldRequests=[];fieldHistoryCursor={};lastSectionCountNote='';listenFor='';listenForPanelOpen=false;undoStack=[];redoStack=[];boundaryPreviewEndMs=null;sectionDetailMode='evidence';guidedListenStep=0;activeGlobalVocab='';evidenceOverlay='';evidenceSearch='';instrumentalTrack=false;keyConfirmed=false;chordsConfirmed=false;initGlobalFields();showLoadedCommand(true);
+    currentTrack=track;totalDurSecs=track.duration_ms/1000;duration=track.duration_ms;positionMs=0;selectedSection=-1;activeSection=-1;sectionPlaybackIndex=-1;globalAnalysis={};passHistory=[];selectedPassIndex=-1;fieldRequests=[];fieldHistoryCursor={};lastSectionCountNote='';listenFor='';undoStack=[];redoStack=[];boundaryPreviewEndMs=null;sectionDetailMode='final';activeGlobalVocab='';instrumentalTrack=false;keyConfirmed=false;chordsConfirmed=false;initGlobalFields();showLoadedCommand(true);
 
+    audioFeatures=null;
     sections=initialSections(totalDurSecs);
-    waveformData=buildTrackWaveform(track,totalDurSecs);
+    waveformData=buildTrackWaveform(track,null,totalDurSecs);
 
     document.getElementById('player-section').style.display='block';
     document.getElementById('open-spotify-link').href=track.external_urls.spotify;
@@ -2143,7 +1736,7 @@ async function transferPlaybackToDevice(){
     await spF('https://api.spotify.com/v1/me/player',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({device_ids:[deviceId],play:false})});
     return true;
   }catch(e){
-    console.warn('[CueLab] Device transfer failed before autoplay:',e);
+    console.warn('[Aural Grid] Device transfer failed before autoplay:',e);
     return false;
   }
 }
@@ -2167,19 +1760,8 @@ function initialSections(t){
 }
 
 function normalizeSection(sec){
-  sec=Object.assign({start:0,duration:0,label:'Section',instruments:'',vibeTags:'',description:'',melody:'',listeningNotes:'',listeningConfidence:'general',instrumentDraft:false,listeningEvidence:null},sec||{});
-  sec.listeningEvidence=normaliseListeningEvidence(sec.listeningEvidence);
+  sec=Object.assign({start:0,duration:0,label:'Section',instruments:'',vibeTags:'',description:'',melody:'',listeningNotes:'',listeningConfidence:'general',instrumentDraft:false,estimated:false,notesRequested:false},sec||{});
   return sec;
-}
-
-function normaliseListeningEvidence(value){
-  var evidence=value&&typeof value==='object'?value:{};
-  var normalized={energy:String(evidence.energy||''),review_later:!!(evidence.review_later||evidence.reviewLater)};
-  EVIDENCE_CATEGORIES.forEach(function(category){
-    var incoming=evidence[category.key];
-    normalized[category.key]=Array.isArray(incoming)?incoming.map(function(term){return String(term).trim()}).filter(Boolean):[];
-  });
-  return normalized;
 }
 
 function renderTrackInfo(track){
@@ -2231,17 +1813,8 @@ function renderWaveform(){
   renderSectionSeekButtons(total);
 }
 
-function themeValue(name,fallback){
-  var value=getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  return value||fallback;
-}
-
-function themeRgba(name,alpha,fallback){
-  return 'rgba('+themeValue(name,fallback)+','+alpha+')';
-}
-
 function renderStructureMap(ctx,W,H,total){
-  ctx.fillStyle=themeValue('--map-bg','#0b0811');
+  ctx.fillStyle='#0b0811';
   ctx.fillRect(0,0,W,H);
   var isCompact=H<145;
   var rulerY=isCompact?15:21;
@@ -2287,6 +1860,7 @@ function renderStructureMap(ctx,W,H,total){
       ctx.beginPath();ctx.moveTo(x,energyTop-3);ctx.lineTo(x,pinY+4);ctx.stroke();
     }
   });
+  if(!isCompact)drawReferencePins(ctx,W,total,pinY);
 }
 
 function drawTimelineRuler(ctx,W,total,y){
@@ -2304,7 +1878,7 @@ function drawTimelineRuler(ctx,W,total,y){
 }
 
 function drawEnergyCurve(ctx,W,top,h,total){
-  if(!waveformData.length)waveformData=buildTrackWaveform(currentTrack,total);
+  if(!waveformData.length)waveformData=buildTrackWaveform(currentTrack,audioFeatures,total);
   var mid=top+h*.58;
   ctx.fillStyle='rgba(255,255,255,.025)';
   ctx.fillRect(0,top,W,h);
@@ -2313,11 +1887,11 @@ function drawEnergyCurve(ctx,W,top,h,total){
     var bp=bx/Math.max(1,W);
     var amp=waveformSample(bp);
     var barH=Math.max(4,amp*h*.86);
-    ctx.strokeStyle=themeRgba('--wave-rgb',.18+amp*.48,'128,223,255');
+    ctx.strokeStyle='rgba(128,223,255,'+(.18+amp*.48)+')';
     ctx.beginPath();ctx.moveTo(bx,mid-barH*.45);ctx.lineTo(bx,mid+barH*.45);ctx.stroke();
   }
-  ctx.strokeStyle=themeRgba('--line-rgb',.88,'194,180,255');
-  ctx.fillStyle=themeRgba('--wave-rgb',.11,'128,223,255');
+  ctx.strokeStyle='rgba(194,180,255,.88)';
+  ctx.fillStyle='rgba(128,223,255,.11)';
   ctx.lineWidth=2;
   ctx.beginPath();
   var points=Math.max(160,Math.min(420,Math.floor(W/2)));
@@ -2339,6 +1913,27 @@ function drawEnergyCurve(ctx,W,top,h,total){
   ctx.fillStyle='rgba(255,255,255,.58)';
   ctx.font='9px JetBrains Mono, monospace';
   ctx.fillText('ENERGY / DENSITY',6,top+9);
+}
+
+function drawReferencePins(ctx,W,total,y){
+  var pins=getReferencePins(total).slice(0,8);
+  if(!pins.length)return;
+  ctx.strokeStyle='rgba(255,255,255,.10)';
+  ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();
+  ctx.fillStyle='rgba(255,255,255,.42)';
+  ctx.font='9px JetBrains Mono, monospace';
+  ctx.fillText('REFERENCE PINS',6,y-5);
+  pins.forEach(function(pin,idx){
+    var x=(pin.time/total)*W;
+    ctx.strokeStyle='rgba(255,107,53,.58)';
+    ctx.beginPath();ctx.moveTo(x,y-18);ctx.lineTo(x,y+7);ctx.stroke();
+    ctx.beginPath();ctx.fillStyle='rgba(255,107,53,.92)';ctx.arc(x,y,4,0,Math.PI*2);ctx.fill();
+    if(idx<5&&x<W-56){
+      ctx.fillStyle='rgba(255,255,255,.62)';
+      ctx.font='8px JetBrains Mono, monospace';
+      ctx.fillText(trimText(pin.text||formatTime(pin.time),16),x+6,y+3);
+    }
+  });
 }
 
 function renderWaveformMarkers(wrap,total){
@@ -2386,18 +1981,25 @@ function niceTimeStep(total,W){
   return 180;
 }
 
+function getReferencePins(total){
+  return [];
+}
+
 function trimText(text,max){
   text=String(text||'').trim();
   if(text.length<=max)return text;
   return text.slice(0,Math.max(1,max-3))+'...';
 }
 
-function buildTrackWaveform(track,total){
+function buildTrackWaveform(track,features,total){
   total=total||180;
   var len=1800;
   var key=(track&&track.id?track.id:(track&&track.name?track.name:'section-analyst'))+'|'+Math.round(total);
   var seed=hashString(key);
-  var energy=.62,dance=.5,acoustic=.22,valence=.5;
+  var energy=clamp01(features&&features.energy!=null?features.energy:.62);
+  var dance=clamp01(features&&features.danceability!=null?features.danceability:.5);
+  var acoustic=clamp01(features&&features.acousticness!=null?features.acousticness:.22);
+  var valence=clamp01(features&&features.valence!=null?features.valence:.5);
   var data=[];
   for(var i=0;i<len;i++){
     var p=i/(len-1);
@@ -2434,11 +2036,13 @@ function rand(seed,salt){
   x^=x<<13;x^=x>>>17;x^=x<<5;
   return ((x>>>0)%100000)/100000;
 }
+function clamp01(v){return Math.max(0,Math.min(1,Number(v)||0))}
+
 function sectionColor(i,alpha){
-  var colors=themeValue('--section-colors','194,180,255|128,223,255|242,179,109|239,159,214|247,211,122|167,236,255|216,208,255|255,190,142|174,151,232|141,219,235|229,175,245|255,221,171').split('|').map(function(value){
-    return value.split(',').map(function(component){return Number(component)});
-  }).filter(function(value){return value.length===3&&value.every(function(component){return isFinite(component)})});
-  if(!colors.length)colors=[[194,180,255]];
+  var colors=[
+    [194,180,255],[128,223,255],[242,179,109],[239,159,214],[247,211,122],[167,236,255],
+    [216,208,255],[255,190,142],[174,151,232],[141,219,235],[229,175,245],[255,221,171]
+  ];
   var c=colors[Math.abs(i)%colors.length];
   return 'rgba('+c[0]+','+c[1]+','+c[2]+','+(alpha==null?1:alpha)+')';
 }
@@ -2570,6 +2174,7 @@ function renderSections(){
       +'<div class="sec-name-wrap">'+sectionTypeSelectHtml(sec,i)+'</div>'
       +'<span class="sec-dur" id="sec-dur-'+i+'">'+sec.duration.toFixed(1)+'s</span>'
       +'<div class="sec-actions" onclick="event.stopPropagation()">'
+      +'<button class="btn-icon" title="Rename" onclick="renameSection('+i+')">&#9998;</button>'
       +'<button class="btn-icon" style="color:#ff5555" title="Delete" onclick="deleteSection('+i+')">&#10005;</button>'
       +'</div></div></div>'
   });
@@ -2584,16 +2189,17 @@ function handleSecClick(e,i){if(e.target.closest('.sec-actions')||e.target.close
 
 function sectionTypeSelectHtml(sec,i){
   var label=sec.label||'';
-  var matched=isDashboardSectionType(label);
-  var html='<select class="sec-type-select" title="Choose a dashboard section type" onclick="event.stopPropagation()" onchange="setSectionType('+i+',this.value)">';
+  var matched=SECTION_TYPE_OPTIONS.indexOf(label)>=0;
+  var html='<select class="sec-type-select" title="Choose section type" onclick="event.stopPropagation()" onchange="setSectionType('+i+',this.value)">';
   SECTION_TYPE_OPTIONS.forEach(function(opt){html+='<option value="'+esc(opt)+'" '+(label===opt?'selected':'')+'>'+esc(opt)+'</option>'});
-  if(!matched&&label)html+='<option value="'+esc(label)+'" selected>Review unsupported: '+esc(label)+'</option>';
+  html+='<option value="__custom__" '+(!matched?'selected':'')+'>'+(matched?'Custom...':esc(label||'Custom'))+'</option>';
   html+='</select>';
   return html;
 }
 
 function setSectionType(i,value){
   if(!sections[i])return;
+  if(value==='__custom__'){renameSection(i);return}
   if(sections[i].label===value)return;
   pushUndo('Change section label');
   sections[i].label=value;
@@ -2601,18 +2207,20 @@ function setSectionType(i,value){
   renderSections();renderWaveform();renderSectionDetail(selectedSection);updateRefinementChunk();
 }
 
-function isDashboardSectionType(label){
-  var key=normalizeKey(label);
-  return SECTION_TYPE_OPTIONS.some(function(option){return normalizeKey(option)===key});
-}
-
-function dashboardSectionTypeLabel(label,fallback){
-  var key=normalizeKey(label);
-  var exact=SECTION_TYPE_OPTIONS.find(function(option){return normalizeKey(option)===key});
-  if(exact)return exact;
-  var bridge=beatpulseSectionTypeValue(label);
-  var mapped=SECTION_TYPE_OPTIONS.find(function(option){return beatpulseSectionTypeValue(option)===bridge});
-  return mapped||fallback||'Section';
+function renameSection(i){
+  var nameEl=document.querySelector('#sec-item-'+i+' .sec-name-wrap');if(!nameEl)return;
+  var cur=sections[i].label;
+  var inp=document.createElement('input');inp.className='sec-name-input';inp.value=cur;
+  nameEl.innerHTML='';nameEl.appendChild(inp);inp.focus();inp.select();
+  function commit(){
+    var v=inp.value.trim()||cur;
+    if(v!==cur)pushUndo('Rename section');
+    sections[i].label=v;
+    markSectionMapChanged();
+    renderSections();renderWaveform();renderSectionDetail(selectedSection);updateRefinementChunk();
+  }
+  inp.addEventListener('blur',commit,{once:true});
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')inp.blur();if(e.key==='Escape'){inp.value=cur;inp.blur()}});
 }
 
 function deleteSection(i){
@@ -2692,7 +2300,12 @@ function focusSectionInList(i,focusSelect){
 }
 
 function nextManualSectionLabel(){
-  return 'Section';
+  var max=0;
+  sections.forEach(function(sec){
+    var m=String(sec.label||'').match(/^Section\s+(\d+)$/i);
+    if(m)max=Math.max(max,parseInt(m[1],10)||0);
+  });
+  return 'Section '+(max+1);
 }
 
 async function selectSection(i,shouldSeek){
@@ -2737,30 +2350,22 @@ function setLoopSections(value){
 }
 
 function switchSectionDetailMode(mode){
-  sectionDetailMode=mode==='wizard'?'wizard':((mode==='guide'||mode==='evidence')?'evidence':'final');
-  if(sectionDetailMode==='wizard')guidedListenStep=0;
+  sectionDetailMode=mode==='guide'?'guide':'final';
   activeSectionPalette='';
-  evidenceOverlay='';
-  evidenceSearch='';
-  syncSectionDetailModeUi();
+  expandedGuideStage=-1;
+  var app=document.getElementById('main-app'),sectionsPanel=document.getElementById('sections-tab');
+  if(app)app.classList.toggle('listening-guide-open',sectionDetailMode==='guide'&&!!(sectionsPanel&&sectionsPanel.classList.contains('active')));
+  var finalBtn=document.getElementById('detail-final-btn'),guideBtn=document.getElementById('detail-guide-btn');
+  if(finalBtn)finalBtn.classList.toggle('active',sectionDetailMode==='final');
+  if(guideBtn)guideBtn.classList.toggle('active',sectionDetailMode==='guide');
   renderSectionDetail(selectedSection);
   var body=document.getElementById('section-detail-body');if(body)body.scrollTop=0;
-}
-
-function syncSectionDetailModeUi(){
-  var app=document.getElementById('main-app'),sectionsPanel=document.getElementById('sections-tab');
-  if(app)app.classList.toggle('listening-guide-open',(sectionDetailMode==='evidence'||sectionDetailMode==='wizard')&&!!(sectionsPanel&&sectionsPanel.classList.contains('active')));
-  var finalBtn=document.getElementById('detail-final-btn'),guideBtn=document.getElementById('detail-guide-btn'),wizardBtn=document.getElementById('detail-wizard-btn');
-  if(finalBtn)finalBtn.classList.toggle('active',sectionDetailMode==='final');
-  if(guideBtn)guideBtn.classList.toggle('active',sectionDetailMode==='evidence');
-  if(wizardBtn)wizardBtn.classList.toggle('active',sectionDetailMode==='wizard');
 }
 
 function renderSectionDetail(i){
   var body=document.getElementById('section-detail-body');
   var label=document.getElementById('section-detail-label');
   if(!body||!label)return;
-  syncSectionDetailModeUi();
   if(i<0||!sections[i]){
     label.textContent='- select a section';
     body.innerHTML='<div class="detail-empty">Click any section on the left to view and edit its details here.</div>';
@@ -2769,224 +2374,69 @@ function renderSectionDetail(i){
   }
   var sec=sections[i]=normalizeSection(sections[i]);
   label.textContent=(i+1)+'. '+sec.label+' - starts '+formatTime(sec.start);
-  body.innerHTML=sectionDetailMode==='evidence'?listeningEvidenceHtml(i,sec):(sectionDetailMode==='wizard'?guidedSectionListenHtml(i,sec):finalSectionDetailHtml(i,sec));
+  body.innerHTML=sectionDetailMode==='guide'?listeningGuideHtml(i,sec):finalSectionDetailHtml(i,sec);
   renderBoundaryReview();
 }
 
 function finalSectionDetailHtml(i,sec){
-  var draft=sec.instrumentDraft?'<span class="detail-draft-badge">Copied draft: verify this section <button class="btn-sm verify-btn" onclick="verifySectionInstruments('+i+')">Verified</button></span>':'';
-  var adapt=i>0?'<button class="btn-sm copy-instruments-btn" onclick="copyPreviousInstrumentsAsDraft('+i+')">Copy / Adapt Previous</button>':'';
-  var palette=activeSectionPalette==='instruments'?'<div class="section-palette"><div class="palette-head"><span>Dashboard-controlled tags: use only labels available in Beatpulse</span><button class="btn-sm" onclick="toggleSectionPalette(\'\')">Close</button></div><div class="chip-wrap">'+APPROVED_INSTRUMENT_TAGS.map(function(term){return '<button class="vocab-chip" onclick="insertSectionTag(\'instruments\',\''+esc(term)+'\')">'+esc(term)+'</button>'}).join('')+'</div></div>':'';
+  var draft=sec.instrumentDraft?'<span class="detail-draft-badge">Verify copied instruments <button class="btn-sm verify-btn" onclick="verifySectionInstruments('+i+')">Verified</button></span>':'';
+  var palette=activeSectionPalette==='instruments'?'<div class="section-palette"><div class="palette-head"><span>Dashboard-approved instrument tags</span><button class="btn-sm" onclick="toggleSectionPalette(\'\')">Close</button></div><div class="chip-wrap">'+APPROVED_INSTRUMENT_TAGS.map(function(term){return '<button class="vocab-chip" onclick="insertSectionTag(\'instruments\',\''+esc(term)+'\')">'+esc(term)+'</button>'}).join('')+'</div></div>':'';
   return '<div class="section-detail-compact">'
     +'<div class="section-detail-top"><div class="section-start-chip">Start '+formatTime(sec.start)+'</div>'
-    +adapt+draft+'</div><div class="notes-grid">'
-    +'<div class="notes-field desc-field"><label for="detail-desc"><span>Narrative Description</span><span class="field-tool-cluster">'+fieldControlHtml('section',i,'description')+'</span></label>'
-    +'<textarea id="detail-desc" placeholder="Begin with the foreground sound, then state the useful change and its musical effect." oninput="updateSelectedField(\'description\',this.value)">'+esc(sec.description||'')+'</textarea>'
-    +'</div>'
+    +'<button class="btn-sm copy-instruments-btn" onclick="copySectionInstrumentsAsDraft('+i+')">Draft to all sections</button>'
+    +draft+'</div><div class="notes-grid">'
     +'<div class="notes-field"><label for="detail-instruments"><span>Instruments</span><span class="field-tool-cluster"><button class="btn-sm" onclick="toggleSectionPalette(\'instruments\')">Tags</button>'+fieldControlHtml('section',i,'instruments')+'</span></label>'
-    +'<input id="detail-instruments" type="text" value="'+esc(sec.instruments||'')+'" placeholder="Dashboard tags only; include only sounds heard here" title="Use the Tags palette for dashboard-approved instrument names." oninput="updateSelectedField(\'instruments\',this.value)"/>'
+    +'<input id="detail-instruments" type="text" value="'+esc(sec.instruments||'')+'" placeholder="Only audible instruments in this section" oninput="updateSelectedField(\'instruments\',this.value)"/>'
     +'</div>'
     +'<div class="notes-field"><label for="detail-vibes"><span>Vibe Tags</span><span class="field-tool-cluster">'+fieldControlHtml('section',i,'vibeTags')+'</span></label>'
-    +'<input id="detail-vibes" type="text" value="'+esc(sec.vibeTags||'')+'" placeholder="Audible emotional feel, not genre or instrument assumptions" oninput="updateSelectedField(\'vibeTags\',this.value)"/>'
+    +'<input id="detail-vibes" type="text" value="'+esc(sec.vibeTags||'')+'" placeholder="Mood terms, not genre labels" oninput="updateSelectedField(\'vibeTags\',this.value)"/>'
     +'</div>'
     +'<div class="notes-field optional-field"><label for="detail-melody"><span>Melody</span></label>'
-    +'<input id="detail-melody" type="text" value="'+esc(sec.melody||'')+'" placeholder="Optional: source + movement or function" oninput="updateSelectedField(\'melody\',this.value)"/>'
+    +'<input id="detail-melody" type="text" value="'+esc(sec.melody||'')+'" placeholder="Clear movement only" oninput="updateSelectedField(\'melody\',this.value)"/>'
+    +'</div>'
+    +'<div class="notes-field desc-field"><label for="detail-desc"><span>Description</span><span class="field-tool-cluster">'+fieldControlHtml('section',i,'description')+'</span></label>'
+    +'<textarea id="detail-desc" placeholder="Foreground first: what is heard, how it moves, and what changes." oninput="updateSelectedField(\'description\',this.value)">'+esc(sec.description||'')+'</textarea>'
     +'</div>'
     +palette
     +'</div></div>';
 }
 
-function evidenceCategory(key){
-  return EVIDENCE_CATEGORIES.find(function(category){return category.key===key})||EVIDENCE_CATEGORIES[0];
-}
-
-function evidenceHasContent(sec){
-  sec=normalizeSection(sec);
-  return !!String(sec.listeningNotes||'').trim()||!!sec.listeningEvidence.energy||sec.listeningEvidence.review_later||EVIDENCE_CATEGORIES.some(function(category){return sec.listeningEvidence[category.key].length>0});
-}
-
-function evidenceActiveChip(sec,key,term){
-  return sec.listeningEvidence[key].indexOf(term)>=0?' active':'';
-}
-
-function selectedEvidenceChips(sec,key){
-  var category=evidenceCategory(key);
-  var terms=sec.listeningEvidence[key]||[];
-  if(!terms.length)return '';
-  return '<div class="selected-evidence">'+terms.map(function(term,index){
-    return '<button class="selected-chip" title="Remove '+esc(term)+'" onclick="removeEvidenceCue(\''+key+'\','+index+')">'+esc(term)+' <span>&times;</span></button>';
-  }).join('')+'</div>';
-}
-
-function fastEvidenceCard(sec,category){
-  var availableTerms=category.terms.slice(0,4).filter(function(term){return sec.listeningEvidence[category.key].indexOf(term)<0});
-  return '<div class="evidence-card">'
-    +'<div class="evidence-card-head"><div><strong>'+esc(category.title)+'</strong><small>'+esc(category.question)+'</small></div><button class="btn-sm" onclick="openEvidenceTerms(\''+category.key+'\')">Terms</button></div>'
-    +selectedEvidenceChips(sec,category.key)
-    +'<div class="chip-wrap">'+availableTerms.map(function(term){
-      return '<button class="vocab-chip" onclick="toggleEvidenceCue(\''+category.key+'\',\''+term+'\')">'+esc(term)+'</button>';
-    }).join('')+'<button class="vocab-chip more-chip" onclick="openEvidenceTerms(\''+category.key+'\',true)">+ Custom</button></div>'
+function listeningGuideHtml(i,sec){
+  var stages=GUIDE_STAGES.map(function(stage,index){
+    var expanded=expandedGuideStage===index;
+    var terms=expanded?stage.terms:stage.terms.slice(0,4);
+    return '<div class="guide-stage"><h4>'+esc(stage.title)+'</h4><div class="chip-wrap">'
+      +terms.map(function(term){return '<button class="vocab-chip" onclick="addListeningCue(\''+esc(term)+'\')">'+esc(term)+'</button>'}).join('')
+      +(stage.terms.length>4?'<button class="vocab-chip more-chip" onclick="toggleGuideStage('+index+')">'+(expanded?'Less':'More')+'</button>':'')
+      +'</div></div>';
+  }).join('');
+  var last=i===sections.length-1?'<span class="detail-draft-badge">Final section: choose an ending cue.</span>':'';
+  return '<div class="guide-shell">'
+    +'<div class="guide-head">'
+    +'<div class="notes-field guide-notes"><label for="listening-notes"><span>Listening Notes</span>'+last+'</label>'
+    +'<textarea id="listening-notes" placeholder="Click audible terms below or type observations in your own words." oninput="updateListeningNotes(this.value)">'+esc(sec.listeningNotes||'')+'</textarea></div>'
+    +'<div class="confidence-box"><label for="listening-confidence">Confidence</label>'
+    +'<select class="confidence-select" id="listening-confidence" onchange="setListeningConfidence(this.value)">'
+    +'<option value="certain" '+(sec.listeningConfidence==='certain'?'selected':'')+'>Certain</option>'
+    +'<option value="general" '+(sec.listeningConfidence==='general'?'selected':'')+'>General</option>'
+    +'<option value="role-only" '+(sec.listeningConfidence==='role-only'?'selected':'')+'>Role Only</option></select></div>'
+    +'</div><div class="guide-steps">'+stages+'</div>'
+    +'<div class="guide-actions"><p class="guide-caption">Use only clearly audible evidence. General or Role Only tells ChatGPT not to over-specify uncertain sounds.</p>'
+    +'<button class="btn-sm" onclick="clearListeningNotes()">Clear Notes</button>'
+    +'<button class="btn-sm ready-btn" onclick="sendListeningNotesToRefinement()">Add To Refinement</button></div>'
     +'</div>';
 }
 
-function listeningEvidenceHtml(i,sec){
-  sec=normalizeSection(sec);
-  var quick=EVIDENCE_CATEGORIES.filter(function(category){return category.quick}).map(function(category){return fastEvidenceCard(sec,category)}).join('');
-  var deeper=EVIDENCE_CATEGORIES.filter(function(category){return !category.quick&&sec.listeningEvidence[category.key].length}).map(function(category){
-    return '<span class="evidence-summary-group"><b>'+esc(category.title)+':</b> '+esc(sec.listeningEvidence[category.key].join(', '))+'</span>';
-  }).join('');
-  var last=i===sections.length-1?'<span class="detail-draft-badge">Capture how the track ends.</span>':'';
-  var energyOptions=ENERGY_MOVEMENT_OPTIONS.map(function(value){return '<option value="'+esc(value)+'" '+(sec.listeningEvidence.energy===value?'selected':'')+'>'+(value||'Not captured')+'</option>'}).join('');
-  var overlay=evidenceOverlay==='terms'?evidenceTermsOverlay(sec):evidenceOverlay==='review'?evidenceReviewOverlay():'';
-  return '<div class="guide-shell evidence-shell">'
-    +'<div class="evidence-formula">Capture only what matters: <b>foreground</b> + <b>audible source</b> + <b>change</b> + <b>effect</b>. Melody remains optional.</div>'
-    +'<div class="guide-head evidence-head">'
-    +'<div class="notes-field guide-notes"><label for="listening-notes"><span>Preliminary Notes</span>'+last+'</label>'
-    +'<textarea id="listening-notes" placeholder="Fast shorthand: unusual sound, possible instrument, rhythm change or anything to strengthen later." oninput="updateListeningNotes(this.value)">'+esc(sec.listeningNotes||'')+'</textarea></div>'
-    +'<div class="evidence-controls">'
-    +'<div class="confidence-box"><label for="listening-energy">Energy</label><select class="confidence-select" id="listening-energy" onchange="setEvidenceEnergy(this.value)">'+energyOptions+'</select></div>'
-    +'<div class="confidence-box"><label for="listening-confidence">Confidence</label><select class="confidence-select" id="listening-confidence" onchange="setListeningConfidence(this.value)">'
-    +'<option value="certain" '+(sec.listeningConfidence==='certain'?'selected':'')+'>Certain</option>'
-    +'<option value="general" '+(sec.listeningConfidence==='general'?'selected':'')+'>General</option>'
-    +'<option value="verify-later" '+(sec.listeningConfidence==='verify-later'?'selected':'')+'>Verify Later</option>'
-    +'<option value="role-only" '+(sec.listeningConfidence==='role-only'?'selected':'')+'>Role Only</option></select></div>'
-    +'<label class="review-later-toggle"><input type="checkbox" '+(sec.listeningEvidence.review_later?'checked':'')+' onchange="setEvidenceReviewLater(this.checked)"> Review later</label>'
-    +'</div></div>'
-    +'<div class="evidence-fast">'+quick+'</div>'
-    +(deeper?'<div class="evidence-deeper">'+deeper+'</div>':'')
-    +'<div class="guide-actions"><p class="guide-caption">Missing categories mean not captured yet. Terms become evidence for a provisional ChatGPT pass, not automatic facts.</p>'
-    +'<button class="btn-sm" onclick="openEvidenceTerms(\'foreground\')">All Terms</button>'
-    +'<button class="btn-sm" onclick="openEvidenceReview()">Review Evidence</button>'
-    +'<button class="btn-sm" onclick="clearListeningEvidence()">Clear</button>'
-    +'<button class="btn-sm ready-btn" onclick="sendListeningNotesToRefinement()">Queue Refinement</button></div>'
-    +overlay+'</div>';
-}
-
-function previousSimilarSectionIndex(index){
-  if(index<=0||!sections[index])return -1;
-  var label=String(sections[index].label||'').toLowerCase();
-  if(!label||label==='section')return -1;
-  for(var i=index-1;i>=0;i--){
-    if(String(sections[i].label||'').toLowerCase()===label)return i;
-  }
-  return -1;
-}
-
-function guidedSectionListenHtml(i,sec){
-  sec=normalizeSection(sec);
-  var step=GUIDED_LISTEN_STEPS[Math.max(0,Math.min(GUIDED_LISTEN_STEPS.length-1,guidedListenStep))];
-  var previous=previousSimilarSectionIndex(i);
-  var stepNav=GUIDED_LISTEN_STEPS.map(function(item,index){
-    var filled=item.key==='notes'?String(sec.listeningNotes||'').trim():sec.listeningEvidence[item.key].length;
-    return '<button class="guided-step'+(index===guidedListenStep?' active':'')+(filled?' filled':'')+'" onclick="setGuidedListenStep('+index+')"><span>'+(index+1)+'</span>'+esc(item.title)+'</button>';
-  }).join('');
-  var content='';
-  if(step.key==='notes'){
-    content='<div class="guided-notes-grid"><div class="notes-field"><label for="guided-notes"><span>Preliminary Notes</span></label><textarea id="guided-notes" placeholder="Fast shorthand: uncertain instrument, rhythm detail or what to check on the narration pass." oninput="updateListeningNotes(this.value)">'+esc(sec.listeningNotes||'')+'</textarea></div>'
-      +'<div class="evidence-controls guided-controls">'
-      +'<div class="confidence-box"><label for="guided-energy">Energy</label><select class="confidence-select" id="guided-energy" onchange="setEvidenceEnergy(this.value)">'+ENERGY_MOVEMENT_OPTIONS.map(function(value){return '<option value="'+esc(value)+'" '+(sec.listeningEvidence.energy===value?'selected':'')+'>'+(value||'Not captured')+'</option>'}).join('')+'</select></div>'
-      +'<div class="confidence-box"><label for="guided-confidence">Confidence</label><select class="confidence-select" id="guided-confidence" onchange="setListeningConfidence(this.value)"><option value="certain" '+(sec.listeningConfidence==='certain'?'selected':'')+'>Certain</option><option value="general" '+(sec.listeningConfidence==='general'?'selected':'')+'>General</option><option value="verify-later" '+(sec.listeningConfidence==='verify-later'?'selected':'')+'>Verify Later</option><option value="role-only" '+(sec.listeningConfidence==='role-only'?'selected':'')+'>Role Only</option></select></div>'
-      +'<label class="review-later-toggle"><input type="checkbox" '+(sec.listeningEvidence.review_later?'checked':'')+' onchange="setEvidenceReviewLater(this.checked)"> Review later</label></div></div>';
-  }else{
-    var category=evidenceCategory(step.key);
-    var safeguard=step.key==='groove'?'<div class="guided-safeguard">Feel change is not a tempo change unless verified. In sparse music, check bass, keys or repeated motion for pulse.</div>':(step.key==='harmony'?'<div class="guided-safeguard">Describe tonal character here; verify exact Key or Chords separately.</div>':(step.key==='motif'?'<div class="guided-safeguard">Skip freely unless a hook, riff or motif stands out. Prefer source + movement or function.</div>':(step.key==='sources'?'<div class="guided-safeguard">Tag sounds that are clearly audible here. Copying is only a starting point.</div>':'')));
-    content=safeguard+selectedEvidenceChips(sec,step.key)+'<div class="guided-term-grid">'+category.terms.slice(0,12).map(function(term){
-      return '<button class="vocab-chip'+evidenceActiveChip(sec,step.key,term)+'" onclick="toggleEvidenceCue(\''+step.key+'\',\''+term+'\')">'+esc(term)+'</button>';
-    }).join('')+'</div><button class="btn-sm guided-more" onclick="openEvidenceTerms(\''+step.key+'\')">Search / Custom Terms</button>';
-  }
-  var evidenceCount=EVIDENCE_CATEGORIES.reduce(function(total,category){return total+sec.listeningEvidence[category.key].length},0);
-  var overlay=evidenceOverlay==='terms'?evidenceTermsOverlay(sec):'';
-  return '<div class="guided-shell">'
-    +'<div class="guided-top"><div><span class="guided-kicker">Guided Section Listen</span><strong>Section '+(i+1)+' - '+esc(sec.label||'Section')+'</strong><small>Optional prompts. Capture only what helps the annotation.</small></div><div class="guided-top-actions"><button class="btn-sm" onclick="playSectionButton('+i+')">Play Section</button>'+(previous>=0?'<button class="btn-sm" onclick="baseSectionOnEarlier('+i+','+previous+')">Copy / Adapt S'+(previous+1)+'</button>':'')+'</div></div>'
-    +'<div class="guided-progress">'+stepNav+'</div>'
-    +'<div class="guided-card"><div class="guided-question"><span>Step '+(guidedListenStep+1)+' of '+GUIDED_LISTEN_STEPS.length+'</span><strong>'+esc(step.prompt)+'</strong><p>'+esc(step.hint)+'</p></div><div class="guided-answer">'+content+'</div></div>'
-    +'<div class="guided-footer"><span>'+(evidenceCount?evidenceCount+' evidence cue'+(evidenceCount===1?'':'s')+' captured':'No evidence required - skip freely')+'</span><button class="btn-sm" onclick="advanceGuidedListen(-1)" '+(guidedListenStep===0?'disabled':'')+'>Back</button><button class="btn-sm" onclick="advanceGuidedListen(1)">'+(guidedListenStep===GUIDED_LISTEN_STEPS.length-1?'Finish':'Skip / Next')+'</button><button class="btn-sm ready-btn" onclick="finishGuidedListen(true)">Finish + Next Section</button></div>'
-    +overlay+'</div>';
-}
-
-function setGuidedListenStep(step){
-  guidedListenStep=Math.max(0,Math.min(GUIDED_LISTEN_STEPS.length-1,Number(step)||0));
-  evidenceOverlay='';
-  evidenceSearch='';
+function toggleGuideStage(index){
+  expandedGuideStage=expandedGuideStage===index?-1:index;
   renderSectionDetail(selectedSection);
-}
-
-function advanceGuidedListen(delta){
-  var next=guidedListenStep+delta;
-  if(next>=GUIDED_LISTEN_STEPS.length){finishGuidedListen(false);return}
-  setGuidedListenStep(next);
-}
-
-function finishGuidedListen(nextSection){
-  evidenceOverlay='';
-  evidenceSearch='';
-  if(nextSection&&selectedSection<sections.length-1){
-    selectedSection++;
-    guidedListenStep=0;
-    renderSections();
-    renderSectionDetail(selectedSection);
-    focusSectionInList(selectedSection,false);
-    setProcessStatus('Guided evidence saved. Continue with Section '+(selectedSection+1)+'.','ok');
-    return;
-  }
-  guidedListenStep=0;
-  renderSectionDetail(selectedSection);
-  setProcessStatus('Guided evidence saved for Section '+(selectedSection+1)+'. Copy Section Info when your map is ready.','ok');
-}
-
-function evidenceTermsOverlay(sec){
-  var category=evidenceCategory(activeEvidenceCategory);
-  var query=String(evidenceSearch||'').toLowerCase().trim();
-  var categories=EVIDENCE_CATEGORIES.map(function(item){
-    return '<button class="evidence-tab'+(item.key===category.key?' active':'')+'" onclick="setEvidenceCategory(\''+item.key+'\')">'+esc(item.title)+'</button>';
-  }).join('');
-  var entries=[];
-  (query?EVIDENCE_CATEGORIES:[category]).forEach(function(item){
-    item.terms.forEach(function(term){
-      if(!query||term.toLowerCase().indexOf(query)>=0||item.title.toLowerCase().indexOf(query)>=0)entries.push({category:item,term:term});
-    });
-  });
-  return '<div class="evidence-overlay"><div class="evidence-overlay-head"><div><strong>Evidence Terms</strong><small>Search or add custom listening language. Exported Instruments and Section Type remain dashboard-controlled.</small></div><button class="btn-sm" onclick="closeEvidenceOverlay()">Close</button></div>'
-    +'<div class="evidence-search-row"><input id="evidence-search" type="search" placeholder="Search terms: lift, vocal, implied, ending..." value="'+esc(evidenceSearch)+'" oninput="setEvidenceSearch(this.value)"><div class="evidence-custom"><input id="custom-evidence-term" type="text" placeholder="Custom '+esc(category.title)+' term"><button class="btn-sm" onclick="addCustomEvidenceTerm()">Add</button></div></div>'
-    +'<div class="evidence-tabs">'+categories+'</div>'
-    +'<div class="evidence-term-results">'+(entries.length?entries.map(function(entry){
-      return '<button class="vocab-chip'+evidenceActiveChip(sec,entry.category.key,entry.term)+'" onclick="toggleEvidenceCue(\''+entry.category.key+'\',\''+entry.term+'\')"><span>'+esc(entry.term)+'</span><small>'+esc(entry.category.title)+'</small></button>';
-    }).join(''):'<span class="evidence-empty">No matching terms. Add a custom observation above.</span>')+'</div></div>';
-}
-
-function evidenceReviewOverlay(){
-  var prompts=evidenceReviewPrompts();
-  var content=prompts.length?prompts.map(function(prompt){return prompt.html}).join(''):'<div class="review-clear"><strong>Ready for a provisional pass.</strong><p>No high-value gaps found. Empty evidence categories are acceptable.</p></div>';
-  return '<div class="evidence-overlay review-overlay"><div class="evidence-overlay-head"><div><strong>Evidence Review</strong><small>Only meaningful gaps are shown. Skip anything that would slow your first pass.</small></div><button class="btn-sm" onclick="closeEvidenceOverlay()">Close</button></div><div class="review-items">'+content+'</div></div>';
-}
-
-function evidenceReviewPrompts(){
-  var prompts=[],firstByLabel={};
-  sections.forEach(function(raw,index){
-    var sec=normalizeSection(raw),label=String(sec.label||'').toLowerCase();
-    if(firstByLabel[label]!=null&&label&&label!=='section'){
-      var source=firstByLabel[label]+1,target=index+1;
-      prompts.push({html:'<div class="review-item"><strong>S'+target+' '+esc(sec.label)+' returns</strong><p>Base its evidence and provisional draft on S'+source+', then edit only what changed.</p><button class="btn-sm" onclick="baseSectionOnEarlier('+index+','+firstByLabel[label]+')">Copy / Adapt S'+source+'</button></div>'});
-    }else if(label)firstByLabel[label]=index;
-    if(sec.listeningEvidence.review_later||sec.listeningConfidence==='verify-later'){
-      prompts.push({html:'<div class="review-item warn"><strong>S'+(index+1)+' marked for review</strong><p>Confirm the uncertain listening evidence on the next pass, or leave it cautious for ChatGPT.</p><button class="btn-sm" onclick="selectReviewSection('+index+')">Open Section</button></div>'});
-    }
-  });
-  if(sections.length){
-    var finalSec=normalizeSection(sections[sections.length-1]);
-    var ending=finalSec.listeningEvidence.transition.join(' ')+' '+finalSec.listeningNotes+' '+finalSec.description;
-    if(!/\b(fade|final hit|hard cut|end|ending|resolve|sustain|reverb tail|silence|stop|linger)\b/i.test(ending)){
-      prompts.push({html:'<div class="review-item error"><strong>Final ending not captured</strong><p>Add how the final section closes before your provisional pass.</p><button class="btn-sm" onclick="openEvidenceTermsForSection('+(sections.length-1)+',\'transition\')">Add Ending Cue</button></div>'});
-    }
-  }
-  return prompts;
 }
 
 function updateSelectedField(field,value){
   if(selectedSection<0||!sections[selectedSection])return;
   sections[selectedSection][field]=value;
   if(field==='instruments')sections[selectedSection].instrumentDraft=false;
-  queueFieldRequest('sections.S'+(selectedSection+1)+'.'+field,'refine');
+  if(String(value||'').trim())queueFieldRequest('sections.S'+(selectedSection+1)+'.'+field,'refine');
   updateRefinementChunk();
 }
 function toggleSectionPalette(name){
@@ -3004,15 +2454,18 @@ function insertSectionTag(field,term){
   renderSectionDetail(selectedSection);updateRefinementChunk();
 }
 
-function copyPreviousInstrumentsAsDraft(i){
-  if(!sections[i]||!sections[i-1])return;
-  var value=String(sections[i-1].instruments||'').trim();
-  if(!value){setProcessStatus('The previous section has no instrument tags to adapt.','warn');return}
-  pushUndo('Copy previous instrument tags');
-  sections[i].instruments=value;
-  sections[i].instrumentDraft=true;
+function copySectionInstrumentsAsDraft(i){
+  if(!sections[i])return;
+  var value=sections[i].instruments||'';
+  if(!value.trim()){setProcessStatus('Add instruments to this section before using it as a draft.','warn');return}
+  pushUndo('Use instruments as draft');
+  sections.forEach(function(sec,idx){
+    if(idx===i)return;
+    sec.instruments=value;
+    sec.instrumentDraft=true;
+  });
   renderSections();renderWaveform();renderSectionDetail(selectedSection);updateRefinementChunk();
-  setProcessStatus('Previous tags copied into this section as a draft. Remove sounds that drop out and add new audible entries.','warn');
+  setProcessStatus('Instrument draft copied. Verify each section and remove sounds that are not audible there.','warn');
 }
 function verifySectionInstruments(i){
   if(!sections[i])return;
@@ -3030,133 +2483,26 @@ function setListeningConfidence(value){
   sections[selectedSection].listeningConfidence=value||'general';
   updateRefinementChunk();
 }
-function setEvidenceEnergy(value){
+function addListeningCue(term){
   if(selectedSection<0||!sections[selectedSection])return;
-  sections[selectedSection]=normalizeSection(sections[selectedSection]);
-  sections[selectedSection].listeningEvidence.energy=value||'';
+  var sec=sections[selectedSection];
+  var note=(sec.listeningNotes||'').trim();
+  sec.listeningNotes=note?(note.replace(/[.;]?\s*$/,'; ') + term):term;
+  renderSectionDetail(selectedSection);
   updateRefinementChunk();
 }
-function setEvidenceReviewLater(value){
+function clearListeningNotes(){
   if(selectedSection<0||!sections[selectedSection])return;
-  sections[selectedSection]=normalizeSection(sections[selectedSection]);
-  sections[selectedSection].listeningEvidence.review_later=!!value;
-  if(value)sections[selectedSection].listeningConfidence='verify-later';
+  pushUndo('Clear listening notes');
+  sections[selectedSection].listeningNotes='';
   renderSectionDetail(selectedSection);updateRefinementChunk();
-}
-function toggleEvidenceCue(key,term){
-  if(selectedSection<0||!sections[selectedSection])return;
-  var sec=sections[selectedSection]=normalizeSection(sections[selectedSection]);
-  var values=sec.listeningEvidence[key]||[];
-  var index=values.indexOf(term);
-  pushUndo((index>=0?'Remove':'Add')+' listening evidence');
-  if(index>=0)values.splice(index,1);else values.push(term);
-  renderSectionDetail(selectedSection);updateRefinementChunk();
-}
-function removeEvidenceCue(key,index){
-  if(selectedSection<0||!sections[selectedSection])return;
-  var sec=sections[selectedSection]=normalizeSection(sections[selectedSection]);
-  if(!sec.listeningEvidence[key]||!sec.listeningEvidence[key][index])return;
-  pushUndo('Remove listening evidence');
-  sec.listeningEvidence[key].splice(index,1);
-  renderSectionDetail(selectedSection);updateRefinementChunk();
-}
-function openEvidenceTerms(key,focusCustom){
-  activeEvidenceCategory=key||'foreground';
-  evidenceOverlay='terms';
-  evidenceSearch='';
-  renderSectionDetail(selectedSection);
-  if(focusCustom)setTimeout(function(){var input=document.getElementById('custom-evidence-term');if(input)input.focus()},20);
-}
-function openEvidenceTermsForSection(index,key){
-  selectedSection=index;
-  sectionDetailMode='evidence';
-  evidenceOverlay='terms';
-  activeEvidenceCategory=key||'transition';
-  evidenceSearch='';
-  renderSections();renderSectionDetail(selectedSection);
-}
-function setEvidenceCategory(key){
-  activeEvidenceCategory=key;
-  evidenceSearch='';
-  renderSectionDetail(selectedSection);
-}
-function setEvidenceSearch(value){
-  evidenceSearch=value||'';
-  renderSectionDetail(selectedSection);
-  setTimeout(function(){
-    var search=document.getElementById('evidence-search');
-    if(search){search.focus();search.setSelectionRange(search.value.length,search.value.length)}
-  },0);
-}
-function addCustomEvidenceTerm(){
-  if(selectedSection<0||!sections[selectedSection])return;
-  var input=document.getElementById('custom-evidence-term'),term=input?input.value.trim():'';
-  if(!term)return;
-  var sec=sections[selectedSection]=normalizeSection(sections[selectedSection]);
-  if(sec.listeningEvidence[activeEvidenceCategory].indexOf(term)<0){
-    pushUndo('Add custom listening evidence');
-    sec.listeningEvidence[activeEvidenceCategory].push(term);
-  }
-  renderSectionDetail(selectedSection);updateRefinementChunk();
-}
-function closeEvidenceOverlay(){
-  evidenceOverlay='';
-  evidenceSearch='';
-  renderSectionDetail(selectedSection);
-}
-function openEvidenceReview(){
-  evidenceOverlay='review';
-  renderSectionDetail(selectedSection);
-}
-function selectReviewSection(index){
-  selectedSection=index;
-  closeEvidenceOverlay();
-  renderSections();renderSectionDetail(selectedSection);
-}
-function baseSectionOnEarlier(target,source){
-  if(!sections[target]||!sections[source])return;
-  pushUndo('Copy and adapt repeated section evidence');
-  var from=normalizeSection(sections[source]),to=normalizeSection(sections[target]);
-  to.listeningEvidence=deepClone(from.listeningEvidence);
-  to.listeningNotes=from.listeningNotes||'';
-  to.listeningConfidence=from.listeningConfidence||'general';
-  if(!String(to.description||'').trim())to.description=from.description||'';
-  if(!String(to.vibeTags||'').trim())to.vibeTags=from.vibeTags||'';
-  if(!String(to.melody||'').trim())to.melody=from.melody||'';
-  sections[target]=to;
-  selectedSection=target;
-  evidenceOverlay='';
-  renderSections();renderSectionDetail(selectedSection);updateRefinementChunk();
-  setProcessStatus('Copied earlier '+to.label+' evidence and draft text. Edit what changes in this return.','ok');
-}
-function clearListeningEvidence(){
-  if(selectedSection<0||!sections[selectedSection])return;
-  pushUndo('Clear listening evidence');
-  var sec=sections[selectedSection]=normalizeSection(sections[selectedSection]);
-  sec.listeningNotes='';
-  sec.listeningConfidence='general';
-  sec.listeningEvidence=normaliseListeningEvidence(null);
-  evidenceOverlay='';
-  renderSectionDetail(selectedSection);updateRefinementChunk();
-}
-function evidenceTextSummary(sec){
-  sec=normalizeSection(sec);
-  var parts=[];
-  EVIDENCE_CATEGORIES.forEach(function(category){
-    if(sec.listeningEvidence[category.key].length)parts.push(category.title+': '+sec.listeningEvidence[category.key].join(', '));
-  });
-  if(sec.listeningEvidence.energy)parts.push('Energy: '+sec.listeningEvidence.energy);
-  if(sec.listeningNotes)parts.push('Preliminary Notes: '+sec.listeningNotes);
-  parts.push('Confidence: '+(sec.listeningConfidence||'general'));
-  if(sec.listeningEvidence.review_later)parts.push('Review later');
-  return parts.join('; ');
 }
 function sendListeningNotesToRefinement(){
   if(selectedSection<0||!sections[selectedSection])return;
-  var sec=sections[selectedSection]=normalizeSection(sections[selectedSection]);
-  if(!evidenceHasContent(sec)){setProcessStatus('Capture a useful note or evidence term before queuing this refinement.','warn');return}
+  var sec=sections[selectedSection];
+  if(!String(sec.listeningNotes||'').trim()){setProcessStatus('Add listening evidence before requesting a refinement.','warn');return}
   var target='sections.S'+(selectedSection+1)+'.description';
-  var instruction='Use this section-linked listening evidence as primary support: '+evidenceTextSummary(sec)+'. Write a foreground-first standalone narrative description explaining the important change and listener effect. Update section-specific Instruments only for sounds clearly audible here, and keep Vibe Tags grounded in feeling rather than instrument assumptions. Include tonal colour or rhythmic motion only when it helps define this section. Treat half-time or double-time as feel, not a tempo change, unless verified. Melody is optional: add it only for a clear hook, riff or motif, naming its source and movement or function without duplicating narration. Do not force every cue into prose or turn uncertainty into fact.';
+  var instruction='Use my listening notes as primary evidence. Revise this section description foreground-first and update instruments, vibe tags or Melody only where the evidence supports it. Confidence is '+(sec.listeningConfidence||'general')+'; do not over-specify uncertain sounds.';
   pushUndo('Queue guided refinement');
   queueFieldRequest(target,'refine',instruction);
   renderSectionDetail(selectedSection);updateRefinementChunk();
@@ -3176,7 +2522,7 @@ function renderGlobalFields(){
 function globalFieldHtml(idx){
   var name=GLOBAL_FIELDS[idx];
   var shortField=name==='Tempo'||name==='Key'||name==='Chords';
-  var evidence=(name==='Key'||name==='Chords')?'<label class="confidence-check" title="Only transfer this when verified by listening, guitar, piano or a checked reference"><input type="checkbox" '+((name==='Key'?keyConfirmed:chordsConfirmed)?'checked':'')+' onchange="setGlobalConfidence(\''+name+'\',this.checked)"> verified</label>':'';
+  var evidence=(name==='Key'||name==='Chords')?'<label class="confidence-check" title="Only transfer this when you are confident from listening"><input type="checkbox" '+((name==='Key'?keyConfirmed:chordsConfirmed)?'checked':'')+' onchange="setGlobalConfidence(\''+name+'\',this.checked)"> heard</label>':'';
   var terms=FIELD_VOCAB[name]?'<button class="btn-sm" onclick="toggleGlobalVocabulary(\''+esc(name)+'\')">Terms</button>':'';
   var editor='';
   if(name==='Tempo'){
@@ -3188,8 +2534,7 @@ function globalFieldHtml(idx){
   }else if(shortField){
     editor='<input id="global-field-'+idx+'" type="text" placeholder="'+(name==='Key'?'Leave blank if uncertain':'Only when clearly heard')+'" value="'+esc(globalAnalysis[name]||'')+'" oninput="updateGlobalField(\''+esc(name)+'\',this.value)"/>';
   }else{
-    var placeholder=GLOBAL_PROMPTS[name]||'Answer only this field in concise, evidence-led language.';
-    editor='<textarea id="global-field-'+idx+'" rows="4" placeholder="'+esc(placeholder)+'" oninput="updateGlobalField(\''+esc(name)+'\',this.value)">'+esc(globalAnalysis[name]||'')+'</textarea>';
+    editor='<textarea id="global-field-'+idx+'" rows="4" placeholder="Paste or write this field..." oninput="updateGlobalField(\''+esc(name)+'\',this.value)">'+esc(globalAnalysis[name]||'')+'</textarea>';
   }
   return '<div class="notes-field global-field '+(shortField?'short-global ':'')+((globalAnalysis[name]||'').trim()?'complete':'')+'">'
     +'<div class="global-title-row"><label for="global-field-'+idx+'">'+(idx+1)+'. '+esc(name)+'</label>'
@@ -3199,7 +2544,7 @@ function globalFieldHtml(idx){
 }
 function updateGlobalField(name,value){
   globalAnalysis[name]=value;
-  queueFieldRequest('global_fields.'+name,'refine');
+  if(String(value||'').trim())queueFieldRequest('global_fields.'+name,'refine');
   var idx=GLOBAL_FIELDS.indexOf(name),el=idx>=0?document.getElementById('global-field-'+idx):null;
   if(el&&el.closest)el.closest('.global-field').classList.toggle('complete',!!String(value||'').trim());
   renderGlobalProgress();updateRefinementChunk();
@@ -3322,12 +2667,6 @@ function addGlobalBulkRequest(action){
 
 function defaultRequestInstruction(target,action){
   if(action==='concise')return 'Make this field more concise while preserving concrete musical detail.';
-  if(/\.instruments$/.test(target))return 'Refine this section-specific instrument list using only clearly audible, dashboard-supported tags. Remove any copied sound that is absent here.';
-  if(/\.vibeTags$/.test(target))return 'Refine these Vibe Tags as emotional impressions supported by the listening evidence; do not infer a mood only from an instrument or use genre labels.';
-  if(/\.melody$/.test(target))return 'Refine Melody only if a memorable hook, riff or motif stands out. Name the source and movement or function; otherwise leave it blank.';
-  if(target==='global_fields.Dominant Instruments')return 'Keep only dominant instrumental sources for the overall track; route vocal qualities to Vocal Expression.';
-  if(target==='global_fields.Harmony')return 'Describe broad harmonic colour or function without inventing exact progressions, key or chords.';
-  if(target==='global_fields.Rhythm & Groove')return 'Describe the primary timekeeper and feel. Treat half-time or double-time as feel unless a tempo change is verified.';
   return 'Refine this field using the latest pass context and my audible evidence; make it natural and dashboard-ready without guessing unsupported specifics.';
 }
 
@@ -3365,7 +2704,7 @@ function trackStarterSet(){
       duration:msToTime(currentTrack.duration_ms),
       spotify_url:currentTrack.external_urls?currentTrack.external_urls.spotify:''
     },
-    workflow:'Research metadata and provide a brief pre-listening cue plus 3-4 practical genre/era/scene tags. Wait for my fixed section map and optional listening evidence before drafting sections. The first section begins at 0:00; boundaries represent meaningful functional changes, not every new layer. Use tonal, rhythmic and melodic observations selectively; never infer a tempo change from half-time or double-time feel, and never fill Key or Chords unless verified.',
+    workflow:'Research metadata and provide a brief pre-listening cue and 3-4 genre/scene tags. Wait for my fixed section map and narration before writing section annotations.',
     golden_rules:GOLDEN_RULES.slice()
   };
 }
@@ -3383,7 +2722,7 @@ function currentPassChunk(title){
     golden_rules:GOLDEN_RULES.slice(),
     sections:sections.map(function(sec,i){
       sec=normalizeSection(sec);
-      return {id:'S'+(i+1),label:sec.label||'',instruments:sec.instruments||'',vibe_tags:sec.vibeTags||'',description:sec.description||'',melody:sec.melody||'',listening_evidence:deepClone(sec.listeningEvidence),preliminary_notes:sec.listeningNotes||'',listening_notes:sec.listeningNotes||'',listening_confidence:sec.listeningConfidence||'general',verify_instruments:!!sec.instrumentDraft};
+      return {id:'S'+(i+1),label:sec.label||'',instruments:sec.instruments||'',vibe_tags:sec.vibeTags||'',description:sec.description||'',melody:sec.melody||'',listening_notes:sec.listeningNotes||'',listening_confidence:sec.listeningConfidence||'general',verify_instruments:!!sec.instrumentDraft};
     }),
     global_fields:{},
     field_requests:fieldRequests.slice(),
@@ -3595,25 +2934,20 @@ function goldenQaIssues(){
   if(!sections.length||Math.abs(Number(sections[0].start)||0)>.01)add('error','First timestamp','The first section must start at 0:00.');
   if(!String(globalAnalysis.Tempo||'').trim())add('error','Tempo missing','BeatPulse requires Tempo. Choose the closest clearly supported tempo range.');
   else if(TEMPO_OPTIONS.indexOf(globalAnalysis.Tempo)<0)add('warn','Tempo needs review','Use one dashboard tempo range: Very Slow, Slow, Mid-tempo, Upbeat, Fast or Very Fast.');
-  REQUIRED_GLOBAL_FIELDS.forEach(function(name){
-    if(!String(globalAnalysis[name]||'').trim())add('error',name+' missing','Complete this required global field before transferring the annotation.');
-  });
   var returnPattern=/\b(same as|similar to|repeats?|as before|as previous|same instruments?)\b/i;
   var endingPattern=/\b(fade|fades|ending|ends|final hit|hard cut|cuts? to silence|sustained?|held|resolve|dissolve|reverb tail|silence|stops?)\b/i;
   var vibeOpposites=[['calm','aggressive'],['relaxed','tense'],['bright','dark'],['joyful','sombre'],['intimate','epic']];
   var instrumentCounts={};
   sections.forEach(function(raw,i){
     var sec=normalizeSection(raw),n='Section '+(i+1);
-    if(!isDashboardSectionType(sec.label))add('error',n+' section type','Choose a dashboard-approved Section Type instead of "'+(sec.label||'')+'".');
     if(!String(sec.description||'').trim())add('error',n+' description missing','Every section needs a complete, standalone narrative description.');
     if(returnPattern.test(sec.description||''))add('error',n+' refers backward','Restate returning material independently instead of using same/repeats language.');
-    if(/\b(guitar,?\s*bass|bass,?\s*drums|instruments? (?:play|continue|remain|stay)|the beat continues|nice (?:piano|guitar|vocals?))\b/i.test(sec.description||''))add('warn',n+' may be inventory-only','Describe the foreground element, notable change or musical role rather than listing ordinary sounds.');
     if(!String(sec.instruments||'').trim())add('warn',n+' instruments empty','Tag only instruments clearly audible in this section.');
     splitBridgeTags(sec.instruments).forEach(function(tag){
       var exact=APPROVED_INSTRUMENT_TAGS.some(function(allowed){return allowed.toLowerCase()===tag.toLowerCase()});
       if(!exact){
         var suggested=INSTRUMENT_NORMALISATIONS[tag.toLowerCase()];
-        add('error',n+' instrument tag','Replace "'+tag+'" with a dashboard-approved instrument tag before transfer.'+(suggested?' Suggested tag: '+suggested+'.':''));
+        add('warn',n+' instrument tag','Review "'+tag+'" against dashboard-approved tags.'+(suggested?' Suggested tag: '+suggested+'.':''));
       }
     });
     if(!String(sec.vibeTags||'').trim())add('warn',n+' vibe tags empty','Add accurate mood terms without using genre labels.');
@@ -3621,15 +2955,8 @@ function goldenQaIssues(){
     GENRE_VIBE_TERMS.forEach(function(term){if(new RegExp('\\b'+term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i').test(vibes))add('warn',n+' genre-like vibe tag','Review "'+term+'"; genre normally belongs in Genre / Era / Scene, not section vibe tags.')});
     vibeOpposites.forEach(function(pair){if(vibes.indexOf(pair[0])>=0&&vibes.indexOf(pair[1])>=0)add('warn',n+' conflicting vibes','Confirm that "'+pair[0]+'" and "'+pair[1]+'" are both defensible in this section.')});
     if(sec.instrumentDraft)add('warn',n+' instruments unverified','This instrument list was copied as a draft. Verify it against what is audible.');
-    if(sec.listeningEvidence.review_later&&(!String(sec.description||'').trim()||sec.listeningConfidence==='verify-later'))add('warn',n+' evidence still marked for review','Resolve or deliberately retain cautious wording for the listening evidence you marked for review.');
-    if(String(sec.melody||'').trim()){
-      if(/\b(nice|good|catchy)\s+melod(?:y|ic)\b/i.test(sec.melody)||/^\s*(melody|motif|riff)\s*$/i.test(sec.melody))add('warn',n+' melody is vague','When Melody is useful, name the source and its movement or musical function.');
-      if(normalizeKey(sec.melody)===normalizeKey(sec.description))add('warn',n+' melody duplicates narration','Use Melody only for the distinct hook, riff or movement; leave arrangement and energy in the description.');
-      if(!/\b(vocal|voice|bass|piano|key|keyboard|synth|guitar|flute|sax|violin|strings?|lead)\b/i.test(sec.melody))add('warn',n+' melody source missing','Name what performs the melodic idea, such as vocal, bass, piano, synth or guitar.');
-    }
     var instrumentKey=String(sec.instruments||'').toLowerCase().replace(/\s+/g,' ').trim();
     if(instrumentKey)instrumentCounts[instrumentKey]=(instrumentCounts[instrumentKey]||0)+1;
-    if(Number(sec.duration)<5&&normalizeKey(sec.label)!=='pause')add('warn',n+' is very short','Confirm that this boundary marks a meaningful functional change rather than a small layer entry.');
     if(Number(sec.duration)>120)add('warn',n+' is long','Review whether a major musical boundary was missed in this '+Math.round(sec.duration)+' second section.');
   });
   if(sections.length&& !endingPattern.test(String(sections[sections.length-1].description||'')))add('error','Ending not described','The final section must state how the track ends, fades, cuts, sustains or resolves.');
@@ -3641,28 +2968,11 @@ function goldenQaIssues(){
     if(String(globalAnalysis['Lyrical Meaning / Evocation']||'').trim().toUpperCase()!=='N/A')add('error','Instrumental lyrical field','Lyrical Meaning / Evocation should be N/A for an instrumental track.');
   }
   var harmony=String(globalAnalysis.Harmony||'');
-  var rhythm=String(globalAnalysis['Rhythm & Groove']||'');
-  var rhythmContext=rhythm+' '+sections.map(function(raw){var sec=normalizeSection(raw);return String(sec.description||'')+' '+sec.listeningEvidence.groove.join(' ')}).join(' ');
-  if(/\btempo (?:slows?(?: down)?|speeds?(?: up)?|changes?|increases?|decreases?|gets? (?:faster|slower))\b/i.test(rhythmContext)){
-    add('warn','Tempo versus feel','Verify that the track truly changes tempo. Half-time, double-time, snare spacing and subdivisions normally change feel while tempo stays fixed.');
-  }
-  if(/\bsyncopated\b/i.test(rhythm)&&!/\b(kick|hat|hi-hat|snare|bass|guitar|chord|pulse|accent|percussion|vocal)\b/i.test(rhythm)){
-    add('warn','Rhythm specificity','If syncopation defines the groove, state what carries it, such as kick, hats, bass, chords or vocal phrasing.');
-  }
-  if(/\bno groove\b/i.test(rhythm)){
-    add('warn','Timekeeper missing','Before writing "no groove", check whether guitar, piano, bass, strings, synth patterns or vocal phrasing carry the pulse.');
-  }
-  if(/\b(?:3\/4|6\/8|12\/8|changing metre|changing meter|alternating metre|alternating meter|hemiola)\b/i.test(rhythm)){
-    add('warn','Metre claim','Keep unusual metre or rhythmic-device language only when it is clearly supported by listening or verification.');
-  }
   if(/\b[ivIV]{1,4}(?:\s*[-=>]|(?:\s+to\s+))\s*[ivIV]{1,4}\b/.test(harmony)||/\b[IViv]+(?:7|maj|min)?\s*[-=>]\s*[IViv]+/.test(harmony))add('warn','Harmony specificity','Avoid Roman-numeral or exact progression language unless the dashboard explicitly requires it.');
-  if(String(globalAnalysis.Key||'').trim()&&!keyConfirmed)add('warn','Key not verified','Keep Key blank unless verified by listening, guitar, piano or a checked reference; otherwise mark it verified.');
-  if(String(globalAnalysis.Chords||'').trim()&&!chordsConfirmed)add('warn','Chords not verified','Keep Chords blank unless verified against playback; otherwise mark them verified.');
-  if(/\b(vocal|vocals|voice|rap|spoken word)\b/i.test(String(globalAnalysis['Dominant Instruments']||'')))add('warn','Dominant Instruments includes voices','Official guidance assigns voices to Vocal Expression; keep Dominant Instruments focused on instrumental sources unless a vocal texture is essential.');
+  if(String(globalAnalysis.Key||'').trim()&&!keyConfirmed)add('warn','Key not confirmed','Keep Key blank unless you confidently identified it from listening; otherwise mark it heard.');
+  if(String(globalAnalysis.Chords||'').trim()&&!chordsConfirmed)add('warn','Chords not confirmed','Keep Chords blank unless you confidently identified them from listening; otherwise mark them heard.');
   GLOBAL_FIELDS.forEach(function(name){
-    var limits={'Genre / Era / Scene':90,'Dominant Instruments':130,'Tempo':24,'Key':40,'Chords':120};
-    var limit=limits[name]||280;
-    if(String(globalAnalysis[name]||'').length>limit)add('warn',name+' is verbose','Keep this global field concise and focused on its own prompt.');
+    if(String(globalAnalysis[name]||'').length>420)add('warn',name+' is verbose','Keep global fields concise and focused on their prompt.');
   });
   var globalSeen={};
   GLOBAL_FIELDS.forEach(function(name){
@@ -3723,13 +3033,10 @@ function sectionInfoSet(){
         label:sec.label||'',
         start:formatTime(start),
         end:formatTime(end),
-        duration_seconds:Math.round((end-start)*10)/10,
-        listening_evidence:deepClone(normalizeSection(sec).listeningEvidence),
-        preliminary_notes:sec.listeningNotes||'',
-        confidence:sec.listeningConfidence||'general'
+        duration_seconds:Math.round((end-start)*10)/10
       };
     }),
-    instructions:'Return a provisional section-analyst-pass-v1 JSON import pass with pass_phase:"provisional_evidence" from this fixed timeline and my optional listening evidence. Keep IDs and marker times unchanged. Treat boundaries as functional changes, not every minor layer; quietly report any apparent section mismatch without changing markers. Draft standalone foreground-first descriptions from supported evidence only; missing categories mean not captured. Instruments must be audible in that section and use dashboard-supported tags; copied lists must be adapted. Vibe Tags describe emotional feel rather than inferred instrumentation. Incorporate Harmony / Tonal Feel only where useful and leave exact Key and Chords blank unless I supplied verified evidence. Incorporate Groove / Motion only where the timekeeper, feel shift, dropout or transition shapes the section; half-time and double-time are feel changes, not tempo changes unless verified. Melody is optional and only for a standout hook, riff or motif; name its source and movement or function without repeating the narration. Keep globals short and prompt-specific; Dominant Instruments should focus on instrumental sources because vocals have their own field. Include Tempo where supported and 3-4 practical genre/era/scene tags in global_fields["Genre / Era / Scene"]. My later narration will refine this provisional pass.',
+    instructions:'Use this section map as the fixed app timeline. Keep section IDs and marker times unchanged. Align my narration by order, time and audible content. Apply the golden rules included below. Return valid compact section-analyst-pass-v1 JSON for import, including Tempo where supported, optional Melody only for clear melodic events, and 3-4 genre/scene tags in global_fields["Genre / Era / Scene"].',
     golden_rules:GOLDEN_RULES.slice()
   };
 }
@@ -3738,7 +3045,7 @@ function sectionInfoText(info){
   if(!info)return '';
   var t=info.track||{};
   var lines=[
-    'CUELAB SECTION INFO',
+    'AURAL GRID SECTION INFO',
     'Track: '+(t.title||'')+' - '+(t.artist||''),
     'Album: '+(t.album||''),
     'Release: '+(t.release||''),
@@ -3748,14 +3055,6 @@ function sectionInfoText(info){
   ];
   (info.sections||[]).forEach(function(sec){
     lines.push(sec.id+' | '+sec.start+'-'+sec.end+' | '+(sec.label||'Section')+' | '+sec.duration_seconds+'s');
-    var evidence=normaliseListeningEvidence(sec.listening_evidence);
-    var detail=[];
-    EVIDENCE_CATEGORIES.forEach(function(category){if(evidence[category.key].length)detail.push(category.title+': '+evidence[category.key].join(', '))});
-    if(evidence.energy)detail.push('Energy: '+evidence.energy);
-    if(sec.preliminary_notes)detail.push('Preliminary Notes: '+sec.preliminary_notes);
-    if(sec.confidence&&sec.confidence!=='general')detail.push('Confidence: '+sec.confidence);
-    if(evidence.review_later)detail.push('Review later');
-    if(detail.length)lines.push('  Evidence | '+detail.join('; '));
   });
   lines.push('');
   lines.push('Instructions: '+info.instructions);
@@ -3765,17 +3064,14 @@ function sectionInfoText(info){
 
 function snapshotState(){
   return {
-    sections:deepClone(sections),
+    sections:sections.map(function(s){return Object.assign({},s)}),
     globalAnalysis:Object.assign({},globalAnalysis),
     fieldRequests:fieldRequests.map(function(r){return Object.assign({},r)}),
     listenFor:listenFor||'',
     instrumentalTrack:!!instrumentalTrack,
     keyConfirmed:!!keyConfirmed,
     chordsConfirmed:!!chordsConfirmed,
-    sectionCountNote:lastSectionCountNote,
-    sectionDetailMode:sectionDetailMode,
-    guidedListenStep:guidedListenStep,
-    listenForPanelOpen:!!listenForPanelOpen
+    sectionCountNote:lastSectionCountNote
   };
 }
 
@@ -3795,10 +3091,7 @@ function captureAppState(){
     selectedPassIndex:selectedPassIndex,
     fieldHistoryCursor:fieldHistoryCursor,
     selectedSection:selectedSection,
-    activeSection:activeSection,
-    sectionDetailMode:sectionDetailMode,
-    guidedListenStep:guidedListenStep,
-    listenForPanelOpen:!!listenForPanelOpen
+    activeSection:activeSection
   });
 }
 
@@ -3820,10 +3113,6 @@ function restoreAppState(state,opts){
   fieldHistoryCursor=Object.assign({},state.fieldHistoryCursor||{});
   selectedSection=state.selectedSection==null?selectedSection:state.selectedSection;
   activeSection=state.activeSection==null?activeSection:state.activeSection;
-  sectionDetailMode=state.sectionDetailMode==='wizard'?'wizard':(state.sectionDetailMode==='evidence'?'evidence':'final');
-  guidedListenStep=Math.max(0,Math.min(GUIDED_LISTEN_STEPS.length-1,Number(state.guidedListenStep)||0));
-  listenForPanelOpen=!!state.listenForPanelOpen;
-  evidenceOverlay='';
   if(!sections.length&&totalDurSecs)sections=initialSections(totalDurSecs);
   selectedSection=sections.length?Math.max(0,Math.min(selectedSection,sections.length-1)):-1;
   activeSection=sections.length?Math.max(-1,Math.min(activeSection,sections.length-1)):-1;
@@ -3930,7 +3219,7 @@ async function copySectionInfo(){
   if(!copied){setProcessStatus('Section info is ready, but clipboard access was blocked. Try Copy Section Info again.','warn');return}
   renderCockpitStatus();
   scheduleAutosave();
-  setProcessStatus('Section info and listening evidence copied. Paste it into ChatGPT for the provisional pass, then narrate to refine it.','ok');
+  setProcessStatus('Section info copied. Paste it into ChatGPT, then narrate the pass.','ok');
 }
 
 function compactJson(obj){return JSON.stringify(obj)}
@@ -3990,11 +3279,11 @@ function processInputChunk(){
     if(chunk.schema!=='section-analyst-pass-v1')throw new Error('Expected schema section-analyst-pass-v1.');
     var importKind=classifyPassChunk(chunk);
     var queuedBefore=fieldRequests.length;
-    pushUndo(importKind==='pre'?'Import pre-listening pass':(importKind==='provisional'?'Import provisional evidence pass':'Import full pass'));
+    pushUndo(importKind==='pre'?'Import pre-listening pass':'Import full pass');
     applyPassChunk(chunk);
     var resolvedCount=importKind==='full'?queuedBefore:0;
     if(resolvedCount)fieldRequests=[];
-    var passTitle=chunk.pass_title||(importKind==='pre'?'Pre-listening pass':(importKind==='provisional'?'Provisional evidence pass':('Pass '+(passHistory.length+1))));
+    var passTitle=chunk.pass_title||(importKind==='pre'?'Pre-listening pass':('Pass '+(passHistory.length+1)));
     var pass={title:passTitle,createdAt:passStamp(),raw:el.value,snapshot:snapshotState()};
     passHistory.push(pass);selectedPassIndex=passHistory.length-1;fieldHistoryCursor={};
     updateRefinementChunk();
@@ -4008,7 +3297,6 @@ function processInputChunk(){
 }
 
 function classifyPassChunk(chunk){
-  if(chunk.pass_phase==='provisional_evidence')return 'provisional';
   if(chunkHasSectionContent(chunk)||chunkHasNarrativeGlobalContent(chunk))return 'full';
   if(extractListenFor(chunk)||extractGenreField(chunk))return 'pre';
   return 'full';
@@ -4043,7 +3331,6 @@ function hasSectionCountMismatch(chunk){
 
 function importStatusMessage(kind,note,chunk,resolvedCount){
   if(kind==='pre')return 'Pre-listening pass applied. Listen For and genre are ready; mark sections, then copy Section Info.';
-  if(kind==='provisional')return 'Provisional evidence pass applied. Start your narration listen and refine only what needs stronger evidence.';
   var resolved=resolvedCount?' '+resolvedCount+' refinement requests resolved.':'';
   if(hasSectionCountMismatch(chunk))return processSectionCountNote(chunk)+resolved+' Review sections before exporting.';
   return 'Full pass applied.'+resolved+' Continue reviewing, then click Ready to Go when you are finished.';
@@ -4051,21 +3338,19 @@ function importStatusMessage(kind,note,chunk,resolvedCount){
 
 function applyPassChunk(chunk){
   var importedListenFor=extractListenFor(chunk);
-  if(importedListenFor){listenFor=importedListenFor;listenForPanelOpen=false;}
+  if(importedListenFor)listenFor=importedListenFor;
   var importedGenre=extractGenreField(chunk);
   var incoming=Array.isArray(chunk.sections)?chunk.sections:[];
   var count=Math.min(sections.length,incoming.length);
   for(var i=0;i<count;i++){
     var src=incoming[i]||{},dst=sections[i]=normalizeSection(sections[i]);
-    if(src.label)dst.label=dashboardSectionTypeLabel(src.label,dst.label);
+    if(src.label)dst.label=src.label;
     if(src.instruments!=null)dst.instruments=String(src.instruments);
     if(src.vibe_tags!=null)dst.vibeTags=String(src.vibe_tags);
     if(src.vibeTags!=null)dst.vibeTags=String(src.vibeTags);
     if(src.description!=null)dst.description=String(src.description);
     if(src.melody!=null)dst.melody=String(src.melody);
-    if(src.preliminary_notes!=null)dst.listeningNotes=String(src.preliminary_notes);
-    else if(src.listening_notes!=null)dst.listeningNotes=String(src.listening_notes);
-    if(src.listening_evidence&&typeof src.listening_evidence==='object')dst.listeningEvidence=normaliseListeningEvidence(src.listening_evidence);
+    if(src.listening_notes!=null)dst.listeningNotes=String(src.listening_notes);
     if(src.listening_confidence!=null)dst.listeningConfidence=String(src.listening_confidence);
     dst.instrumentDraft=!!src.verify_instruments;
   }
@@ -4085,7 +3370,7 @@ function applyPassChunk(chunk){
   }
   fieldRequests=Array.isArray(chunk.field_requests)?chunk.field_requests.map(function(r){return {target:r.target||'',action:r.action||'refine',instruction:r.instruction||defaultRequestInstruction(r.target||'',r.action||'refine')}}).filter(function(r){return r.target}):[];
   lastSectionCountNote=processSectionCountNote(chunk);
-  renderSections();renderWaveform();renderGlobalFields();renderSectionDetail(selectedSection);renderListenForPanel();
+  renderSections();renderWaveform();renderGlobalFields();renderSectionDetail(selectedSection);
 }
 
 function extractListenFor(chunk){
@@ -4212,6 +3497,10 @@ async function seekTo(ms){
     return spF('https://api.spotify.com/v1/me/player/seek?position_ms='+ms+'&device_id='+deviceId,{method:'PUT'})
   })
 }
+async function setVolume(v){
+  if(!player)return false;
+  return runPlayerCommand('Set volume',function(){return player.setVolume(v/100)})
+}
 function updateActiveSec(){
   if(!sections.length||!duration)return;
   var pos=positionMs/1000;var cur=-1;
@@ -4255,10 +3544,7 @@ document.addEventListener('keydown',activatePlaybackElement,{capture:true});
 document.addEventListener('click',function(e){
   var panel=document.getElementById('shortcut-help');
   if(panel&&!panel.hidden&&!e.target.closest('.user-block'))panel.hidden=true;
-  var themes=document.getElementById('theme-menu');
-  if(themes&&!themes.hidden&&!e.target.closest('.user-block'))themes.hidden=true;
 });
-applyAppearanceTheme(activeAppearanceTheme,true);
 initGlobalFields();
 init();
 </script>
