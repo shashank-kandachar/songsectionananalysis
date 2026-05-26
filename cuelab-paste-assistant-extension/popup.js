@@ -71,12 +71,29 @@ async function activeTab() {
 
 async function sendToTab(message) {
   const tab = await activeTab();
-  if (!tab || !tab.id) return;
+  if (!tab || !tab.id) return null;
   try {
-    await tabsSendMessage(tab.id, message);
+    return await tabsSendMessage(tab.id, message);
   } catch (error) {
-    statusEl.textContent = 'Open a Beatpulse assignment page, then try again.';
+    statusEl.textContent = 'Open a BeatPulse assignment page, then try again.';
+    return null;
   }
+}
+
+function downloadJsonFile(filename, payload) {
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1200);
+}
+
+function captureFilename(payload) {
+  const title = clean(payload && payload.track && payload.track.title) || 'beatpulse-completed-form';
+  const safe = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'beatpulse-completed-form';
+  return `${safe}-cuelab-capture.json`;
 }
 
 function normalizePayload(raw) {
@@ -173,6 +190,13 @@ document.querySelector('#add-rows').addEventListener('click', () => sendToTab({ 
 document.querySelector('#copy-current').addEventListener('click', () => sendToTab({ type: 'AGPA_COPY_CURRENT' }));
 document.querySelector('#next-item').addEventListener('click', () => sendToTab({ type: 'AGPA_NEXT' }));
 document.querySelector('#prev-item').addEventListener('click', () => sendToTab({ type: 'AGPA_PREV' }));
+document.querySelector('#capture-completed').addEventListener('click', async () => {
+  const response = await sendToTab({ type: 'AGPA_CAPTURE_COMPLETED' });
+  if (!response || !response.payload) return;
+  downloadJsonFile(captureFilename(response.payload), response.payload);
+  const sections = Array.isArray(response.payload.sections) ? response.payload.sections.length : 0;
+  statusEl.textContent = `Captured ${sections} section row${sections === 1 ? '' : 's'}. The JSON can be imported into CueLab.`;
+});
 document.querySelector('#clear-data').addEventListener('click', async () => {
   await storageRemove(['agpaPayload', 'agpaQueueIndex']);
   statusEl.textContent = 'Bridge data cleared.';

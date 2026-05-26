@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "CueLab Paste Assistant",
-  "version": "0.3.1",
-  "description": "Guided, Golden-Check-aware transfer assistant for moving reviewed CueLab bridge data into Beatpulse.",
+  "version": "0.4.0",
+  "description": "Precision Workbench transfer assistant for exact CueLab tag fills and BeatPulse form capture.",
   "permissions": [
     "activeTab",
     "clipboardRead",

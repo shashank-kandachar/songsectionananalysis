@@ -9,52 +9,70 @@
 <body>
   <main class="popup">
     <header class="top">
-      <div class="mark">CL</div>
+      <div class="mark"><span></span></div>
       <div>
         <h1>CueLab</h1>
-        <p>Guided Beatpulse paste queue</p>
+        <p>Paste Assistant</p>
       </div>
+      <span class="precision">Bridge</span>
     </header>
 
-    <section class="card">
-      <label class="file-label" for="bridge-file">Import Bridge JSON</label>
+    <section class="card import-card">
+      <div class="section-label">Transfer In</div>
+      <label class="file-label" for="bridge-file">Import CueLab Bridge JSON</label>
       <input id="bridge-file" type="file" accept=".json,application/json">
       <button id="import-clipboard" class="secondary-wide" type="button">Import From Clipboard</button>
       <div id="payload-status" class="status">No bridge loaded yet.</div>
     </section>
 
-    <section class="actions">
-      <button id="open-assistant" class="primary">Open Assistant</button>
-      <button id="fill-all" class="primary danger-safe">Fill All Visible Fields</button>
-      <button id="verify-transfer">Verify Transfer</button>
-      <button id="add-rows">Add Missing Rows</button>
-      <button id="copy-current">Copy Current</button>
-      <button id="next-item">Next</button>
-      <button id="prev-item">Previous</button>
-      <button id="clear-data" class="ghost">Clear Data</button>
+    <section class="card transfer-card">
+      <div class="section-label">BeatPulse Transfer</div>
+      <div class="actions primary-actions">
+        <button id="fill-all" class="primary">Fill Exact Matches</button>
+        <button id="verify-transfer" class="accent">Verify Transfer</button>
+      </div>
+      <div class="actions queue-actions">
+        <button id="open-assistant">Open Queue</button>
+        <button id="add-rows">Prepare Rows</button>
+        <button id="copy-current">Copy Current</button>
+        <button id="next-item">Next</button>
+        <button id="prev-item">Previous</button>
+        <button id="clear-data" class="ghost">Clear Data</button>
+      </div>
     </section>
 
-    <section class="settings">
-      <label>
-        <input id="auto-advance" type="checkbox" checked>
-        Auto-advance after paste
-      </label>
-      <label>
-        <input id="auto-copy" type="checkbox" checked>
-        Auto-copy next value after paste
-      </label>
-      <label>
-        <input id="auto-rows" type="checkbox" checked>
-        Auto-add missing rows
-      </label>
+    <section class="card capture-card">
+      <div>
+        <div class="section-label">Recovery</div>
+        <strong>Capture Completed Form</strong>
+        <p>Export the filled BeatPulse form for CueLab import or transfer testing.</p>
+      </div>
+      <button id="capture-completed" class="accent" type="button">Capture JSON</button>
     </section>
 
-    <section class="shortcuts">
-      <div><kbd>⌘⇧Y</kbd><span>Copy current</span></div>
-      <div><kbd>⌘⇧U</kbd><span>Next</span></div>
-      <div><kbd>⌘⇧J</kbd><span>Previous</span></div>
-      <div><kbd>⌘⇧L</kbd><span>Show / hide panel</span></div>
-    </section>
+    <details class="options">
+      <summary>Queue Settings &amp; Shortcuts</summary>
+      <section class="settings">
+        <label>
+          <input id="auto-advance" type="checkbox" checked>
+          Auto-advance after paste
+        </label>
+        <label>
+          <input id="auto-copy" type="checkbox" checked>
+          Auto-copy next value after paste
+        </label>
+        <label>
+          <input id="auto-rows" type="checkbox" checked>
+          Auto-add missing rows
+        </label>
+      </section>
+      <section class="shortcuts">
+        <div><kbd>⌘⇧Y</kbd><span>Copy current</span></div>
+        <div><kbd>⌘⇧U</kbd><span>Next</span></div>
+        <div><kbd>⌘⇧J</kbd><span>Previous</span></div>
+        <div><kbd>⌘⇧L</kbd><span>Show / hide panel</span></div>
+      </section>
+    </details>
   </main>
   <script src="popup.js"></script>
 </body>

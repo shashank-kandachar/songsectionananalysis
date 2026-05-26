@@ -334,7 +334,6 @@
     }
     el.dispatchEvent(new Event('input', { bubbles: true }));
     el.dispatchEvent(new Event('change', { bubbles: true }));
-    el.dispatchEvent(new Event('blur', { bubbles: true }));
     return true;
   }
 
@@ -350,10 +349,57 @@
     });
   }
 
-  function commitTag(input, tag) {
+  function waitMs(milliseconds) {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  }
+
+  function visibleElement(element) {
+    if (!element) return false;
+    const style = getComputedStyle(element);
+    const rect = element.getBoundingClientRect();
+    return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+  }
+
+  function exactTagCandidate(tag) {
+    const wanted = norm(tag);
+    const selectors = [
+      '[role="option"]',
+      '[role="listbox"] button',
+      '[role="listbox"] [data-value]',
+      '[role="listbox"] [data-radix-collection-item]',
+      '[cmdk-item]',
+      '[data-radix-collection-item]',
+      '[data-slot="command-item"]'
+    ];
+    const candidates = Array.from(document.querySelectorAll(selectors.join(','))).filter(visibleElement);
+    return candidates.find((candidate) => {
+      const value = candidate.getAttribute('data-value') || candidate.getAttribute('value') || candidate.textContent;
+      return norm(value) === wanted;
+    }) || null;
+  }
+
+  function clearTagQuery(input) {
+    if (!input) return;
+    setNativeValue(input, '');
+    input.dispatchEvent(new Event('blur', { bubbles: true }));
+  }
+
+  async function commitExactTag(input, tag) {
     if (!input || !clean(tag)) return false;
+    input.focus();
     setNativeValue(input, tag);
-    key(input, 'Enter');
+    await waitMs(180);
+    let candidate = exactTagCandidate(tag);
+    if (!candidate) {
+      await waitMs(220);
+      candidate = exactTagCandidate(tag);
+    }
+    if (!candidate) {
+      clearTagQuery(input);
+      return false;
+    }
+    candidate.click();
+    await waitMs(100);
     return true;
   }
 
@@ -386,8 +432,8 @@
       return { status: 'skipped', item };
     }
     if (item.kind === 'tag') {
-      commitTag(target, item.value);
-      await waitFrame();
+      const selected = await commitExactTag(target, item.value);
+      if (!selected) return { status: 'unsupported', item };
       const committedTarget = resolveTarget(item);
       if (!committedTarget || !itemAlreadyMatches(item, committedTarget)) {
         return { status: 'unconfirmed', item };
@@ -395,6 +441,7 @@
     } else {
       setNativeValue(target, item.value);
       if (item.target && item.target.suffix === 'section_type') key(target, 'Enter');
+      else target.dispatchEvent(new Event('blur', { bubbles: true }));
     }
     await markDone(item.id);
     return { status: 'filled', item };
@@ -544,6 +591,102 @@
     return document.querySelectorAll('input[id$="_start_time"]').length;
   }
 
+  function unique(values) {
+    return values.filter((value, index) => value && values.indexOf(value) === index);
+  }
+
+  function committedTags(input) {
+    if (!input || !input.parentElement) return [];
+    const container = input.parentElement;
+    const values = Array.from(container.children)
+      .filter((element) => element !== input && !element.contains(input) && visibleElement(element))
+      .map((element) => clean(element.textContent).replace(/[x×✕]\s*$/i, '').trim())
+      .filter((value) => value && norm(value) !== norm(input.placeholder || 'Add...'));
+    return unique(values);
+  }
+
+  function capturedTextField(label) {
+    const target = fieldByLabel(label, 'text');
+    return target ? targetValue(target) : '';
+  }
+
+  function capturedTagField(label, fallbackIndex) {
+    const target = fieldByLabel(label, 'tag') || globalTagInputs()[fallbackIndex] || null;
+    return committedTags(target);
+  }
+
+  function captureCompletedForm() {
+    const count = sectionCount();
+    const sections = [];
+    for (let index = 0; index < count; index += 1) {
+      const tags = tagInputsForRow(index);
+      sections.push({
+        id: `S${index + 1}`,
+        start: targetValue(byIdSuffix(index, 'start_time')),
+        label: targetValue(byIdSuffix(index, 'section_type')),
+        description: targetValue(byIdSuffix(index, 'narrative_description')),
+        instruments: committedTags(tags[0]).join(', '),
+        vibe_tags: committedTags(tags[1]).join(', '),
+        melody: targetValue(byIdSuffix(index, 'melody'))
+      });
+    }
+    const globalFields = {
+      'Tempo': capturedTextField('Tempo'),
+      'Key': capturedTextField('Key'),
+      'Setting / Occasion / Listening Context': capturedTextField('Setting'),
+      'Harmony': capturedTextField('Harmony'),
+      'Chords': capturedTextField('Chords'),
+      'Rhythm & Groove': capturedTextField('Rhythm & Groove'),
+      'Genre / Era / Scene': capturedTagField('Genre', 0).join(', '),
+      'Dominant Instruments': capturedTagField('Dominant Instruments', 1).join(', '),
+      'Playing Style': capturedTextField('Playing Style'),
+      'Wow Factor': capturedTextField('Wow Factor'),
+      'Emotion & Vibe': capturedTextField('Emotion & Vibe'),
+      'Mix & Production': capturedTextField('Mix & Production'),
+      'Sonic Fidelity': capturedTextField('Sonic Fidelity'),
+      'Vocal Expression': capturedTextField('Vocal Expression'),
+      'Lyrical Meaning / Evocation': capturedTextField('Lyrical Evocation')
+    };
+    return {
+      schema: 'section-analyst-pass-v1',
+      source: 'beatpulse-completed-form-capture',
+      captured_at: new Date().toISOString(),
+      pass_phase: 'dashboard_capture',
+      track: state.payload && state.payload.track ? state.payload.track : { title: document.title, artist: '' },
+      sections,
+      global_fields: globalFields,
+      capture_notes: [
+        'Captured from the currently rendered BeatPulse form by CueLab Paste Assistant.',
+        'Import this JSON into CueLab to recover or compare dashboard-completed values.',
+        'Check tag fields if BeatPulse has uncommitted text or hidden chips.'
+      ]
+    };
+  }
+
+  function downloadJsonFile(filename, payload) {
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 800);
+  }
+
+  function completedCaptureFilename(payload) {
+    const title = payload.track && payload.track.title ? payload.track.title : 'beatpulse-completed-form';
+    return `${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 45) || 'beatpulse'}-cuelab-capture.json`;
+  }
+
+  function downloadCompletedCapture() {
+    const payload = captureCompletedForm();
+    downloadJsonFile(completedCaptureFilename(payload), payload);
+    status(`Captured ${payload.sections.length} completed section row${payload.sections.length === 1 ? '' : 's'} for CueLab import or transfer testing.`);
+    return payload;
+  }
+
   function waitFrame() {
     return new Promise((resolve) => requestAnimationFrame(() => setTimeout(resolve, 45)));
   }
@@ -556,7 +699,7 @@
     }
     const button = addSectionButton();
     if (!button) {
-      status('Could not find the Beatpulse Add section button.');
+      status('Could not find the BeatPulse Add section button.');
       return;
     }
     let guard = 0;
@@ -581,7 +724,7 @@
     }
     openPanel();
     if (state.settings.autoRows) await addMissingRows({ quiet: true });
-    const stats = { filled: 0, skipped: 0, missing: 0, unconfirmed: 0 };
+    const stats = { filled: 0, skipped: 0, missing: 0, unsupported: 0, unconfirmed: 0 };
     for (const item of state.queue) {
       const result = await fillQueueItem(item);
       stats[result.status] = (stats[result.status] || 0) + 1;
@@ -592,8 +735,8 @@
     await persistIndex();
     state.lastReport = {
       type: 'fill',
-      message: `${stats.filled} filled, ${stats.skipped} already matched, ${stats.missing} missing, ${stats.unconfirmed} tags unconfirmed.`,
-      detail: stats.unconfirmed ? 'Commit or review unconfirmed tags, then run Verify Transfer.' : 'Review the dashboard before submitting.'
+      message: `${stats.filled} filled, ${stats.skipped} already matched, ${stats.missing} missing, ${stats.unsupported} exact tags not found, ${stats.unconfirmed} unconfirmed.`,
+      detail: (stats.unsupported || stats.unconfirmed) ? 'No unmatched tags were inserted. Review unavailable tags, then run Verify Transfer.' : 'Review the dashboard before submitting.'
     };
     render();
     highlightCurrent({ instant: true });
@@ -621,7 +764,7 @@
     const percent = total ? (complete ? 100 : Math.round(((state.index + 1) / total) * 100)) : 0;
     const track = state.payload && state.payload.track ? state.payload.track : {};
     const title = clean(track.title) || 'No bridge loaded';
-    const subtitle = state.payload ? `${clean(track.artist) || 'Beatpulse'} - ${total} queue item${total === 1 ? '' : 's'}` : 'Import a CueLab bridge JSON from the extension popup.';
+    const subtitle = state.payload ? `${clean(track.artist) || 'BeatPulse'} - ${total} queue item${total === 1 ? '' : 's'}` : 'Import a CueLab bridge JSON from the extension popup.';
     const preflight = state.payload ? preflightReport() : null;
     const report = state.lastReport ? `<div class="agpa-transfer-report"><strong>${esc(state.lastReport.message)}</strong>${state.lastReport.detail ? `<span>${esc(state.lastReport.detail)}</span>` : ''}</div>` : '';
 
@@ -644,7 +787,7 @@
             <div class="agpa-field-value">${esc(complete ? 'Queue complete. Run Verify Transfer before submitting.' : (item ? item.value : 'Queue complete.'))}</div>
           </div>
           <div class="agpa-actions">
-            <button class="agpa-primary agpa-fill-all" type="button" data-agpa="fill-all">Fill All Visible Fields</button>
+            <button class="agpa-primary agpa-fill-all" type="button" data-agpa="fill-all">Fill Exact Matches</button>
             <button class="agpa-primary" type="button" data-agpa="copy">Copy Current</button>
             <button type="button" data-agpa="prev">Back</button>
             <button type="button" data-agpa="next">Next</button>
@@ -656,9 +799,9 @@
             <label><input type="checkbox" data-agpa-setting="autoRows" ${state.settings.autoRows ? 'checked' : ''}> Auto rows</label>
           </div>
           <div class="agpa-row-actions">
-            <button type="button" data-agpa="rows">Add Missing Rows</button>
+            <button type="button" data-agpa="rows">Prepare Rows</button>
             <button type="button" data-agpa="verify">Verify Transfer</button>
-            <button type="button" data-agpa="done">Mark Pasted</button>
+            <button type="button" data-agpa="capture">Capture Form</button>
           </div>
           <div class="agpa-queue">${queuePreview()}</div>
         ` : '<div class="agpa-empty">Open the extension popup and import a CueLab bridge JSON. Then this panel will guide the paste queue.</div>'}
@@ -687,11 +830,7 @@
         if (action === 'rows') await addMissingRows();
         if (action === 'fill-all') await fillAllVisibleFields();
         if (action === 'verify') await verifyTransfer();
-        if (action === 'done') {
-          const item = currentItem();
-          await markDone(item && item.id);
-          await nextItem({ copy: state.settings.autoCopy });
-        }
+        if (action === 'capture') downloadCompletedCapture();
       });
       state.panel.addEventListener('change', async (event) => {
         const checkbox = event.target.closest('[data-agpa-setting]');
@@ -729,7 +868,7 @@
       const target = resolveTarget(item);
       if (!target || !itemAlreadyMatches(item, target)) {
         state.settlingTagId = '';
-        status(`Commit ${item.label} in Beatpulse, then the queue will continue.`);
+        status(`Commit ${item.label} in BeatPulse, then the queue will continue.`);
         return;
       }
     }
@@ -748,20 +887,23 @@
     }
   }
 
-  document.addEventListener('paste', async (event) => {
+  document.addEventListener('paste', (event) => {
     const item = currentItem();
     if (!item || !state.panel || state.panel.hidden) return;
     const target = resolveTarget(item);
     if (!target || event.target !== target) return;
     if (item.kind === 'tag') {
       state.settlingTagId = item.id;
-      setTimeout(() => {
+      setTimeout(async () => {
         const activeTarget = resolveTarget(item);
         if (activeTarget && currentItem() && currentItem().id === item.id && !itemAlreadyMatches(item, activeTarget) && targetValue(activeTarget)) {
-          key(activeTarget, 'Enter');
+          const selected = await commitExactTag(activeTarget, item.value);
+          if (!selected) {
+            status(`No exact BeatPulse tag found for "${item.value}". Nothing was inserted.`);
+          }
         }
-        setTimeout(() => completeManualItem(item), 130);
-      }, 70);
+        await completeManualItem(item);
+      }, 100);
       return;
     }
     setTimeout(() => completeManualItem(item), 60);
@@ -772,11 +914,27 @@
     if (!item || item.kind !== 'tag' || event.key !== 'Enter' || !state.panel || state.panel.hidden) return;
     const target = resolveTarget(item);
     if (!target || event.target !== target) return;
+    event.preventDefault();
+    event.stopPropagation();
     state.settlingTagId = item.id;
-    setTimeout(() => completeManualItem(item), 150);
+    (async () => {
+      const selected = await commitExactTag(target, item.value);
+      if (!selected) {
+        status(`No exact BeatPulse tag found for "${item.value}". Nothing was inserted.`);
+      }
+      await completeManualItem(item);
+    })();
   }, true);
 
-  api.runtime.onMessage.addListener((message) => {
+  api.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.type === 'AGPA_CAPTURE_COMPLETED') {
+      const response = { ok: true, payload: captureCompletedForm() };
+      if (typeof sendResponse === 'function') {
+        sendResponse(response);
+        return true;
+      }
+      return Promise.resolve(response);
+    }
     (async () => {
       if (message.type === 'AGPA_PAYLOAD_UPDATED') {
         state.payload = message.payload || null;
