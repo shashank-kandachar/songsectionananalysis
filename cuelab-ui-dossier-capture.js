@@ -518,9 +518,10 @@
   }
 
   var player = $('#player-section');
-  if (!player || !isVisible(player) || typeof window.switchWorkbenchView !== 'function') {
-    throw new Error('[CueLab UI Dossier] Load a track in CueLab first, then run this script again. Capturing after a track is loaded gives every workbench screen useful representative content.');
-  }
+  var structureMap = $('.structure-stage');
+  var canSwitchViews = typeof window.switchWorkbenchView === 'function';
+  var hasTrackState = typeof window.currentTrack === 'object' && !!window.currentTrack;
+  var hasRenderedWorkbench = !!(isVisible(player) || isVisible(structureMap) || isVisible($('.track-identity-row')));
 
   var before = {
     view: typeof window.activeWorkbenchView === 'string' ? window.activeWorkbenchView : 'map',
@@ -552,6 +553,15 @@
       'Visible field values are included to show representative density; the Spotify URL input is omitted.'
     ]
   };
+  if (!hasTrackState) {
+    dossier.captureNotes.push('No currentTrack object was exposed at capture time. If a track is visibly loaded, this reflects a UI-state hook difference rather than an empty screen.');
+  }
+  if (!hasRenderedWorkbench) {
+    dossier.captureNotes.push('The standard visible-workbench selectors were not visible at capture time; the script recorded the currently rendered page as a diagnostic surface.');
+  }
+  if (!canSwitchViews) {
+    dossier.captureNotes.push('switchWorkbenchView was not exposed on this deployed version, so automated mode traversal was unavailable.');
+  }
   var suffix = timestampSlug();
   var screenshotReady = false;
   var captureFailed = false;
@@ -570,6 +580,10 @@
   }
 
   function captureModes(index) {
+    if (!canSwitchViews) {
+      if (index === 0) return appendScreen('current-page', 'Current Visible Page', 'currently rendered CueLab surface and compatibility diagnostic');
+      return Promise.resolve();
+    }
     if (index >= MODES.length) return Promise.resolve();
     var mode = MODES[index];
     window.switchWorkbenchView(mode.id);
@@ -581,6 +595,7 @@
   }
 
   function captureRailStates() {
+    if (!canSwitchViews) return Promise.resolve();
     window.switchWorkbenchView('map');
     return settle().then(function() {
       if (typeof window.toggleStudioRail !== 'function') return null;
@@ -608,6 +623,7 @@
   }
 
   function captureBridgePreview() {
+    if (!canSwitchViews) return Promise.resolve();
     window.switchWorkbenchView('handover');
     return settle().then(function() {
       if (typeof window.toggleBridgePreview !== 'function' || !$('#bridge-preview')) return null;
