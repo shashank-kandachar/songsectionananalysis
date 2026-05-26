@@ -387,12 +387,6 @@ body{font-family:'Manrope','Inter',system-ui,-apple-system,BlinkMacSystemFont,'S
 .compact-copy-row:first-child{border-top:none}
 .compact-copy-label{font-size:10.5px;color:#c8d0c8;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .compact-copy-value{font-size:11.5px;color:#f7f4ed;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
-.compact-section-card{border-top:1px solid rgba(255,255,255,.065)}
-.compact-section-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center;padding:7px 8px;background:#101319}
-.compact-section-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:#0a0d0b;background:var(--sec-color,var(--green));border-radius:999px;padding:3px 6px;font-weight:800}
-.compact-section-title{font-size:12px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.compact-section-start{font-family:'JetBrains Mono',monospace;font-size:11px;color:#b9ffd0}
-.compact-section-fields{padding:0 8px 7px}
 
 /* Aural Grid identity */
 :root{--bg:#0b0811;--s1:#15111c;--s2:#1c1725;--s3:#282137;--border:#332a43;--border2:#4a3e5e;--green:#80dfff;--green2:#a7ecff;--orange:#f2b36d;--amber:#f7d37a;--blue:#c2b4ff;--pink:#ef9fd6;--text:#faf6f0;--muted:#c6bdcc;--dim:#82768e}
@@ -411,7 +405,7 @@ header{align-items:center;border:1px solid rgba(255,255,255,.055);border-radius:
 .panel-head{background:linear-gradient(180deg,rgba(194,180,255,.07),rgba(255,255,255,.012))}
 .playback-panel{border-color:rgba(128,223,255,.22);background:rgba(16,12,23,.96)}
 .playback-grid{grid-template-columns:minmax(280px,350px) minmax(0,1fr)}
-.track-play-row,.loop-card,.workflow-step,.metric-tile,.ready-compact-card,.ready-stat,.url-input,.notes-field input,.notes-field textarea,.history-select,.loop-time-input,.exchange-textarea{background:#0d0a14;border-color:#3a3149}
+.track-play-row,.loop-card,.workflow-step,.metric-tile,.ready-compact-card,.url-input,.notes-field input,.notes-field textarea,.history-select,.loop-time-input,.exchange-textarea{background:#0d0a14;border-color:#3a3149}
 .open-spotify{background:#171220;color:#d9d1ff;border-color:rgba(194,180,255,.24)}
 .btn{background:var(--blue);color:#100c19;box-shadow:0 10px 24px rgba(194,180,255,.18)}
 .btn:hover{background:#d8d0ff}
@@ -430,11 +424,6 @@ header{align-items:center;border:1px solid rgba(255,255,255,.055);border-radius:
 .pass-exchange{border-color:rgba(194,180,255,.2)}
 .pass-exchange.collapsed .panel-body{display:none}
 .box-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
-.compact-section-head{grid-template-columns:auto minmax(0,1fr) auto auto auto;cursor:pointer;background:#15111c}
-.compact-section-card.collapsed .compact-section-fields{display:none}
-.compact-section-toggle{min-width:54px;text-align:center}
-.compact-section-start{color:#e7dcff}
-.compact-section-num{background:var(--sec-color,var(--blue));color:#0b0811}
 .tab-btn.active{background:#faf6f0;color:#120e19}
 .loop-status{color:#e7dcff}
 .section-detail-compact{display:grid;gap:8px}
@@ -450,22 +439,7 @@ header{align-items:center;border:1px solid rgba(255,255,255,.055);border-radius:
 .section-detail-compact .notes-field input{height:34px}
 .section-detail-compact .notes-field textarea{min-height:92px;max-height:132px;resize:vertical}
 .section-detail-compact .desc-field{grid-column:1/-1}
-.copy-queue-strip{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:10px;align-items:center;padding:9px 10px;border:1px solid rgba(194,180,255,.18);border-radius:10px;background:rgba(13,10,20,.92);box-shadow:0 12px 36px rgba(0,0,0,.22);flex-shrink:0}
-.copy-queue-main{min-width:0}
-.copy-queue-label{font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:#a99fb5;font-weight:900;margin-bottom:2px}
-.copy-queue-current{font-size:14px;font-weight:900;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.copy-queue-next{font-size:11px;color:#b8aec5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
-.copy-queue-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
-.copy-queue-progress{font-family:'JetBrains Mono',monospace;font-size:11px;color:#e7dcff;border:1px solid #3a3149;border-radius:999px;padding:5px 8px;background:#0d0a14}
-#main-app.dashboard-mode.copy-workspace .playback-panel,#main-app.dashboard-mode.copy-workspace .pass-exchange{display:none}
-#main-app.dashboard-mode .tab-shell{flex:1;min-height:0}
-#main-app.dashboard-mode .tab-panel{padding:10px}
 .compact-copy-row{grid-template-columns:minmax(110px,160px) minmax(0,1fr) auto auto}
-.compact-copy-row.current-copy-target{background:rgba(194,180,255,.10);box-shadow:inset 3px 0 0 var(--blue)}
-.compact-copy-row.copied .compact-copy-label::after{content:" copied";font-size:8px;color:var(--blue);margin-left:5px;text-transform:uppercase}
-.compact-copy-row.pasted{opacity:.58}
-.compact-copy-row.pasted .compact-copy-label::after{content:" pasted";font-size:8px;color:var(--orange);margin-left:5px;text-transform:uppercase}
-.pasted-btn.active{background:var(--orange)!important;border-color:var(--orange)!important;color:#1b1005!important}
 
 /* Streamlined manual annotation cockpit */
 *{letter-spacing:0!important}
@@ -497,7 +471,6 @@ header{display:grid;grid-template-columns:minmax(220px,1fr) auto minmax(220px,1f
 .annotation-timer-header[hidden]{display:none!important}
 .annotation-timer.positive{color:#d9f8ff}
 .annotation-timer.negative{color:#ff7b7b;border-color:rgba(255,123,123,.48)}
-.input-card.url-collapsed .track-url-summary{display:flex!important}
 .input-card:not(.url-collapsed) .track-url-summary{display:none!important}
 .input-card.url-collapsed #url-card-label{display:none}
 .input-card.url-collapsed .track-url-summary{display:grid!important}
@@ -578,16 +551,7 @@ header{display:grid;grid-template-columns:minmax(220px,1fr) auto minmax(220px,1f
 .global-fields-expanded .global-field textarea{height:66px!important;min-height:66px!important;max-height:66px!important}
 .ready-compact-layout{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr)}
 .ready-compact-card.sections-ready{order:1}
-.ready-compact-card.globals-ready{order:2}
 .compact-copy-row{grid-template-columns:minmax(118px,166px) minmax(0,1fr) auto}
-.compact-copy-row.pasted{opacity:1}
-.compact-copy-row.pasted .compact-copy-label::after{content:""}
-.compact-section-head{grid-template-columns:auto minmax(0,1fr) auto auto;gap:8px}
-.compact-section-fields{padding:2px 8px 8px}
-.compact-section-start{font-size:10px}
-#main-app.dashboard-mode #track-url-card,#main-app.dashboard-mode>.status{display:none!important}
-#main-app.dashboard-mode.copy-workspace .playback-panel,#main-app.dashboard-mode.copy-workspace .pass-exchange{display:none}
-#main-app.dashboard-mode .copy-queue-strip{display:grid}
 /* Aural Grid cockpit refresh */
 :root{
   --ag-bg:#09070d;
@@ -719,7 +683,7 @@ header{
 .annotation-timer.negative{color:var(--ag-rose);border-color:rgba(255,143,163,.55)}
 #main-app,#player-section,.flow-layout{min-height:0}
 #main-app{gap:9px}
-.workflow-guide,.review-strip,.boundary-review-strip,.import-diff-strip,.copy-queue-strip,.input-card,.panel,.tab-shell{
+.workflow-guide,.boundary-review-strip,.import-diff-strip,.input-card,.panel,.tab-shell{
   border:1px solid var(--ag-line);
   border-radius:var(--ag-radius);
   background:linear-gradient(180deg,rgba(28,22,38,.91),rgba(18,14,25,.92));
@@ -755,15 +719,14 @@ header{
   box-shadow:none;
 }
 .guide-action{min-width:148px}
-.review-strip,.boundary-review-strip,.import-diff-strip,.copy-queue-strip{
+.boundary-review-strip,.import-diff-strip{
   padding:8px 10px;
   gap:10px;
 }
-.review-strip{border-color:rgba(242,179,109,.34)}
 .boundary-review-strip{border-color:rgba(242,179,109,.42)}
 .import-diff-strip{border-color:rgba(128,223,255,.32)}
-.review-current,.boundary-review-current,.import-diff-current{color:#fff3df;font-size:12px;font-weight:750}
-.boundary-review-hint,.copy-queue-next{color:var(--ag-muted)}
+.boundary-review-current,.import-diff-current{color:#fff3df;font-size:12px;font-weight:750}
+.boundary-review-hint{color:var(--ag-muted)}
 .import-diff-values span{
   background:rgba(10,8,14,.62);
   border-color:var(--ag-line);
@@ -1245,15 +1208,6 @@ header{
   background:rgba(255,255,255,.025);
   border-bottom-color:var(--ag-line);
 }
-.compact-section-head{
-  min-height:38px;
-  background:rgba(22,17,30,.82);
-  gap:8px;
-}
-.compact-section-num{
-  background:var(--sec-color,var(--ag-lilac));
-  color:#09070d;
-}
 .compact-copy-row{
   min-height:36px;
   grid-template-columns:minmax(126px,178px) minmax(0,1fr) auto;
@@ -1261,18 +1215,9 @@ header{
   padding:6px 8px;
   border-top-color:rgba(218,205,255,.10);
 }
-.compact-copy-row.current-copy-target{
-  background:rgba(128,223,255,.08);
-  box-shadow:inset 3px 0 0 var(--ag-cyan);
-}
 .compact-copy-label{color:var(--ag-soft)}
 .compact-copy-value{color:#fffaf1}
-.copy-focus-panel,.copy-queue-strip{
-  border-color:rgba(128,223,255,.22);
-}
-.copy-queue-current{font-size:14px;color:#fff;font-weight:950}
-.copy-queue-actions{gap:6px}
-.health-chip,.request-chip{
+.request-chip{
   border-radius:999px;
   font-size:8.5px;
   font-weight:950;
@@ -1305,7 +1250,7 @@ header{
   header{grid-template-columns:1fr;gap:8px;min-height:0;padding:12px}
   .annotation-timer-header{grid-column:1;grid-row:2;margin:0 auto}
   .user-block{position:static;justify-items:end;margin:0 2px 8px}
-  .workflow-guide,.review-strip,.boundary-review-strip,.import-diff-strip,.copy-queue-strip{grid-template-columns:1fr}
+  .workflow-guide,.boundary-review-strip,.import-diff-strip{grid-template-columns:1fr}
   .guide-copy{white-space:normal}
   .guide-action{justify-self:stretch;width:100%}
   #main-app,#player-section,.flow-layout{height:auto}
@@ -1328,7 +1273,7 @@ header{
   .user-block{position:static;justify-items:end;margin:0 2px 8px}
   .shortcut-help{right:0;top:44px;width:min(280px,calc(100vw - 24px))}
   #main-app,#player-section,.flow-layout{height:auto}
-  .playback-grid,.notes-flow,.pass-flow,.tab-grid,.sections-workspace,.global-fields-grid,.copy-row,.workflow-rail,.cockpit-metrics,.ready-compact-layout,.compact-copy-row,.copy-queue-strip{grid-template-columns:1fr}
+  .playback-grid,.notes-flow,.pass-flow,.tab-grid,.sections-workspace,.global-fields-grid,.copy-row,.workflow-rail,.cockpit-metrics,.ready-compact-layout,.compact-copy-row{grid-template-columns:1fr}
   .track-control-stack{grid-template-columns:1fr}
   .track-hero,.track-play-row,.loop-card{grid-column:1;grid-row:auto;width:100%;min-height:0}
   .track-art,.track-art-ph{width:112px;height:112px}
@@ -1473,27 +1418,9 @@ header{
 }
 .drop-title{font-size:20px;font-weight:950;color:#fff;margin-bottom:6px}
 .drop-copy{font-size:13px;color:#d8d0df}
-.field-health{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px}
-.health-chip{display:inline-flex;align-items:center;border:1px solid rgba(242,179,109,.35);border-radius:999px;padding:2px 6px;font-size:9px;font-weight:900;color:#ffe0b8;background:rgba(242,179,109,.10);text-transform:uppercase}
-.health-chip.ok{border-color:rgba(128,223,255,.28);color:#d9f8ff;background:rgba(128,223,255,.08)}
 .copy-mode-active{background:var(--orange)!important;border-color:var(--orange)!important;color:#160b03!important}
 .section-marking-focus .playback-panel{border-color:rgba(242,179,109,.42)}
-.review-strip{
-  flex-shrink:0;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:10px;
-  align-items:center;
-  padding:8px 12px;
-  border:1px solid rgba(242,179,109,.28);
-  border-radius:12px;
-  background:rgba(24,17,20,.88);
-  box-shadow:0 12px 34px rgba(0,0,0,.20);
-}
-.review-strip[hidden]{display:none!important}
-.review-main{display:flex;align-items:center;gap:8px;min-width:0}
 .review-kicker{font-size:9px;font-weight:950;text-transform:uppercase;color:#160b03;background:var(--orange);border-radius:999px;padding:4px 7px;white-space:nowrap}
-.review-current{font-size:12px;color:#ffe0b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .review-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 .boundary-review-strip,.import-diff-strip{
   flex-shrink:0;
@@ -1517,24 +1444,7 @@ header{
 .import-diff-values span{font-size:10.5px;color:#d8d0df;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:1px solid rgba(194,180,255,.12);border-radius:8px;padding:5px 7px;background:#100c18}
 #import-diff-before::before{content:"Before: ";color:#a99fb5;font-weight:900}
 #import-diff-after::before{content:"After: ";color:#d9f8ff;font-weight:900}
-.sec-health{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
-.sec-health .health-chip{font-size:8px;padding:1px 5px}
-.copy-focus-panel{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:10px;
-  align-items:center;
-  margin-bottom:10px;
-  padding:10px 12px;
-  border:1px solid rgba(128,223,255,.22);
-  border-radius:12px;
-  background:linear-gradient(135deg,rgba(19,14,27,.98),rgba(11,8,17,.96));
-}
-.copy-focus-kicker{font-size:9px;text-transform:uppercase;color:#a99fb5;font-weight:950;margin-bottom:2px}
-.copy-focus-label{font-size:14px;font-weight:950;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.copy-focus-value{font-size:12px;color:#d8d0df;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
-.copy-focus-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
-.input-card,.panel,.tab-shell,.copy-queue-strip{
+.input-card,.panel,.tab-shell{
   background:rgba(20,16,28,.94);
   border-color:rgba(194,180,255,.16);
   border-radius:14px;
@@ -1654,8 +1564,6 @@ header{
 .field-nav{background:#100c18;border-color:rgba(194,180,255,.10)}
 .global-field{background:#15111c;border-color:rgba(194,180,255,.14);border-radius:12px}
 .global-field.complete{border-color:rgba(128,223,255,.30);box-shadow:inset 3px 0 0 rgba(128,223,255,.72)}
-.copy-queue-strip{background:rgba(15,11,22,.96)}
-.copy-queue-progress{border-color:#463958;color:#d9f8ff}
 #auth-screen h2{color:#fff}
 #auth-screen p{color:#c7bdd0}
 #auth-screen>div:first-child{color:var(--violet)}
@@ -1692,9 +1600,7 @@ input[type=range]{accent-color:var(--cyan)}
 }
 #main-app.reaction-mode #track-url-card,
 #main-app.reaction-mode .pass-exchange,
-#main-app.reaction-mode .tab-shell,
-#main-app.reaction-mode .review-strip,
-#main-app.reaction-mode .copy-focus-panel{display:none!important}
+#main-app.reaction-mode .tab-shell{display:none!important}
 #main-app.reaction-mode .flow-layout{flex:1;min-height:0}
 #main-app.reaction-mode .playback-panel{flex:1;min-height:0}
 #main-app.reaction-mode .playback-grid{grid-template-columns:minmax(360px,460px) minmax(0,1fr);height:100%}
@@ -1713,8 +1619,8 @@ input[type=range]{accent-color:var(--cyan)}
   .guide-copy{white-space:normal}
   .guide-shortcut{justify-self:start}
   .guide-action{justify-self:stretch;width:100%}
-  .review-strip,.boundary-review-strip,.import-diff-strip,.copy-focus-panel{grid-template-columns:1fr}
-  .review-actions,.copy-focus-actions{justify-content:flex-start}
+  .boundary-review-strip,.import-diff-strip{grid-template-columns:1fr}
+  .review-actions{justify-content:flex-start}
   .boundary-review-main,.import-diff-main,.import-diff-values{grid-template-columns:1fr}
   .boundary-review-hint{grid-column:1}
   .tab-btn{min-width:0;flex:1}
@@ -1780,7 +1686,7 @@ header{
 }
 .annotation-timer.positive{color:#b8f7d4}
 .annotation-timer.negative{color:var(--ag-rose);border-color:rgba(255,143,163,.55)}
-.workflow-guide,.review-strip,.boundary-review-strip,.import-diff-strip,.copy-queue-strip,.input-card,.panel,.tab-shell{
+.workflow-guide,.boundary-review-strip,.import-diff-strip,.input-card,.panel,.tab-shell{
   border:1px solid var(--ag-line);
   border-radius:12px;
   background:linear-gradient(180deg,rgba(28,22,38,.91),rgba(18,14,25,.92));
@@ -1936,7 +1842,7 @@ header{min-height:58px;padding:9px 16px}
   .app{height:auto;min-height:100vh;padding:10px}
   header{grid-template-columns:1fr;gap:8px}
   .user-block{position:static;margin:0 2px 8px}
-  .workflow-guide,.review-strip,.boundary-review-strip,.import-diff-strip,.copy-queue-strip{grid-template-columns:1fr}
+  .workflow-guide,.boundary-review-strip,.import-diff-strip{grid-template-columns:1fr}
   .playback-grid,.track-control-stack,.sections-workspace,.global-fields-grid,.ready-compact-layout,.compact-copy-row{grid-template-columns:1fr}
   .track-hero,.track-play-row,.loop-card{grid-column:1;grid-row:auto;width:100%;min-height:0}
   .track-play-row{flex-direction:row;justify-content:flex-start;text-align:left}
@@ -2713,6 +2619,202 @@ header .shortcut-help{
   }
 }
 
+/* Lean transfer workflow layout */
+.header-center-spacer{min-width:1px}
+.workflow-guide,.boundary-review-strip,.import-diff-strip,.top-restore-dock,.pass-exchange,.loop-card{display:none!important}
+.input-card.track-url-hidden{display:none!important}
+.flow-layout{gap:10px!important}
+.playback-panel{flex:0 0 auto}
+.playback-panel .panel-body{padding:12px!important}
+.playback-grid{
+  grid-template-columns:minmax(430px,540px) minmax(0,1fr)!important;
+  gap:16px!important;
+  align-items:stretch!important;
+}
+.track-control-stack{
+  grid-template-columns:minmax(0,1fr) 118px!important;
+  gap:12px!important;
+}
+.track-hero{
+  min-height:172px!important;
+  padding:12px!important;
+  gap:14px!important;
+}
+.track-art,.track-art-ph{
+  width:148px!important;
+  height:148px!important;
+  border-radius:14px!important;
+}
+.track-name{font-size:25px!important;line-height:1.04!important}
+.track-artist{font-size:14px!important}
+.track-album{font-size:12px!important}
+.track-play-row{
+  width:118px!important;
+  min-height:172px!important;
+  padding:10px!important;
+  align-content:center!important;
+}
+.play-btn{width:50px!important;height:50px!important}
+.playhead-readout strong{font-size:24px!important}
+.waveform-wrap,#waveform-canvas{height:172px!important}
+.waveform-wrap{margin-bottom:10px!important}
+.prog-bg{height:38px!important;border-radius:13px!important}
+.prog-thumb{height:50px!important;top:-7px!important}
+.section-seek-btn{
+  width:28px!important;
+  height:28px!important;
+  font-size:11px!important;
+  font-weight:950!important;
+  color:#0b0811!important;
+  border:2px solid rgba(10,8,14,.82)!important;
+}
+.tab-shell{flex:1 1 auto!important;min-height:0!important}
+.tab-bar{
+  display:grid!important;
+  grid-template-columns:auto minmax(260px,1fr) auto!important;
+  gap:12px!important;
+  align-items:center!important;
+  padding:8px 10px!important;
+}
+.tab-nav,.tab-transfer-actions,.tab-status-well{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  min-width:0;
+}
+.tab-status-well{
+  justify-content:center;
+  align-self:stretch;
+  padding:5px 12px;
+  border:1px solid rgba(194,180,255,.18);
+  border-radius:999px;
+  background:linear-gradient(135deg,rgba(18,13,27,.86),rgba(10,16,20,.74));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.025);
+}
+.tab-transfer-actions{
+  justify-content:flex-end;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.tab-transfer-actions::-webkit-scrollbar{display:none}
+.tab-transfer-actions .btn-sm,.tab-transfer-actions .file-btn{
+  flex:0 0 auto;
+  min-height:28px!important;
+  padding:5px 9px!important;
+  font-size:9px!important;
+}
+.tab-status-well .process-status{
+  width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  text-align:center;
+  margin:0;
+  font-family:'Manrope','Inter',system-ui,sans-serif;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.01em;
+  color:var(--ag-soft);
+}
+.tab-status-well .process-status.ok{color:#d9f8ff}
+.tab-status-well .process-status.warn{color:#ffe0b8}
+.final-json-btn{
+  min-height:34px!important;
+  padding:7px 15px!important;
+  font-size:10px!important;
+  font-weight:950!important;
+  box-shadow:0 10px 28px rgba(242,179,109,.16);
+}
+.section-workspace-toolbar{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto;
+  padding:6px!important;
+}
+.section-mode-toggles{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-width:0;
+}
+.section-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  min-height:28px;
+  padding:4px 9px;
+  border:1px solid rgba(218,205,255,.16);
+  border-radius:999px;
+  background:rgba(11,8,17,.52);
+  color:var(--ag-soft);
+  font-size:10px;
+  font-weight:850;
+  white-space:nowrap;
+}
+.section-toggle input{accent-color:var(--ag-cyan)}
+.sections-workspace{
+  grid-template-columns:minmax(340px,.58fr) minmax(620px,1.42fr)!important;
+}
+.sections-list{
+  min-height:360px;
+  max-height:calc(100vh - 430px)!important;
+}
+.sec-header{
+  min-height:34px!important;
+  grid-template-columns:28px 20px 42px minmax(0,1fr) auto auto!important;
+}
+.section-play-btn{
+  display:grid;
+  place-items:center;
+  width:25px;
+  height:25px;
+  border:1px solid rgba(0,0,0,.5);
+  border-radius:999px;
+  background:var(--sec-color);
+  color:#0b0811;
+  font-size:10px;
+  font-weight:950;
+  cursor:pointer;
+}
+.section-play-btn:hover{filter:brightness(1.18)}
+.sec-item.playing-section .section-play-btn{
+  box-shadow:0 0 0 3px rgba(255,255,255,.10),0 0 18px var(--sec-color);
+}
+.boundary-review-card{
+  border-top:1px solid rgba(218,205,255,.10);
+  padding:8px!important;
+}
+.boundary-card-inner{
+  display:grid;
+  grid-template-columns:minmax(170px,.7fr) minmax(0,1.3fr);
+  gap:9px;
+  align-items:center;
+  border:1px solid rgba(218,205,255,.14);
+  border-radius:12px;
+  padding:8px;
+  background:rgba(11,8,17,.48);
+}
+.boundary-card-inner strong{display:block;color:#fff;font-size:14px}
+.boundary-card-inner p{margin:2px 0 0;color:var(--ag-muted);font-size:11px}
+.boundary-card-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:5px;
+  flex-wrap:wrap;
+}
+.section-detail-compact .desc-field textarea{
+  height:108px!important;
+  min-height:108px!important;
+  max-height:108px!important;
+}
+@media(max-width:1200px){
+  .playback-grid{grid-template-columns:1fr!important}
+  .tab-bar{grid-template-columns:1fr!important}
+  .tab-status-well{order:3}
+  .tab-transfer-actions{justify-content:flex-start}
+  .sections-workspace{grid-template-columns:1fr!important}
+}
+
 </style>
 </head>
 <body>
@@ -2722,11 +2824,7 @@ header .shortcut-help{
     <div class="brand-icon" aria-hidden="true"></div>
     <div class="logo">Aural <em>Grid</em></div>
   </div>
-  <button class="header-step-chip" id="header-step-chip" onclick="toggleWorkflowGuidePopover()" title="Show current workflow step">
-    <span class="header-step-kicker">Next</span>
-    <span class="header-step-title" id="header-step-title">Load a track</span>
-    <span class="header-step-shortcut" id="header-step-shortcut">Enter</span>
-  </button>
+  <div class="header-center-spacer" aria-hidden="true"></div>
   <div class="user-block" id="header-controls" hidden>
     <div class="user-row">
       <span class="user-name" id="user-name-display"></span>
@@ -2741,29 +2839,22 @@ header .shortcut-help{
       <div class="shortcut-help-title">Keyboard Shortcuts</div>
       <div class="shortcut-grid">
         <span>A</span><p>Add section at playhead</p>
-        <span>D</span><p>Download starter</p>
-        <span>S</span><p>Done marking sections</p>
+        <span>D</span><p>Copy starter JSON</p>
         <span>I</span><p>Import and process pass</p>
         <span>R</span><p>Download refinement</p>
-        <span>C</span><p>Copy current dashboard field</p>
-        <span>Shift C</span><p>Move to previous copy field</p>
-        <span>G / D / V</span><p>Copy mode: globals / descriptions / vibes</p>
-        <span>1-9 / 0</span><p>Select and play section 1-10</p>
-        <span>V C H B I O P</span><p>Marking: add + label. Editing: label selected section</p>
+        <span>C</span><p>Label selected section as Chorus</p>
+        <span>1-9 / 0</span><p>Play section 1-10</p>
+        <span>= / -</span><p>Play next / previous section</p>
+        <span>V C H B I O P</span><p>Label selected section</p>
         <span>[ / ]</span><p>Nudge selected boundary 1s</p>
         <span>Shift [ ]</span><p>Nudge boundary 0.25s</p>
-        <span>Enter</span><p>Accept current boundary in review mode</p>
-        <span>P</span><p>Preview current boundary in review mode</p>
+        <span>P</span><p>Preview selected boundary</p>
         <span>Cmd Z</span><p>Undo last edit</p>
         <span>Cmd Shift Z</span><p>Redo last edit</p>
-        <span>F</span><p>Follow playhead section</p>
-        <span>M</span><p>Focused marking mode</p>
-        <span>N / R / X</span><p>Next issue / refine / dismiss</p>
         <span>Space</span><p>Play / pause</p>
         <span>&larr; / &rarr;</span><p>Seek 5s backward / forward</p>
         <span>Shift &larr; / &rarr;</span><p>Seek 1s precisely</p>
-        <span>Shift 1/2/3</span><p>Sections / Global / Ready</p>
-        <span>W</span><p>Show / hide workflow step</p>
+        <span>Shift 1/2</span><p>Sections / Global</p>
         <span>?</span><p>Show / hide help</p>
       </div>
     </div>
@@ -2773,7 +2864,7 @@ header .shortcut-help{
 <div id="auth-screen">
   <div style="font-size:48px;margin-bottom:20px">&#127928;</div>
   <h2>Connect your Spotify</h2>
-  <p>Sign in with Spotify Premium to analyse track structure,<br>jump between sections, and loop any part of a song.</p>
+  <p>Sign in with Spotify Premium to map sections,<br>mark boundaries, and prep dashboard-ready annotations.</p>
   <button class="login-btn" onclick="startLogin()">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
     Login with Spotify
@@ -2781,79 +2872,6 @@ header .shortcut-help{
 </div>
 
 <div id="main-app" style="display:none">
-  <div class="top-restore-dock" id="top-restore-dock" hidden>
-    <button class="btn-sm" id="restore-listen-btn" onclick="showListenForBar()">Show Listen For</button>
-  </div>
-  <div class="workflow-guide" id="workflow-guide" aria-live="polite">
-    <div class="guide-kicker">Next Step</div>
-    <div class="guide-main">
-      <span id="workflow-guide-title">Load a track</span>
-      <span class="guide-shortcut" id="workflow-guide-shortcut">Enter</span>
-    </div>
-    <div class="guide-copy" id="workflow-guide-copy">Paste a Spotify track link. The starter file downloads automatically after analysis.</div>
-    <div class="guide-actions">
-      <button class="btn-sm guide-action" id="workflow-guide-action" onclick="handleWorkflowAction()">Analyse Track</button>
-      <button class="btn-sm bar-close-btn" onclick="setWorkflowGuideHidden(true)" title="Hide steps">Close</button>
-    </div>
-  </div>
-  <div class="review-strip" id="review-strip" hidden>
-    <div class="review-main">
-      <span class="review-kicker">Review</span>
-      <span class="review-current" id="review-current">No review issues.</span>
-    </div>
-    <div class="review-actions">
-      <button class="btn-sm" onclick="goToReviewIssue(1)">Next Issue</button>
-      <button class="btn-sm" onclick="queueCurrentReviewIssue()">Refine Issue</button>
-      <button class="btn-sm" onclick="dismissCurrentReviewIssue()">Dismiss</button>
-    </div>
-  </div>
-  <div class="boundary-review-strip" id="boundary-review-strip" hidden>
-    <div class="boundary-review-main">
-      <span class="review-kicker">Boundary Review</span>
-      <span class="boundary-review-current" id="boundary-review-current">No boundary selected.</span>
-      <span class="boundary-review-hint">Enter accepts · [ ] nudges · P previews · Esc exits</span>
-    </div>
-    <div class="review-actions">
-      <button class="btn-sm" onclick="previewCurrentBoundary()">Preview</button>
-      <button class="btn-sm primary-process" onclick="acceptBoundaryReview()">Accept</button>
-      <button class="btn-sm" onclick="stopBoundaryReview()">Close</button>
-    </div>
-  </div>
-  <div class="import-diff-strip" id="import-diff-strip" hidden>
-    <div class="import-diff-main">
-      <span class="review-kicker">Import Diff</span>
-      <span class="import-diff-current" id="import-diff-current">No import changes yet.</span>
-      <div class="import-diff-values">
-        <span id="import-diff-before"></span>
-        <span id="import-diff-after"></span>
-      </div>
-    </div>
-    <div class="review-actions">
-      <button class="btn-sm" onclick="prevImportDiff()">Previous</button>
-      <button class="btn-sm" onclick="nextImportDiff()">Next</button>
-      <button class="btn-sm" onclick="focusCurrentImportDiff()">Focus</button>
-      <button class="btn-sm" onclick="revertCurrentImportDiff()">Revert Field</button>
-      <button class="btn-sm" onclick="dismissImportDiff()">Keep All</button>
-      <button class="btn-sm" onclick="undoImportDiff()">Undo Import</button>
-    </div>
-  </div>
-  <div class="copy-queue-strip" id="copy-queue-strip" style="display:none">
-    <div class="copy-queue-main">
-      <div class="copy-queue-label">Dashboard Copy Queue</div>
-      <div class="copy-queue-current" id="copy-queue-current">Ready fields will appear here.</div>
-      <div class="copy-queue-next" id="copy-queue-next">Copy Current moves through the queue automatically.</div>
-    </div>
-    <div class="copy-queue-actions">
-      <span class="copy-queue-progress" id="copy-queue-progress">0 / 0 copied</span>
-      <button class="btn-sm" onclick="prevReadyItem()">Previous</button>
-      <button class="btn-sm primary-process" onclick="copyCurrentReadyItem()">Copy Current</button>
-      <button class="btn-sm" onclick="nextReadyItem()">Next</button>
-      <button class="btn-sm" data-copy-mode="all" onclick="setReadyCopyMode('all')">All</button>
-      <button class="btn-sm" data-copy-mode="descriptions" onclick="setReadyCopyMode('descriptions')">Descriptions</button>
-      <button class="btn-sm" data-copy-mode="vibes_descriptions" onclick="setReadyCopyMode('vibes_descriptions')">Vibes + Desc</button>
-      <button class="btn-sm" data-copy-mode="globals" onclick="setReadyCopyMode('globals')">Globals</button>
-    </div>
-  </div>
   <div class="input-card" id="track-url-card">
     <div class="input-head">
       <div>
@@ -2865,14 +2883,10 @@ header .shortcut-help{
           </div>
         </div>
       </div>
-      <div class="bar-actions">
-        <button class="btn-sm" id="url-collapse-btn" onclick="toggleUrlCard()">Collapse</button>
-        <button class="btn-sm bar-close-btn" onclick="hideListenForBar()" title="Hide Listen For">Close</button>
-      </div>
     </div>
     <div class="input-row">
-      <input class="url-input" id="url-input" type="text" placeholder="https://open.spotify.com/track/..." oninput="scheduleUrlAutoAnalyze()" onkeydown="if(event.key==='Enter')analyzeTrack()"/>
-      <button class="btn" id="analyze-btn" onclick="analyzeTrack()">Analyse</button>
+      <input class="url-input" id="url-input" type="text" placeholder="https://open.spotify.com/track/..." onpaste="activatePlaybackElement()" oninput="scheduleUrlAutoAnalyze()" onkeydown="if(event.key==='Enter'){activatePlaybackElement();analyzeTrack()}"/>
+      <button class="btn" id="analyze-btn" onclick="activatePlaybackElement();analyzeTrack()">Analyse</button>
     </div>
     <div class="sdk-bar">
       <div class="sdk-dot loading" id="sdk-dot"></div>
@@ -2886,12 +2900,8 @@ header .shortcut-help{
         <div class="panel-head">
           <span class="panel-title">Now Playing</span>
           <div class="panel-actions">
-            <button class="btn-sm primary-process" onclick="addSection()">Add Section</button>
             <button class="btn-sm" id="undo-btn" onclick="undoLastChange()" disabled>Undo</button>
             <button class="btn-sm" id="redo-btn" onclick="redoLastChange()" disabled>Redo</button>
-            <button class="btn-sm" id="follow-playhead-btn" onclick="toggleFollowPlayhead()">Follow Off</button>
-            <button class="btn-sm" id="reaction-mode-btn" onclick="toggleReactionMode()">Marking Mode</button>
-            <button class="btn-sm" id="now-playing-collapse-btn" onclick="togglePanelCollapse('playback-panel','now-playing-collapse-btn')">Collapse</button>
             <a class="open-spotify" id="open-spotify-link" href="#" target="_blank" rel="noopener">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
               Open
@@ -2920,30 +2930,6 @@ header .shortcut-help{
                   <small id="time-total-large">/ 0:00</small>
                 </div>
               </div>
-              <div class="loop-card">
-                <div class="loop-row">
-                  <div class="loop-fields-row">
-                    <span class="loop-label">Loop</span>
-                    <input class="loop-time-input" id="loop-start-input" placeholder="0:00"/>
-                    <span class="loop-sep">to</span>
-                    <input class="loop-time-input" id="loop-end-input" placeholder="0:00"/>
-                    <button class="btn-sm" id="loop-set-btn" onclick="applyCustomLoop()">Set</button>
-                    <button class="btn-sm" id="loop-toggle-btn" onclick="toggleLoop()">Off</button>
-                    <button class="btn-sm" onclick="clearLoop()">Clear</button>
-                  </div>
-                  <div class="loop-tools-row">
-                    <span class="marker-offset-label">Marker Offset</span>
-                    <select class="loop-time-input marker-offset-select" id="marker-offset-select" onchange="setMarkerOffset(this.value)" title="Compensates for reaction time when you press Add Section">
-                      <option value="0">0.00s</option>
-                      <option value="-0.25">-0.25s</option>
-                      <option value="-0.5">-0.50s</option>
-                      <option value="-0.75">-0.75s</option>
-                      <option value="-1">-1.00s</option>
-                    </select>
-                    <span class="loop-status" id="loop-status"></span>
-                  </div>
-                </div>
-              </div>
             </div>
             <div>
               <div class="waveform-wrap" id="waveform-wrap" title="Click anywhere on the structure map to seek">
@@ -2962,49 +2948,32 @@ header .shortcut-help{
         </div>
       </div>
 
-      <div class="panel pass-exchange collapsed" id="pass-exchange-panel">
-        <div class="panel-head">
-          <div class="pass-title-stack">
-            <span class="panel-title">ChatGPT Pass Exchange</span>
-            <span class="phase-chip" id="workflow-phase-label">Load Track</span>
-            <span class="request-status" id="request-status">No active requests</span>
-          </div>
-          <div class="panel-actions">
-            <button class="btn-sm" onclick="downloadStarterSet()">Download Starter</button>
-            <button class="btn-sm" onclick="downloadSectionInfo()">Section Info</button>
-            <label class="btn-sm file-btn" for="pass-file-input">Import Pass</label>
-            <input id="pass-file-input" type="file" accept=".json,application/json,text/plain" onchange="importPassFile(event)" hidden>
-            <button class="btn-sm" id="download-refinement-btn" onclick="downloadRefinementFile()">Download Refinement</button>
-            <button class="btn-sm" id="clear-requests-btn" onclick="clearFieldRequests()" style="display:none">Clear Requests</button>
-            <button class="btn-sm" id="pass-collapse-btn" onclick="togglePassExchange()">Expand</button>
-          </div>
-        </div>
-        <div class="panel-body">
-          <textarea class="exchange-textarea" id="input-chunk" hidden></textarea>
-          <textarea class="exchange-textarea" id="refinement-chunk" hidden readonly></textarea>
-          <div class="pass-control-strip">
-            <select class="history-select compact-select" id="input-pass-select" onchange="restoreInputPass(this.value)">
-              <option value="">No processed passes yet</option>
-            </select>
-            <span class="process-status" id="process-status">Import a pass JSON file to apply it.</span>
-          </div>
-        </div>
-      </div>
-
       <div class="tab-shell">
         <div class="tab-bar" role="tablist">
-          <button class="tab-btn active" data-tab="sections-tab" onclick="switchTab('sections-tab',this)">Sections</button>
-          <button class="tab-btn" data-tab="global-tab" onclick="switchTab('global-tab',this)">Global Fields</button>
-          <button class="tab-btn ready-btn" data-tab="ready-tab" onclick="showReadyToGo()">Ready to Go</button>
+          <div class="tab-nav">
+            <button class="tab-btn active" data-tab="sections-tab" onclick="switchTab('sections-tab',this)">Sections</button>
+            <button class="tab-btn" data-tab="global-tab" onclick="switchTab('global-tab',this)">Global Fields</button>
+          </div>
+          <div class="tab-status-well" aria-live="polite">
+            <span class="process-status" id="process-status">Ready.</span>
+          </div>
+          <div class="tab-transfer-actions">
+            <button class="btn-sm" onclick="copyStarterSet()">Copy Starter</button>
+            <button class="btn-sm" onclick="copySectionInfo()">Copy Section Info</button>
+            <label class="btn-sm file-btn" for="pass-file-input">Import Pass</label>
+            <input id="pass-file-input" type="file" accept=".json,application/json,text/plain" onchange="importPassFile(event)" hidden>
+            <button class="btn-sm" id="download-refinement-btn" onclick="downloadRefinementFile()">Export Refinement</button>
+            <button class="btn-sm ready-btn final-json-btn" onclick="downloadBeatpulseBridgeJson()">Ready to Go</button>
+          </div>
         </div>
+        <textarea class="exchange-textarea" id="input-chunk" hidden></textarea>
+        <textarea class="exchange-textarea" id="refinement-chunk" hidden readonly></textarea>
         <div class="tab-content">
           <section class="tab-panel active" id="sections-tab">
             <div class="section-workspace-toolbar">
-              <div class="section-toolbar-main">
-                <span class="sections-count-chip" id="section-count"></span>
-                <button class="btn-sm primary-process" onclick="addSection()">Add Section</button>
-                <button class="btn-sm" onclick="startBoundaryReview()">Review Boundaries</button>
-                <button class="btn-sm" onclick="doneMarkingSections()">Done Marking</button>
+              <div class="section-mode-toggles">
+                <label class="section-toggle"><input id="section-runthrough-toggle" type="checkbox" onchange="setSectionRunthrough(this.checked)"> <span>Section Runthrough</span></label>
+                <label class="section-toggle"><input id="loop-sections-toggle" type="checkbox" onchange="setLoopSections(this.checked)"> <span>Loop Sections</span></label>
               </div>
               <div class="section-toolbar-secondary">
                 <button class="btn-sm" onclick="addSectionBulkRequest('refine')">Refine All</button>
@@ -3030,6 +2999,7 @@ header .shortcut-help{
                 <div class="panel-body" id="section-detail-body">
                   <div class="detail-empty">Click any section to view and edit its generated details here.</div>
                 </div>
+                <div class="panel-body boundary-review-card" id="boundary-review-card"></div>
               </div>
             </div>
           </section>
@@ -3038,29 +3008,12 @@ header .shortcut-help{
               <div class="panel-head">
                 <span class="panel-title">Global Analysis Fields</span>
                 <div class="panel-actions">
-                  <span id="global-progress-text" style="font-size:10px;color:var(--muted)">0 / 12 fields</span>
                   <button class="btn-sm" onclick="addGlobalBulkRequest('refine')">Refine All</button>
                   <button class="btn-sm" onclick="addGlobalBulkRequest('concise')">Concise All</button>
                 </div>
               </div>
               <div class="panel-body">
-                <div class="field-progress"><div class="field-progress-track"><div class="field-progress-fill" id="global-progress-fill"></div></div></div>
                 <div class="global-fields-grid" id="global-fields-grid"></div>
-              </div>
-            </div>
-          </section>
-          <section class="tab-panel" id="ready-tab">
-            <div class="panel">
-              <div class="panel-head">
-                <span class="panel-title">Ready to Go</span>
-                <div class="panel-actions">
-                  <button class="btn-sm primary-process" onclick="downloadBeatpulseBridge()">Download Bridge</button>
-                </div>
-              </div>
-              <div class="panel-body">
-                <div class="ready-grid" id="ready-output">
-                  <div class="detail-empty">Click Ready to Go after your final pass. Every field will get its own copy button here.</div>
-                </div>
               </div>
             </div>
           </section>
@@ -3092,8 +3045,9 @@ var SCOPES='streaming user-read-email user-read-private user-modify-playback-sta
 var accessToken=null,player=null,deviceId=null,sdkReady=false;
 var currentTrack=null,audioFeatures=null,sections=[],waveformData=[];
 var isPlaying=false,duration=0,positionMs=0;
-var loopEnabled=false,loopStart=null,loopEnd=null,activeSection=-1,selectedSection=-1,totalDurSecs=0;
+var activeSection=-1,selectedSection=-1,totalDurSecs=0,sectionPlaybackIndex=-1;
 var dragging=null,resizeTimer=null,seekScrubbing=false,seekScrubMs=0,localSeekLockUntil=0,urlAnalyzeTimer=null,lastAnalyzedUrl='',lastAutoStarterTrackId='',sectionNudgeTimer=null,sectionInfoNudgeReady=false,dragDepth=0;
+var playbackElementActivated=false;
 var annotationTimerStartedAt=null,annotationTimerHandle=null,annotationTimerDurationMs=20*60*1000;
 var SECTION_TYPE_OPTIONS=['Intro','Verse','Pre-Chorus','Chorus','Hook','Post-Chorus','Refrain','Bridge','Instrumental','Solo','Breakdown','Build','Drop','Interlude','Middle 8','Outro','Coda'];
 var SECTION_HOTKEY_LABELS={v:'Verse',c:'Chorus',h:'Hook',b:'Bridge',i:'Instrumental',o:'Outro',p:'Pre-Chorus'};
@@ -3102,14 +3056,13 @@ var globalAnalysis={};
 var passHistory=[],selectedPassIndex=-1,fieldRequests=[],fieldHistoryCursor={},lastSectionCountNote='';
 var listenFor='';
 var sectionInfoExported=false;
-var readySectionCollapsed={},dashboardMode=false,readyCopyItems=[],readyCopyIndex=0,readyCopiedKeys={},lastCopiedKey='',readyCopyMode='all',reviewIssues=[],reviewIssueIndex=0,dismissedReviewIssues={};
+var exportStatus={};
 var markerOffsetSec=parseFloat(localStorage.getItem('aural_grid_marker_offset_sec')||'-0.25');
 if(isNaN(markerOffsetSec))markerOffsetSec=-0.25;
-var followPlayhead=localStorage.getItem('aural_grid_follow_playhead')==='1';
-var reactionMode=false,undoStack=[],redoStack=[],isRestoringHistory=false,autosaveTimer=null;
-var boundaryReviewMode=false,boundaryReviewIndex=1,boundaryPreviewEndMs=null,boundaryPreviewPausing=false;
-var lastImportDiff=null;
-var workflowGuideHidden=true,workflowGuidePopoverOpen=false;
+var sectionRunthrough=localStorage.getItem('aural_grid_section_runthrough')==='1';
+var loopSections=localStorage.getItem('aural_grid_loop_sections')!=='0';
+var undoStack=[],redoStack=[],isRestoringHistory=false,autosaveTimer=null;
+var boundaryReviewIndex=1,boundaryPreviewEndMs=null,boundaryPreviewPausing=false;
 var listenForHidden=localStorage.getItem('aural_grid_hide_listen_for')==='1';
 
 function genV(){var c='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';var a=new Uint8Array(128);crypto.getRandomValues(a);return Array.from(a,function(b){return c[b%c.length]}).join('')}
@@ -3125,122 +3078,25 @@ function switchTab(tabId,btn){
   document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.toggle('active',b===btn||b.dataset.tab===tabId)});
   var app=document.getElementById('main-app');
   if(app)app.classList.toggle('global-fields-expanded',tabId==='global-tab');
-  if(tabId!=='ready-tab'&&dashboardMode){dashboardMode=false;applyDashboardMode()}
   renderCockpitStatus();
   setTimeout(renderWaveform,40);
-}
-function applyDashboardMode(){
-  var app=document.getElementById('main-app');
-  var strip=document.getElementById('copy-queue-strip');
-  if(app){
-    app.classList.toggle('dashboard-mode',dashboardMode);
-    app.classList.toggle('copy-workspace',dashboardMode);
-  }
-  if(strip)strip.style.display=dashboardMode?'grid':'none';
-  setTimeout(renderWaveform,60);
-  renderCopyQueue();
-}
-function focusInputBox(){
-  var input=document.getElementById('input-chunk');
-  var panel=document.querySelector('.pass-exchange');
-  if(panel&&panel.scrollIntoView)panel.scrollIntoView({block:'nearest',behavior:'smooth'});
-  if(input)setTimeout(function(){input.focus()},80);
-  renderCockpitStatus();
-}
-function showEditWorkspace(){
-  if(selectedSection>=0)switchTab('sections-tab');
-  else switchTab(hasGlobalContent()?'global-tab':'sections-tab');
-  renderCockpitStatus();
-}
-function renderTopRestoreDock(){
-  var dock=document.getElementById('top-restore-dock');
-  if(!dock)return;
-  dock.hidden=true;
-}
-function setWorkflowGuideHidden(hidden){
-  workflowGuideHidden=!!hidden;
-  workflowGuidePopoverOpen=!workflowGuideHidden;
-  renderWorkflowGuide();
-  renderTopRestoreDock();
-  setTimeout(renderWaveform,60);
-}
-function toggleWorkflowGuidePopover(force){
-  workflowGuidePopoverOpen=force==null?!workflowGuidePopoverOpen:!!force;
-  workflowGuideHidden=!workflowGuidePopoverOpen;
-  renderWorkflowGuide();
-}
-function hideListenForBar(){
-  listenForHidden=true;
-  localStorage.setItem('aural_grid_hide_listen_for','1');
-  setUrlCardHidden(true);
-  renderTopRestoreDock();
-  setTimeout(renderWaveform,60);
-}
-function showListenForBar(){
-  listenForHidden=false;
-  localStorage.setItem('aural_grid_hide_listen_for','0');
-  setUrlCardHidden(false);
-  setUrlCardCollapsed(!!currentTrack);
-  renderTopRestoreDock();
-  setTimeout(renderWaveform,60);
-}
-function toggleUrlCard(){
-  var card=document.getElementById('track-url-card');
-  if(!card)return;
-  listenForHidden=false;
-  localStorage.setItem('aural_grid_hide_listen_for','0');
-  setUrlCardHidden(false);
-  setUrlCardCollapsed(!card.classList.contains('url-collapsed'));
-}
-function setUrlCardCollapsed(collapsed){
-  var card=document.getElementById('track-url-card');
-  var btn=document.getElementById('url-collapse-btn');
-  var label=document.getElementById('url-card-label');
-  var summary=document.getElementById('track-url-summary');
-  if(!card)return;
-  card.classList.toggle('url-collapsed',collapsed);
-  if(btn)btn.textContent=collapsed?'Paste Another Link':'Collapse';
-  if(label)label.textContent=collapsed&&currentTrack?'Current Track':'Paste Spotify track link';
-  if(summary)summary.style.display=collapsed&&currentTrack?'':'none';
-  updateUrlSummary();
 }
 function setUrlCardHidden(hidden){
   var card=document.getElementById('track-url-card');
   if(card)card.classList.toggle('track-url-hidden',!!hidden);
 }
 function showLoadedCommand(show){
-  if(show){
-    listenForHidden=true;
-    localStorage.setItem('aural_grid_hide_listen_for','1');
-  }
+  if(show){listenForHidden=true;localStorage.setItem('aural_grid_hide_listen_for','1')}
   setUrlCardHidden(show||listenForHidden);
-  setUrlCardCollapsed(!!show);
   if(show)startAnnotationTimer();
-  renderTopRestoreDock();
   renderCockpitStatus();
 }
 function openUrlEntry(){
   listenForHidden=false;
   localStorage.setItem('aural_grid_hide_listen_for','0');
   setUrlCardHidden(false);
-  setUrlCardCollapsed(false);
-  renderTopRestoreDock();
   var el=document.getElementById('url-input');
   if(el)setTimeout(function(){el.focus();el.select()},60);
-}
-function togglePassExchange(){
-  var panel=document.getElementById('pass-exchange-panel');
-  var btn=document.getElementById('pass-collapse-btn');
-  if(!panel)return;
-  var collapsed=!panel.classList.contains('collapsed');
-  setPassExchangeCollapsed(collapsed);
-}
-function setPassExchangeCollapsed(collapsed){
-  var panel=document.getElementById('pass-exchange-panel');
-  var btn=document.getElementById('pass-collapse-btn');
-  if(!panel)return;
-  panel.classList.toggle('collapsed',!!collapsed);
-  if(btn)btn.textContent=collapsed?'Expand':'Collapse';
 }
 
 function startAnnotationTimer(){
@@ -3279,16 +3135,6 @@ function updateUrlSummary(){
   }
   renderAnnotationTimer();
 }
-function togglePanelCollapse(panelClass,btnId){
-  var panel=document.querySelector('.'+panelClass);
-  var btn=document.getElementById(btnId);
-  if(!panel)return;
-  var collapsed=!panel.classList.contains('collapsed');
-  panel.classList.toggle('collapsed',collapsed);
-  if(btn)btn.textContent=collapsed?'Expand':'Collapse';
-  setTimeout(renderWaveform,60);
-}
-
 function toggleShortcutHelp(event,force){
   if(event&&event.stopPropagation)event.stopPropagation();
   var panel=document.getElementById('shortcut-help');if(!panel)return;
@@ -3355,14 +3201,6 @@ function activeTabId(){
   return btn?btn.dataset.tab:'';
 }
 
-function isReadyContext(){
-  return dashboardMode||activeTabId()==='ready-tab';
-}
-
-function isSectionMarkingContext(){
-  return !!(currentTrack&&!dashboardMode&&activeTabId()!=='ready-tab'&&(reactionMode||(!sectionsHaveGeneratedDetails()&&!sectionInfoExported)));
-}
-
 function isImportExpected(){
   if(!currentTrack)return false;
   if(!listenFor&&!hasGlobalContent()&&!passHistory.length)return true;
@@ -3374,12 +3212,21 @@ function isImportExpected(){
 function selectSectionByNumber(idx){
   if(!sections[idx]){setProcessStatus('Section '+(idx+1)+' is not available.','warn');return}
   switchTab('sections-tab');
-  selectSection(idx,true);
+  playSectionButton(idx);
   focusSectionInList(idx,false);
 }
 
+function playAdjacentSection(delta){
+  if(!sections.length)return;
+  var base=selectedSection>=0?selectedSection:(activeSection>=0?activeSection:0);
+  var next=Math.max(0,Math.min(sections.length-1,base+delta));
+  switchTab('sections-tab');
+  playSectionButton(next);
+  focusSectionInList(next,false);
+}
+
 function applySectionLabelHotkey(key){
-  if(!currentTrack||selectedSection<0||dashboardMode||activeTabId()==='ready-tab')return false;
+  if(!currentTrack||selectedSection<0)return false;
   if(key==='i'&&isImportExpected())return false;
   var label=SECTION_HOTKEY_LABELS[key];
   if(!label||!sections[selectedSection])return false;
@@ -3389,16 +3236,6 @@ function applySectionLabelHotkey(key){
   renderSections();renderWaveform();renderSectionDetail(selectedSection);updateRefinementChunk();renderReadyOutput();
   focusSectionInList(selectedSection,false);
   setProcessStatus('Section '+(selectedSection+1)+' labelled '+label+'.','ok');
-  return true;
-}
-
-function applyAddLabelHotkey(key){
-  if(!isSectionMarkingContext())return false;
-  var label=SECTION_HOTKEY_LABELS[key];
-  if(!label)return false;
-  var idx=addSectionAtCurrentPlayhead({label:label,undoLabel:'Add '+label+' section'});
-  if(idx<0)return true;
-  setProcessStatus('Added '+label+' at '+formatTime(sections[idx].start)+'.','ok');
   return true;
 }
 
@@ -3421,69 +3258,55 @@ function nudgeSelectedBoundary(delta){
   sections[idx].duration=(sections[idx+1]?sections[idx+1].start:total)-ns;
   sections[idx].start=ns;
   markSectionMapChanged();
-  renderSections();renderWaveform();renderSectionDetail(selectedSection);prefillLoopInputs(selectedSection);updateRefinementChunk();renderReadyOutput();
-  if(boundaryReviewMode)renderBoundaryReview();
+  renderSections();renderWaveform();renderSectionDetail(selectedSection);updateRefinementChunk();renderReadyOutput();
+  renderBoundaryReview();
   setProcessStatus('Boundary S'+idx+' / S'+(idx+1)+' nudged to '+formatTime(ns)+'.','ok');
 }
 
-function startBoundaryReview(){
-  if(sections.length<2){setProcessStatus('Add at least two sections before reviewing boundaries.','warn');return}
-  boundaryReviewMode=true;
-  reactionMode=false;
-  updateModeControls();
-  boundaryReviewIndex=Math.max(1,Math.min(selectedSection>0?selectedSection:1,sections.length-1));
-  switchTab('sections-tab');
-  selectBoundaryReviewSection();
-  renderBoundaryReview();
-  previewCurrentBoundary();
+function renderBoundaryReview(){
+  var card=document.getElementById('boundary-review-card');if(!card)return;
+  if(sections.length<2){
+    card.innerHTML='<div class="detail-empty">Add another section to review boundaries.</div>';
+    return;
+  }
+  boundaryReviewIndex=selectedBoundaryIndex();
+  if(boundaryReviewIndex<1)boundaryReviewIndex=1;
+  boundaryReviewIndex=Math.max(1,Math.min(boundaryReviewIndex,sections.length-1));
+  var prev=sections[boundaryReviewIndex-1],next=sections[boundaryReviewIndex];
+  card.innerHTML='<div class="boundary-card-inner">'
+    +'<div><span class="review-kicker">Boundary</span><strong>'+(boundaryReviewIndex)+' / '+(sections.length-1)+'</strong><p>'+esc(prev.label||'Section')+' to '+esc(next.label||'Section')+' at '+formatTime(next.start)+'</p></div>'
+    +'<div class="boundary-card-actions">'
+    +'<button class="btn-sm" onclick="selectBoundaryStep(-1)">Previous</button>'
+    +'<button class="btn-sm" onclick="previewCurrentBoundary()">Preview</button>'
+    +'<button class="btn-sm" onclick="nudgeSelectedBoundary(-1)">-1s</button>'
+    +'<button class="btn-sm" onclick="nudgeSelectedBoundary(-.25)">-.25s</button>'
+    +'<button class="btn-sm" onclick="nudgeSelectedBoundary(.25)">+.25s</button>'
+    +'<button class="btn-sm" onclick="nudgeSelectedBoundary(1)">+1s</button>'
+    +'<button class="btn-sm" onclick="selectBoundaryStep(1)">Next</button>'
+    +'</div></div>';
 }
 
-function stopBoundaryReview(){
-  boundaryReviewMode=false;
-  boundaryPreviewEndMs=null;
-  renderBoundaryReview();
-  setProcessStatus('Boundary review closed.','ok');
-}
-
-function selectBoundaryReviewSection(){
+async function previewCurrentBoundary(){
+  boundaryReviewIndex=selectedBoundaryIndex();
   if(!sections[boundaryReviewIndex])return;
-  selectedSection=boundaryReviewIndex;
-  prefillLoopInputs(selectedSection);
+  var start=Math.max(0,(sections[boundaryReviewIndex].start-2)*1000);
+  boundaryPreviewEndMs=Math.min(duration||start+4500,(sections[boundaryReviewIndex].start+2.35)*1000);
+  await seekTo(start);
+  if(!isPlaying&&currentTrack)await playTrack(currentTrack.uri,start);
+  setProcessStatus('Previewing boundary '+boundaryReviewIndex+'. Use [ ] or the boundary buttons to nudge.','ok');
+}
+
+function selectBoundaryStep(delta){
+  if(sections.length<2)return;
+  var next=Math.max(1,Math.min(sections.length-1,selectedBoundaryIndex()+delta));
+  selectedSection=next;
   renderSections();
   renderSectionDetail(selectedSection);
   focusSectionInList(selectedSection,false);
 }
 
-function renderBoundaryReview(){
-  var strip=document.getElementById('boundary-review-strip');if(!strip)return;
-  if(!boundaryReviewMode||sections.length<2){strip.hidden=true;return}
-  boundaryReviewIndex=Math.max(1,Math.min(boundaryReviewIndex,sections.length-1));
-  strip.hidden=false;
-  var prev=sections[boundaryReviewIndex-1],next=sections[boundaryReviewIndex];
-  var el=document.getElementById('boundary-review-current');
-  if(el)el.textContent='Boundary '+boundaryReviewIndex+' / '+(sections.length-1)+' · '+(prev.label||'Section')+' → '+(next.label||'Section')+' at '+formatTime(next.start);
-}
-
-async function previewCurrentBoundary(){
-  if(!boundaryReviewMode||!sections[boundaryReviewIndex])return;
-  var start=Math.max(0,(sections[boundaryReviewIndex].start-2)*1000);
-  boundaryPreviewEndMs=Math.min(duration||start+4500,(sections[boundaryReviewIndex].start+2.35)*1000);
-  await seekTo(start);
-  if(!isPlaying&&currentTrack)await playTrack(currentTrack.uri,start);
-  setProcessStatus('Previewing boundary '+boundaryReviewIndex+'. Press Enter to accept or [ ] to nudge.','ok');
-}
-
-function acceptBoundaryReview(){
-  if(!boundaryReviewMode)return;
-  if(boundaryReviewIndex>=sections.length-1){stopBoundaryReview();setProcessStatus('Boundary review complete.','ok');return}
-  boundaryReviewIndex++;
-  selectBoundaryReviewSection();
-  renderBoundaryReview();
-  previewCurrentBoundary();
-}
-
 function checkBoundaryPreview(){
-  if(!boundaryReviewMode||boundaryPreviewEndMs==null||boundaryPreviewPausing)return;
+  if(boundaryPreviewEndMs==null||boundaryPreviewPausing)return;
   if(positionMs<boundaryPreviewEndMs)return;
   boundaryPreviewPausing=true;
   boundaryPreviewEndMs=null;
@@ -3502,20 +3325,20 @@ function handleAppShortcut(e){
   if(e.key==='Escape'){
     var albumModal=document.getElementById('album-modal');
     if(albumModal&&!albumModal.hidden){e.preventDefault();closeAlbumArtPopup();return}
-    if(boundaryReviewMode){e.preventDefault();stopBoundaryReview()}else toggleShortcutHelp(null,false);
+    toggleShortcutHelp(null,false);
     return
   }
   if(isTypingTarget(e.target))return;
-  if(boundaryReviewMode&&e.key==='Enter'){e.preventDefault();acceptBoundaryReview();return}
-  if(e.shiftKey&&(e.code==='Digit1'||e.code==='Digit2'||e.code==='Digit3')){
+  if(e.shiftKey&&(e.code==='Digit1'||e.code==='Digit2')){
     e.preventDefault();
     if(e.code==='Digit1')switchTab('sections-tab');
     if(e.code==='Digit2')switchTab('global-tab');
-    if(e.code==='Digit3')showReadyToGo();
     return;
   }
   var sectionIdx=sectionIndexFromNumberKey(e);
   if(sectionIdx!=null&&currentTrack){e.preventDefault();selectSectionByNumber(sectionIdx);return}
+  if((e.key==='='||e.key==='+')&&currentTrack){e.preventDefault();playAdjacentSection(1);return}
+  if(e.key==='-'&&currentTrack){e.preventDefault();playAdjacentSection(-1);return}
   if(e.code==='BracketLeft'||e.code==='BracketRight'){
     e.preventDefault();
     var step=e.shiftKey?.25:1;
@@ -3530,25 +3353,12 @@ function handleAppShortcut(e){
   }
   var key=e.key.length===1?e.key.toLowerCase():e.key;
   if(e.key==='?'||(e.key==='/'&&e.shiftKey)){e.preventDefault();toggleShortcutHelp();return}
-  if(key==='w'){e.preventDefault();toggleWorkflowGuidePopover();return}
-  if(boundaryReviewMode&&key==='p'){e.preventDefault();previewCurrentBoundary();return}
-  if(key==='n'){e.preventDefault();goToReviewIssue(1);return}
-  if(key==='x'){e.preventDefault();dismissCurrentReviewIssue();return}
-  if(key==='r'&&reviewIssues.length&&!dashboardMode){e.preventDefault();queueCurrentReviewIssue();return}
+  if(key==='p'){e.preventDefault();previewCurrentBoundary();return}
   if(key==='a'){e.preventDefault();addSection();return}
-  if(isReadyContext()&&key==='d'){e.preventDefault();setReadyCopyMode('descriptions');showReadyToGo();return}
-  if(isReadyContext()&&key==='g'){e.preventDefault();setReadyCopyMode('globals');showReadyToGo();return}
-  if(isReadyContext()&&key==='v'){e.preventDefault();setReadyCopyMode('vibes_descriptions');showReadyToGo();return}
-  if(isReadyContext()&&key==='c'){e.preventDefault();syncReadyCopyItems();if(!readyCopyItems.length){setProcessStatus('No dashboard copy fields ready yet.','warn');return}if(e.shiftKey){prevReadyItem();setProcessStatus('Moved to previous dashboard field.','ok')}else copyCurrentReadyItem();return}
-  if(applyAddLabelHotkey(key)){e.preventDefault();return}
   if(applySectionLabelHotkey(key)){e.preventDefault();return}
-  if(key==='f'){e.preventDefault();toggleFollowPlayhead();return}
-  if(key==='m'){e.preventDefault();toggleReactionMode();return}
-  if(key==='d'){e.preventDefault();downloadStarterSet();return}
-  if(key==='s'){e.preventDefault();doneMarkingSections();return}
+  if(key==='d'){e.preventDefault();copyStarterSet();return}
   if(key==='i'){e.preventDefault();openPassImport();return}
   if(key==='r'){e.preventDefault();downloadRefinementFile();return}
-  if(key==='c'){e.preventDefault();syncReadyCopyItems();if(!readyCopyItems.length){setProcessStatus('No dashboard copy fields ready yet.','warn');return}if(!dashboardMode)showReadyToGo();copyCurrentReadyItem();return}
   if(e.code==='Space'){e.preventDefault();togglePlay();return}
 }
 async function init(){
@@ -3599,21 +3409,65 @@ function initPlayer(){
   });
   player.addListener('account_error',function(){setSdk('loading','Premium required')});
   player.connect();
-  setInterval(function(){if(isPlaying){positionMs+=500;updateProgress();updateActiveSec();checkLoop();checkBoundaryPreview()}},500);
+  setInterval(function(){if(isPlaying){positionMs+=500;updateProgress();updateActiveSec();checkSectionPlayback();checkBoundaryPreview()}},500);
 }
 function setSdk(s,t){var d=document.getElementById('sdk-dot');if(d)d.className='sdk-dot '+s;var e=document.getElementById('sdk-status-text');if(e)e.textContent=t}
+
+function activatePlaybackElement(){
+  if(playbackElementActivated||!player||!player.activateElement)return;
+  try{
+    var result=player.activateElement();
+    playbackElementActivated=true;
+    if(result&&result.catch)result.catch(function(){playbackElementActivated=false});
+  }catch(e){
+    playbackElementActivated=false;
+  }
+}
 
 async function spF(url,opts){
   opts=opts||{};
   if(!tokValid())await doRefresh();
   var r=await fetch(url,Object.assign({},opts,{headers:Object.assign({'Authorization':'Bearer '+accessToken},opts.headers||{})}));
   if(r.status===204)return null;
-  if(!r.ok){var b=await r.text();throw new Error('Spotify '+r.status+': '+b.slice(0,80))}
+  if(!r.ok){
+    var b=await r.text();
+    var err=new Error('Spotify '+r.status+': '+spotifyErrorSummary(b));
+    err.spotifyStatus=r.status;
+    err.spotifyBody=b;
+    throw err
+  }
   return r.json()
+}
+function spotifyErrorSummary(body){
+  try{
+    var parsed=JSON.parse(body);
+    if(parsed&&parsed.error){
+      if(typeof parsed.error==='string')return parsed.error;
+      if(parsed.error.message)return parsed.error.message;
+    }
+  }catch(e){}
+  return String(body||'').replace(/\s+/g,' ').trim().slice(0,140)||'Request failed';
+}
+function handlePlayerCommandError(error,action){
+  var summary=spotifyErrorSummary(error&&error.spotifyBody?error.spotifyBody:(error&&error.message)||'');
+  var status=error&&error.spotifyStatus;
+  var msg='Spotify playback was blocked';
+  if(status)msg+=' ('+status+')';
+  if(summary)msg+=': '+summary;
+  msg+='. The track is loaded; choose this browser as the active Spotify device, open the track in Spotify, or keep annotating without playback control.';
+  console.warn('[Aural Grid] '+(action||'Player command')+' failed:',error);
+  setSdk('loading','Playback command blocked');
+  setProcessStatus(msg,'warn');
+  return false;
+}
+async function runPlayerCommand(action,fn){
+  try{await fn();return true}
+  catch(e){return handlePlayerCommandError(e,action)}
 }
 function extractId(u){var m=u.match(/track\/([A-Za-z0-9]+)/);return m?m[1]:null}
 
 function scheduleUrlAutoAnalyze(){
+  activatePlaybackElement();
   clearTimeout(urlAnalyzeTimer);
   var el=document.getElementById('url-input');
   var url=el?el.value.trim():'';
@@ -3634,7 +3488,6 @@ async function analyzeTrack(){
   if(!trackId){showSt('error','Invalid Spotify URL');return}
   clearTimeout(urlAnalyzeTimer);
   lastAnalyzedUrl=url;
-  setUrlCardCollapsed(true);
   listenForHidden=true;
   localStorage.setItem('aural_grid_hide_listen_for','1');
   setUrlCardHidden(true);
@@ -3643,7 +3496,7 @@ async function analyzeTrack(){
     showSt('loading','Fetching track metadata...');
     var track=await spF('https://api.spotify.com/v1/tracks/'+trackId);
     if(!track)throw new Error('Track not found');
-    currentTrack=track;totalDurSecs=track.duration_ms/1000;duration=track.duration_ms;positionMs=0;selectedSection=-1;activeSection=-1;globalAnalysis={};passHistory=[];selectedPassIndex=-1;fieldRequests=[];fieldHistoryCursor={};lastSectionCountNote='';listenFor='';sectionInfoExported=false;sectionInfoNudgeReady=false;readySectionCollapsed={};readyCopyItems=[];readyCopyIndex=0;readyCopiedKeys={};lastCopiedKey='';readyCopyMode='all';reviewIssues=[];reviewIssueIndex=0;dismissedReviewIssues={};undoStack=[];redoStack=[];reactionMode=false;boundaryReviewMode=false;boundaryPreviewEndMs=null;lastImportDiff=null;initGlobalFields();renderPassSelector();clearLoop(false);setPassExchangeCollapsed(true);showLoadedCommand(true);
+    currentTrack=track;totalDurSecs=track.duration_ms/1000;duration=track.duration_ms;positionMs=0;selectedSection=-1;activeSection=-1;sectionPlaybackIndex=-1;globalAnalysis={};passHistory=[];selectedPassIndex=-1;fieldRequests=[];fieldHistoryCursor={};lastSectionCountNote='';listenFor='';sectionInfoExported=false;sectionInfoNudgeReady=false;exportStatus={};undoStack=[];redoStack=[];boundaryPreviewEndMs=null;initGlobalFields();renderPassSelector();showLoadedCommand(true);
 
     audioFeatures=null;
     sections=initialSections(totalDurSecs);
@@ -3656,37 +3509,64 @@ async function analyzeTrack(){
     renderSections();
     renderWaveform();
     if(sections.length){
-      if(restored&&selectedSection>=0){prefillLoopInputs(selectedSection);renderSectionDetail(selectedSection)}
+      if(restored&&selectedSection>=0){renderSectionDetail(selectedSection)}
       else selectSection(0,false);
     }
-    autoDownloadStarterSet(track.id);
+    await autoCopyStarterSet(track.id);
     hideSt();
-
-    if(deviceId){
-      showSt('loading','Starting playback...');
-      await playTrack(track.uri);hideSt();
-    }else{
-      var n=0;
-      var w=setInterval(async function(){
-        n++;if(deviceId){clearInterval(w);await playTrack(currentTrack.uri);hideSt()}
-        else if(n>10){clearInterval(w);hideSt()}
-      },1000);
-    }
+    startAutoPlayback(track.uri);
   }catch(e){
     listenForHidden=false;
     localStorage.setItem('aural_grid_hide_listen_for','0');
     setUrlCardHidden(false);
     showSt('error',e.message);
-    setUrlCardCollapsed(false);
     console.error(e)
   }
   document.getElementById('analyze-btn').disabled=false;
 }
 
 async function playTrack(uri,startMs){
-  if(!deviceId)return;
+  if(!deviceId)return false;
   var body={uris:[uri],position_ms:Math.max(0,Math.floor(Number.isFinite(startMs)?startMs:0))};
-  await spF('https://api.spotify.com/v1/me/player/play?device_id='+deviceId,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+  return runPlayerCommand('Play track',function(){
+    return spF('https://api.spotify.com/v1/me/player/play?device_id='+deviceId,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+  })
+}
+
+function waitForDevice(timeoutMs){
+  if(deviceId)return Promise.resolve(deviceId);
+  return new Promise(function(resolve){
+    var started=Date.now();
+    var timer=setInterval(function(){
+      if(deviceId){clearInterval(timer);resolve(deviceId)}
+      else if(Date.now()-started>timeoutMs){clearInterval(timer);resolve(null)}
+    },250);
+  });
+}
+
+async function transferPlaybackToDevice(){
+  if(!deviceId)return false;
+  try{
+    await spF('https://api.spotify.com/v1/me/player',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({device_ids:[deviceId],play:false})});
+    return true;
+  }catch(e){
+    console.warn('[Aural Grid] Device transfer failed before autoplay:',e);
+    return false;
+  }
+}
+
+async function startAutoPlayback(uri){
+  if(!uri)return false;
+  var ready=await waitForDevice(8000);
+  if(!currentTrack||currentTrack.uri!==uri)return false;
+  if(!ready){
+    setProcessStatus('Track loaded. Spotify player is still waking up; press Play if it does not start.','warn');
+    return false;
+  }
+  await transferPlaybackToDevice();
+  var ok=await playTrack(uri,0);
+  if(!ok)return false;
+  return true;
 }
 
 function initialSections(t){
@@ -3754,6 +3634,19 @@ function renderStructureMap(ctx,W,H,total){
   var pinY=Math.min(H-13,sectionY+sectionH+23);
   drawTimelineRuler(ctx,W,total,rulerY);
   drawEnergyCurve(ctx,W,energyTop,energyH,total);
+  sections.forEach(function(sec,i){
+    var x=(sec.start/total)*W;
+    var w=Math.max(1,(sec.duration/total)*W);
+    ctx.fillStyle=sectionColor(i,.18);
+    ctx.fillRect(x,energyTop,w,energyH);
+    ctx.strokeStyle=sectionColor(i,.42);
+    ctx.beginPath();ctx.moveTo(x,energyTop);ctx.lineTo(x,energyTop+energyH);ctx.stroke();
+    if(w>34){
+      ctx.fillStyle='rgba(255,255,255,.86)';
+      ctx.font='800 18px Manrope, Inter, sans-serif';
+      ctx.fillText(String(i+1),x+8,energyTop+26);
+    }
+  });
   sections.forEach(function(sec,i){
     var x=(sec.start/total)*W;
     var w=Math.max(1,(sec.duration/total)*W);
@@ -3874,7 +3767,7 @@ function renderSectionSeekButtons(total){
     btn.style.left=Math.max(0,Math.min(100,(sec.start/total)*100))+'%';
     btn.style.background=sectionColor(i,.95);
     btn.title='Play '+sec.label+' from '+formatTime(sec.start);
-    btn.innerHTML='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+    btn.textContent=String(i+1);
     btn.addEventListener('mousedown',function(e){e.stopPropagation()});
     btn.addEventListener('touchstart',function(e){e.stopPropagation()},{passive:true});
     btn.addEventListener('click',function(e){e.stopPropagation();playSectionFromSeek(i)});
@@ -3883,7 +3776,7 @@ function renderSectionSeekButtons(total){
 }
 
 function playSectionFromSeek(i){
-  selectSection(i,true);
+  playSectionButton(i);
 }
 
 function niceTimeStep(total,W){
@@ -3983,6 +3876,7 @@ function initSeekInteractions(){
 
 async function seekFromClientX(clientX,el){
   if(!duration&&!totalDurSecs)return;
+  sectionPlaybackIndex=-1;
   var rect=el.getBoundingClientRect();
   var totalMs=duration||Math.floor((totalDurSecs||0)*1000);
   var pct=Math.max(0,Math.min(1,(clientX-rect.left)/rect.width));
@@ -4028,6 +3922,7 @@ async function finishSeekScrub(){
   document.removeEventListener('touchend',finishSeekScrub);
   if(!deviceId||!duration)return;
   var target=seekScrubMs;
+  sectionPlaybackIndex=-1;
   localSeekLockUntil=Date.now()+1600;
   positionMs=target;updateProgress();updateActiveSec();
   if(!isPlaying&&currentTrack)await playTrack(currentTrack.uri,target);
@@ -4059,7 +3954,7 @@ function onDrag(e){
   var tsEl=document.getElementById('sec-ts-'+idx);if(tsEl)tsEl.textContent=formatTime(ns);
   var durEl=document.getElementById('sec-dur-'+idx);if(durEl)durEl.textContent=sections[idx].duration.toFixed(1)+'s';
   var durPrev=document.getElementById('sec-dur-'+(idx-1));if(durPrev)durPrev.textContent=sections[idx-1].duration.toFixed(1)+'s';
-  if(selectedSection===idx||selectedSection===idx-1)prefillLoopInputs(selectedSection);
+  if(selectedSection===idx||selectedSection===idx-1)renderBoundaryReview();
 }
 function stopDrag(){
   if(dragging){dragging.classList.remove('dragging');dragging=null}
@@ -4071,17 +3966,19 @@ function stopDrag(){
 
 function renderSections(){
   var list=document.getElementById('sections-list');
-  document.getElementById('section-count').textContent=sections.length+' sections';
+  var count=document.getElementById('section-count');if(count)count.textContent=sections.length+' sections';
+  var run=document.getElementById('section-runthrough-toggle');if(run)run.checked=!!sectionRunthrough;
+  var loop=document.getElementById('loop-sections-toggle');if(loop)loop.checked=!!loopSections;
   var html='';
   sections.forEach(function(sec,i){
-    var cls='sec-item'+(i===selectedSection?' active':'');
+    var cls='sec-item'+(i===selectedSection?' active':'')+(i===sectionPlaybackIndex?' playing-section':'');
     html+='<div class="'+cls+'" id="sec-item-'+i+'" tabindex="-1" style="--sec-color:'+sectionColor(i,.95)+'">'
       +'<div class="sec-header" onclick="handleSecClick(event,'+i+')">'
+      +'<button class="section-play-btn" title="Play '+esc(sec.label||('Section '+(i+1)))+'" onclick="event.stopPropagation();playSectionButton('+i+')">'+(i+1)+'</button>'
       +'<span class="sec-num">'+(i+1)+'</span>'
       +'<span class="sec-ts" id="sec-ts-'+i+'">'+formatTime(sec.start)+'</span>'
       +'<div class="sec-name-wrap">'+sectionTypeSelectHtml(sec,i)+'</div>'
       +'<span class="sec-dur" id="sec-dur-'+i+'">'+sec.duration.toFixed(1)+'s</span>'
-      +sectionSanityHtml(i)
       +'<div class="sec-actions" onclick="event.stopPropagation()">'
       +'<button class="btn-icon" title="Rename" onclick="renameSection('+i+')">&#9998;</button>'
       +'<button class="btn-icon" style="color:#ff5555" title="Delete" onclick="deleteSection('+i+')">&#10005;</button>'
@@ -4089,29 +3986,12 @@ function renderSections(){
   });
   list.innerHTML=html;
   renderSectionSeekButtons(totalDurSecs||duration/1000);
+  renderBoundaryReview();
   renderCockpitStatus();
 }
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-function handleSecClick(e,i){if(e.target.closest('.sec-actions')||e.target.closest('.sec-type-select'))return;selectSection(i,true)}
-
-function sectionSanityFlags(i){
-  var sec=sections[i];if(!sec)return [];
-  var flags=[];
-  if(sec.duration<7)flags.push('short');
-  if(sec.duration>90)flags.push('long');
-  var label=String(sec.label||'').trim().toLowerCase();
-  var repeats=sections.filter(function(s,idx){return idx!==i&&String(s.label||'').trim().toLowerCase()===label}).length;
-  if(label&&repeats>=2&&!/^section\s+\d+$/i.test(label))flags.push('repeat');
-  if(/^section\s+\d+$/i.test(label)&&sectionsHaveGeneratedDetails())flags.push('generic label');
-  return flags.slice(0,2);
-}
-
-function sectionSanityHtml(i){
-  var flags=sectionSanityFlags(i);
-  if(!flags.length)return '';
-  return '<span class="sec-health">'+flags.map(function(flag){return '<span class="health-chip">'+esc(flag)+'</span>'}).join('')+'</span>';
-}
+function handleSecClick(e,i){if(e.target.closest('.sec-actions')||e.target.closest('.sec-type-select')||e.target.closest('.section-play-btn'))return;selectSection(i,false)}
 
 function sectionTypeSelectHtml(sec,i){
   var label=sec.label||'';
@@ -4160,7 +4040,7 @@ function deleteSection(i){
   if(activeSection===i)activeSection=-1;
   else if(activeSection>i)activeSection--;
   markSectionMapChanged();
-  renderSections();renderWaveform();renderSectionDetail(selectedSection);prefillLoopInputs(selectedSection);updateRefinementChunk();renderReadyOutput();
+  renderSections();renderWaveform();renderSectionDetail(selectedSection);updateRefinementChunk();renderReadyOutput();
 }
 
 function addSection(){
@@ -4207,7 +4087,7 @@ function addSectionAtTime(time,opts){
   sections.splice(idx+1,0,newSec);
   selectedSection=idx+1;
   markSectionMapChanged();
-  renderSections();renderWaveform();renderSectionDetail(selectedSection);prefillLoopInputs(selectedSection);updateRefinementChunk();renderReadyOutput();
+  renderSections();renderWaveform();renderSectionDetail(selectedSection);updateRefinementChunk();renderReadyOutput();
   focusSectionInList(selectedSection);
   setProcessStatus('Added '+newSec.label+' at '+formatTime(time)+'.','ok');
   return selectedSection;
@@ -4237,8 +4117,6 @@ function nextManualSectionLabel(){
 async function selectSection(i,shouldSeek){
   if(!sections[i])return;
   selectedSection=i;
-  prefillLoopInputs(i);
-  if(loopEnabled)setLoopToSection(i,false);
   renderSections();
   renderSectionDetail(i);
   if(shouldSeek){
@@ -4251,26 +4129,30 @@ async function selectSection(i,shouldSeek){
   }
 }
 
-function setLoopToSection(i,shouldSeek){
+async function playSectionButton(i){
   if(!sections[i])return;
-  var sec=sections[i];
-  loopStart=sec.start*1000;
-  loopEnd=(sec.start+sec.duration)*1000;
-  loopEnabled=true;
-  document.getElementById('loop-start-input').value=formatTime(sec.start);
-  document.getElementById('loop-end-input').value=formatTime(sec.start+sec.duration);
-  updateLoopButton();
-  var st=document.getElementById('loop-status');
-  if(st)st.textContent='Looping: '+sec.label+' ('+formatTime(sec.start)+' to '+formatTime(sec.start+sec.duration)+')';
-  if(shouldSeek)seekTo(loopStart);
+  selectedSection=i;
+  sectionPlaybackIndex=i;
+  renderSections();
+  renderSectionDetail(i);
+  var target=Math.floor(sections[i].start*1000);
+  localSeekLockUntil=Date.now()+1600;
+  positionMs=target;updateProgress();updateActiveSec();
+  await playTrack(currentTrack.uri,target);
 }
 
-function prefillLoopInputs(i){
-  if(!sections[i])return;
-  var sec=sections[i];
-  document.getElementById('loop-start-input').value=formatTime(sec.start);
-  document.getElementById('loop-end-input').value=formatTime(sec.start+sec.duration);
-  if(!loopEnabled)document.getElementById('loop-status').textContent='';
+function setSectionRunthrough(value){
+  sectionRunthrough=!!value;
+  localStorage.setItem('aural_grid_section_runthrough',sectionRunthrough?'1':'0');
+  renderSections();
+  setProcessStatus(sectionRunthrough?'Section Runthrough on.':'Section Runthrough off.','ok');
+}
+
+function setLoopSections(value){
+  loopSections=!!value;
+  localStorage.setItem('aural_grid_loop_sections',loopSections?'1':'0');
+  renderSections();
+  setProcessStatus(loopSections?'Loop Sections on.':'Loop Sections off.','ok');
 }
 
 function renderSectionDetail(i){
@@ -4280,63 +4162,41 @@ function renderSectionDetail(i){
   if(i<0||!sections[i]){
     label.textContent='- select a section';
     body.innerHTML='<div class="detail-empty">Click any section on the left to view and edit its details here.</div>';
+    var card=document.getElementById('boundary-review-card');if(card)card.innerHTML='';
     return;
   }
   var sec=sections[i];
   label.textContent=(i+1)+'. '+sec.label+' - starts '+formatTime(sec.start);
   body.innerHTML='<div class="section-detail-compact">'
     +'<div class="section-detail-top"><div class="section-start-chip">Start '+formatTime(sec.start)+'</div>'
-    +'<div class="boundary-nudge-panel"><span>Boundary</span><button class="btn-sm" onclick="nudgeSelectedBoundary(-1)">-1s</button><button class="btn-sm" onclick="nudgeSelectedBoundary(-.25)">-.25s</button><button class="btn-sm" onclick="nudgeSelectedBoundary(.25)">+.25s</button><button class="btn-sm" onclick="nudgeSelectedBoundary(1)">+1s</button></div>'
     +'<button class="btn-sm copy-instruments-btn" onclick="copySectionInstrumentsToAll('+i+')">Copy instruments to all</button>'
     +'<div class="section-detail-controls">'
     +sectionMiniControl(i,'instruments','Inst')
     +sectionMiniControl(i,'vibeTags','Vibes')
     +sectionMiniControl(i,'description','Desc')
     +'</div></div><div class="notes-grid">'
-    +'<div class="notes-field"><label for="detail-instruments"><span>Instruments</span>'+fieldHealthHtml('instruments',sec.instruments)+'</label>'
+    +'<div class="notes-field"><label for="detail-instruments"><span>Instruments</span></label>'
     +'<input id="detail-instruments" type="text" value="'+esc(sec.instruments||'')+'" placeholder="e.g. Electric guitar, drums, bass" oninput="updateSelectedField(\'instruments\',this.value)"/>'
     +'</div>'
-    +'<div class="notes-field"><label for="detail-vibes"><span>Vibe Tags</span>'+fieldHealthHtml('vibeTags',sec.vibeTags)+'</label>'
+    +'<div class="notes-field"><label for="detail-vibes"><span>Vibe Tags</span></label>'
     +'<input id="detail-vibes" type="text" value="'+esc(sec.vibeTags||'')+'" placeholder="e.g. Driving, tense, melodic" oninput="updateSelectedField(\'vibeTags\',this.value)"/>'
     +'</div>'
-    +'<div class="notes-field desc-field"><label for="detail-desc"><span>Description</span>'+fieldHealthHtml('description',sec.description)+'</label>'
+    +'<div class="notes-field desc-field"><label for="detail-desc"><span>Description</span></label>'
     +'<textarea id="detail-desc" placeholder="Describe this section..." oninput="updateSelectedField(\'description\',this.value)">'+esc(sec.description||'')+'</textarea>'
     +'</div>'
     +'</div></div>';
+  renderBoundaryReview();
 }
 
 function sectionMiniControl(index,field,label){
   return '<div class="section-mini-control"><span class="section-mini-label">'+esc(label)+'</span>'+fieldControlHtml('section',index,field)+'</div>';
 }
 
-function fieldHealthHtml(field,value){
-  var flags=fieldHealthFlags(field,value);
-  if(!flags.length)return '';
-  return '<span class="field-health">'+flags.map(function(flag){return '<span class="health-chip">'+esc(flag)+'</span>'}).join('')+'</span>';
-}
-
-function fieldHealthFlags(field,value){
-  var text=String(value||'').trim();
-  var flags=[];
-  var lower=text.toLowerCase();
-  var isDesc=/description|meaning|occasion|context|harmony|groove|style|factor|emotion|production|fidelity|expression/i.test(field);
-  var isTags=/tags|genre|instruments/i.test(field);
-  if(!text){flags.push(/instruments/i.test(field)?'missing instruments':'thin');return flags.slice(0,2)}
-  if(isDesc&&text.length<45)flags.push('thin');
-  if(isTags&&text.length<10)flags.push('thin');
-  if((isDesc&&text.length>520)||(!isDesc&&text.length>180))flags.push('long');
-  if(/\b(nice|interesting|good|cool|vibey|various|stuff|things)\b/.test(lower))flags.push('generic');
-  var words=lower.match(/\b[a-z]{4,}\b/g)||[];
-  var counts={};
-  for(var i=0;i<words.length;i++){counts[words[i]]=(counts[words[i]]||0)+1}
-  if(Object.keys(counts).some(function(k){return counts[k]>=4&&['section','sound','music','track'].indexOf(k)<0}))flags.push('repeated');
-  return flags.slice(0,2);
-}
-
 function updateSelectedField(field,value){
   if(selectedSection<0||!sections[selectedSection])return;
   sections[selectedSection][field]=value;
-  renderSections();renderWaveform();updateRefinementChunk();renderReadyOutput();
+  if(String(value||'').trim())queueFieldRequest('sections.S'+(selectedSection+1)+'.'+field,'refine');
+  updateRefinementChunk();renderReadyOutput();
 }
 
 function copySectionInstrumentsToAll(i){
@@ -4359,26 +4219,21 @@ function renderGlobalFields(){
 function globalFieldHtml(idx){
   var name=GLOBAL_FIELDS[idx];
   return '<div class="notes-field global-field '+((globalAnalysis[name]||'').trim()?'complete':'')+'">'
-    +'<div class="global-title-row"><label for="global-field-'+idx+'">'+(idx+1)+'. '+esc(name)+fieldHealthHtml(name,globalAnalysis[name])+'</label>'
+    +'<div class="global-title-row"><label for="global-field-'+idx+'">'+(idx+1)+'. '+esc(name)+'</label>'
     +'<div class="global-title-actions">'+fieldControlHtml('global',idx,name)+'</div></div>'
     +'<textarea id="global-field-'+idx+'" rows="4" placeholder="Paste or write this field..." oninput="updateGlobalField(\''+esc(name)+'\',this.value)">'+esc(globalAnalysis[name]||'')+'</textarea>'
     +'</div>';
 }
 function updateGlobalField(name,value){
   globalAnalysis[name]=value;
+  if(String(value||'').trim())queueFieldRequest('global_fields.'+name,'refine');
   var idx=GLOBAL_FIELDS.indexOf(name),el=idx>=0?document.getElementById('global-field-'+idx):null;
   if(el&&el.closest)el.closest('.global-field').classList.toggle('complete',!!String(value||'').trim());
   renderGlobalProgress();updateRefinementChunk();renderReadyOutput();
 }
 function renderGlobalProgress(){
-  var done=GLOBAL_FIELDS.filter(function(name){return (globalAnalysis[name]||'').trim()}).length;
-  var fill=document.getElementById('global-progress-fill');
-  var text=document.getElementById('global-progress-text');
-  if(fill)fill.style.width=((done/GLOBAL_FIELDS.length)*100)+'%';
-  if(text)text.textContent=done+' / '+GLOBAL_FIELDS.length+' fields';
   renderCockpitStatus();
 }
-function globalSnapshot(){var snap={fields:{}};GLOBAL_FIELDS.forEach(function(name){snap.fields[name]=globalAnalysis[name]||''});return snap}
 function hasGlobalContent(){return GLOBAL_FIELDS.some(function(name){return (globalAnalysis[name]||'').trim()})}
 
 function sectionFieldStats(){
@@ -4411,8 +4266,7 @@ function currentWorkflowPhase(){
   if(sectionInfoExported&&!sectionsHaveGeneratedDetails())return {label:'Import Full Pass',cls:'marking'};
   if(!sectionsHaveGeneratedDetails())return {label:'Mark Sections',cls:'marking'};
   if(!hasGlobalContent())return {label:'Import Full Pass',cls:'marking'};
-  if(dashboardMode)return {label:'Copy to Dashboard',cls:'ready'};
-  return {label:'Review / Ready',cls:'ready'};
+  return {label:'Export Ready',cls:'ready'};
 }
 
 function sectionsHaveGeneratedDetails(){
@@ -4424,96 +4278,6 @@ function renderWorkflowPhase(){
   var phase=currentWorkflowPhase();
   el.textContent=phase.label;
   el.className='phase-chip '+(phase.cls||'');
-}
-
-function workflowGuideState(){
-  if(boundaryReviewMode&&currentTrack){
-    return {title:'Review each boundary',copy:'Preview is playing around the selected marker. Use [ ] to nudge, Enter to accept, P to replay, or Esc to exit.',shortcut:'Enter / [ ] / P',action:'boundary-preview',actionLabel:'Preview Boundary'};
-  }
-  if(reactionMode&&currentTrack){
-    return {title:'Focused section marking',copy:'Use A to drop compensated markers, or V/C/H/B/I/O/P to drop and label in one move. Brackets nudge boundaries.',shortcut:'A / V-C-H / [ ]',action:'sections',actionLabel:'Done Marking'};
-  }
-  if(!currentTrack){
-    return {title:'Load a track',copy:'Paste a Spotify track link and run Analyse. The starter file downloads automatically.',shortcut:'Enter',action:'analyze',actionLabel:'Analyse Track'};
-  }
-  if(!listenFor&&!hasGlobalContent()&&!passHistory.length){
-    return {title:'Import the pre-listening pass',copy:'Send the starter file to ChatGPT, then import its first JSON to fill Listen For and genre.',shortcut:'I',action:'import',actionLabel:'Import Pass'};
-  }
-  if(!sectionsHaveGeneratedDetails()&&!sectionInfoExported){
-    if(sectionInfoNudgeReady)return {title:'Sections look stable',copy:'If your markers are done, export section info and send it to ChatGPT with your narration.',shortcut:'S',action:'sections',actionLabel:'Done Marking'};
-    return {title:'Mark sections while listening',copy:'Press A at each boundary. Use arrows to seek, then S when the section map is ready.',shortcut:'A / S',action:'sections',actionLabel:'Done Marking'};
-  }
-  if(!sectionsHaveGeneratedDetails()&&sectionInfoExported){
-    return {title:'Import the full pass',copy:'Send section info plus your narration to ChatGPT, then import the returned JSON.',shortcut:'I',action:'import',actionLabel:'Import Full Pass'};
-  }
-  if(!hasGlobalContent()){
-    return {title:'Import global analysis',copy:'Import the full ChatGPT pass so the global fields and section details fill together.',shortcut:'I',action:'import',actionLabel:'Import Full Pass'};
-  }
-  if(fieldRequests.length){
-    return {title:'Send refinement requests',copy:'Download one refinement file containing every queued refine/concise request.',shortcut:'R',action:'refinement',actionLabel:'Download '+fieldRequests.length+' Requests'};
-  }
-  if(dashboardMode){
-    return {title:'Copy into your dashboard',copy:'Copy Current advances through each dashboard field. Paste on your second screen, then copy the next field.',shortcut:'C',action:'copy',actionLabel:'Copy Current'};
-  }
-  return {title:'Review, refine, or export',copy:'Edit fields directly, queue refinements if needed, or open Ready to Go for dashboard copying.',shortcut:'3 / C',action:'ready',actionLabel:'Ready to Go'};
-}
-
-function renderWorkflowGuide(){
-  var guide=document.getElementById('workflow-guide');if(!guide)return;
-  var state=workflowGuideState();
-  var headerTitle=document.getElementById('header-step-title');
-  var headerShortcut=document.getElementById('header-step-shortcut');
-  var headerChip=document.getElementById('header-step-chip');
-  if(headerTitle)headerTitle.textContent=state.title;
-  if(headerShortcut){
-    headerShortcut.textContent=state.shortcut||'W';
-    headerShortcut.hidden=false;
-  }
-  if(headerChip){
-    headerChip.classList.toggle('open',workflowGuidePopoverOpen);
-    headerChip.classList.toggle('requests',fieldRequests.length>0);
-    headerChip.title=(workflowGuidePopoverOpen?'Hide':'Show')+' workflow step';
-  }
-  guide.hidden=!workflowGuidePopoverOpen;
-  var title=document.getElementById('workflow-guide-title');
-  var copy=document.getElementById('workflow-guide-copy');
-  var shortcut=document.getElementById('workflow-guide-shortcut');
-  var action=document.getElementById('workflow-guide-action');
-  if(title)title.textContent=state.title;
-  if(copy)copy.textContent=state.copy;
-  if(shortcut){
-    shortcut.textContent=state.shortcut||'';
-    shortcut.hidden=!state.shortcut;
-  }
-  if(action){
-    action.textContent=state.actionLabel||'Next';
-    action.dataset.action=state.action||'';
-  }
-  guide.classList.toggle('ready',dashboardMode||currentWorkflowPhase().cls==='ready');
-  guide.classList.toggle('requests',fieldRequests.length>0);
-  guide.classList.toggle('open',workflowGuidePopoverOpen);
-  var app=document.getElementById('main-app');
-  if(app){
-    app.classList.toggle('section-marking-focus',currentTrack&&!sectionsHaveGeneratedDetails()&&!sectionInfoExported);
-    app.classList.toggle('reaction-mode',reactionMode);
-  }
-  renderTopRestoreDock();
-}
-
-function handleWorkflowAction(){
-  var btn=document.getElementById('workflow-guide-action');
-  var action=btn&&btn.dataset?btn.dataset.action:'';
-  if(action==='analyze'){
-    var input=document.getElementById('url-input');
-    if(input&&!input.value.trim()){setUrlCardCollapsed(false);input.focus();return}
-    analyzeTrack();return;
-  }
-  if(action==='import'){openPassImport();return}
-  if(action==='sections'){doneMarkingSections();return}
-  if(action==='boundary-preview'){previewCurrentBoundary();return}
-  if(action==='refinement'){downloadRefinementFile();return}
-  if(action==='copy'){copyCurrentReadyItem();return}
-  if(action==='ready'){showReadyToGo();return}
 }
 
 function requestSummary(){
@@ -4538,7 +4302,7 @@ function renderRequestStatus(){
   var btn=document.getElementById('download-refinement-btn');
   var clear=document.getElementById('clear-requests-btn');
   var status=document.getElementById('request-status');
-  if(btn)btn.textContent=count?'Download '+count+' Requests':'Download Refinement';
+  if(btn)btn.textContent=count?'Export '+count+' Requests':'Export Refinement';
   if(clear)clear.style.display=count?'':'none';
   if(status){
     status.textContent=count?('Queued: '+requestSummary()):'No active requests';
@@ -4554,105 +4318,12 @@ function renderCockpitStatus(){
   updateUrlSummary();
   renderWorkflowPhase();
   renderRequestStatus();
-  renderWorkflowGuide();
-  renderReviewQueue();
   renderBoundaryReview();
-  renderImportDiff();
   setStepState('workflow-step-starter',!hasTrack,hasTrack);
   setStepState('workflow-step-input',hasTrack&&!hasPass,hasPass);
   setStepState('workflow-step-edit',hasPass&&completion<95,hasPass&&completion>=70);
   setStepState('workflow-step-ready',hasPass&&completion>=95,hasPass&&completion>=95);
-  renderCopyQueue();
   updateModeControls();
-}
-
-function collectReviewIssues(){
-  if(!currentTrack)return [];
-  var readyForReview=hasGlobalContent()||sectionsHaveGeneratedDetails();
-  if(!readyForReview)return [];
-  var issues=[];
-  sections.forEach(function(sec,i){
-    sectionSanityFlags(i).forEach(function(flag){
-      issues.push({key:'sanity:'+i+':'+flag,label:'S'+(i+1)+' '+(sec.label||'Section')+' - '+flag,target:'sections.S'+(i+1)+'.description',action:flag==='long'?'concise':'refine',scope:'section',index:i,field:'description'});
-    });
-    [['instruments',sec.instruments],['vibeTags',sec.vibeTags],['description',sec.description]].forEach(function(pair){
-      fieldHealthFlags(pair[0],pair[1]).forEach(function(flag){
-        issues.push({key:'section:'+i+':'+pair[0]+':'+flag,label:'S'+(i+1)+' '+(sec.label||'Section')+' '+pair[0]+' - '+flag,target:'sections.S'+(i+1)+'.'+pair[0],action:flag==='long'?'concise':'refine',scope:'section',index:i,field:pair[0]});
-      });
-    });
-  });
-  if(sections.length>=4&&!sections.some(function(sec){return /chorus|hook|refrain/i.test(sec.label||'')})){
-    issues.push({key:'track:missing-hook',label:'No chorus / hook / refrain label detected',target:'global_fields.Wow Factor',action:'refine',scope:'global',index:GLOBAL_FIELDS.indexOf('Wow Factor'),field:'Wow Factor'});
-  }
-  GLOBAL_FIELDS.forEach(function(name,idx){
-    fieldHealthFlags(name,globalAnalysis[name]).forEach(function(flag){
-      issues.push({key:'global:'+idx+':'+flag,label:name+' - '+flag,target:'global_fields.'+name,action:flag==='long'?'concise':'refine',scope:'global',index:idx,field:name});
-    });
-  });
-  return issues.filter(function(issue){return !dismissedReviewIssues[issue.key]}).slice(0,60);
-}
-
-function renderReviewQueue(){
-  var strip=document.getElementById('review-strip');if(!strip)return;
-  reviewIssues=collectReviewIssues();
-  if(!reviewIssues.length){strip.hidden=true;reviewIssueIndex=0;return}
-  reviewIssueIndex=Math.max(0,Math.min(reviewIssueIndex,reviewIssues.length-1));
-  var issue=reviewIssues[reviewIssueIndex];
-  strip.hidden=false;
-  var current=document.getElementById('review-current');
-  if(current)current.textContent=(reviewIssueIndex+1)+' / '+reviewIssues.length+' - '+issue.label;
-}
-
-function currentReviewIssue(){
-  reviewIssues=collectReviewIssues();
-  if(!reviewIssues.length)return null;
-  reviewIssueIndex=Math.max(0,Math.min(reviewIssueIndex,reviewIssues.length-1));
-  return reviewIssues[reviewIssueIndex];
-}
-
-function goToReviewIssue(delta){
-  reviewIssues=collectReviewIssues();
-  if(!reviewIssues.length){setProcessStatus('No review issues found.','ok');renderReviewQueue();return}
-  reviewIssueIndex=(reviewIssueIndex+(delta||1)+reviewIssues.length)%reviewIssues.length;
-  focusReviewIssue(reviewIssues[reviewIssueIndex]);
-  renderReviewQueue();
-}
-
-function focusReviewIssue(issue){
-  if(!issue)return;
-  if(issue.scope==='section'){
-    switchTab('sections-tab');
-    selectedSection=issue.index;
-    prefillLoopInputs(issue.index);
-    renderSections();renderSectionDetail(issue.index);focusSectionInList(issue.index,false);
-    setTimeout(function(){
-      var id=issue.field==='description'?'detail-desc':(issue.field==='vibeTags'?'detail-vibes':'detail-instruments');
-      var el=document.getElementById(id);if(el)el.focus();
-    },80);
-  }else if(issue.scope==='global'){
-    switchTab('global-tab');
-    setTimeout(function(){var el=document.getElementById('global-field-'+issue.index);if(el){el.focus();el.scrollIntoView({block:'nearest',behavior:'smooth'})}},80);
-  }
-}
-
-function queueCurrentReviewIssue(){
-  var issue=currentReviewIssue();
-  if(!issue){setProcessStatus('No review issue to refine.','ok');return}
-  if(!issue.target){setProcessStatus('This issue is informational only.','warn');return}
-  pushUndo('Queue review request');
-  queueFieldRequest(issue.target,issue.action||'refine');
-  renderGlobalFields();renderSectionDetail(selectedSection);updateRefinementChunk();renderReviewQueue();
-  setProcessStatus((issue.action==='concise'?'Concise':'Refine')+' request queued for '+issue.label+'.','ok');
-}
-
-function dismissCurrentReviewIssue(){
-  var issue=currentReviewIssue();
-  if(!issue){setProcessStatus('No review issue to dismiss.','ok');return}
-  pushUndo('Dismiss review issue');
-  dismissedReviewIssues[issue.key]=true;
-  renderReviewQueue();
-  scheduleAutosave();
-  setProcessStatus('Dismissed review issue: '+issue.label+'.','ok');
 }
 
 function fieldControlHtml(scope,index,field){
@@ -4697,31 +4368,25 @@ function addSectionBulkRequest(action){
   if(!sections.length){setProcessStatus('Load a track before adding section requests.','warn');return}
   var added=0;
   pushUndo((action==='concise'?'Concise':'Refine')+' section fields');
-  sections.forEach(function(_,i){
+  sections.forEach(function(sec,i){
     ['vibeTags','description'].forEach(function(field){
+      if(!String(sec[field]||'').trim())return;
       if(queueFieldRequest('sections.S'+(i+1)+'.'+field,action))added++;
     });
   });
   renderGlobalFields();renderSectionDetail(selectedSection);updateRefinementChunk();
-  setProcessStatus((action==='concise'?'Concise':'Refine')+' All queued for section vibe tags and descriptions. '+added+' requests added.','ok');
+  setProcessStatus(added?((action==='concise'?'Concise':'Refine')+' All queued for filled section vibe tags and descriptions. '+added+' requests added.'):'No filled section vibe tags or descriptions to queue.','ok');
 }
 
 function addGlobalBulkRequest(action){
   var added=0;
   pushUndo((action==='concise'?'Concise':'Refine')+' global fields');
   GLOBAL_FIELDS.forEach(function(name){
+    if(!String(globalAnalysis[name]||'').trim())return;
     if(queueFieldRequest('global_fields.'+name,action))added++;
   });
   renderGlobalFields();renderSectionDetail(selectedSection);updateRefinementChunk();
-  setProcessStatus((action==='concise'?'Concise':'Refine')+' All queued for global fields. '+added+' requests added.','ok');
-}
-
-function clearFieldRequests(){
-  if(!fieldRequests.length){setProcessStatus('No refinement requests to clear.','ok');return}
-  pushUndo('Clear refinement requests');
-  fieldRequests=[];
-  renderGlobalFields();renderSectionDetail(selectedSection);updateRefinementChunk();
-  setProcessStatus('Refinement request queue cleared.','ok');
+  setProcessStatus(added?((action==='concise'?'Concise':'Refine')+' All queued for filled global fields. '+added+' requests added.'):'No filled global fields to queue.','ok');
 }
 
 function defaultRequestInstruction(target,action){
@@ -4779,10 +4444,35 @@ function currentPassChunk(title){
     }),
     global_fields:{},
     field_requests:fieldRequests.slice(),
+    requested_fields:fieldRequests.map(function(req){
+      return {
+        target:req.target||'',
+        action:req.action||'refine',
+        instruction:req.instruction||defaultRequestInstruction(req.target||'',req.action||'refine'),
+        current_value:valueForRequestTarget(req.target||'')
+      };
+    }),
     section_count_note:lastSectionCountNote||''
   };
   GLOBAL_FIELDS.forEach(function(name){chunk.global_fields[name]=globalAnalysis[name]||''});
   return chunk;
+}
+
+function valueForRequestTarget(target){
+  var secMatch=String(target||'').match(/^sections\.S(\d+)\.([^.\]]+)$/);
+  if(secMatch){
+    var sec=sections[parseInt(secMatch[1],10)-1];
+    if(!sec)return '';
+    var field=secMatch[2];
+    if(field==='vibe_tags')field='vibeTags';
+    return sec[field]||'';
+  }
+  var prefix='global_fields.';
+  if(String(target||'').indexOf(prefix)===0){
+    var name=target.slice(prefix.length);
+    return globalAnalysis[name]!=null?globalAnalysis[name]:'';
+  }
+  return '';
 }
 
 function splitBridgeTags(value){
@@ -4792,11 +4482,51 @@ function splitBridgeTags(value){
     .filter(Boolean);
 }
 
+function beatpulseSectionTypeValue(label){
+  var v=String(label||'').replace(/\s+/g,' ').trim().toLowerCase()
+    .replace(/[()[\]{}]/g,' ')
+    .replace(/\s+/g,' ')
+    .replace(/\s+(no\.?|#)?\d+$/,'')
+    .trim();
+  var map={
+    'pre-chorus':'pre-chorus',
+    'pre chorus':'pre-chorus',
+    'post-chorus':'post-chorus',
+    'post chorus':'post-chorus',
+    'middle 8':'bridge',
+    'instrumental':'instrumental',
+    'solo':'solo',
+    'refrain':'refrain',
+    'hook':'hook',
+    'chorus':'chorus',
+    'verse':'verse',
+    'bridge':'bridge',
+    'intro':'intro',
+    'outro':'outro',
+    'coda':'outro',
+    'breakdown':'breakdown',
+    'build':'build',
+    'drop':'drop',
+    'interlude':'interlude'
+  };
+  if(/\bsolo\b/.test(v))return 'solo';
+  if(/\bverse\b/.test(v))return 'verse';
+  if(/\bpre\s*chorus\b/.test(v))return 'pre-chorus';
+  if(/\bpost\s*chorus\b/.test(v))return 'post-chorus';
+  if(/\bchorus\b/.test(v))return 'chorus';
+  if(/\bhook\b/.test(v))return 'hook';
+  if(/\brefrain\b/.test(v))return 'refrain';
+  if(/\bbridge\b/.test(v)||/\bmiddle\s*8\b/.test(v))return 'bridge';
+  if(/\bintro\b/.test(v))return 'intro';
+  if(/\boutro\b/.test(v)||/\bcoda\b/.test(v))return 'outro';
+  return map[v]||v||'section';
+}
+
 function beatpulseBridgePayload(){
   var starter=trackStarterSet()||{track:{title:'',artist:'',album:'',release:'',duration:'',spotify_url:''}};
   var gf={};
   GLOBAL_FIELDS.forEach(function(name){gf[name]=globalAnalysis[name]||''});
-  return {
+  var payload={
     schema:'aural-grid-beatpulse-bridge-v1',
     exported_at:new Date().toISOString(),
     track:starter.track,
@@ -4805,6 +4535,7 @@ function beatpulseBridgePayload(){
         id:'S'+(i+1),
         start:formatTime(sec.start),
         label:sec.label||'',
+        section_type:beatpulseSectionTypeValue(sec.label||''),
         narrative_description:sec.description||'',
         instruments:splitBridgeTags(sec.instruments),
         vibe_tags:splitBridgeTags(sec.vibeTags),
@@ -4813,6 +4544,8 @@ function beatpulseBridgePayload(){
     }),
     global_fields:gf,
     beatpulse_global_fields:{
+      tempo:gf.Tempo||globalAnalysis.Tempo||'',
+      key:gf.Key||globalAnalysis.Key||'',
       setting:gf['Setting / Occasion / Listening Context']||'',
       harmony:gf['Harmony']||'',
       chords:'',
@@ -4828,12 +4561,81 @@ function beatpulseBridgePayload(){
       lyrical_evocation:gf['Lyrical Meaning / Evocation']||''
     }
   };
+  payload.transfer_queue=beatpulseTransferQueue(payload);
+  return payload;
 }
 
-function downloadBeatpulseBridge(){
-  if(!currentTrack){showSt('error','Load a track before downloading the Beatpulse bridge file.');return}
-  downloadJsonFile(fileBaseName('beatpulse-bridge')+'.json',prettyJson(beatpulseBridgePayload()));
-  setProcessStatus('Beatpulse bridge file downloaded. Import it on the Beatpulse dashboard with the bridge script.','ok');
+function addBeatpulseQueueItem(items,item){
+  var value=String(item.value==null?'':item.value).replace(/\s+/g,' ').trim();
+  if(!value)return;
+  items.push({
+    id:item.id||('item-'+(items.length+1)),
+    label:item.label||'Field',
+    value:value,
+    kind:item.kind||'text',
+    target:item.target||null
+  });
+}
+
+function addBeatpulseTagQueueItems(items,base,tags){
+  splitBridgeTags(tags).forEach(function(tag,idx){
+    addBeatpulseQueueItem(items,{
+      id:base.id+'-tag-'+(idx+1),
+      label:base.label+' '+(idx+1),
+      value:tag,
+      kind:'tag',
+      target:base.target
+    });
+  });
+}
+
+function beatpulseTransferQueue(payload){
+  var items=[];
+  (payload.sections||[]).forEach(function(section,index){
+    var n=index+1,prefix='S'+n;
+    addBeatpulseQueueItem(items,{id:'s'+n+'-start',label:prefix+' Timestamp',value:section.start||section.start_time,target:{type:'section',index:index,suffix:'start_time'}});
+    addBeatpulseQueueItem(items,{id:'s'+n+'-type',label:prefix+' Section Type',value:section.section_type||beatpulseSectionTypeValue(section.label||section.section_type),target:{type:'section',index:index,suffix:'section_type'}});
+    addBeatpulseQueueItem(items,{id:'s'+n+'-narration',label:prefix+' Narration',value:section.narrative_description||section.description,target:{type:'section',index:index,suffix:'narrative_description'}});
+    addBeatpulseTagQueueItems(items,{id:'s'+n+'-instruments',label:prefix+' Instrument',target:{type:'sectionTag',index:index,tagIndex:0}},section.instruments||section.instrumentation);
+    addBeatpulseTagQueueItems(items,{id:'s'+n+'-vibes',label:prefix+' Vibe Tag',target:{type:'sectionTag',index:index,tagIndex:1}},section.vibe_tags||section.vibeTags);
+    addBeatpulseQueueItem(items,{id:'s'+n+'-melody',label:prefix+' Melody',value:section.melody,target:{type:'section',index:index,suffix:'melody'}});
+  });
+  var g=payload.beatpulse_global_fields||{};
+  [
+    ['tempo','Tempo','Tempo'],
+    ['key','Key','Key'],
+    ['setting','Setting','Setting'],
+    ['harmony','Harmony','Harmony'],
+    ['chords','Chords','Chords'],
+    ['rhythm_groove','Rhythm & Groove','Rhythm & Groove'],
+    ['playing_style','Playing Style','Playing Style'],
+    ['wow_factor','Wow Factor','Wow Factor'],
+    ['emotion_vibe','Emotion & Vibe','Emotion & Vibe'],
+    ['mix_production','Mix & Production','Mix & Production'],
+    ['sonic_fidelity','Sonic Fidelity','Sonic Fidelity'],
+    ['vocal_expression','Vocal Expression','Vocal Expression'],
+    ['lyrical_evocation','Lyrical Evocation','Lyrical Evocation']
+  ].forEach(function(row){
+    addBeatpulseQueueItem(items,{id:'global-'+row[0],label:'Global '+row[1],value:g[row[0]],target:{type:'globalText',label:row[2]}});
+  });
+  addBeatpulseTagQueueItems(items,{id:'global-genre',label:'Global Genre',target:{type:'globalTag',label:'Genre',fallbackIndex:0}},g.genre_era_scene);
+  addBeatpulseTagQueueItems(items,{id:'global-dominant-instruments',label:'Global Dominant Instrument',target:{type:'globalTag',label:'Dominant Instruments',fallbackIndex:1}},g.dominant_instruments);
+  return items;
+}
+
+async function downloadBeatpulseBridgeJson(){
+  if(!currentTrack){showSt('error','Load a track before downloading the Beatpulse bridge JSON.');return}
+  var json=prettyJson(beatpulseBridgePayload());
+  downloadJsonFile(fileBaseName('beatpulse-bridge')+'.json',json);
+  exportStatus.json=true;
+  renderReadyOutput();
+  scheduleAutosave();
+  try{
+    await navigator.clipboard.writeText(json);
+    setProcessStatus('Final dashboard JSON downloaded and copied. Open Beatpulse, then import from clipboard in the extension.','ok');
+  }catch(e){
+    setProcessStatus('Final dashboard JSON downloaded. If clipboard copy was blocked, import the file in the extension.','ok');
+  }
 }
 
 function sectionInfoSet(){
@@ -4858,6 +4660,26 @@ function sectionInfoSet(){
   };
 }
 
+function sectionInfoText(info){
+  if(!info)return '';
+  var t=info.track||{};
+  var lines=[
+    'AURAL GRID SECTION INFO',
+    'Track: '+(t.title||'')+' - '+(t.artist||''),
+    'Album: '+(t.album||''),
+    'Release: '+(t.release||''),
+    'Duration: '+(t.duration||''),
+    '',
+    'Section map - keep marker times unchanged:',
+  ];
+  (info.sections||[]).forEach(function(sec){
+    lines.push(sec.id+' | '+sec.start+'-'+sec.end+' | '+(sec.label||'Section')+' | '+sec.duration_seconds+'s');
+  });
+  lines.push('');
+  lines.push('Instructions: '+info.instructions);
+  return lines.join('\n');
+}
+
 function snapshotState(){
   return {
     sections:sections.map(function(s){return Object.assign({},s)}),
@@ -4867,18 +4689,6 @@ function snapshotState(){
     sectionInfoExported:sectionInfoExported,
     sectionCountNote:lastSectionCountNote
   };
-}
-
-function restoreSnapshot(snapshot){
-  if(!snapshot)return;
-  sections=(snapshot.sections||[]).map(function(s){return Object.assign({},s)});
-  globalAnalysis=Object.assign({},snapshot.globalAnalysis||{});
-  fieldRequests=(snapshot.fieldRequests||[]).map(function(r){return Object.assign({},r)});
-  listenFor=snapshot.listenFor||'';
-  sectionInfoExported=!!snapshot.sectionInfoExported;
-  lastSectionCountNote=snapshot.sectionCountNote||'';
-  selectedSection=Math.min(Math.max(selectedSection,0),sections.length-1);
-  renderSections();renderWaveform();renderGlobalFields();renderSectionDetail(selectedSection);updateRefinementChunk();renderReadyOutput();
 }
 
 function deepClone(value){return JSON.parse(JSON.stringify(value))}
@@ -4895,13 +4705,7 @@ function captureAppState(){
     passHistory:passHistory,
     selectedPassIndex:selectedPassIndex,
     fieldHistoryCursor:fieldHistoryCursor,
-    readySectionCollapsed:readySectionCollapsed,
-    readyCopyIndex:readyCopyIndex,
-    readyCopiedKeys:readyCopiedKeys,
-    lastCopiedKey:lastCopiedKey,
-    readyCopyMode:readyCopyMode,
-    dismissedReviewIssues:dismissedReviewIssues,
-    reviewIssueIndex:reviewIssueIndex,
+    exportStatus:exportStatus,
     selectedSection:selectedSection,
     activeSection:activeSection
   });
@@ -4910,7 +4714,6 @@ function captureAppState(){
 function restoreAppState(state,opts){
   if(!state)return;
   opts=opts||{};
-  if(!opts.keepImportDiff)lastImportDiff=null;
   isRestoringHistory=true;
   sections=(state.sections||[]).map(function(s){return Object.assign({},s)});
   globalAnalysis=Object.assign({},state.globalAnalysis||{});
@@ -4923,13 +4726,7 @@ function restoreAppState(state,opts){
   passHistory=(state.passHistory||[]).map(function(p){return Object.assign({},p,{snapshot:p.snapshot?deepClone(p.snapshot):null})});
   selectedPassIndex=state.selectedPassIndex==null?(passHistory.length-1):state.selectedPassIndex;
   fieldHistoryCursor=Object.assign({},state.fieldHistoryCursor||{});
-  readySectionCollapsed=Object.assign({},state.readySectionCollapsed||{});
-  readyCopyIndex=state.readyCopyIndex||0;
-  readyCopiedKeys=Object.assign({},state.readyCopiedKeys||{});
-  lastCopiedKey=state.lastCopiedKey||'';
-  readyCopyMode=state.readyCopyMode||'all';
-  dismissedReviewIssues=Object.assign({},state.dismissedReviewIssues||{});
-  reviewIssueIndex=state.reviewIssueIndex||0;
+  exportStatus=Object.assign({},state.exportStatus||{});
   selectedSection=state.selectedSection==null?selectedSection:state.selectedSection;
   activeSection=state.activeSection==null?activeSection:state.activeSection;
   if(!sections.length&&totalDurSecs)sections=initialSections(totalDurSecs);
@@ -5002,85 +4799,29 @@ function restoreAutosaveForTrack(trackId){
   }catch(e){console.warn('Autosave restore failed',e);return false}
 }
 
-function setMarkerOffset(value){
-  markerOffsetSec=parseFloat(value);
-  if(isNaN(markerOffsetSec))markerOffsetSec=0;
-  localStorage.setItem('aural_grid_marker_offset_sec',String(markerOffsetSec));
-  updateModeControls();
-  setProcessStatus('Section marker offset set to '+markerOffsetSec.toFixed(2)+'s.','ok');
-}
-
-function toggleFollowPlayhead(){
-  followPlayhead=!followPlayhead;
-  localStorage.setItem('aural_grid_follow_playhead',followPlayhead?'1':'0');
-  updateModeControls();
-  setProcessStatus(followPlayhead?'Follow Playhead enabled.':'Follow Playhead off.','ok');
-}
-
-function toggleReactionMode(){
-  reactionMode=!reactionMode;
-  updateModeControls();
-  renderWorkflowGuide();
-  setTimeout(renderWaveform,80);
-  setProcessStatus(reactionMode?'Focused marking mode on. Press A at each boundary.':'Focused marking mode off.','ok');
-}
-
 function updateModeControls(){
-  var sel=document.getElementById('marker-offset-select');
-  if(sel)sel.value=String(markerOffsetSec);
-  var follow=document.getElementById('follow-playhead-btn');
-  if(follow){follow.textContent=followPlayhead?'Follow On':'Follow Off';follow.classList.toggle('toggle-on',followPlayhead)}
-  var mode=document.getElementById('reaction-mode-btn');
-  if(mode){mode.textContent=reactionMode?'Exit Marking':'Marking Mode';mode.classList.toggle('toggle-on',reactionMode)}
+  var run=document.getElementById('section-runthrough-toggle');if(run)run.checked=!!sectionRunthrough;
+  var loop=document.getElementById('loop-sections-toggle');if(loop)loop.checked=!!loopSections;
   updateHistoryControls();
 }
 
 async function copyStarterSet(){
   var starter=trackStarterSet();
   if(!starter){showSt('error','Load a track before copying the starter set.');return}
-  await copyText(compactJson(starter));
-  setProcessStatus('Compact starter copied. Paste it into ChatGPT before your narration.','ok');
+  if(await copyText(compactJson(starter)))setProcessStatus('Compact starter copied. Paste it into ChatGPT before your narration.','ok');
 }
 
-async function copyStarterPrompt(){
-  if(!currentTrack){showSt('error','Load a track before copying the starter prompt.');return}
-  var text='I am starting a new track in Aural Grid. I have uploaded the starter JSON file. Use the track metadata and any reliable research you can do to return only one valid section-analyst-pass-v1 pre-listening JSON. Include a compact top-level listen_for cue and global_fields["Genre / Era / Scene"] with 3-4 comma-delimited genre, era, or scene tags. Do not include markdown or explanation.';
-  await copyText(text);
-  setProcessStatus('Starter prompt copied. Upload the starter JSON file to ChatGPT with it.','ok');
-}
-
-async function copySectionPrompt(){
-  if(!currentTrack){showSt('error','Load a track before copying the section prompt.');return}
-  var text='I have finished marking sections in Aural Grid and uploaded the section-info JSON file. Treat the section IDs and marker times as the fixed timeline; do not change marker times. I will give or dictate my narration next. Use the section map plus my narration, your research, and your existing annotation approach for me to return only one valid section-analyst-pass-v1 JSON for import.';
-  await copyText(text);
-  setProcessStatus('Section prompt copied. Upload the section-info JSON file and then narrate.','ok');
-}
-
-async function copyRefinementPrompt(){
-  if(!currentTrack){showSt('error','Load a track before copying the refinement prompt.');return}
-  var count=fieldRequests.length;
-  var text='I have uploaded an Aural Grid refinement JSON file. Apply every item in field_requests exactly: refine means improve specificity and dashboard-readiness; concise means reduce fluff while preserving concrete musical detail. Preserve unrequested fields unless the new information clearly improves them. Return only one valid section-analyst-pass-v1 JSON for import.';
-  await copyText(text);
-  setProcessStatus('Refinement prompt copied'+(count?' for '+count+' queued requests':'')+'. Upload the refinement JSON file with it.','ok');
-}
-
-function downloadStarterSet(){
-  var starter=trackStarterSet();
-  if(!starter){showSt('error','Load a track before downloading the starter set.');return}
-  downloadJsonFile(fileBaseName('starter')+'.json',compactJson(starter));
-  setProcessStatus('Starter file downloaded. Send this first before listening.','ok');
-}
-
-function autoDownloadStarterSet(trackId){
+async function autoCopyStarterSet(trackId){
   if(!trackId||lastAutoStarterTrackId===trackId)return;
   lastAutoStarterTrackId=trackId;
-  downloadStarterSet();
-  setProcessStatus('Starter downloaded automatically. Send it to ChatGPT, then start listening and marking sections.','ok');
-}
-
-function doneMarkingSections(){
-  downloadSectionInfo();
-  setPassExchangeCollapsed(true);
+  var starter=trackStarterSet();
+  if(!starter)return;
+  try{
+    await navigator.clipboard.writeText(compactJson(starter));
+    setProcessStatus('Starter copied. Paste it into ChatGPT, then start listening and marking sections.','ok');
+  }catch(e){
+    setProcessStatus('Starter ready. Safari blocked auto-copy; click Copy Starter or press D.','warn');
+  }
 }
 
 function markSectionMapChanged(){
@@ -5092,22 +4833,23 @@ function markSectionMapChanged(){
     if(!currentTrack||sectionsHaveGeneratedDetails()||sectionInfoExported)return;
     sectionInfoNudgeReady=true;
     renderCockpitStatus();
-    setProcessStatus('Sections look stable. Press S or click Done Marking when your map is ready.','ok');
+    setProcessStatus('Sections look stable. Copy Section Info when your map is ready.','ok');
   },30000);
   renderCockpitStatus();
   scheduleAutosave();
 }
 
-function downloadSectionInfo(){
+async function copySectionInfo(){
   var info=sectionInfoSet();
-  if(!info){showSt('error','Load a track and mark sections before downloading section info.');return}
-  downloadJsonFile(fileBaseName('section-info')+'.json',compactJson(info));
+  if(!info){showSt('error','Load a track and mark sections before copying section info.');return}
+  var copied=await copyText(sectionInfoText(info));
+  if(!copied){setProcessStatus('Section info is ready, but clipboard access was blocked. Try Copy Section Info again.','warn');return}
   sectionInfoExported=true;
   sectionInfoNudgeReady=false;
   clearTimeout(sectionNudgeTimer);
   renderCockpitStatus();
   scheduleAutosave();
-  setProcessStatus('Section info downloaded. Send this to ChatGPT with your narration for the full pass.','ok');
+  setProcessStatus('Section info copied. Paste it into ChatGPT, then narrate the pass.','ok');
 }
 
 function compactJson(obj){return JSON.stringify(obj)}
@@ -5119,12 +4861,16 @@ function fileBaseName(suffix){
   return title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,48)+'-'+suffix;
 }
 
-function downloadJsonFile(filename,text){
-  var blob=new Blob([text],{type:'application/json'});
+function downloadTextFile(filename,text,mimeType){
+  var blob=new Blob([text],{type:mimeType||'text/plain'});
   var url=URL.createObjectURL(blob);
   var a=document.createElement('a');
   a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();
   setTimeout(function(){URL.revokeObjectURL(url)},500);
+}
+
+function downloadJsonFile(filename,text){
+  downloadTextFile(filename,text,'application/json');
 }
 
 function importPassFile(event){
@@ -5163,7 +4909,6 @@ function processInputChunk(){
     if(chunk.schema!=='section-analyst-pass-v1')throw new Error('Expected schema section-analyst-pass-v1.');
     var importKind=classifyPassChunk(chunk);
     var queuedBefore=fieldRequests.length;
-    var beforeState=captureAppState();
     pushUndo(importKind==='pre'?'Import pre-listening pass':'Import full pass');
     applyPassChunk(chunk);
     var resolvedCount=importKind==='full'?queuedBefore:0;
@@ -5172,118 +4917,14 @@ function processInputChunk(){
     var passTitle=chunk.pass_title||(importKind==='pre'?'Pre-listening pass':('Pass '+(passHistory.length+1)));
     var pass={title:passTitle,createdAt:passStamp(),raw:el.value,snapshot:snapshotState()};
     passHistory.push(pass);selectedPassIndex=passHistory.length-1;fieldHistoryCursor={};
-    lastImportDiff=buildImportDiff(beforeState,captureAppState(),passTitle);
     renderPassSelector();updateRefinementChunk();renderReadyOutput();
-    renderImportDiff();
     var note=processSectionCountNote(chunk);
     var message=importStatusMessage(importKind,note,chunk,resolvedCount);
     setProcessStatus(message,'ok');
-    setPassExchangeCollapsed(true);
-    if(importKind==='full'&&!hasSectionCountMismatch(chunk))showReadyToGo();
-    else switchTab('sections-tab');
+    switchTab(importKind==='pre'?'sections-tab':'sections-tab');
     showSt('loading',message);
     setTimeout(hideSt,1800);
   }catch(e){setProcessStatus('Could not process input: '+e.message,'warn');showSt('error','Could not process input: '+e.message);setTimeout(hideSt,2200);console.error(e)}
-}
-
-function buildImportDiff(before,after,title){
-  var items=[];
-  function addItem(label,scope,index,field,beforeValue,afterValue){
-    var b=String(beforeValue||''),a=String(afterValue||'');
-    if(b===a)return;
-    items.push({label:label,scope:scope,index:index,field:field,before:b,after:a});
-  }
-  addItem('Listen For','listen',0,'listenFor',before.listenFor,after.listenFor);
-  var max=Math.max((before.sections||[]).length,(after.sections||[]).length);
-  for(var i=0;i<max;i++){
-    var bSec=(before.sections||[])[i]||{},aSec=(after.sections||[])[i]||{};
-    var prefix='S'+(i+1)+' '+(aSec.label||bSec.label||'Section');
-    addItem(prefix+' label','section',i,'label',bSec.label,aSec.label);
-    addItem(prefix+' instruments','section',i,'instruments',bSec.instruments,aSec.instruments);
-    addItem(prefix+' vibe tags','section',i,'vibeTags',bSec.vibeTags,aSec.vibeTags);
-    addItem(prefix+' description','section',i,'description',bSec.description,aSec.description);
-  }
-  GLOBAL_FIELDS.forEach(function(name,idx){
-    addItem(name,'global',idx,name,(before.globalAnalysis||{})[name],(after.globalAnalysis||{})[name]);
-  });
-  return {title:title||'Imported pass',index:0,beforeState:before,items:items};
-}
-
-function renderImportDiff(){
-  var strip=document.getElementById('import-diff-strip');if(!strip)return;
-  if(!lastImportDiff||!lastImportDiff.items||!lastImportDiff.items.length){strip.hidden=true;return}
-  lastImportDiff.index=Math.max(0,Math.min(lastImportDiff.index||0,lastImportDiff.items.length-1));
-  var item=lastImportDiff.items[lastImportDiff.index];
-  strip.hidden=false;
-  var current=document.getElementById('import-diff-current');
-  var before=document.getElementById('import-diff-before');
-  var after=document.getElementById('import-diff-after');
-  if(current)current.textContent=(lastImportDiff.index+1)+' / '+lastImportDiff.items.length+' · '+lastImportDiff.title+' · '+item.label;
-  if(before)before.textContent=diffSnippet(item.before);
-  if(after)after.textContent=diffSnippet(item.after);
-}
-
-function diffSnippet(value){
-  var text=String(value||'').replace(/\s+/g,' ').trim();
-  if(!text)return '(empty)';
-  return text.length>160?text.slice(0,157)+'...':text;
-}
-
-function currentImportDiffItem(){
-  if(!lastImportDiff||!lastImportDiff.items||!lastImportDiff.items.length)return null;
-  lastImportDiff.index=Math.max(0,Math.min(lastImportDiff.index||0,lastImportDiff.items.length-1));
-  return lastImportDiff.items[lastImportDiff.index];
-}
-
-function nextImportDiff(){if(!lastImportDiff)return;lastImportDiff.index=((lastImportDiff.index||0)+1)%lastImportDiff.items.length;renderImportDiff()}
-function prevImportDiff(){if(!lastImportDiff)return;lastImportDiff.index=((lastImportDiff.index||0)-1+lastImportDiff.items.length)%lastImportDiff.items.length;renderImportDiff()}
-
-function focusCurrentImportDiff(){
-  var item=currentImportDiffItem();
-  if(!item)return;
-  if(item.scope==='section'){
-    switchTab('sections-tab');
-    selectedSection=item.index;
-    prefillLoopInputs(item.index);
-    renderSections();renderSectionDetail(item.index);focusSectionInList(item.index,false);
-    setTimeout(function(){
-      var id=item.field==='description'?'detail-desc':(item.field==='vibeTags'?'detail-vibes':(item.field==='instruments'?'detail-instruments':null));
-      var el=id?document.getElementById(id):null;
-      if(el)el.focus();
-    },80);
-  }else if(item.scope==='global'){
-    switchTab('global-tab');
-    setTimeout(function(){var el=document.getElementById('global-field-'+item.index);if(el){el.focus();el.scrollIntoView({block:'nearest',behavior:'smooth'})}},80);
-  }else{
-    var el=document.getElementById('url-summary-listen');if(el)el.focus();
-  }
-}
-
-function revertCurrentImportDiff(){
-  var item=currentImportDiffItem();
-  if(!item)return;
-  pushUndo('Revert import field');
-  if(item.scope==='section'&&sections[item.index])sections[item.index][item.field]=item.before;
-  else if(item.scope==='global')globalAnalysis[item.field]=item.before;
-  else if(item.scope==='listen')listenFor=item.before;
-  lastImportDiff.items.splice(lastImportDiff.index,1);
-  if(lastImportDiff.index>=lastImportDiff.items.length)lastImportDiff.index=Math.max(0,lastImportDiff.items.length-1);
-  renderSections();renderWaveform();renderGlobalFields();renderSectionDetail(selectedSection);updateRefinementChunk();renderReadyOutput();renderImportDiff();
-  setProcessStatus('Reverted '+item.label+'.','ok');
-}
-
-function dismissImportDiff(){
-  lastImportDiff=null;
-  renderImportDiff();
-  setProcessStatus('Import diff kept and dismissed.','ok');
-}
-
-function undoImportDiff(){
-  if(!lastImportDiff||!lastImportDiff.beforeState){setProcessStatus('No import diff to undo.','warn');return}
-  restoreAppState(lastImportDiff.beforeState);
-  lastImportDiff=null;
-  renderImportDiff();
-  setProcessStatus('Imported pass undone.','ok');
 }
 
 function classifyPassChunk(chunk){
@@ -5320,10 +4961,10 @@ function hasSectionCountMismatch(chunk){
 }
 
 function importStatusMessage(kind,note,chunk,resolvedCount){
-  if(kind==='pre')return 'Pre-listening pass applied. Listen For and genre are ready; mark sections, then use Done Marking Sections.';
+  if(kind==='pre')return 'Pre-listening pass applied. Listen For and genre are ready; mark sections, then copy Section Info.';
   var resolved=resolvedCount?' '+resolvedCount+' refinement requests resolved.':'';
-  if(hasSectionCountMismatch(chunk))return processSectionCountNote(chunk)+resolved+' Review sections before Ready to Go.';
-  return 'Full pass applied.'+resolved+' Ready to Go opened.';
+  if(hasSectionCountMismatch(chunk))return processSectionCountNote(chunk)+resolved+' Review sections before exporting.';
+  return 'Full pass applied.'+resolved+' Continue reviewing, then click Ready to Go when you are finished.';
 }
 
 function applyPassChunk(chunk){
@@ -5424,15 +5065,6 @@ function renderPassSelector(){
   renderCockpitStatus();
 }
 
-function restoreInputPass(value){
-  var idx=parseInt(value,10);if(isNaN(idx)||!passHistory[idx])return;
-  pushUndo('Restore pass');
-  selectedPassIndex=idx;
-  var input=document.getElementById('input-chunk');if(input)input.value=passHistory[idx].raw||'';
-  restoreSnapshot(passHistory[idx].snapshot);
-  setProcessStatus('Restored '+passHistory[idx].title+'.','ok');
-}
-
 function updateRefinementChunk(){
   var out=document.getElementById('refinement-chunk');if(!out)return;
   out.value=compactJson(currentPassChunk('Refinement from app'));
@@ -5440,14 +5072,8 @@ function updateRefinementChunk(){
   scheduleAutosave();
 }
 
-async function copyRefinementChunk(){
-  updateRefinementChunk();
-  var out=document.getElementById('refinement-chunk');if(!out)return;
-  await copyText(out.value);
-  setProcessStatus('Compact refinement copied. Paste it back into ChatGPT for the next pass.','ok');
-}
-
 function downloadRefinementFile(){
+  if(!fieldRequests.length){setProcessStatus('No refinement requests queued. Use Refine, Concise, or Refine All first.','warn');return}
   updateRefinementChunk();
   var out=document.getElementById('refinement-chunk');if(!out)return;
   downloadJsonFile(fileBaseName('refinement-pass')+'.json',out.value);
@@ -5455,73 +5081,30 @@ function downloadRefinementFile(){
   setProcessStatus(count?('Refinement file downloaded with '+count+' queued requests. Upload this one file to ChatGPT.'):('Refinement file downloaded. Upload it to ChatGPT for the next pass.'),'ok');
 }
 
-async function pasteClipboardToInput(){
-  var input=document.getElementById('input-chunk');if(!input)return;
-  try{
-    input.value=await navigator.clipboard.readText();
-    input.focus();
-    setProcessStatus('Clipboard pasted into the input box.','ok');
-  }catch(e){setProcessStatus('Clipboard paste failed. Use your browser paste shortcut.','warn')}
-}
-
-async function copyInputChunk(){
-  var input=document.getElementById('input-chunk');if(!input)return;
-  await copyText(input.value);
-  setProcessStatus('Input box copied.','ok');
-}
-
-function downloadInputFile(){
-  var input=document.getElementById('input-chunk');if(!input||!input.value.trim()){setProcessStatus('Input box is empty.','warn');return}
-  downloadJsonFile(fileBaseName('input-pass')+'.json',input.value.trim());
-  setProcessStatus('Input file downloaded from the latest input box contents.','ok');
-}
-
-function pasteRefinementToInput(){
-  updateRefinementChunk();
-  var input=document.getElementById('input-chunk');
-  var out=document.getElementById('refinement-chunk');
-  if(input&&out){input.value=out.value;input.focus();setProcessStatus('Current refinement moved into the input box.','ok')}
-}
-
-function clearInputBox(){var el=document.getElementById('input-chunk');if(el)el.value='';setProcessStatus('Input box cleared.','ok')}
-
 function setProcessStatus(text,type){
   var el=document.getElementById('process-status');if(!el)return;
   el.textContent=text;el.className='process-status '+(type||'');
 }
 
-function sectionSummaryForPrompt(){
-  return sections.map(function(sec,i){
-    return (i+1)+'. '+sec.label+' ('+formatTime(sec.start)+'-'+formatTime(sec.start+sec.duration)+')\n'
-      +'Instruments / sounds: '+(sec.instruments||'')+'\n'
-      +'Vibe tags: '+(sec.vibeTags||'')+'\n'
-      +'Description: '+(sec.description||'');
-  }).join('\n\n');
+function checkSectionPlayback(){
+  if(sectionPlaybackIndex<0||!sections[sectionPlaybackIndex])return;
+  var sec=sections[sectionPlaybackIndex];
+  var end=(sec.start+sec.duration)*1000;
+  if(positionMs<end)return;
+  if(loopSections){
+    var start=sec.start*1000;
+    positionMs=start;updateProgress();updateActiveSec();
+    seekTo(start);
+  }else{
+    sectionPlaybackIndex=-1;
+    renderSections();
+  }
 }
-function parseT(str){str=(str||'').trim();var m=str.match(/^(\d+):(\d{1,2})$/);if(m)return parseInt(m[1],10)*60+parseInt(m[2],10);var n=parseFloat(str);return isNaN(n)?null:n}
-function applyCustomLoop(){
-  var s=parseT(document.getElementById('loop-start-input').value);
-  var e=parseT(document.getElementById('loop-end-input').value);
-  if(s===null||e===null||e<=s){showSt('error','Invalid loop times');return}
-  loopStart=s*1000;loopEnd=e*1000;loopEnabled=true;
-  updateLoopButton();
-  document.getElementById('loop-status').textContent='Looping: '+formatTime(s)+' to '+formatTime(e);
-  seekTo(loopStart);
-}
-function toggleLoop(){
-  if(!loopEnabled&&(loopStart===null||loopEnd===null)){applyCustomLoop();return}
-  loopEnabled=!loopEnabled;updateLoopButton();
-  document.getElementById('loop-status').textContent=loopEnabled?'Looping enabled':'Loop off';
-}
-function updateLoopButton(){var b=document.getElementById('loop-toggle-btn');b.textContent=loopEnabled?'On':'Off';b.classList.toggle('active',loopEnabled)}
-function clearLoop(clearInputs){
-  if(clearInputs!==false){document.getElementById('loop-start-input').value='';document.getElementById('loop-end-input').value=''}
-  loopEnabled=false;loopStart=null;loopEnd=null;updateLoopButton();
-  var st=document.getElementById('loop-status');if(st)st.textContent='';
-}
-function checkLoop(){if(!loopEnabled||loopStart===null||loopEnd===null)return;if(positionMs>=loopEnd)seekTo(loopStart)}
 
-async function togglePlay(){if(player)await player.togglePlay()}
+async function togglePlay(){
+  if(!player)return false;
+  return runPlayerCommand('Toggle playback',function(){return player.togglePlay()})
+}
 function updatePlayBtn(){document.getElementById('play-icon').innerHTML=isPlaying?'<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>':'<path d="M8 5v14l11-7z"/>'}
 function updateProgress(){
   if(!duration)return;
@@ -5535,17 +5118,27 @@ function updateProgress(){
   var totalLarge=document.getElementById('time-total-large');if(totalLarge)totalLarge.textContent='/ '+msToTime(duration);
   document.getElementById('waveform-cursor').style.left=pct+'%';
 }
-async function seekTo(ms){ms=Math.max(0,Math.min(Math.floor(ms),duration||ms));localSeekLockUntil=Date.now()+1600;positionMs=ms;updateProgress();updateActiveSec();if(!deviceId)return;await spF('https://api.spotify.com/v1/me/player/seek?position_ms='+ms+'&device_id='+deviceId,{method:'PUT'})}
-async function setVolume(v){if(player)await player.setVolume(v/100)}
+async function seekTo(ms){
+  ms=Math.max(0,Math.min(Math.floor(ms),duration||ms));
+  localSeekLockUntil=Date.now()+1600;
+  positionMs=ms;updateProgress();updateActiveSec();
+  if(!deviceId)return false;
+  return runPlayerCommand('Seek',function(){
+    return spF('https://api.spotify.com/v1/me/player/seek?position_ms='+ms+'&device_id='+deviceId,{method:'PUT'})
+  })
+}
+async function setVolume(v){
+  if(!player)return false;
+  return runPlayerCommand('Set volume',function(){return player.setVolume(v/100)})
+}
 function updateActiveSec(){
   if(!sections.length||!duration)return;
   var pos=positionMs/1000;var cur=-1;
   for(var i=0;i<sections.length;i++){if(pos>=sections[i].start)cur=i;else break}
   if(cur!==activeSection){
     activeSection=cur;
-    if(followPlayhead&&cur>=0&&cur!==selectedSection&&!dashboardMode&&activeTabId()==='sections-tab'){
+    if(sectionRunthrough&&cur>=0&&cur!==selectedSection&&activeTabId()==='sections-tab'){
       selectedSection=cur;
-      prefillLoopInputs(cur);
       renderSectionDetail(cur);
     }
     renderSections();
@@ -5553,178 +5146,10 @@ function updateActiveSec(){
   }
 }
 
-function buildReadyCopyItems(){
-  var items=[];
-  sections.forEach(function(sec,i){
-    var prefix='S'+(i+1)+' '+(sec.label||'Section');
-    if(readyCopyMode==='all')items.push({key:'section:'+i+':instruments',label:prefix+' - Instruments',group:'Section '+(i+1),sectionIndex:i,value:sec.instruments||''});
-    if(readyCopyMode==='all'||readyCopyMode==='vibes_descriptions')items.push({key:'section:'+i+':vibeTags',label:prefix+' - Vibe Tags',group:'Section '+(i+1),sectionIndex:i,value:sec.vibeTags||''});
-    if(readyCopyMode==='all'||readyCopyMode==='vibes_descriptions'||readyCopyMode==='descriptions')items.push({key:'section:'+i+':description',label:prefix+' - Description',group:'Section '+(i+1),sectionIndex:i,value:sec.description||''});
-  });
-  if(readyCopyMode==='all'||readyCopyMode==='globals'){
-    GLOBAL_FIELDS.forEach(function(name,idx){
-      items.push({key:'global:'+idx,label:name,group:'Global Fields',value:globalAnalysis[name]||''});
-    });
-  }
-  return items;
-}
-
-function syncReadyCopyItems(){
-  readyCopyItems=buildReadyCopyItems();
-  if(!readyCopyItems.length){readyCopyIndex=0;return}
-  readyCopyIndex=Math.max(0,Math.min(readyCopyIndex,readyCopyItems.length-1));
-}
-
-function setReadyCopyMode(mode){
-  readyCopyMode=mode||'all';
-  readyCopyIndex=0;
-  updateReadyCopyModeButtons();
-  renderReadyOutput();
-  renderCopyQueue();
-  scheduleAutosave();
-  setProcessStatus('Copy mode: '+copyModeLabel(readyCopyMode)+'.','ok');
-}
-
-function updateReadyCopyModeButtons(){
-  document.querySelectorAll('[data-copy-mode]').forEach(function(btn){btn.classList.toggle('copy-mode-active',btn.dataset.copyMode===readyCopyMode)});
-}
-
-function copyModeLabel(mode){
-  if(mode==='descriptions')return 'section descriptions only';
-  if(mode==='vibes_descriptions')return 'vibe tags and descriptions';
-  if(mode==='globals')return 'global fields only';
-  return 'all dashboard fields';
-}
-
-function readyRows(label,value,key){
-  key=key||('adhoc:'+label);
-  var cls='compact-copy-row copy-row'+(readyCopiedKeys[key]?' copied':'')+(readyCopyItems[readyCopyIndex]&&readyCopyItems[readyCopyIndex].key===key?' current-copy-target':'');
-  return '<div class="'+cls+'" data-ready-key="'+esc(key)+'"><div class="compact-copy-label copy-label">'+esc(label)+'</div><div class="compact-copy-value copy-value">'+esc(value||'')+'</div><button class="btn-sm" onclick="copyReadyRow(this)">'+(readyCopiedKeys[key]?'Copied':'Copy')+'</button></div>';
-}
-
-function copyFocusPanelHtml(){
-  var item=readyCopyItems[readyCopyIndex];
-  if(!item)return '';
-  return '<div class="copy-focus-panel">'
-    +'<div class="copy-focus-main"><div class="copy-focus-kicker">Current Copy Field · '+esc(copyModeLabel(readyCopyMode))+'</div>'
-    +'<div class="copy-focus-label">'+esc(item.label)+'</div>'
-    +'<div class="copy-focus-value">'+esc(item.value||'')+'</div></div>'
-    +'<div class="copy-focus-actions">'
-    +'<button class="btn-sm" onclick="prevReadyItem()">Previous</button>'
-    +'<button class="btn-sm primary-process" onclick="copyCurrentReadyItem()">Copy Current</button>'
-    +'<button class="btn-sm" onclick="nextReadyItem()">Next</button>'
-    +'</div></div>';
-}
-
-function renderReadyOutput(){
-  var out=document.getElementById('ready-output');if(!out)return;
-  syncReadyCopyItems();
-  updateReadyCopyModeButtons();
-  var html=copyFocusPanelHtml();
-  html+='<div class="ready-compact-layout">';
-  if(readyCopyMode!=='globals'){
-    html+='<div class="ready-compact-card sections-ready"><div class="ready-compact-title"><span>Sections</span><span>'+esc(copyModeLabel(readyCopyMode))+'</span></div><div class="ready-copy-list">';
-    sections.forEach(function(sec,i){
-      var collapsed=readySectionCollapsed[i]!==false;
-      html+='<div class="compact-section-card '+(collapsed?'collapsed':'')+'" id="ready-section-'+i+'" style="--sec-color:'+sectionColor(i,.95)+'"><div class="compact-section-head" onclick="toggleReadySection('+i+')">'
-        +'<span class="compact-section-num">S'+(i+1)+'</span><span class="compact-section-title">'+esc(sec.label)+'</span><span class="compact-section-start">'+formatTime(sec.start)+'</span>'
-        +'<button class="btn-sm" onclick="event.stopPropagation();copyReadySectionDescription('+i+')">'+(readyCopiedKeys['section:'+i+':description']?'Copied':'Copy')+'</button>'
-        +'<button class="btn-sm compact-section-toggle" onclick="event.stopPropagation();toggleReadySection('+i+')">'+(collapsed?'Open':'Close')+'</button>'
-        +'</div><div class="compact-section-fields">';
-      if(readyCopyMode==='all')html+=readyRows('Instruments',sec.instruments,'section:'+i+':instruments');
-      if(readyCopyMode==='all'||readyCopyMode==='vibes_descriptions')html+=readyRows('Vibe Tags',sec.vibeTags,'section:'+i+':vibeTags');
-      html+=readyRows('Description',sec.description,'section:'+i+':description');
-      html+='</div></div>';
-    });
-    html+='</div></div>';
-  }
-  if(readyCopyMode==='all'||readyCopyMode==='globals'){
-    html+='<div class="ready-compact-card globals-ready"><div class="ready-compact-title"><span>Global Fields</span></div><div class="ready-copy-list">';
-    GLOBAL_FIELDS.forEach(function(name,idx){html+=readyRows(name,globalAnalysis[name]||'','global:'+idx)});
-    html+='</div></div>';
-  }
-  html+='</div>';
-  out.innerHTML=html||'<div class="detail-empty">Load a track and process at least one pass to prepare copy fields.</div>';
-  renderCockpitStatus();
-}
-function showReadyToGo(){switchTab('ready-tab');dashboardMode=true;renderReadyOutput();applyDashboardMode()}
-function toggleReadySection(i){
-  readySectionCollapsed[i]=!(readySectionCollapsed[i]!==false);
-  renderReadyOutput();
-  scheduleAutosave();
-}
-function expandReadySectionForKey(key){
-  var item=readyCopyItems.find(function(it){return it.key===key});
-  if(!item||item.sectionIndex==null)return;
-  sections.forEach(function(_,idx){readySectionCollapsed[idx]=idx!==item.sectionIndex});
-}
-function setReadyCopyIndex(index){
-  syncReadyCopyItems();
-  if(!readyCopyItems.length){renderCopyQueue();return}
-  readyCopyIndex=(index+readyCopyItems.length)%readyCopyItems.length;
-  expandReadySectionForKey(readyCopyItems[readyCopyIndex].key);
-  renderReadyOutput();
-  renderCopyQueue();
-  scheduleAutosave();
-}
-function nextReadyItem(){setReadyCopyIndex(readyCopyIndex+1)}
-function prevReadyItem(){setReadyCopyIndex(readyCopyIndex-1)}
-function readyItemByKey(key){
-  syncReadyCopyItems();
-  return readyCopyItems.find(function(item){return item.key===key});
-}
-async function copyReadyByKey(key){
-  var item=readyItemByKey(key);
-  if(!item)return;
-  await copyText(item.value);
-  lastCopiedKey=key;
-  readyCopiedKeys[key]=true;
-  readyCopyIndex=readyCopyItems.findIndex(function(it){return it.key===key});
-  expandReadySectionForKey(key);
-  renderReadyOutput();
-  renderCopyQueue();
-  scheduleAutosave();
-}
-function copyReadyRow(btn){var row=btn.closest('[data-ready-key]');if(row)copyReadyByKey(row.dataset.readyKey)}
-async function copyCurrentReadyItem(){
-  syncReadyCopyItems();
-  if(!readyCopyItems.length)return;
-  await copyReadyByKey(readyCopyItems[readyCopyIndex].key);
-  setReadyCopyIndex(readyCopyIndex+1);
-}
-function copyReadySectionDescription(i){
-  readySectionCollapsed[i]=false;
-  copyReadyByKey('section:'+i+':description');
-}
-function renderCopyQueue(){
-  var strip=document.getElementById('copy-queue-strip');
-  if(!strip)return;
-  updateReadyCopyModeButtons();
-  if(!dashboardMode){strip.style.display='none';return}
-  syncReadyCopyItems();
-  strip.style.display='grid';
-  var current=readyCopyItems[readyCopyIndex];
-  var next=readyCopyItems.length?readyCopyItems[(readyCopyIndex+1)%readyCopyItems.length]:null;
-  var currentEl=document.getElementById('copy-queue-current');
-  var nextEl=document.getElementById('copy-queue-next');
-  var progressEl=document.getElementById('copy-queue-progress');
-  if(currentEl)currentEl.textContent=current?current.label:'No fields ready yet';
-  if(nextEl)nextEl.textContent=next?'Next: '+next.label:'Process a pass to populate fields.';
-  if(progressEl){
-    var copied=readyCopyItems.filter(function(item){return readyCopiedKeys[item.key]}).length;
-    progressEl.textContent=copied+' / '+readyCopyItems.length+' copied';
-  }
-}
-function copyTextFromButton(btn){
-  var row=btn.closest('[data-ready-key]');
-  if(row){copyReadyByKey(row.dataset.readyKey);return}
-  row=btn.closest('.copy-row');
-  var value=row?row.querySelector('.copy-value').textContent:'';
-  copyText(value);
-}
+function renderReadyOutput(){}
 async function copyText(text){
-  try{await navigator.clipboard.writeText(String(text||''));showSt('loading','Copied to clipboard.');setTimeout(hideSt,900)}
-  catch(e){showSt('error','Clipboard copy failed. Select and copy manually.');console.error(e)}
+  try{await navigator.clipboard.writeText(String(text||''));showSt('loading','Copied to clipboard.');setTimeout(hideSt,900);return true}
+  catch(e){showSt('error','Clipboard copy failed. Try the button again or use the file export.');console.error(e);return false}
 }
 
 function formatTime(s){var m=Math.floor(s/60);return m+':'+(Math.floor(s%60)+'').padStart(2,'0')}
@@ -5740,6 +5165,8 @@ function hideSt(){var b=document.getElementById('status-bar');if(b){b.className=
 
 window.addEventListener('resize',function(){clearTimeout(resizeTimer);resizeTimer=setTimeout(renderWaveform,120)});
 window.addEventListener('keydown',handleAppShortcut);
+document.addEventListener('pointerdown',activatePlaybackElement,{capture:true});
+document.addEventListener('keydown',activatePlaybackElement,{capture:true});
 document.addEventListener('click',function(e){
   var panel=document.getElementById('shortcut-help');
   if(panel&&!panel.hidden&&!e.target.closest('.user-block'))panel.hidden=true;
