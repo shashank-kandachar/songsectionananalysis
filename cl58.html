@@ -368,7 +368,7 @@ input::placeholder,textarea::placeholder{color:var(--text-4)}
 .recent-chip-x:hover{background:var(--err-soft);color:var(--err)}
 
 /* ─ Workbench ────────────────────────────────────────────────── */
-.workbench{display:flex;flex-direction:column;min-height:0;background:var(--bg-1);overflow:clip;transition:background var(--transition)}
+.workbench{display:flex;flex-direction:column;min-height:0;height:100%;background:var(--bg-1);overflow:clip;transition:background var(--transition)}
 [data-theme="skeu"] .workbench{background:linear-gradient(180deg,#ece0c8,#c8bca0)}
 [data-theme="japan"] .workbench{background:var(--bg-1)}
 
@@ -483,16 +483,15 @@ input::placeholder,textarea::placeholder{color:var(--text-4)}
 .struct-wf-cursor{position:absolute;top:0;height:100%;width:2px;transform:translateX(-50%);
   background:var(--text-0);pointer-events:none;box-shadow:0 0 8px rgba(245,240,230,.5);transition:background var(--transition)}
 
-.timeline-wrap{padding:10px 20px 14px;overflow-x:auto;flex:0 0 auto;transition:background var(--transition)}
 .timeline-ticks{position:relative;height:14px;margin-bottom:4px}
 .timeline-tick{position:absolute;font:500 9px var(--font-mono);color:var(--text-4);transform:translateX(-50%);letter-spacing:.06em;transition:color var(--transition)}
 [data-theme="skeu"] .timeline-tick{color:#6a4e2e}
 [data-theme="japan"] .timeline-tick{letter-spacing:.12em;font-size:8px}
-.timeline-rail{display:flex;align-items:stretch;height:52px;gap:0;position:relative}
+.timeline-rail{display:flex;align-items:stretch;height:38px;gap:0;position:relative}
 
 /* Structure cards */
-.struct-card{position:relative;display:flex;flex-direction:column;justify-content:space-between;
-  padding:4px 8px;margin-right:2px;border-radius:var(--r);background:var(--bg-2);border:var(--rule);
+.struct-card{position:relative;display:flex;flex-direction:column;justify-content:center;
+  padding:2px 7px;margin-right:2px;border-radius:var(--r);background:var(--bg-2);border:var(--rule);
   cursor:pointer;overflow:hidden;min-width:44px;
   transition:background var(--transition),border-color var(--transition),box-shadow var(--transition),transform .13s ease}
 .struct-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
@@ -877,16 +876,23 @@ body.focus-mode .struct-strip{display:none!important}
 [data-layout="wide"] .section-detail { padding: 16px 28px 56px; }
 
 /* Waveform in the strip — make it tall enough to be useful */
-[data-layout="wide"] .timeline-wrap { padding: 8px 20px 12px; }
-
 /* ── Main app container: fill remaining height below topbar ── */
 #main-app {
-  display: grid;
-  grid-template-rows: auto 1fr;
+  display: flex;
+  flex-direction: column;
   min-height: 0;
   overflow: hidden;
-  height: 100%;        /* fill the 1fr grid row in .app */
+  height: 100%;
 }
+/* URL strip: fixed size */
+#main-app > .url-strip { flex-shrink: 0; }
+/* Structure map: fixed size, only visible in wide */
+#main-app > .structure-map-panel { flex-shrink: 0; }
+/* Workspace: fills all remaining space */
+#main-app > .workspace { flex: 1; min-height: 0; }
+.url-strip           { grid-row: 1; }
+.structure-map-panel { grid-row: 2; }
+.workspace           { grid-row: 3; min-height: 0; }
 /* workspace fills its grid row */
 #main-app .workspace {
   min-height: 0;
@@ -928,13 +934,13 @@ body.focus-mode .struct-strip{display:none!important}
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 8px 20px 6px;
+  padding: 5px 16px 4px;
 }
 
 /* Row 2: full-width waveform — overrides old rule */
 .struct-waveform-wrap {
   position: relative;
-  height: 90px;           /* taller than before */
+  height: 68px;           /* taller than before */
   width: 100%;            /* truly full width */
   background: var(--bg-0);
   cursor: pointer;
@@ -954,13 +960,8 @@ body.focus-mode .struct-strip{display:none!important}
 }
 
 /* Timeline */
-.timeline-wrap {
-  padding: 8px 20px 12px;
-  overflow-x: auto;
-  flex-shrink: 0;
-  transition: background var(--transition);
-}
-.timeline-rail { display: flex; align-items: stretch; height: 52px; }
+
+.timeline-rail { display: flex; align-items: stretch; height: 38px; }
 
 /* ── Wide layout: show section list in workbench, same as dual ── */
 [data-layout="wide"] .sections-grid { grid-template-columns: 300px 1fr; }
@@ -1029,7 +1030,7 @@ body.focus-mode .struct-strip{display:none!important}
 .sub-panel.active { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 
 /* Section sub-panel: same sections-grid layout as before */
-#sub-panel-section { overflow: hidden; }
+#sub-panel-section { overflow: hidden; min-height: 0; }
 #sub-panel-section .sections-grid { flex: 1; }
 
 /* Globals sub-panel: full-width scrollable */
@@ -1069,16 +1070,7 @@ body.focus-mode .struct-strip{display:none!important}
 
 
 /* ── Struct seek bar ────────────────────────────────────────────── */
-.struct-seekbar-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 5px 20px 4px;
-  border-bottom: var(--rule);
-  background: var(--bg-1);
-  flex-shrink: 0;
-  transition: background var(--transition), border-color var(--transition);
-}
+
 [data-theme="skeu"] .struct-seekbar-row {
   background: linear-gradient(180deg,#d4c8b0,#c8bca0);
   border-bottom: 1px solid #8a7a66;
@@ -1087,54 +1079,16 @@ body.focus-mode .struct-strip{display:none!important}
   background: var(--bg-1);
   border-bottom: 1px solid var(--bg-4);
 }
-.struct-seekbar {
-  flex: 1;
-  position: relative;
-  height: 6px;
-  border-radius: 999px;
-  background: var(--bg-3);
-  cursor: pointer;
-  overflow: visible;
-  transition: background var(--transition);
-}
+
 [data-theme="skeu"] .struct-seekbar { background: rgba(0,0,0,.25); box-shadow: inset 0 1px 2px rgba(0,0,0,.4); }
 [data-theme="japan"] .struct-seekbar { background: var(--bg-4); border-radius: 0; }
-.struct-seekbar:hover .struct-seek-thumb { transform: translate(-50%,-50%) scale(1.4); }
-.struct-seek-fill {
-  height: 100%;
-  border-radius: 999px;
-  background: var(--accent);
-  pointer-events: none;
-  transition: width .08s linear, background var(--transition);
-  width: 0%;
-}
 [data-theme="japan"] .struct-seek-fill { border-radius: 0; }
-.struct-seek-thumb {
-  position: absolute;
-  top: 50%;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--text-0);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  box-shadow: 0 1px 4px rgba(0,0,0,.4);
-  transition: transform .1s ease, background var(--transition), left .08s linear;
-}
 [data-theme="japan"] .struct-seek-thumb { border-radius: 0; width: 8px; height: 8px; }
-.struct-seekbar-time {
-  font: 600 11px var(--font-mono);
-  color: var(--text-3);
-  white-space: nowrap;
-  letter-spacing: .02em;
-  transition: color var(--transition);
-  flex-shrink: 0;
-}
 [data-theme="skeu"] .struct-seekbar-time { color: #6a4e2e; }
 
 /* ── Slim struct-card at 52px: hide time label, keep num + name ─── */
 .struct-card-time { display: none; }
-.struct-card { padding: 5px 8px; }
+.struct-card { padding: 3px 7px; }
 .struct-card-label { font-size: 11px; margin-top: 1px; }
 .struct-card-num { font-size: 8px; letter-spacing: .1em; }
 
@@ -1149,6 +1103,101 @@ body.focus-mode .struct-strip{display:none!important}
 #struct-time-current { color: var(--accent); }
 #time-current { color: var(--accent); }
 
+
+/* ── Timeline wrap: tight padding ──────────────────────────────── */
+.timeline-wrap {
+  padding: 0 0 0 0;
+  overflow-x: auto;
+  flex-shrink: 0;
+  transition: background var(--transition);
+}
+.timeline-ticks {
+  padding: 2px 20px 1px;
+  position: relative;
+  height: 14px;
+}
+.timeline-rail {
+  padding: 0 20px;
+}
+
+/* ── Seek bar: sits directly under waveform, full visual weight ─── */
+.struct-seekbar-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 20px;
+  height: 28px;          /* enough to be hit-able and visible */
+  background: var(--bg-0);
+  border-bottom: var(--rule);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+}
+[data-theme="skeu"] .struct-seekbar-row {
+  background: linear-gradient(180deg,#1a0f08,#2a1808);
+  border-bottom: 1px solid #0a0602;
+}
+[data-theme="japan"] .struct-seekbar-row {
+  background: var(--bg-0);
+  border-bottom: 1px solid var(--bg-3);
+}
+.struct-seekbar {
+  flex: 1;
+  position: relative;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--bg-4);
+  cursor: pointer;
+  overflow: visible;
+  transition: background var(--transition);
+}
+[data-theme="japan"] .struct-seekbar { border-radius: 0; background: var(--bg-5); }
+.struct-seekbar:hover { background: var(--bg-5); }
+
+.struct-seek-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+  pointer-events: none;
+  width: 0%;
+  transition: width .08s linear, background var(--transition);
+}
+[data-theme="japan"] .struct-seek-fill { border-radius: 0; }
+
+.struct-seek-thumb {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--text-0);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  box-shadow: 0 1px 5px rgba(0,0,0,.5);
+  transition: left .08s linear, background var(--transition);
+  left: 0%;
+}
+[data-theme="skeu"] .struct-seek-thumb { background: #faeaa0; box-shadow: 0 1px 4px rgba(0,0,0,.6); }
+[data-theme="japan"] .struct-seek-thumb { border-radius: 0; width: 10px; height: 10px; background: var(--accent); }
+
+.struct-seekbar-time {
+  font: 600 12px var(--font-mono);
+  color: var(--text-2);
+  white-space: nowrap;
+  letter-spacing: .03em;
+  flex-shrink: 0;
+  transition: color var(--transition);
+  min-width: 80px;
+  text-align: right;
+}
+[data-theme="skeu"] .struct-seekbar-time { color: #c8a070; }
+[data-theme="japan"] .struct-seekbar-time { letter-spacing: .12em; font-size: 11px; }
+/* Current position in accent */
+.struct-seekbar-time .seek-current { color: var(--accent); font-size: 14px; }
+
+/* Theme overrides for seekbar */
+[data-theme="skeu"] .struct-seekbar { background: rgba(0,0,0,.4); box-shadow: inset 0 1px 2px rgba(0,0,0,.5); }
+[data-theme="skeu"] .struct-seek-fill { background: #e8a56c; }
 </style>
 
 </head>
@@ -1592,7 +1641,7 @@ function renderStructureWaveform() {
   var canvas = document.getElementById('struct-waveform-canvas');
   var wrap   = document.getElementById('struct-waveform-wrap');
   if (!canvas || !wrap || !currentTrack) return;
-  var w = wrap.clientWidth, h = wrap.clientHeight || 72;
+  var w = wrap.clientWidth, h = wrap.clientHeight || 90;
   if (w < 4) return;
   var dpr = window.devicePixelRatio || 1;
   canvas.width  = w * dpr;
@@ -1604,65 +1653,70 @@ function renderStructureWaveform() {
   ctx.clearRect(0, 0, w, h);
   var total = totalDurSecs || 1;
 
-  /* Section colour tints */
+  /* Section background tints — strong enough to see on dark bg */
   sections.forEach(function(sec, i) {
     var x  = (sec.start / total) * w;
     var sw = (sec.duration / total) * w;
-    var c  = getSectionColor((sections[i]||{}).label||'',i);
-    ctx.fillStyle = 'rgba(' + c + ',0.12)';
+    var c  = getSectionColor((sections[i]||{}).label||'', i);
+    ctx.fillStyle = 'rgba(' + c + ',0.22)';
     ctx.fillRect(x, 0, sw, h);
   });
 
-  /* Waveform bars, coloured by section */
+  /* Waveform bars — high contrast, clearly section-coloured */
   if (waveformData.length) {
     var bw = w / waveformData.length;
     waveformData.forEach(function(v, i) {
-      var bh  = v * h * 0.8;
+      var bh  = v * h * 0.82;
       var x   = i * bw;
       var pos = (x / w) * total;
       var idx = -1;
       for (var s = 0; s < sections.length; s++) {
         if (pos >= sections[s].start) idx = s; else break;
       }
-      var c = idx >= 0 ? getSectionColor((sections[idx]||{}).label||'',idx) : '200,191,169';
-      /* Highlight active section brighter */
-      var alpha = (idx === selectedSection) ? 0.72 : 0.42;
-      ctx.fillStyle = 'rgba(' + c + ',' + alpha + ')';
+      var c = idx >= 0 ? getSectionColor((sections[idx]||{}).label||'', idx) : '200,191,169';
+      var isActive = (idx === selectedSection);
+      ctx.fillStyle = 'rgba(' + c + ',' + (isActive ? 0.95 : 0.72) + ')';
       ctx.fillRect(x, (h - bh) / 2, Math.max(1, bw - 0.5), bh);
     });
   }
 
-  /* Section boundary lines + labels */
+  /* Section boundary lines — solid vertical markers */
   sections.forEach(function(sec, i) {
-    if (i === 0) return; /* first section has no marker */
-    var x   = (sec.start / total) * w;
-    var c   = getSectionColor((sections[i]||{}).label||'',i);
-    /* Vertical line */
-    ctx.strokeStyle = 'rgba(' + c + ',0.9)';
-    ctx.lineWidth   = 1.5;
+    if (i === 0) return;
+    var x = (sec.start / total) * w;
+    var c = getSectionColor((sections[i]||{}).label||'', i);
+    ctx.strokeStyle = 'rgba(' + c + ',1)';
+    ctx.lineWidth   = 2;
     ctx.beginPath();
     ctx.moveTo(x, 0);
     ctx.lineTo(x, h);
     ctx.stroke();
-    /* Label pill at top */
-    var label = String(i + 1) + ' ' + sec.label;
-    ctx.font = '500 10px Inter, system-ui, sans-serif';
-    var tw = ctx.measureText(label).width;
-    var px = Math.min(x + 4, w - tw - 6);
-    ctx.fillStyle = 'rgba(' + c + ',0.18)';
-    ctx.fillRect(px, 3, tw + 6, 14);
-    ctx.fillStyle = 'rgba(' + c + ',1)';
-    ctx.fillText(label, px + 3, 13);
   });
 
-  /* Active section highlight border */
+  /* Section labels — solid text with dark backing for legibility */
+  sections.forEach(function(sec, i) {
+    var x = (sec.start / total) * w;
+    var c = getSectionColor((sections[i]||{}).label||'', i);
+    var label = (i + 1) + ' ' + sec.label;
+    ctx.font = 'bold 11px Inter, system-ui, sans-serif';
+    var tw = ctx.measureText(label).width;
+    var lx = (i === 0) ? 4 : Math.min(x + 4, w - tw - 8);
+    /* Dark pill backing */
+    ctx.fillStyle = 'rgba(10,9,8,0.65)';
+    ctx.fillRect(lx - 2, 4, tw + 8, 16);
+    /* Coloured text */
+    ctx.fillStyle = 'rgb(' + c + ')';
+    ctx.fillText(label, lx + 2, 16);
+  });
+
+  /* Active section highlight outline */
   if (selectedSection >= 0 && sections[selectedSection]) {
     var sec = sections[selectedSection];
     var x   = (sec.start / total) * w;
     var sw  = (sec.duration / total) * w;
-    var c   = getSectionColor((sections[selectedSection]||{}).label||'',selectedSection);
-    ctx.strokeStyle = 'rgba(' + c + ',0.85)';
-    ctx.lineWidth   = 2;
+    var c   = getSectionColor((sections[selectedSection]||{}).label||'', selectedSection);
+    ctx.strokeStyle = 'rgba(' + c + ',1)';
+    ctx.lineWidth   = 2.5;
     ctx.strokeRect(x + 1, 1, Math.max(sw - 2, 2), h - 2);
   }
 
@@ -1675,11 +1729,12 @@ function updateStructSeekBar() {
   var fill  = document.getElementById('struct-seek-fill');
   var thumb = document.getElementById('struct-seek-thumb');
   var label = document.getElementById('struct-seekbar-time');
-  if (!fill && !thumb && !label) return;
+  if (!fill && !thumb) return;
   var pct = duration ? Math.min(100, (positionMs / duration) * 100) : 0;
   if (fill)  fill.style.width = pct + '%';
   if (thumb) thumb.style.left  = pct + '%';
-  if (label) label.textContent = msToTime(positionMs) + ' / ' + msToTime(duration || 0);
+  if (label) label.innerHTML = '<span class="seek-current">' + msToTime(positionMs) + '</span>'
+    + ' <span style="opacity:.5">/</span> ' + msToTime(duration || 0);
 }
 
 function initStructSeekBar() {
@@ -2066,7 +2121,7 @@ function renderWaveform(){
     var x=(sec.start/total)*w;
     var sw=(sec.duration/total)*w;
     var c=getSectionColor(sec.label||'',i);
-    ctx.fillStyle='rgba('+c+',0.08)';
+    ctx.fillStyle='rgba('+c+',0.18)';
     ctx.fillRect(x,0,sw,h);
   });
 
@@ -2086,7 +2141,7 @@ function renderWaveform(){
       var idx=-1;
       for(var s=0;s<sections.length;s++){if(pos>=sections[s].start)idx=s;else break}
       var c=idx>=0?getSectionColor((sections[idx]||{}).label||'',idx):'200,191,169';
-      ctx.fillStyle='rgba('+c+',0.42)';
+      ctx.fillStyle='rgba('+c+','+(idx===selectedSection?0.95:0.72)+')';
       ctx.fillRect(x,(h-bh)/2,Math.max(1,bw-0.5),bh);
     });
   }
@@ -2260,7 +2315,9 @@ function addSectionAt(timeSec){
   var newSec=normalizeSection({start:time,duration:(next?next.start:totalDurSecs)-time,label:'Section'});
   prev.duration=time-prev.start;
   sections.splice(idx,0,newSec);
+  renderAll();          /* updates waveform + timeline immediately */
   selectSection(idx,false);
+  scheduleAutosave();
   toast('Section added at '+formatTime(time),'ok');
 }
 function deleteSection(i){
@@ -3645,6 +3702,7 @@ var _origSelectSection = selectSection;
 selectSection = function(i, shouldSeek) {
   _origSelectSection(i, shouldSeek);
   renderTimelineRail();
+  renderStructureWaveform();   /* keep active section highlight in sync */
 };
 
 /* ── v4: patch playSection to update timeline ────────────────── */
