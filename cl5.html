@@ -531,7 +531,7 @@ input::placeholder,textarea::placeholder{color:var(--text-4)}
 .detail-empty .display{font-family:var(--font-display);font-style:italic;font-size:24px;font-weight:400;color:var(--text-3);margin-bottom:8px;line-height:1.2}
 .detail-empty p{font-size:12px;line-height:1.6;max-width:280px;margin:0 auto}
 [data-theme="japan"] .detail-empty .display{font-style:normal;font-weight:700;letter-spacing:.08em}
-.detail-header{margin-bottom:18px;padding-bottom:14px;border-bottom:var(--rule);transition:border-color var(--transition)}
+.detail-header{margin-bottom:12px;padding-bottom:10px;border-bottom:var(--rule);transition:border-color var(--transition)}
 [data-theme="skeu"] .detail-header{border-bottom:1px solid #8a7a66}
 [data-theme="japan"] .detail-header{border-bottom:1px solid var(--bg-4)}
 .detail-eyebrow{display:flex;align-items:center;gap:9px;margin-bottom:5px;font:500 9px var(--font-mono);color:var(--text-3);text-transform:uppercase;letter-spacing:.14em;transition:color var(--transition)}
@@ -612,7 +612,7 @@ input::placeholder,textarea::placeholder{color:var(--text-4)}
 .field input{width:100%;padding:8px 11px;border-radius:var(--r);font-size:12px}
 .field-row{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:11px;margin-bottom:14px}
 .field-row .field{margin-bottom:0}
-.field.narrative textarea{font-family:var(--font-display);font-weight:400;font-size:14px;line-height:1.6;letter-spacing:-.005em;background:var(--bg-0);padding:11px 13px;min-height:76px;transition:background var(--transition)}
+.field.narrative textarea{font-family:var(--font-display);font-weight:400;font-size:14px;line-height:1.6;letter-spacing:-.005em;background:var(--bg-0);padding:11px 13px;min-height:120px;transition:background var(--transition)}
 [data-theme="skeu"] .field.narrative textarea{font-style:normal;background:#fdf6ec;font-family:Georgia,serif}
 [data-theme="japan"] .field.narrative textarea{font-style:normal;font-weight:500;letter-spacing:.02em}
 
@@ -1269,6 +1269,21 @@ body.focus-mode .struct-strip{display:none!important}
 /* Position it in the topbar next to the brand */
 #url-strip-change {
   font-size: 11px;
+}
+
+/* Section detail: writing-first layout */
+/* Shorthand and model strips are secondary — give them a clear visual separation */
+.section-detail .shorthand-strip {
+  margin-top: 20px;
+  border-top: var(--rule);
+  padding-top: 12px;
+}
+[data-theme="skeu"] .section-detail .shorthand-strip { border-top: 1px solid #8a7a66; }
+[data-theme="japan"] .section-detail .shorthand-strip { border-top: 1px solid var(--bg-4); }
+
+/* QA banner at bottom: less prominent since it's secondary */
+.section-detail .qa-banner {
+  margin-top: 4px;
 }
 </style>
 
@@ -2631,10 +2646,6 @@ function renderAnnotateDetail(){
 
     +boundaryStrip
 
-    +qaBannerHtml()
-    +shorthandStripHtml(selectedSection,sec)
-    +modelDeltaHtml(selectedSection,sec,sibs)
-
     +'<div class="field narrative"><label>Narrative description</label>'
     +'<textarea id="f-desc" placeholder="Begin with the foreground sound, then state the change and its musical effect." oninput="updateField(\'description\',this.value)">'+esc(sec.description)+'</textarea>'
     +'</div>'
@@ -2650,6 +2661,10 @@ function renderAnnotateDetail(){
     +'<input id="f-mel" type="text" value="'+esc(sec.melody)+'" placeholder="Source + movement" oninput="updateField(\'melody\',this.value)"/>'
     +'</div>'
     +'</div>'
+
+    +shorthandStripHtml(selectedSection,sec)
+    +modelDeltaHtml(selectedSection,sec,sibs)
+    +qaBannerHtml()
 
     +'<datalist id="instr-list">'+APPROVED_INSTRUMENT_TAGS.map(function(t){return '<option value="'+esc(t)+'">'}).join('')+'</datalist>'
 
